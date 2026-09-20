@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task": "CF-008",
+  "status": "COMPLETE",
+  "scope": "UTF-8 TXT/Markdown source ingestion with raw-byte preservation and content-hash deduplication",
+  "completed_at": "2026-09-20T16:48:05Z",
+  "branch": "main",
+  "implementation_commits": [
+    "4e84d503ad29c6299bc7826390049d2ad014c5bf",
+    "d5b68696b90506bf739cf51d490e4d09fee3b102"
+  ],
+  "red_evidence": [
+    {
+      "commit": "4e84d503ad29c6299bc7826390049d2ad014c5bf",
+      "run_id": 35523754932,
+      "conclusion": "failure",
+      "reason": "text ingestion module absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "d5b68696b90506bf739cf51d490e4d09fee3b102",
+      "run_id": 35523822745,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "valid UTF-8 Markdown preserves original bytes and extracted text",
+    "identical bytes deduplicate to the same source identity",
+    "same filename with changed bytes creates a new source",
+    "empty and invalid UTF-8 sources are rejected",
+    "explicit size budget rejects without truncating",
+    "source metadata is persisted separately from immutable object bytes"
+  ],
+  "outputs": [
+    "packages/core/src/content/import-text.ts",
+    "packages/core/src/workspace/migrations.ts",
+    "packages/core/src/workspace/store.ts",
+    "schemas/source.schema.json",
+    "test/import-text.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
