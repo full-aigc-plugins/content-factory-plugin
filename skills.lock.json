@@ -13,7 +13,7 @@
       "dest": "skills/",
       "sha256": {
         "baoyu-format-markdown": "5c4ab00ab8caa9aaae091ad8171997ca355f562af4174d889a6b25f2bde99a29",
-        "baoyu-markdown-to-html": "46a417f10ffa631b4c3be89ba18368b79ea1d2b2e8002268e3ed4b1be2dfec3a"
+        "baoyu-markdown-to-html": "2ce82dfcf05b4d82dc571e451a8b09e459bbb476f770a27a695731a0aeb04aa0"
       },
       "license": {
         "spdx": "MIT",
