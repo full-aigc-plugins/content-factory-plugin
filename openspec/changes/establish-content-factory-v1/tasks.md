@@ -4,7 +4,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
 
 ## W0 — Supply chain and external contracts
 
-- [ ] **CF-001 Immutable skill supply chain and release structure**
+- [x] **CF-001 Immutable skill supply chain and release structure**
   - Create `skills.lock.json` and `plugin-local-skills.json`.
   - Implement vendor sync/check tooling.
   - Verify exact license/provenance for each selected upstream.

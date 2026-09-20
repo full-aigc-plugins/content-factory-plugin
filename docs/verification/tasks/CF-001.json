@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "task": "CF-001",
+  "status": "COMPLETE",
+  "scope": "Immutable vendor skill supply-chain framework and protected plugin-local harness identity",
+  "completed_at": "2026-09-20T15:29:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "183bf8a10805f87611532a52650fbfd5788aa680",
+    "ff8a523c2a3efa394e6b228df5d29563d64038ea",
+    "700b7a3bbe8c81fd9289f97f17bb9b3d9b99058a"
+  ],
+  "red_evidence": [
+    {
+      "commit": "548a5d429b3b24fd7f287c42a599bb339cf42094",
+      "run_id": 35519444847,
+      "conclusion": "failure",
+      "reason": "vendor CLI absent"
+    },
+    {
+      "commit": "a6c86ffaea336f5d5b069f0dde97404d8e7465c6",
+      "run_id": 35519501404,
+      "conclusion": "failure",
+      "reason": "update/preservation contract absent"
+    },
+    {
+      "commit": "3ae5fb0e1a7519a8873fbdcfbe1a753d1f288c4c",
+      "run_id": 35519645545,
+      "conclusion": "failure",
+      "reason": "public sync/check entrypoints absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "ff8a523c2a3efa394e6b228df5d29563d64038ea",
+      "run_id": 35519601329,
+      "conclusion": "success",
+      "tests": 5
+    },
+    {
+      "commit": "700b7a3bbe8c81fd9289f97f17bb9b3d9b99058a",
+      "run_id": 35519687434,
+      "conclusion": "success",
+      "tests": 6
+    }
+  ],
+  "command": "npm test",
+  "assertions": [
+    "floating refs rejected",
+    "plugin-local/vendor overlap rejected",
+    "missing license provenance rejected",
+    "empty managed-source set accepted with declared content-harness",
+    "pinned local upstream update preserves content-harness",
+    "dedicated sync/check entrypoints and third-party notice present"
+  ],
+  "outputs": [
+    "skills.lock.json",
+    "plugin-local-skills.json",
+    "skills/content-harness/SKILL.md",
+    "scripts/vendor/skill_vendor.mjs",
+    "scripts/check-skills.mjs",
+    "scripts/sync-skills.mjs",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "fixture_or_live": "fixture",
+  "vendor_sources_currently_locked": 0,
+  "boundary": "Real Baoyu and other vendor packages are admitted and pinned by CF-005/CF-043/CF-047; CF-001 establishes and tests the immutable mechanism.",
+  "secrets_in_record": false
+}
