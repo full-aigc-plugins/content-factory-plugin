@@ -9,7 +9,7 @@
 
 ## 状态与编号
 
-58 个父任务沿用 CF-001–CF-058；每个拆成四个子项，共 232 个。当前 CF-001、CF-002 已完成；CF-005 已有实现提交但验证回执尚未闭合；其余保持未开始。本文件是执行明细，不增加第二套独立产品任务。父任务只能在其子项、原验收和所需真实证据都完成后汇总；不得仅凭子项数更新父任务。原 58 项文本保留不覆盖，受影响实现职责以已确认的 Vendor/单 Harness 决策为准。
+58 个父任务沿用 CF-001–CF-058；每个拆成四个子项，共 232 个。当前 CF-001、CF-002 已完成；CF-005 已完成并有 RED→GREEN CI 与供应链校验证据；其余保持未开始。本文件是执行明细，不增加第二套独立产品任务。父任务只能在其子项、原验收和所需真实证据都完成后汇总；不得仅凭子项数更新父任务。原 58 项文本保留不覆盖，受影响实现职责以已确认的 Vendor/单 Harness 决策为准。
 
 ## 全局约束
 
@@ -83,12 +83,12 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/foundation.md#cf-005)
 
-> 当前状态：`IN_PROGRESS`。`v1.63.0` Baoyu 格式化 Skill 已锁定并 vendored，相关测试已提交；由于当前 GitHub 连接未返回这些提交的 workflow/status 结果，5.1–5.4 暂不提前勾选，待正式任务回执闭合。
+> 当前状态：`COMPLETE`。`v1.63.0` Baoyu 格式化 Skill 已锁定并 vendored；RED run 35521706055 暴露真实目录摘要漂移，GREEN run 35523357715 的 lint/typecheck/test/skills:check/build 全部通过。
 
-- [ ] 5.1 [CF-005.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 5.2 [CF-005.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 5.3 [CF-005.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 5.4 [CF-005.4] 原要求与证据复核、独立 review/commit。
+- [x] 5.1 [CF-005.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 5.2 [CF-005.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 5.3 [CF-005.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 5.4 [CF-005.4] 原要求与证据复核、独立 review/commit。
 
 ## 6. CF-006 — Image Factory 协作契约验证
 

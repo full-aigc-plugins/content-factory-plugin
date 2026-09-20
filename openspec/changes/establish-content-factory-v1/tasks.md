@@ -22,7 +22,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Verify create/read/update and unknown-result recovery with an authorized account.
   - Do not test public broadcast.
 
-- [ ] **CF-005 Vendor formatting parity baseline**
+- [x] **CF-005 Vendor formatting parity baseline**
   - Lock and evaluate `baoyu-format-markdown` and `baoyu-markdown-to-html`.
   - Preserve content-freeze semantics.
   - Remove runtime dependence on floating Bun/npm downloads for the packaged release.

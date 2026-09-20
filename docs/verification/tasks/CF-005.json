@@ -1,57 +1,67 @@
 {
   "schema_version": 1,
   "task": "CF-005",
-  "status": "IN_PROGRESS",
-  "scope": "Immutable Baoyu formatting vendor baseline",
-  "observed_at": "2026-09-21T00:35:00+08:00",
+  "status": "COMPLETE",
+  "scope": "Pinned Baoyu Markdown formatting and Markdown-to-HTML vendor baseline with immutable digests and offline integrity verification",
+  "completed_at": "2026-09-20T16:38:55Z",
   "branch": "main",
-  "implementation_commits": [
-    {
-      "sha": "467807e80cde059ee4ab407c3fe0a208de850c4f",
-      "message": "test: define CF-005 Baoyu formatting baseline",
-      "evidence_class": "commit"
-    },
-    {
-      "sha": "2f8f1720ed3ae6a562bf40accd255e42dccbed49",
-      "message": "feat: vendor CF-005 Baoyu formatting baseline",
-      "evidence_class": "commit"
-    },
-    {
-      "sha": "b9d6bc7a797762f310f9fcd464a2705deeb678b5",
-      "message": "test: expose CF-005 vendor digest contract",
-      "evidence_class": "commit"
-    }
-  ],
-  "locked_vendor": {
-    "package": "baoyu-skills",
-    "repo": "https://github.com/full-aigc-skills/baoyu-skills.git",
+  "source": {
+    "repository": "https://github.com/full-aigc-skills/baoyu-skills.git",
     "ref": "v1.63.0",
-    "sha": "c1e1526c84fd07d71d9d12e9845dceeb366d1b42",
+    "commit": "c1e1526c84fd07d71d9d12e9845dceeb366d1b42",
+    "license": "MIT",
     "skills": [
       "baoyu-format-markdown",
       "baoyu-markdown-to-html"
-    ],
-    "license": "MIT"
+    ]
   },
-  "observed_outputs": [
+  "implementation_commits": [
+    "467807e80cde059ee4ab407c3fe0a208de850c4f",
+    "2f8f1720ed3ae6a562bf40accd255e42dccbed49",
+    "b9d6bc7a797762f310f9fcd464a2705deeb678b5",
+    "ae8d8cce919f11e373182f9298731d86174e7b76"
+  ],
+  "red_evidence": [
+    {
+      "commit": "b9d6bc7a797762f310f9fcd464a2705deeb678b5",
+      "run_id": 35521706055,
+      "conclusion": "failure",
+      "failed_assertion": "baoyu-markdown-to-html vendored tree digest must equal skills.lock.json",
+      "actual_digest": "2ce82dfcf05b4d82dc571e451a8b09e459bbb476f770a27a695731a0aeb04aa0",
+      "stale_digest": "46a417f10ffa631b4c3be89ba18368b79ea1d2b2e8002268e3ed4b1be2dfec3a"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "ae8d8cce919f11e373182f9298731d86174e7b76",
+      "run_id": 35523357715,
+      "conclusion": "success",
+      "gates": [
+        "npm install --ignore-scripts",
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "Baoyu source is pinned to semantic tag and resolved commit",
+    "vendored skill tree digests match skills.lock.json",
+    "complete dependency metadata is present for both formatting skills",
+    "visual-generation skills are excluded from Content Factory",
+    "offline supply-chain verification passes",
+    "third-party notice records source version and MIT provenance"
+  ],
+  "outputs": [
     "skills.lock.json",
     "skills/baoyu-format-markdown/",
     "skills/baoyu-markdown-to-html/",
+    "test/vendor-formatting.test.mjs",
     "adapters/baoyu/README.md",
-    "test/vendor-formatting.test.mjs"
+    "THIRD_PARTY_NOTICES.md"
   ],
-  "assertions_present": [
-    "immutable tag and commit",
-    "per-skill digest equals vendored tree",
-    "complete dependency metadata is vendored",
-    "image-generation skills are excluded",
-    "offline supply-chain validation and provenance notice"
-  ],
-  "workflow_evidence": {
-    "status": "NOT_AVAILABLE_FROM_CURRENT_GITHUB_CONNECTOR",
-    "workflow_runs_returned": 0,
-    "commit_statuses_returned": 0,
-    "note": "Do not mark CF-005 COMPLETE until its formal verification receipt closes the required RED/GREEN/regression evidence."
-  },
+  "fixture_or_live": "fixture+immutable_source",
   "secrets_in_record": false
 }
