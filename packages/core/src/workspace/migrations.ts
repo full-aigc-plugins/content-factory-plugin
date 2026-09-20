@@ -1,6 +1,6 @@
 import type { DatabaseSync } from "node:sqlite";
 
-export const CURRENT_SCHEMA_VERSION = 3;
+export const CURRENT_SCHEMA_VERSION = 4;
 
 export type MigrationState = {
   schemaVersion: number;
@@ -75,12 +75,46 @@ export function migrateWorkspace(db: DatabaseSync): MigrationState {
       `);
     }
 
+    if (current < 4) {
+      db.exec(`
+        CREATE TABLE IF NOT EXISTS workflow_runs (
+          run_id TEXT PRIMARY KEY,
+          status TEXT NOT NULL,
+          created_at TEXT NOT NULL,
+          cancelled_at TEXT,
+          cancel_reason TEXT
+        );
+
+        CREATE TABLE IF NOT EXISTS workflow_steps (
+          run_id TEXT NOT NULL,
+          stage_id TEXT NOT NULL,
+          ordinal INTEGER NOT NULL,
+          status TEXT NOT NULL,
+          input_hash TEXT NOT NULL,
+          output_sha256 TEXT,
+          evidence_json TEXT NOT NULL DEFAULT '[]',
+          external_calls INTEGER NOT NULL DEFAULT 0 CHECK (external_calls >= 0),
+          PRIMARY KEY (run_id, stage_id),
+          FOREIGN KEY (run_id) REFERENCES workflow_runs(run_id)
+        );
+
+        CREATE TABLE IF NOT EXISTS workflow_events (
+          run_id TEXT NOT NULL,
+          sequence INTEGER NOT NULL,
+          type TEXT NOT NULL,
+          stage_id TEXT,
+          payload_json TEXT NOT NULL,
+          created_at TEXT NOT NULL,
+          PRIMARY KEY (run_id, sequence),
+          FOREIGN KEY (run_id) REFERENCES workflow_runs(run_id)
+        );
+      `);
+    }
+
     db.exec(`PRAGMA user_version = ${CURRENT_SCHEMA_VERSION}`);
     db.exec("COMMIT");
   } catch (error) {
-    try {
-      db.exec("ROLLBACK");
-    } catch {}
+    try { db.exec("ROLLBACK"); } catch {}
     throw error;
   }
 
