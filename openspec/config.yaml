@@ -1,0 +1,32 @@
+schema: spec-driven
+
+context: |
+  Product: Content Factory / 内容工厂
+  Repository: full-aigc-plugins/content-factory-plugin
+  Plugin ID: content-factory
+  V1 principle: the first release must be genuinely usable, not a demo.
+  Architecture principle: integrate immutable external content skills, keep one plugin-local content-harness,
+  enforce deterministic runtime-kernel rules, and delegate image generation to image-factory-plugin.
+  Runtime baseline: TypeScript + Node.js 24 LTS + SQLite + CLI/MCP.
+  Do not mark implementation tasks complete merely because planning or OpenSpec artifacts exist.
+
+rules:
+  proposal:
+    - Preserve the approved V1 business scope while allowing implementation architecture refinements.
+    - Separate vendor skills, plugin-local skills, runtime-kernel responsibilities, and external-plugin responsibilities.
+  design:
+    - Treat external skills as immutable vendored dependencies locked by release/tag, peeled commit SHA, and content digest.
+    - Content Factory owns orchestration and evidence/state semantics, not duplicate image-generation backends.
+  tasks:
+    - Preserve CF-001 through CF-042 identifiers.
+    - Every implementation task remains unchecked until implementation evidence exists.
+    - External live-service validation must remain distinct from fixtures and mocks.
+
+operations:
+  apply:
+    guidance:
+      - Do not vendor floating main branches into a release.
+      - Do not bypass user approval, detection validity, or delivery verification through a skill shortcut.
+  archive:
+    guidance:
+      - Archive only after V1 implementation requirements are accepted and synced into canonical specs.
