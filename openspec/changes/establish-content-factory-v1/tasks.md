@@ -40,7 +40,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Prefer the locked `baoyu-url-to-markdown` capability when available.
   - Keep SSRF, redirects, access walls, prompt injection, size and extraction policy in the kernel.
 - [ ] **CF-010 DOCX and text-PDF ingestion**
-- [ ] **CF-011 Immutable revisions, diffs, and CAS conflict handling**
+- [x] **CF-011 Immutable revisions, diffs, and CAS conflict handling**
 - [ ] **CF-012 Run/Step ledger and recovery**
 
 ## W2 — Harness-driven creation and editing

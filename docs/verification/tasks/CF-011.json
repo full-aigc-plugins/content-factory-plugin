@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "task": "CF-011",
+  "status": "COMPLETE",
+  "scope": "Immutable content revisions, CAS head advancement, conflict retention, rollback, and deterministic text diff",
+  "completed_at": "2026-09-20T16:51:05Z",
+  "branch": "main",
+  "implementation_commits": [
+    "420e67a4bf1791942fedfbbdfcd93a7c5f7dce8b",
+    "622a009e10173d22f64b5947090d4d1d5fb478db",
+    "1cb7a7066d22fa460706c084762b1cfa1a186642"
+  ],
+  "red_evidence": [
+    {
+      "commit": "420e67a4bf1791942fedfbbdfcd93a7c5f7dce8b",
+      "run_id": 35523882967,
+      "conclusion": "failure",
+      "reason": "revision modules absent"
+    }
+  ],
+  "correction_evidence": [
+    {
+      "commit": "622a009e10173d22f64b5947090d4d1d5fb478db",
+      "run_id": 35523954262,
+      "conclusion": "failure",
+      "finding": "production correctly threw REVISION_OBJECT_MISSING; test incorrectly used assert.rejects for a synchronous API",
+      "ruling": "change test to assert.throws without changing production behavior"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "1cb7a7066d22fa460706c084762b1cfa1a186642",
+      "run_id": 35523990230,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "only one candidate advances a shared expected head",
+    "conflicting candidate revision remains persisted",
+    "rollback moves head without deleting history",
+    "missing object hash is rejected before revision metadata is committed",
+    "text diff is deterministic and non-mutating"
+  ],
+  "outputs": [
+    "packages/core/src/content/revisions.ts",
+    "packages/core/src/content/diff.ts",
+    "packages/core/src/workspace/migrations.ts",
+    "packages/core/src/workspace/store.ts",
+    "test/revisions.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
