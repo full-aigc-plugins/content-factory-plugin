@@ -74,7 +74,7 @@ test("CF-011 rejects a candidate whose object hash does not match persisted byte
   const store = await workspace(t);
   const initial = await createContentItem(store, { text: "v1", authorKind: "human" });
 
-  await assert.rejects(
+  assert.throws(
     () => store.commitRevision({
       revisionId: "rev_bad",
       itemId: initial.itemId,
