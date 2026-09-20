@@ -106,3 +106,63 @@ test("check accepts a valid local harness with an empty managed source set", asy
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /skill supply chain check passed/i);
 });
+
+
+test("update from a pinned local upstream preserves content-harness", async () => {
+  const root = await workspace();
+  const upstream = await mkdtemp(path.join(os.tmpdir(), "content-factory-upstream-"));
+  await mkdir(path.join(upstream, "skills", "demo-skill"), { recursive: true });
+  await writeFile(path.join(upstream, "skills", "demo-skill", "SKILL.md"), "# demo-skill\n");
+
+  for (const args of [
+    ["init", "-q"],
+    ["config", "user.email", "ci@example.invalid"],
+    ["config", "user.name", "CI"],
+    ["add", "."],
+    ["commit", "-qm", "initial"],
+    ["tag", "v1.0.0"]
+  ]) {
+    const git = spawnSync("git", ["-C", upstream, ...args], { encoding: "utf8" });
+    assert.equal(git.status, 0, git.stderr);
+  }
+
+  await writeFile(
+    path.join(root, "skills.lock.json"),
+    JSON.stringify({
+      version: 1,
+      sources: [{
+        package: "demo",
+        repo: "https://example.invalid/demo.git",
+        ref: "v1.0.0",
+        sha: "0".repeat(40),
+        skills: ["demo-skill"],
+        sourceDir: "skills",
+        dest: "skills/",
+        sha256: { "demo-skill": "0".repeat(64) },
+        license: { spdx: "MIT", evidence: "LICENSE" }
+      }]
+    }, null, 2)
+  );
+
+  const result = run(root, "update", "--source-path", `demo=${upstream}`);
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /updated demo/i);
+
+  const harness = await import("node:fs/promises").then(fs =>
+    fs.readFile(path.join(root, "skills", "content-harness", "SKILL.md"), "utf8")
+  );
+  assert.match(harness, /content-harness/);
+
+  const managed = await import("node:fs/promises").then(fs =>
+    fs.readFile(path.join(root, "skills", "demo-skill", "SKILL.md"), "utf8")
+  );
+  assert.match(managed, /demo-skill/);
+
+  const lock = JSON.parse(
+    await import("node:fs/promises").then(fs =>
+      fs.readFile(path.join(root, "skills.lock.json"), "utf8")
+    )
+  );
+  assert.match(lock.sources[0].sha, /^[0-9a-f]{40}$/);
+  assert.match(lock.sources[0].sha256["demo-skill"], /^[0-9a-f]{64}$/);
+});
