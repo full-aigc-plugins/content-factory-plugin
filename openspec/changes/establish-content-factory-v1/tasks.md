@@ -11,7 +11,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Pin release/tag + peeled commit SHA + per-skill digest.
   - Reject floating refs, drift, undeclared local skills, and missing licenses.
 
-- [ ] **CF-002 Host bootstrap and capability probe**
+- [x] **CF-002 Host bootstrap and capability probe**
   - Establish CLI/MCP domain entry points.
   - Detect host, search, browser, credential, and external-plugin capabilities without paid calls.
 

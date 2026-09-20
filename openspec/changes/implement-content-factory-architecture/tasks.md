@@ -56,10 +56,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/foundation.md#cf-002)
 
-- [ ] 2.1 [CF-002.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 2.2 [CF-002.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 2.3 [CF-002.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 2.4 [CF-002.4] 原要求与证据复核、独立 review/commit。
+- [x] 2.1 [CF-002.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 2.2 [CF-002.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 2.3 [CF-002.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 2.4 [CF-002.4] 原要求与证据复核、独立 review/commit。
 
 ## 3. CF-003 — 朱雀官方接口真实契约探测
 

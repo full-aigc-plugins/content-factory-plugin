@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "task": "CF-002",
+  "status": "COMPLETE",
+  "completed_at": "2026-09-20T15:35:00Z",
+  "branch": "main",
+  "red_evidence": [
+    {
+      "commit": "43690fb395f006834143330fc143d2e5b8b7307b",
+      "run_id": 35519773450,
+      "conclusion": "failure",
+      "reason": "doctor domain and MCP bootstrap absent"
+    },
+    {
+      "commit": "b7e14d27f2dd6e276e840c8f1ce886887a457dcd",
+      "run_id": 35519881861,
+      "conclusion": "failure",
+      "reason": "lint/typecheck/build gates absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "23b17b4e0dae74fbd7d72a85f9a7f576e7734fd1",
+      "run_id": 35519847553,
+      "conclusion": "success"
+    },
+    {
+      "commit": "2e4afbabd03cf9d94e6a052134a090a7896bd5d8",
+      "run_id": 35519995075,
+      "conclusion": "success",
+      "steps": [
+        "npm install --ignore-scripts",
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "host_contract": {
+    "supported_identities": [
+      "codex",
+      "zcode",
+      "kimi"
+    ],
+    "unknown_host_behavior": "unknown",
+    "undeclared_capability_behavior": "unknown",
+    "explicit_unavailable_behavior": "unavailable",
+    "paid_calls_during_doctor": 0
+  },
+  "outputs": [
+    "adapters/host/probe.ts",
+    "packages/core/src/doctor.ts",
+    "packages/core/src/ports/stage.ts",
+    "packages/core/src/errors.ts",
+    "packages/cli/src/main.ts",
+    "packages/mcp/src/server.ts",
+    "tests/support/architecture-case.ts",
+    "tests/support/cli.ts",
+    "schemas/stage-result.schema.json",
+    "tsconfig.json",
+    "scripts/lint.mjs",
+    "scripts/build.mjs"
+  ],
+  "fixture_or_live": "fixture",
+  "secrets_in_record": false
+}
