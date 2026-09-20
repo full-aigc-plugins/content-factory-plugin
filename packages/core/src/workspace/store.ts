@@ -13,6 +13,16 @@ export type PersistedObjectRecord = {
   bytes: number;
 };
 
+export type PersistedSourceRecord = {
+  sourceId: string;
+  fileName: string;
+  mediaType: string;
+  rawSha256: string;
+  textSha256: string;
+  bytes: number;
+  importedAt: string;
+};
+
 export class WorkspaceStore {
   readonly root: string;
   readonly stateDir: string;
@@ -42,7 +52,7 @@ export class WorkspaceStore {
     this.readOnly = input.readOnly;
   }
 
-  async putObject(bytes: Uint8Array): Promise<ObjectRecord> {
+  #assertWritable(): void {
     if (this.readOnly) {
       throw new ContentFactoryError({
         code: "WORKSPACE_READ_ONLY_FUTURE_SCHEMA",
@@ -58,7 +68,10 @@ export class WorkspaceStore {
         retryable: false
       });
     }
+  }
 
+  async putObject(bytes: Uint8Array): Promise<ObjectRecord> {
+    this.#assertWritable();
     const object = await writeObject(this.objectsDir, bytes);
     try {
       this.#db.exec("BEGIN IMMEDIATE");
@@ -89,6 +102,55 @@ export class WorkspaceStore {
         : null;
     } catch (error) {
       if (this.readOnly && String((error as Error).message).includes("no such table")) return null;
+      throw error;
+    }
+  }
+
+  registerSource(input: PersistedSourceRecord): PersistedSourceRecord {
+    this.#assertWritable();
+    try {
+      this.#db.exec("BEGIN IMMEDIATE");
+      this.#db.prepare(`
+        INSERT OR IGNORE INTO source_records
+          (source_id, file_name, media_type, raw_sha256, text_sha256, bytes, imported_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `).run(
+        input.sourceId,
+        input.fileName,
+        input.mediaType,
+        input.rawSha256,
+        input.textSha256,
+        input.bytes,
+        input.importedAt
+      );
+      const row = this.#db.prepare(`
+        SELECT source_id, file_name, media_type, raw_sha256, text_sha256, bytes, imported_at
+        FROM source_records
+        WHERE raw_sha256 = ?
+      `).get(input.rawSha256) as {
+        source_id: string;
+        file_name: string;
+        media_type: string;
+        raw_sha256: string;
+        text_sha256: string;
+        bytes: number;
+        imported_at: string;
+      } | undefined;
+      this.#db.exec("COMMIT");
+      if (!row) throw new Error("source registration did not persist");
+      return {
+        sourceId: row.source_id,
+        fileName: row.file_name,
+        mediaType: row.media_type,
+        rawSha256: row.raw_sha256,
+        textSha256: row.text_sha256,
+        bytes: row.bytes,
+        importedAt: row.imported_at
+      };
+    } catch (error) {
+      try {
+        this.#db.exec("ROLLBACK");
+      } catch {}
       throw error;
     }
   }

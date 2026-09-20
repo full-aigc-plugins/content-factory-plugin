@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/full-aigc-plugins/content-factory-plugin/schemas/source.schema.json",
+  "title": "TextSourceRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sourceId",
+    "fileName",
+    "mediaType",
+    "rawSha256",
+    "textSha256",
+    "bytes",
+    "text",
+    "importedAt"
+  ],
+  "properties": {
+    "sourceId": { "type": "string", "pattern": "^src_[0-9a-f]{24}$" },
+    "fileName": { "type": "string", "minLength": 1 },
+    "mediaType": { "enum": ["text/plain", "text/markdown"] },
+    "rawSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "textSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "bytes": { "type": "integer", "minimum": 1 },
+    "text": { "type": "string", "minLength": 1 },
+    "importedAt": { "type": "string", "format": "date-time" }
+  }
+}
