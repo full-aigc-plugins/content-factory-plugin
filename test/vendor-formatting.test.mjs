@@ -3,6 +3,7 @@ import { readFile, stat } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 import test from "node:test";
+import { hashSkillDir } from "../scripts/vendor/skill_vendor.mjs";
 
 const SOURCE_SHA = "c1e1526c84fd07d71d9d12e9845dceeb366d1b42";
 
@@ -19,6 +20,7 @@ test("CF-005 locks the immutable Baoyu formatting baseline", async () => {
   assert.equal(source.license.spdx, "MIT");
   for (const name of source.skills) {
     assert.match(source.sha256[name], /^[0-9a-f]{64}$/);
+    assert.equal(await hashSkillDir(path.resolve("skills", name)), source.sha256[name], name);
   }
 });
 
