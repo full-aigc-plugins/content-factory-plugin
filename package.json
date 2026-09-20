@@ -7,6 +7,8 @@
     "node": ">=24"
   },
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "skills:check": "node scripts/vendor/skill_vendor.mjs check --offline",
+    "skills:check:upstream": "node scripts/vendor/skill_vendor.mjs check"
   }
 }
