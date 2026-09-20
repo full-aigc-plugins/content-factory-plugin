@@ -34,7 +34,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
 
 ## W1 — Workspace, sources, immutable revisions
 
-- [ ] **CF-007 Workspace/object store/SQLite transactions**
+- [x] **CF-007 Workspace/object store/SQLite transactions**
 - [ ] **CF-008 TXT/Markdown source ingestion and deduplication**
 - [ ] **CF-009 Controlled URL ingestion**
   - Prefer the locked `baoyu-url-to-markdown` capability when available.
