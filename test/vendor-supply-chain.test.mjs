@@ -166,3 +166,22 @@ test("update from a pinned local upstream preserves content-harness", async () =
   assert.match(lock.sources[0].sha, /^[0-9a-f]{40}$/);
   assert.match(lock.sources[0].sha256["demo-skill"], /^[0-9a-f]{64}$/);
 });
+
+
+test("repository exposes dedicated sync/check entrypoints and third-party notice", async () => {
+  const fs = await import("node:fs/promises");
+  for (const relative of [
+    "scripts/check-skills.mjs",
+    "scripts/sync-skills.mjs",
+    "THIRD_PARTY_NOTICES.md"
+  ]) {
+    const content = await fs.readFile(path.resolve(relative), "utf8");
+    assert.ok(content.length > 0, `${relative} must not be empty`);
+  }
+
+  const check = spawnSync(process.execPath, [path.resolve("scripts/check-skills.mjs"), "--root", process.cwd(), "--offline"], {
+    encoding: "utf8"
+  });
+  assert.equal(check.status, 0, check.stderr);
+  assert.match(check.stdout, /skill supply chain check passed/i);
+});
