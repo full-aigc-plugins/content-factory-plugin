@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "task": "CF-007",
+  "status": "COMPLETE",
+  "scope": "Workspace writer lease, SQLite schema migration, and content-addressed object storage",
+  "completed_at": "2026-09-20T16:44:22Z",
+  "branch": "main",
+  "implementation_commits": [
+    "bcbb35f96fdbc7a9b00c8d2e7c0d50fe6575c2fc",
+    "af972a6f821e98d1127d0717e49cc0b47889be42"
+  ],
+  "red_evidence": [
+    {
+      "commit": "bcbb35f96fdbc7a9b00c8d2e7c0d50fe6575c2fc",
+      "run_id": 35523576388,
+      "conclusion": "failure",
+      "reason": "workspace store module absent while previous tests passed"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "af972a6f821e98d1127d0717e49cc0b47889be42",
+      "run_id": 35523634238,
+      "conclusion": "success",
+      "gates": [
+        "npm install --ignore-scripts",
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "object bytes are durably written before SQLite reference commit",
+    "crash window may leave an orphan object but not a committed dangling reference",
+    "only one writer lease is admitted at a time",
+    "future workspace schema opens read-only and rejects writes",
+    "workspace close releases the writer lease"
+  ],
+  "outputs": [
+    "packages/core/src/workspace/lease.ts",
+    "packages/core/src/workspace/objects.ts",
+    "packages/core/src/workspace/migrations.ts",
+    "packages/core/src/workspace/store.ts",
+    "test/workspace.test.mjs"
+  ],
+  "persistence": "node:sqlite + content-addressed files",
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
