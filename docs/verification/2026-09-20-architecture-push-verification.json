@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "scope": "Complete architecture and OpenSpec execution-decomposition delivery from the immediately preceding change. Historical planning bundles and product implementation are outside this verification.",
+  "repository": "full-aigc-plugins/content-factory-plugin",
+  "branch": "main",
+  "verified_commit": "bfe148a7c6b7a8d61327fe415170a68d38fcfe38",
+  "verified_tree": "4f71ebed771301a0ab2260cf598ea56c8e2cada7",
+  "checked_at": "2026-09-20T13:49:16.413828+00:00",
+  "checks": {
+    "latest_delivery_file_count": 21,
+    "latest_delivery_bytes_match_archive": true,
+    "computed_local_tree": "4f71ebed771301a0ab2260cf598ea56c8e2cada7",
+    "remote_tree_match": true,
+    "offline_document_checks": "PASS",
+    "preserved_presentation_sections": 3,
+    "preserved_text_blocks": 4,
+    "parent_tasks": 58,
+    "execution_steps": 232,
+    "completed_implementation_steps": 0,
+    "channels": 16,
+    "channel_format_pairs": 39,
+    "new_change_requirements": 12,
+    "new_change_scenarios": 24,
+    "relative_links_checked": 104,
+    "dependency_order": "PASS: CF-057 precedes CF-058, which precedes CF-042"
+  },
+  "unchanged_prior_change_trees": {
+    "establish-content-factory-v1": "8e48c4712638fff5c3b413acce15b09e433921d1",
+    "add-platform-aware-content-orchestration": "d6dd7569ce3b7fde69326d15faf1b2e13b6f3662"
+  },
+  "verification_method": "Recompute Git blob/tree hashes from the two local delivery archives. Use previously fetched unchanged baseline tree, configuration and repository metadata blobs as opaque anchors. The reconstructed repository root equals the live GitHub tree. Run verify-architecture.py on the extracted files with three verified remote baseline paths for link existence.",
+  "limits": {
+    "official_openspec_cli": "NOT_RUN",
+    "product_tests": "NOT_RUN",
+    "vendor_installation_and_live_delivery": "NOT_RUN",
+    "whitespace_check": "Not rerun by this check; the preceding validation.md retains its seven EOF-blank-line warnings."
+  },
+  "receipt_semantics": "This record verifies the cited parent commit. It does not claim its own commit ID or certify a runtime release."
+}
