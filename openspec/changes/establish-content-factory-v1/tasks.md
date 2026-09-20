@@ -27,7 +27,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Preserve content-freeze semantics.
   - Remove runtime dependence on floating Bun/npm downloads for the packaged release.
 
-- [ ] **CF-006 Image Factory collaboration contract**
+- [x] **CF-006 Image Factory collaboration contract**
   - Probe actual Image Factory capability/receipt interface.
   - Define VisualBrief and receipt validation.
   - Confirm Content Factory contains no image-generation backend.

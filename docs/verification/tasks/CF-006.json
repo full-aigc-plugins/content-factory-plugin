@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "task": "CF-006",
+  "status": "COMPLETE",
+  "scope": "Offline Image Factory capability and ArtifactReceipt compatibility contract",
+  "completed_at": "2026-09-20T16:41:50Z",
+  "branch": "main",
+  "implementation_commits": [
+    "fdbc0d0eee55a5e0efb3c7d3c2eeeaff714d3b50",
+    "955847d139a0775cefb1a81e5299a5e7502c51f7"
+  ],
+  "red_evidence": [
+    {
+      "commit": "fdbc0d0eee55a5e0efb3c7d3c2eeeaff714d3b50",
+      "run_id": 35523455910,
+      "conclusion": "failure",
+      "reason": "Image Factory bridge module/schema absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "955847d139a0775cefb1a81e5299a5e7502c51f7",
+      "run_id": 35523506827,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "upstream_contract": {
+    "repository": "full-aigc-plugins/image-factory-plugin",
+    "schema": "schemas/artifact_receipt.schema.json",
+    "schema_version": "1.0.0",
+    "plugin_id": "image-factory"
+  },
+  "assertions": [
+    "explicitly absent Image Factory stays unavailable with zero external calls",
+    "exact receipt contract identity is required for available status",
+    "malformed receipt hashes and sizes are rejected",
+    "compatibility schema preserves upstream required fields",
+    "Content Factory vendor lock excludes image-generation skills"
+  ],
+  "outputs": [
+    "adapters/image-factory/probe.ts",
+    "schemas/image-factory-receipt.schema.json",
+    "docs/verification/image-bridge.md",
+    "test/image-factory-bridge.test.mjs"
+  ],
+  "fixture_or_live": "fixture+upstream-contract-read",
+  "live_generation": "NOT_RUN",
+  "secrets_in_record": false
+}

@@ -94,10 +94,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/foundation.md#cf-006)
 
-- [ ] 6.1 [CF-006.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 6.2 [CF-006.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 6.3 [CF-006.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 6.4 [CF-006.4] 原要求与证据复核、独立 review/commit。
+- [x] 6.1 [CF-006.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 6.2 [CF-006.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 6.3 [CF-006.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 6.4 [CF-006.4] 原要求与证据复核、独立 review/commit。
 
 ## 7. CF-007 — 工作区、对象存储与 SQLite 事务
 
