@@ -17,3 +17,7 @@ The V1 baseline is `establish-content-factory-v1`. Its channel-awareness complet
 - Preserve previous planning/history. Do not sync pending changes into canonical specs or publish a runtime version before implementation acceptance.
 - Record actual validation. Static document checks, official OpenSpec validation, vendor conformance, and live delivery are different evidence classes.
 - Never automatically install candidate skills, disable unrelated skills, suppress provenance, bypass permission checks, or fabricate engagement metrics.
+
+## Complete architecture and execution decomposition
+
+Read `docs/architecture/Content-Factory-Architecture.zh_CN.md` and `openspec/changes/implement-content-factory-architecture/` alongside both existing changes. The third change decomposes the same CF-001–CF-058 parents into 232 execution steps; it is not a new product phase. Preserve the three presentation sections and four text blocks. CF-058 precedes CF-042. Do not roll up parent completion without original acceptance and actual evidence.

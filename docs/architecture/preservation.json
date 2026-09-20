@@ -1,0 +1,52 @@
+{
+  "source": "preceding approved conversation presentation",
+  "capture_note": "conversation citation tokens removed; all prose and four text blocks retained",
+  "presentation_sha256": "53dd4edac64da6b9fdd175ffca816b7dc275ca405d5b6f6e636228750829083b",
+  "presentation_bytes": 16813,
+  "text_blocks": [
+    {
+      "index": 1,
+      "sha256": "2bac5a86b27e282e10f47c64a101ec18931bcdd66fd32b6a13c952ea4a3651fa",
+      "bytes": 8459
+    },
+    {
+      "index": 2,
+      "sha256": "0eb84ed010b42ad7d93722cf5e736fd6a63921c950d50ac0df2d8841835c0c7f",
+      "bytes": 3242
+    },
+    {
+      "index": 3,
+      "sha256": "ae3f8c2c46f7538dd7bfad185757fd89e4a9f5023e884e05492a933c8e23d708",
+      "bytes": 277
+    },
+    {
+      "index": 4,
+      "sha256": "490bee9eb0399e9a6ef3111ee7b92562df2070727118e3337442fb9c9b72f5cc",
+      "bytes": 2937
+    }
+  ],
+  "required_sections": [
+    "一、Content Factory 总体结构",
+    "二、平台识别后，分别选择什么策略",
+    "三、外部技能、自己的 Harness 和媒体工厂如何连接"
+  ],
+  "channels": [
+    "wechat-article",
+    "xiaohongshu",
+    "douyin",
+    "bilibili",
+    "weibo",
+    "zhihu",
+    "toutiao",
+    "kuaishou",
+    "juejin",
+    "wechat-video",
+    "baijiahao",
+    "x",
+    "linkedin",
+    "instagram",
+    "tiktok",
+    "reddit"
+  ],
+  "channel_format_pairs": 39
+}

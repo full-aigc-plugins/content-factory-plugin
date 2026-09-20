@@ -18,3 +18,11 @@ The second change supplements the first; it does not delete the first change's r
 New capability deltas use `## ADDED Requirements` under the new change. The original baseline remains an unarchived design source. Implement and accept the baseline first, then synchronize/archive the channel completion when its requirements pass. Do not use MODIFIED against a nonexistent canonical capability.
 
 The previous baseline's `## Requirements` headings may require a format-only migration before official CLI validation. Preserve its requirement wording during that migration. No current document check certifies that the original baseline passes the official CLI.
+
+## 完整架构与执行细分
+
+[完整架构](../docs/architecture/Content-Factory-Architecture.zh_CN.md)保留三部分正文、三张主图与一个 Recipe 示例图，并补充模块、字段、状态和恢复契约。
+
+[implement-content-factory-architecture](changes/implement-content-factory-architecture/proposal.md)是原两组变更的执行细分，不是等待它们完成后才开始的第三期项目。[任务](changes/implement-content-factory-architecture/tasks.md)沿用 CF-001–CF-058，包含 232 个子项；[计划](changes/implement-content-factory-architecture/plan.md)、[追踪](changes/implement-content-factory-architecture/traceability.md)和[验收](changes/implement-content-factory-architecture/acceptance.md)共同约束实现。
+
+文档核验：`python3 docs/architecture/verify-architecture.py`。新变更的规范使用 ADDED Requirements；未实现前不归档或宣称产品可用。
