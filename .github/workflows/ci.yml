@@ -17,3 +17,17 @@ jobs:
           python-version: '3.12'
       - name: Supply-chain tests
         run: python -m unittest discover -s tests/supply-chain -p 'test_*.py' -v
+      - name: Offline skill integrity
+        run: python scripts/vendor/skill_vendor.py check
+
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
+      - run: npm test
