@@ -120,3 +120,12 @@ test("stage result schema declares deterministic status and evidence fields", as
   assert.ok(schema.properties.status.enum.includes("blocked"));
   assert.ok(schema.properties.status.enum.includes("succeeded"));
 });
+
+
+test("package exposes lint, typecheck and build engineering gates", async () => {
+  const pkg = JSON.parse(await readFile("package.json", "utf8"));
+  for (const name of ["lint", "typecheck", "build"]) {
+    assert.equal(typeof pkg.scripts?.[name], "string", `missing npm script: ${name}`);
+    assert.ok(pkg.scripts[name].length > 0);
+  }
+});
