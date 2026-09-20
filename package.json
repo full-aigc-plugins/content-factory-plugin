@@ -8,10 +8,17 @@
   },
   "scripts": {
     "test": "node --test",
+    "lint": "node scripts/lint.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "node scripts/build.mjs",
     "doctor": "node packages/cli/src/main.ts doctor --json",
     "mcp": "node packages/mcp/src/server.ts",
     "skills:check": "node scripts/check-skills.mjs --offline",
     "skills:check:upstream": "node scripts/check-skills.mjs",
     "skills:sync": "node scripts/sync-skills.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.2"
   }
 }
