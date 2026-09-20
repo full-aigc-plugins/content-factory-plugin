@@ -94,7 +94,7 @@ function validateLockShape(lock) {
 }
 
 function validateSource(source) {
-  for (const key of ["package", "repo", "ref", "sha", "skills", "dest", "sha256", "license"]) {
+  for (const key of ["package", "repo", "ref", "sha", "skills", "dest", "sha256"]) {
     if (!(key in source)) throw new ValidationError(`source ${source.package ?? "?"}: missing key '${key}'`);
   }
   if (!SEMVER_TAG.test(source.ref)) {
