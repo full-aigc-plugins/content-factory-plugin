@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://partme.ai/schemas/content-factory/stage-result.schema.json",
+  "title": "Content Factory StageResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["stageId", "status", "outputRefs", "evidenceRefs", "externalCalls"],
+  "properties": {
+    "stageId": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "succeeded", "failed", "blocked", "cancelled"]
+    },
+    "output": {},
+    "outputRefs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "externalCalls": { "type": "integer", "minimum": 0 },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" },
+        "retryable": { "type": "boolean" }
+      }
+    }
+  }
+}
