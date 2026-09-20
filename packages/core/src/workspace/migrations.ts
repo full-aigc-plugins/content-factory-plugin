@@ -1,6 +1,6 @@
 import type { DatabaseSync } from "node:sqlite";
 
-export const CURRENT_SCHEMA_VERSION = 2;
+export const CURRENT_SCHEMA_VERSION = 3;
 
 export type MigrationState = {
   schemaVersion: number;
@@ -47,6 +47,31 @@ export function migrateWorkspace(db: DatabaseSync): MigrationState {
           imported_at TEXT NOT NULL,
           FOREIGN KEY (raw_sha256) REFERENCES object_refs(sha256)
         );
+      `);
+    }
+
+    if (current < 3) {
+      db.exec(`
+        CREATE TABLE IF NOT EXISTS content_items (
+          item_id TEXT PRIMARY KEY,
+          head_revision_id TEXT,
+          created_at TEXT NOT NULL
+        );
+
+        CREATE TABLE IF NOT EXISTS content_revisions (
+          revision_id TEXT PRIMARY KEY,
+          item_id TEXT NOT NULL,
+          parent_revision_id TEXT,
+          object_sha256 TEXT NOT NULL,
+          author_kind TEXT NOT NULL,
+          created_at TEXT NOT NULL,
+          FOREIGN KEY (item_id) REFERENCES content_items(item_id),
+          FOREIGN KEY (parent_revision_id) REFERENCES content_revisions(revision_id),
+          FOREIGN KEY (object_sha256) REFERENCES object_refs(sha256)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_content_revisions_item
+          ON content_revisions(item_id, created_at);
       `);
     }
 
