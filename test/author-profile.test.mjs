@@ -19,7 +19,7 @@ test("CF-014 creates a deterministic default author profile without sample text"
   assert.equal(profile.revision, 1);
   assert.deepEqual(profile.style.tone, ["clear", "specific"]);
   assert.equal(profile.style.sentenceRhythm, "balanced");
-  assert.deepEqual(profile.protectedTerms, ["Partme Agent Fabric", "ms"]);
+  assert.deepEqual(profile.protectedTerms, ["ms", "Partme Agent Fabric"]);
   assert.equal("sampleTexts" in profile, false);
 });
 
