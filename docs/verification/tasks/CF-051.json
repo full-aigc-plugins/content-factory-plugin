@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "task": "CF-051",
+  "status": "COMPLETE",
+  "scope": "Channel-format media briefs, explicit Image Factory and external-media boundaries, and variant-bound receipts",
+  "completed_at": "2026-09-21T18:03:05Z",
+  "branch": "main",
+  "implementation_commits": [
+    "64fa129",
+    "6731468",
+    "d587ddbc4a4188bfcfbdade1792986628c9d46a6"
+  ],
+  "red_evidence": [
+    {
+      "commit": "64fa129",
+      "conclusion": "failure",
+      "reason": "the channel media plan module and media brief schema were absent"
+    },
+    {
+      "commit": "6731468",
+      "conclusion": "failure",
+      "reason": "the Image Factory result adapter could not bind a verified generation receipt to a channel variant"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "d587ddbc4a4188bfcfbdade1792986628c9d46a6",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/media-boundary.test.mjs (6 passed, 0 failed)",
+        "npm test (135 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build",
+        "python3 docs/architecture/verify-architecture.py"
+      ]
+    }
+  ],
+  "acceptance_cases": {
+    "R27": "an unavailable Image Factory blocks only the visual branch while the text result remains ready",
+    "R28": "generated-image branches name Image Factory as their only producer and the vendor lock contains no visual-generation skills",
+    "R29": "video and audio remain a script package until explicit binary-media receipts are bound"
+  },
+  "assertions": [
+    "generated image briefs and external video or audio briefs have distinct producer contracts",
+    "verified Image Factory results are converted into variant and content-revision-bound channel receipts",
+    "stale variant receipts are rejected",
+    "script artifacts mislabeled as MP4 are rejected",
+    "binding a receipt is immutable and never marks a package as published",
+    "media receipt absence remains pending instead of becoming a fabricated success"
+  ],
+  "outputs": [
+    "packages/core/src/channels/assets.ts",
+    "adapters/image-factory/bridge.ts",
+    "schemas/media-brief.schema.json",
+    "test/media-boundary.test.mjs",
+    "tests/fixtures/channel-media/media-needs.json"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS",
+    "findings": []
+  },
+  "fixture_or_live": "local-fixture",
+  "live_image_factory_generation": "NOT_RUN",
+  "live_video_render": "NOT_RUN",
+  "live_audio_render": "NOT_RUN",
+  "secrets_in_record": false
+}

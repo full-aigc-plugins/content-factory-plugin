@@ -499,10 +499,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/platforms.md#cf-051)
 
-- [ ] 51.1 [CF-051.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 51.2 [CF-051.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 51.3 [CF-051.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 51.4 [CF-051.4] 原要求与证据复核、独立 review/commit。
+- [x] 51.1 [CF-051.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 51.2 [CF-051.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 51.3 [CF-051.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 51.4 [CF-051.4] 原要求与证据复核、独立 review/commit。
 
 ## 52. CF-052 — Sibling variants and dependent evidence invalidation
 

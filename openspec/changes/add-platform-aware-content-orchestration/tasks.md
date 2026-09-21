@@ -142,7 +142,7 @@ npm run test -- tests/channels/native-writing.test.ts
 
 ## 9. CF-051 — Channel-format media briefs and external receipts
 
-- [ ] 9.1 Complete CF-051: Channel-format media briefs and external receipts.
+- [x] 9.1 Complete CF-051: Channel-format media briefs and external receipts.
 
 **Dependencies:** CF-021, CF-050.
 **Responsibility paths:** `adapters/image-factory/`, `schemas/media-brief.schema.json`, `packages/core/src/channels/assets.ts`.
