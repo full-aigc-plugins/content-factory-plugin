@@ -8,7 +8,7 @@ test("CLI probe emits one JSON HostContext document", async () => {
   const code = await runCli(["probe"], {
     env: { CONTENT_FACTORY_HOST: "codex" },
     platform: "darwin",
-    write: (value) => output.push(value)
+    write: (value: string) => output.push(value)
   });
 
   assert.equal(code, 0);
