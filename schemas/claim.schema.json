@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://partme.ai/schemas/content-factory/claim.schema.json",
+  "title": "ClaimRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claimId",
+    "statement",
+    "kind",
+    "evidence",
+    "verification",
+    "independentlyPublicVerified"
+  ],
+  "properties": {
+    "claimId": { "type": "string", "minLength": 1 },
+    "statement": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["verifiable", "user_assertion"] },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sourceId", "locator"],
+        "properties": {
+          "sourceId": { "type": "string", "minLength": 1 },
+          "locator": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "conflictGroup": { "type": "string", "minLength": 1 },
+    "verification": { "enum": ["source-backed", "user-asserted"] },
+    "independentlyPublicVerified": { "type": "boolean" }
+  }
+}
