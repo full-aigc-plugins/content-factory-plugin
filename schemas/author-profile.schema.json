@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://partme.ai/schemas/content-factory/author-profile.schema.json",
+  "title": "AuthorProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profileId",
+    "revisionId",
+    "revision",
+    "parentRevisionId",
+    "sampleHashes",
+    "voice",
+    "protectedTerms",
+    "forbiddenExpressions"
+  ],
+  "properties": {
+    "profileId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revisionId": {
+      "type": "string",
+      "pattern": "^apr_[0-9a-f]{24}$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "parentRevisionId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sampleHashes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "voice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "averageSentenceChars",
+        "shortSentenceRatio",
+        "guidance"
+      ],
+      "properties": {
+        "source": {
+          "enum": [
+            "default",
+            "samples"
+          ]
+        },
+        "averageSentenceChars": {
+          "type": "number",
+          "minimum": 0
+        },
+        "shortSentenceRatio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "guidance": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "protectedTerms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenExpressions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
