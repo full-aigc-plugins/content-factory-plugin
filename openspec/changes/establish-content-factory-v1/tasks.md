@@ -97,7 +97,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Freeze substantive text before final render.
   - Channel conversion cannot silently rewrite title, summary, facts, or citations.
 
-- [ ] **CF-023 Three themes and mobile layout regression**
+- [x] **CF-023 Three themes and mobile layout regression**
 - [ ] **CF-024 Local review report and revision comparison**
 
 ## W4 — Real detection and validity

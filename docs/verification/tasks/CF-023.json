@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "task": "CF-023",
+  "status": "COMPLETE",
+  "scope": "Three content-preserving themes with verified 375/390/430/768/1280 CSS viewports and reviewable 390x884, 768x1024, and 1280x1024 screenshots",
+  "completed_at": "2026-09-21T16:53:26Z",
+  "branch": "main",
+  "implementation_commits": [
+    "721eab8",
+    "f83e6647dba9998a67133c229519a1d47b19d304"
+  ],
+  "red_evidence": [
+    {
+      "commit": "721eab8",
+      "conclusion": "failure",
+      "reason": "the theme renderer and theme assets were absent"
+    },
+    {
+      "conclusion": "failure",
+      "reason": "review exposed that direct Chrome CLI screenshots used a 500px minimum CSS viewport and clipped 390px evidence; the final Chromium harness now applies exact device metrics through the DevTools protocol"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "f83e6647dba9998a67133c229519a1d47b19d304",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0; Google Chrome 153.0.8010.52",
+      "gates": [
+        "node --test test/themes.test.mjs (3 passed, 0 failed)",
+        "npm test (108 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build",
+        "python3 docs/architecture/verify-architecture.py"
+      ]
+    }
+  ],
+  "assertions": [
+    "simple, technical, and brand themes preserve an identical content hash while producing distinct style hashes",
+    "real Chromium CSS viewports match 375, 390, 430, 768, and 1280 pixels exactly",
+    "titles, body text, figures, and images remain within the viewport while code and tables retain local horizontal scrolling",
+    "all nine committed screenshots have exact requested pixel dimensions and were visually reviewed"
+  ],
+  "screenshots": [
+    { "path": "docs/verification/screenshots/CF-023/brand-1280x1024.png", "sha256": "71cd01dd9b83e4e094989c9cb1f4d620f0ee64d19724398bf5251f02b5e38252" },
+    { "path": "docs/verification/screenshots/CF-023/brand-390x884.png", "sha256": "0c96132fd69fff5624a7f98dda5e9dc8de3722413d09c7ffbdc0e56855696421" },
+    { "path": "docs/verification/screenshots/CF-023/brand-768x1024.png", "sha256": "15a7192a0f512ca2e282feb784eef14c213a4c74e9ce73f77c67552eae9751c4" },
+    { "path": "docs/verification/screenshots/CF-023/simple-1280x1024.png", "sha256": "f7779775f7d568a2ddb7e9010f1e2e34356bbf843c5aba8f094204e26e15256a" },
+    { "path": "docs/verification/screenshots/CF-023/simple-390x884.png", "sha256": "2f702fe13dccafbe8095d77aec625e420ed361a993d0caa5d45303d74fa84b37" },
+    { "path": "docs/verification/screenshots/CF-023/simple-768x1024.png", "sha256": "1c7078a9d3f217d35749252041e89248b518ed7369f5f8fe6c35a33648c3a1dc" },
+    { "path": "docs/verification/screenshots/CF-023/technical-1280x1024.png", "sha256": "45746044b935548796a95c7d1888acc0562cdf7ea8ff546c6946dc9827ea2d96" },
+    { "path": "docs/verification/screenshots/CF-023/technical-390x884.png", "sha256": "7006f8851ff7ccedf699cf0ddb043ed5e64d6305597b6fb6ac23670c4b6c5bd2" },
+    { "path": "docs/verification/screenshots/CF-023/technical-768x1024.png", "sha256": "32b4616493589a81020bda3300d4b2f5bc8726ac3640ec5739b7e6905c4e6a94" }
+  ],
+  "outputs": [
+    "packages/core/src/render/theme.ts",
+    "templates/simple/theme.css",
+    "templates/technical/theme.css",
+    "templates/brand/theme.css",
+    "scripts/chromium-harness.mjs",
+    "scripts/capture-theme-screenshots.mjs",
+    "test/themes.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS",
+    "finding_resolved": "replaced misleading 500px CLI viewport evidence with exact DevTools device metrics"
+  },
+  "fixture_or_live": "local-fixture-real-browser",
+  "secrets_in_record": false
+}
