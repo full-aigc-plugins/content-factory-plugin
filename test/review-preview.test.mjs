@@ -34,13 +34,16 @@ test("CF-024 renders five inert review regions without leaking private material"
     assert.match(result.html, new RegExp(`data-region="${region}"`, "u"));
   }
   assert.match(result.html, /工作稿/u);
-  assert.match(result.html, /<del>v1<\/del>/u);
-  assert.match(result.html, /<ins>v2<\/ins>/u);
+  assert.match(result.html, /可信正文 v<del>1<\/del><ins>2<\/ins>/u);
   assert.match(result.html, /公开来源/u);
   assert.match(result.html, /事实检查通过/u);
   assert.doesNotMatch(result.html, /私人访谈姓名|private\/interview|私人编辑备注/u);
   assert.doesNotMatch(result.html, /<script\b|<form\b|<button\b|fetch\(|XMLHttpRequest/iu);
   assert.match(result.html, /default-src 'none'/u);
+
+  const verified = renderReviewPage({ ...baseInput, packageStatus: "verified-package" });
+  assert.equal(verified.status, "succeeded");
+  assert.match(verified.html, /已验证包/u);
 });
 
 test("CF-024 blocks a preview requested for a stale revision", () => {
