@@ -16,3 +16,12 @@ Content Factory vendors reviewed external skills as immutable snapshots declared
 The vendored files remain attributable to their upstream authors and are kept byte-identical to the locked upstream snapshot.
 
 Plugin-local `content-harness` is not third-party content and is protected by `plugin-local-skills.json`.
+
+## Runtime document parsing dependencies
+
+- `fflate@0.8.3` — MIT License — used only for bounded DOCX ZIP extraction.
+  Source: https://github.com/101arrowz/fflate
+- `pdfjs-dist@6.3.289` — Apache License 2.0 — used for local text-layer PDF parsing.
+  Source: https://github.com/mozilla/pdf.js
+
+These dependencies are pinned to exact package versions. Content Factory does not invoke OCR or remote document-conversion services in CF-010.
