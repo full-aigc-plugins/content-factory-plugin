@@ -74,7 +74,7 @@ npm run test -- tests/channels/harness-routing.test.ts
 
 ## 5. CF-047 — Shared vendor integration and semantic adaptation
 
-- [ ] 5.1 Complete CF-047: Shared vendor integration and semantic adaptation.
+- [x] 5.1 Complete CF-047: Shared vendor integration and semantic adaptation.
 
 **Dependencies:** CF-005, CF-015, CF-018, CF-043.
 **Responsibility paths:** `skills.lock.json`, `vendor/`, `adapters/content-methods/`, `tests/fixtures/vendor-content/`.

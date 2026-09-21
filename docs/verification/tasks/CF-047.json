@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "task": "CF-047",
+  "status": "COMPLETE",
+  "scope": "Immutable shared marketingskills integration, complete vendor trees, audited semantic aliases, and candidate-only kernel-bounded adaptation",
+  "completed_at": "2026-09-21T17:11:44Z",
+  "branch": "main",
+  "implementation_commits": [
+    "2e49158",
+    "97c84eb49d01678e0f3d30481fdededdb7775235"
+  ],
+  "red_evidence": [
+    {
+      "commit": "2e49158",
+      "conclusion": "failure",
+      "reason": "the shared vendor method adapter and reviewed immutable source were absent"
+    },
+    {
+      "conclusion": "failure",
+      "reason": "the vendor security review fixture was absent before the reviewed risk record was added"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "97c84eb49d01678e0f3d30481fdededdb7775235",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/vendor-methods.test.mjs (5 passed, 0 failed)",
+        "npm test (117 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run build"
+      ]
+    }
+  ],
+  "source_evidence": {
+    "repository": "https://github.com/coreyhaines31/marketingskills.git",
+    "tag": "v2.9.1",
+    "peeled_commit": "2c13accb72ee1feb847dedf16c6e59a53ee45c9b",
+    "license": "MIT",
+    "skills": [
+      "content-strategy",
+      "product-marketing",
+      "copywriting",
+      "copy-editing",
+      "social"
+    ]
+  },
+  "assertions": [
+    "all installed skill trees match their locked per-skill SHA-256 and retain references and evaluation fixtures",
+    "social-content and product-marketing-context aliases resolve to reviewed canonical identities",
+    "shared methods are candidate-only and cannot directly install, write files, use accounts, spend budget, access networks, or publish",
+    "unmodified vendor trees retain equal upstream and effective hashes with no fabricated patch hash",
+    "image generation and channel delivery skills remain outside this shared vendor binding"
+  ],
+  "outputs": [
+    "skills.lock.json",
+    "THIRD_PARTY_NOTICES.md",
+    "skills/content-strategy/",
+    "skills/product-marketing/",
+    "skills/copywriting/",
+    "skills/copy-editing/",
+    "skills/social/",
+    "adapters/content-methods/vendor-methods.ts",
+    "tests/fixtures/vendor-content/marketingskills-v2.9.1.json",
+    "test/vendor-methods.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent supply-chain and instruction review because delegated review is disabled by session policy",
+    "result": "PASS_WITH_KERNEL_CONSTRAINTS",
+    "noted_risks": [
+      "social references contain network recipes, install suggestions, and browser workflows",
+      "product-marketing proposes project file writes",
+      "platform limits and engagement guidance are not treated as current platform facts"
+    ]
+  },
+  "fixture_or_live": "local-fixture-plus-live-upstream-tag-check",
+  "live_runtime_capability": "NOT_RUN",
+  "secrets_in_record": false
+}
