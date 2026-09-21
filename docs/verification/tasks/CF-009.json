@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task": "CF-009",
+  "status": "COMPLETE",
+  "scope": "Controlled public HTTP(S) URL ingestion with SSRF/redirect guards, text extraction, explicit access states, size limits, and untrusted-data semantics",
+  "completed_at": "2026-09-21T02:46:00Z",
+  "branch": "impl/cf-009-controlled-url-ingestion",
+  "implementation_commits": [
+    "e00090cc6c7e31de4b1d46ffc695530fe1d76d99",
+    "c40a692d85a3748fb1310907f715c81fe3485e1f"
+  ],
+  "red_evidence": [
+    {
+      "commit": "e00090cc6c7e31de4b1d46ffc695530fe1d76d99",
+      "run_id": 35555130748,
+      "conclusion": "failure",
+      "reason": "ERR_MODULE_NOT_FOUND for packages/core/src/content/fetch-source.ts after lint and typecheck passed"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "c40a692d85a3748fb1310907f715c81fe3485e1f",
+      "run_id": 35555216726,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "rejects non-HTTP(S), localhost, private/special-use literal addresses, and DNS names resolving to private addresses",
+    "validates every redirect target before issuing the next network request",
+    "rejects authorization walls, empty text, unsupported content and explicit byte-budget overflow without truncation",
+    "extracts readable HTML while removing executable/script content",
+    "marks remote source text as untrusted data-only material so embedded instructions do not grant tool authority"
+  ],
+  "outputs": [
+    "packages/core/src/security/url-policy.ts",
+    "packages/core/src/content/fetch-source.ts",
+    "test/fetch-source.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "live_network_fetch": "NOT_RUN",
+  "secrets_in_record": false
+}

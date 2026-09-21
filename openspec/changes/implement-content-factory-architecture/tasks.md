@@ -121,10 +121,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/foundation.md#cf-009)
 
-- [ ] 9.1 [CF-009.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 9.2 [CF-009.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 9.3 [CF-009.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 9.4 [CF-009.4] 原要求与证据复核、独立 review/commit。
+- [x] 9.1 [CF-009.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 9.2 [CF-009.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 9.3 [CF-009.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 9.4 [CF-009.4] 原要求与证据复核、独立 review/commit。
 
 ## 10. CF-010 — DOCX 与文本 PDF 导入
 
