@@ -6,7 +6,7 @@ Each task requires fixtures -> targeted assertions -> implementation -> regressi
 
 ## 1. CF-043 — Candidate provenance and intake snapshots
 
-- [ ] 1.1 Complete CF-043: Candidate provenance and intake snapshots.
+- [x] 1.1 Complete CF-043: Candidate provenance and intake snapshots.
 
 **Dependencies:** CF-001.
 **Responsibility paths:** `packages/core/src/skills/candidates.ts`, `schemas/skill-candidate.schema.json`, `docs/verification/channel-intake/`.

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task": "CF-043",
+  "status": "COMPLETE",
+  "scope": "Provenance-aware candidate intake with nullable identity/version/license, explicit discovery coverage, and hard lock-admission gates",
+  "completed_at": "2026-09-21T16:21:08Z",
+  "branch": "main",
+  "implementation_commits": [
+    "f73cf420c2e7f9eb071e2fef649a491fc421fc6c",
+    "7c86fa6f2c68996fbb36499de780442ccbc418c0"
+  ],
+  "red_evidence": [
+    {
+      "commit": "f73cf420c2e7f9eb071e2fef649a491fc421fc6c",
+      "conclusion": "failure",
+      "reason": "candidate intake module was absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "7c86fa6f2c68996fbb36499de780442ccbc418c0",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/candidate-intake.test.mjs (3 passed, 0 failed)",
+        "npm test (92 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "display titles and catalog scores do not fabricate owner, slug, version, license, or executable status",
+    "indexed-only discovery retains partial coverage and never claims a complete latest ranking",
+    "lock admission fails when license, source URL, immutable ref, commit, content hash, or signature evidence is missing"
+  ],
+  "outputs": [
+    "packages/core/src/skills/candidates.ts",
+    "schemas/skill-candidate.schema.json",
+    "docs/verification/channel-intake/2026-09-20-indexed-candidates.json",
+    "test/candidate-intake.test.mjs"
+  ],
+  "fixture_or_live": "indexed-snapshot-and-local-fixture",
+  "live_catalog_status": "NOT_RUN",
+  "secrets_in_record": false
+}
