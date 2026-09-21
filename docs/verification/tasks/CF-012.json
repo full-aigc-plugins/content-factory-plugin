@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task": "CF-012",
+  "status": "COMPLETE",
+  "scope": "Durable Run/Step workflow ledger, restart recovery, cancellation, immutable-output validation, and monotonic workflow events",
+  "completed_at": "2026-09-21T03:10:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "8db3d3e6132f6cbc975c55296b560c6e592bf6f6",
+    "c2f402e0e871cd14e667fb9cabcbcf8da7838c0a"
+  ],
+  "red_evidence": [
+    {
+      "commit": "8db3d3e6132f6cbc975c55296b560c6e592bf6f6",
+      "run_id": 35524063035,
+      "conclusion": "failure",
+      "reason": "workflow runner/recovery modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "c2f402e0e871cd14e667fb9cabcbcf8da7838c0a",
+      "run_id": 35524124709,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "restart resumes from the next durable checkpoint without repeating completed external calls",
+    "cancelled runs ignore late artifacts and do not advance the workflow",
+    "workflow output must already exist in the immutable object store",
+    "workflow events are durable and strictly monotonic per run"
+  ],
+  "outputs": [
+    "packages/core/src/workflow/events.ts",
+    "packages/core/src/workflow/recovery.ts",
+    "packages/core/src/workflow/runner.ts",
+    "packages/core/src/workspace/migrations.ts",
+    "test/workflow-recovery.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
