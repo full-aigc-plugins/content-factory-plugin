@@ -25,6 +25,29 @@ export type CandidateRecord = {
   executable: boolean;
 };
 
+export type CandidateCapability =
+  | "acquire"
+  | "author"
+  | "edit"
+  | "format"
+  | "quality-review"
+  | "media-generation"
+  | "deliver";
+
+export type CandidateClaim =
+  | "natural-voice"
+  | "detector-evasion"
+  | "traffic-guarantee"
+  | "automatic-publish";
+
+export type CandidateUseAssessment = {
+  disposition: "candidate-only" | "external-owner" | "rejected" | "eligible";
+  capabilityOwner: "content-factory" | "image-factory";
+  allowedClaims: CandidateClaim[];
+  rejectedClaims: CandidateClaim[];
+  reasons: string[];
+};
+
 export function createCandidateRecord(input: Omit<
   CandidateRecord,
   | "canonicalIdentity"
@@ -73,5 +96,51 @@ export function advanceCandidate(
     ok: true,
     missing: [],
     record: { ...record, status: target, executable: false, retrievalLimits: [...record.retrievalLimits] }
+  };
+}
+
+export function assessCandidateUse(
+  record: CandidateRecord,
+  input: {
+    capability: CandidateCapability;
+    claims: readonly CandidateClaim[];
+  }
+): CandidateUseAssessment {
+  const unsafeClaims: readonly CandidateClaim[] = [
+    "detector-evasion",
+    "traffic-guarantee",
+    "automatic-publish"
+  ];
+  const rejectedClaims = input.claims.filter(claim => unsafeClaims.includes(claim));
+  const allowedClaims = input.claims.filter(claim => !rejectedClaims.includes(claim));
+  const capabilityOwner = input.capability === "media-generation"
+    ? "image-factory"
+    : "content-factory";
+  const reasons: string[] = [];
+
+  if (rejectedClaims.length > 0) reasons.push("unsafe-capability-claim");
+  if (record.status !== "contract_verified" && record.status !== "live_verified") {
+    reasons.push("candidate-not-contract-verified");
+  }
+  if (record.license === null) reasons.push("license-unverified");
+  if (record.evidenceTier !== "package-bytes") reasons.push("package-bytes-unverified");
+  if (capabilityOwner === "image-factory") {
+    reasons.push("media-generation-owned-by-image-factory");
+  }
+
+  const disposition = rejectedClaims.length > 0
+    ? "rejected"
+    : capabilityOwner === "image-factory"
+      ? "external-owner"
+      : record.executable && reasons.length === 0
+        ? "eligible"
+        : "candidate-only";
+
+  return {
+    disposition,
+    capabilityOwner,
+    allowedClaims,
+    rejectedClaims,
+    reasons
   };
 }

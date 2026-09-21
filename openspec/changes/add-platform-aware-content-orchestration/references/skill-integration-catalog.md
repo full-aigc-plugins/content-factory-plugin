@@ -47,7 +47,7 @@ These names are preserved as intake leads, not assumed current registry identiti
 
 ## 3. Current SkillHub discoveries
 
-Only titles are known for the enterprise listings; owner/slug, version, full package and license are unresolved. Do not manufacture install commands or release pins from these display names.
+The live first page of the score-sorted content-creation category and exact search matches were observed on 2026-09-22. The full intake snapshot is in `docs/verification/channel-intake/2026-09-22-skillhub-content-creation.json`. Identity and displayed version are known for the shortlist; full package, immutable source, license and runtime behavior remain unresolved. Do not manufacture install commands or release pins from catalog metadata.
 
 | Publisher / title | Intended capability | Decision |
 |---|---|---|
@@ -58,6 +58,14 @@ Only titles are known for the enterprise listings; owner/slug, version, full pac
 | 劳希 / 写作文风复刻大师 | sample-based voice analysis | D; compare against existing humanizer route; one primary per context, privacy and fact-preservation review |
 | 劳希 / 网络搜索工具·上网助手 | host-aware acquisition method | D; review routing references; kernel retains permission and retry authority |
 | 劳希 / 找技能·风险评估版 | intake review method | D; optional secondary comparison to official discovery; a badge cannot approve installation |
+| @user_ab5ae6ee/unclecheng-reduce-ai-perception-v2 / 文章去AI味工具 | bounded natural-voice editing | live D; review against existing copy-editing; naturalness only, never detector evasion |
+| @indiv-ebandao/libai / 李白.Skill | Chinese copy editing | live D; overlapping candidate, not a second default editor |
+| @org-28ib33ph/lingyi-wx-viral-script-generator / 视频号爆款文案生成 | WeChat Channels script authoring | live D; incomplete-input fallback conflicts with source-grounded writing until package review |
+| @org-28ib33ph/lingyi-content-quality-check / 爆款内容预检 | compliance/quality review | live D; compliance scan can be reviewed separately; traffic prediction and simulated audience claims are excluded |
+| @beatra-ai/hot-topic-content-maker / 热点选题 | trend acquisition plus mixed production | live D; split acquisition from media generation; visual/video work stays with Image Factory |
+| @user_5f9c21aa/gzh-explosive-content-detector / 公众号热门文章查询 | WeChat acquisition | live D; not writing or publication authority; API recipient/cost contract unresolved |
+| @user_a41ae6c8/douyin-copy-extract / 抖音文案一键提取 | transcript/copy acquisition | live D; resolve link rights and extraction/rewrite boundary before use |
+| @user_5f9c21aa/gzh-copywriter / 公众号文案创作 | WeChat authoring | live D; compare against existing source-grounded recipe and remote-data dependency |
 
 ## 4. Exclusion and conflict register
 
@@ -65,6 +73,8 @@ Only titles are known for the enterprise listings; owner/slug, version, full pac
 - baoyu-danger-gemini-web: unnecessary mixed generation backend. baoyu-danger-x-to-markdown: not an automatic fallback; default reader failure does not grant reverse-engineered API consent.
 - baoyu-electron-extract: software extraction, not content operations.
 - SkillHub @user_42f6d881/jinqiangdashu observed v1.0.1: reject original package behavior promoting deliberate factual mistakes for engagement. Do not reproduce its unsupported performance multipliers.
+- SkillHub @org-28ib33ph/lingyi-copy-de-ai-human-eval and @user_34343d1f/jiangai: reject the packages as described where the objective is lowering an AI rate or passing AI detection. Natural voice, fact preservation and detector applicability are separate gates.
+- SkillHub media entries such as @beatra-ai/ai-podcast-voiceover and @user_87b8e34f/whiteboard-animation-maker remain outside Content Factory ownership; route media generation through Image Factory.
 - The inspected skillhub.cn/skills/find-skills entry: reject shadowing/disabling other skills. Do not confuse it with Tencent/skillhub's find-skill-skillhub.
 - Fanqie-novel-only skills: do not trigger for generic article writing or other channels. Fictional-story production is outside this first content-operations integration.
 

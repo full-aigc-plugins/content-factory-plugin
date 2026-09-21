@@ -13,6 +13,23 @@ const MODE_STAGES: Record<Exclude<ContentRunMode, "full">, string[]> = {
   deliver: ["delivery-preflight", "approval", "deliver", "delivery-verify"]
 };
 
+function isReviewStage(stage: string): boolean {
+  return stage === "review" || stage.endsWith("-review");
+}
+
+function completeFullStages(recipeStages: readonly string[]): string[] {
+  const terminalReviews = recipeStages.filter(isReviewStage);
+  const contentStages = recipeStages.filter(
+    stage => !isReviewStage(stage) && stage !== "edit" && stage !== "format"
+  );
+  return [
+    ...contentStages,
+    "edit",
+    "format",
+    ...(terminalReviews.length > 0 ? terminalReviews : ["review"])
+  ];
+}
+
 export type RoutingDecision =
   | {
     status: "resolved";
@@ -81,7 +98,7 @@ export function selectContentRecipe(input: {
     };
   }
   const stages = input.mode === "full"
-    ? [...resolved.recipe.stages]
+    ? completeFullStages(resolved.recipe.stages)
     : [...MODE_STAGES[input.mode]];
   return {
     status: "resolved",

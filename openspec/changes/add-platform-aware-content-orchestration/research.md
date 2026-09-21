@@ -1,6 +1,6 @@
 # Research and evidence register
 
-Checked: 2026-09-20. This register distinguishes observations from integration decisions. Catalog descriptions are not executed capability evidence. Source documents can change; release intake must pin the actual reviewed package.
+Checked: 2026-09-22. This register distinguishes observations from integration decisions. Catalog descriptions are not executed capability evidence. Source documents can change; release intake must pin the actual reviewed package.
 
 ## 1. Repository baseline
 
@@ -26,9 +26,9 @@ The 16-channel editorial profiles in this change are design choices, not claims 
 
 ## 3. SkillHub access and freshness limitation
 
-Requested [content-creation catalog](https://skillhub.cn/skills?category=content-creation&sortBy=score) could not be directly retrieved in this session. An attempted documented public API list request also failed. Search-index snapshots of selected detail/publisher pages were available. Therefore a complete current score-sorted category list, exact pagination, and all package versions have NOT been verified. No “latest top N” claim or automatic installation is made.
+The requested [content-creation catalog](https://skillhub.cn/skills?category=content-creation&sortBy=score) was retrieved live on 2026-09-22. The rendered first page showed 24 score-sorted entries; exact identity/version and selected metadata were cross-checked through the public read-only search endpoint documented by the current `find-skills` entry. The resulting shortlist is recorded in `docs/verification/channel-intake/2026-09-22-skillhub-content-creation.json`.
 
-New candidates below are grounded in those snapshots or directly read official repositories. Descriptive titles without an exact owner/slug are intentionally kept as unresolved candidates. Re-run authorized discovery and retrieve exact files before admitting them.
+This is still partial discovery: later pagination, licenses, immutable repositories, package bytes, dependency trees, signatures and runtime contracts were not retrieved. Search endpoint scores are query-relevance signals, not category scores. No candidate was installed, executed or promoted from `discovered`; a high rank, download count or verified-publisher badge is not capability evidence.
 
 ## 4. Current primary sources and intake decisions
 
