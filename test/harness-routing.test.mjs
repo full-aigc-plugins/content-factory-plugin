@@ -41,6 +41,9 @@ test("CF-046 selects a native recipe before writing and records a replayable dec
   assert.ok(decision.stages.indexOf("card-copy") < decision.stages.indexOf("visual-brief"));
   assert.equal(decision.taskKind, "original_write");
   assert.equal(decision.inputHash, "a".repeat(64));
+  assert.ok(decision.stages.indexOf("edit") < decision.stages.indexOf("format"));
+  assert.ok(decision.stages.indexOf("format") < decision.stages.indexOf("review"));
+  assert.equal(decision.stages.at(-1), "review");
 });
 
 test("CF-046 formatting-only mode omits research rewriting detection and delivery", async () => {
