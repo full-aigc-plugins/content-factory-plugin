@@ -220,10 +220,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/production-delivery.md#cf-020)
 
-- [ ] 20.1 [CF-020.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 20.2 [CF-020.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 20.3 [CF-020.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 20.4 [CF-020.4] 原要求与证据复核、独立 review/commit。
+- [x] 20.1 [CF-020.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 20.2 [CF-020.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 20.3 [CF-020.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 20.4 [CF-020.4] 原要求与证据复核、独立 review/commit。
 
 ## 21. CF-021 — 图片工厂受控调用与回执接收
 
@@ -566,4 +566,3 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 - [ ] 58.2 [CF-058.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
 - [ ] 58.3 [CF-058.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 58.4 [CF-058.4] 原要求与证据复核、独立 review/commit。
-

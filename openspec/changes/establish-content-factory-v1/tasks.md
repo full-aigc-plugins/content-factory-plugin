@@ -83,7 +83,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Use vendor writing methods via harness.
   - Never reuse the parent article's detection report for materially changed derivatives.
 
-- [ ] **CF-020 Visual planning and asset records**
+- [x] **CF-020 Visual planning and asset records**
   - Harness emits VisualBrief.
   - Track user images, real screenshots, licensed assets, and generated assets distinctly.
 

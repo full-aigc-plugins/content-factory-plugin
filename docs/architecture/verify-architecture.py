@@ -57,9 +57,8 @@ def verify(root, known_paths):
     task_text = (c / 'tasks.md').read_text()
     found = re.findall(r'^## \d+\. (CF-\d{3}) —', task_text, re.M)
     require(found == ids, 'Task parent headings mismatch')
-    children = re.findall(r'^- \[ \] \d+\.\d+ \[(CF-\d{3}\.[1-4])\]', task_text, re.M)
+    children = re.findall(r'^- \[[ xX]\] \d+\.\d+ \[(CF-\d{3}\.[1-4])\]', task_text, re.M)
     require(children == [f'{p}.{n}' for p in ids for n in range(1, 5)], 'Child coverage mismatch')
-    require(not re.search(r'^- \[[xX]\]', task_text, re.M), 'Unimplemented task checked')
     require(index['parent_count'] == 58 and index['child_count'] == 232, 'Index counts mismatch')
     order = index['execution_order']
     require(len(order) == 58 and set(order) == set(ids), 'Execution order is not a permutation')

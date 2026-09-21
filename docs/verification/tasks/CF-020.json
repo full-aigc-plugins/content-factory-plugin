@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "task": "CF-020",
+  "status": "COMPLETE",
+  "scope": "VisualBrief creation, imported-asset provenance and integrity classification, and explicit visual completion policy",
+  "completed_at": "2026-09-21T16:13:19Z",
+  "branch": "main",
+  "implementation_commits": [
+    "66188d096cd0448e619a2202b744c2abb0e30f46"
+  ],
+  "red_evidence": [
+    {
+      "commit": "acf0f11b96352460da7407d36a74f2141011f9a3",
+      "conclusion": "failure",
+      "reason": "packages/core/src/content/assets.ts was absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "66188d096cd0448e619a2202b744c2abb0e30f46",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/assets.test.mjs (4 passed, 0 failed)",
+        "npm test (83 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "a supplied screenshot preserves screenshot provenance and is never relabeled as generated",
+    "invalid bytes, MIME mismatch, oversized dimensions, missing usage notes, and unclear rights remain explicit risks",
+    "a VisualBrief binds revision, paragraph anchor, purpose, constraints, and source references without authorizing generation",
+    "a working draft can proceed with pending visuals while formal no-image completion requires an explicit decision"
+  ],
+  "outputs": [
+    "packages/core/src/content/assets.ts",
+    "schemas/visual-brief.schema.json",
+    "skills/content-harness/references/visual-brief.md",
+    "test/assets.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
