@@ -28,7 +28,7 @@ test("Zhuque probe binds evidence to exact UTF-8 submitted text", async () => {
     token: "secret-token",
     text,
     checkedAt: "2026-09-21T00:00:00.000Z",
-    fetch: async (_url, init) => {
+    fetch: async (_url: string, init?: { headers?: Record<string, string>; body?: string }) => {
       seenAuthorization = String(init?.headers?.Authorization ?? "");
       seenBody = String(init?.body ?? "");
       return {
