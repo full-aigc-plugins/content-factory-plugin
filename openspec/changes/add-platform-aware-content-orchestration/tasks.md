@@ -91,7 +91,7 @@ npm run test -- tests/channels/vendor-methods.test.ts
 
 ## 6. CF-048 — Channel-specialized candidate conformance
 
-- [ ] 6.1 Complete CF-048: Channel-specialized candidate conformance.
+- [x] 6.1 Complete CF-048: Channel-specialized candidate conformance.
 
 **Dependencies:** CF-043, CF-044, CF-047.
 **Responsibility paths:** `adapters/channel-sources/`, `docs/verification/channel-candidates/`.

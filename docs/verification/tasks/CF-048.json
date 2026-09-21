@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "task": "CF-048",
+  "status": "COMPLETE",
+  "scope": "Channel candidate conformance that separates backend from wrapper, acquisition from authoring and delivery, and channel-native format identities",
+  "completed_at": "2026-09-21T17:17:20Z",
+  "branch": "main",
+  "implementation_commits": [
+    "d50568c",
+    "cdcca6f3632a046abbef1173027083cb8c19c912"
+  ],
+  "red_evidence": [
+    {
+      "commit": "d50568c",
+      "conclusion": "failure",
+      "reason": "the channel candidate binding contract and reviewed binding matrix were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "cdcca6f3632a046abbef1173027083cb8c19c912",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/channel-candidates.test.mjs (4 passed, 0 failed)",
+        "npm test (121 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "a Xiaohongshu MCP server cannot execute as a skill without a separately reviewed wrapper",
+    "acquisition, authoring, and delivery capabilities cannot substitute for one another",
+    "Zhihu thoughts cannot satisfy an answer request",
+    "WeChat Official Account article adapters cannot satisfy WeChat Channels video requests",
+    "the reviewed matrix names local authoring support while all unresolved remote delivery stays NOT_RUN"
+  ],
+  "outputs": [
+    "adapters/channel-sources/candidate-bindings.ts",
+    "docs/verification/channel-candidates/reviewed-bindings.json",
+    "test/channel-candidates.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS",
+    "findings": []
+  },
+  "fixture_or_live": "historical-candidate-fixture",
+  "live_catalog_retrieval": "NOT_RUN",
+  "live_delivery_support": "NOT_RUN",
+  "secrets_in_record": false
+}
