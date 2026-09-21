@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-21T17:15:00Z",
+  "scope": "historical leads plus locally installed shared authoring methods",
+  "live_catalog_retrieval": "NOT_RUN",
+  "live_delivery_support": "NOT_RUN",
+  "rules": [
+    "MCP servers require a separately reviewed wrapper and contract",
+    "acquisition, authoring, and delivery are separate capabilities",
+    "WeChat Official Account articles and WeChat Channels video are separate targets",
+    "Zhihu thoughts, answers, and articles are separate formats",
+    "historical display names do not prove canonical identity, license, version, or executability"
+  ],
+  "bindings": {
+    "xiaohongshu:note:author": {
+      "primary": "shared-social-authoring",
+      "alternates": ["xiaohongshu-content"],
+      "support": "local-contract-verified"
+    },
+    "xiaohongshu:note:deliver": {
+      "primary": null,
+      "alternates": ["xiaohongshu-mcp-wrapper", "xiaohongshu-mcp-server"],
+      "support": "NOT_RUN"
+    },
+    "wechat-article:article:acquire": {
+      "primary": null,
+      "alternates": ["wechat-article-search"],
+      "support": "NOT_RUN"
+    },
+    "wechat-article:article:deliver": {
+      "primary": null,
+      "alternates": ["wechat-account-article-adapter"],
+      "support": "NOT_RUN"
+    },
+    "wechat-video:video:deliver": {
+      "primary": null,
+      "alternates": ["wechat-video-publisher"],
+      "support": "NOT_RUN"
+    },
+    "zhihu:answer:deliver": {
+      "primary": null,
+      "alternates": [],
+      "rejected": ["zhihu-thought-publisher"],
+      "support": "NOT_RUN"
+    }
+  }
+}
