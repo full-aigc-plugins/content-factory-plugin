@@ -11,9 +11,10 @@ Content Harness is the only plugin-local Skill. Vendor synchronization MUST NOT 
 
 1. Identify the requested run mode: `full`, `edit`, `format`, `detect`, `repurpose`, or `deliver`.
 2. Preserve topic, sources, channel, locale, audience, goal, content revision and account references already supplied.
-3. Produce a `ContentBrief` plus a bounded stage DAG using the runtime dispatcher.
-4. Report genuinely missing inputs. Never invent facts, accounts, sources, preferences, approval, detection results or delivery state.
-5. Hand candidate outputs to Runtime Kernel validation. A Skill cannot promote its own output to canonical state.
+3. Resolve HostContext, SourceContext and ChannelIntent independently, then select a versioned ChannelProfile and ContentRecipe before channel-specific authoring. See [platform routing](references/platform-routing.md).
+4. Produce a `ContentBrief` plus a bounded stage DAG using the runtime dispatcher.
+5. Report genuinely missing inputs. Never invent facts, accounts, sources, preferences, approval, detection results or delivery state.
+6. Hand candidate outputs to Runtime Kernel validation. A Skill cannot promote its own output to canonical state.
 
 ## Mode routes
 
