@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task": "CF-046",
+  "status": "COMPLETE",
+  "scope": "Single-harness platform-aware recipe selection, replayable routing decisions, minimal mode routes, and clarification-first conflict handling",
+  "completed_at": "2026-09-21T16:33:22Z",
+  "branch": "main",
+  "implementation_commits": [
+    "92b925b5e80e66dc0ff4e71ea3fa37e34a5b8a96",
+    "112b4e7f83c9b568a1fce486fce058198fe44960"
+  ],
+  "red_evidence": [
+    {
+      "commit": "92b925b5e80e66dc0ff4e71ea3fa37e34a5b8a96",
+      "conclusion": "failure",
+      "reason": "platform-aware recipe selector was absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "112b4e7f83c9b568a1fce486fce058198fe44960",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/harness-routing.test.mjs (4 passed, 0 failed)",
+        "npm test (105 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "a resolved target selects a versioned native recipe before writing and records the input hash and task kind",
+    "format-only mode omits research, rewriting, detection, and delivery",
+    "ambiguous or conflicting destinations select no default recipe and perform no remote work",
+    "Douyin and TikTok produce distinct profile and recipe decisions"
+  ],
+  "outputs": [
+    "packages/core/src/channels/select-recipe.ts",
+    "skills/content-harness/SKILL.md",
+    "skills/content-harness/references/platform-routing.md",
+    "test/harness-routing.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}

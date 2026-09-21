@@ -57,7 +57,7 @@ npm run test -- tests/channels/profiles.test.ts
 
 ## 4. CF-046 — Single-harness platform-aware routing
 
-- [ ] 4.1 Complete CF-046: Single-harness platform-aware routing.
+- [x] 4.1 Complete CF-046: Single-harness platform-aware routing.
 
 **Dependencies:** CF-013, CF-044, CF-045.
 **Responsibility paths:** `skills/content-harness/SKILL.md`, `skills/content-harness/references/`, `packages/core/src/channels/select-recipe.ts`.
