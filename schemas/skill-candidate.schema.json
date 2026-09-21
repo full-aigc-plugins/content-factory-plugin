@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/full-aigc-plugins/content-factory-plugin/schemas/skill-candidate.schema.json",
+  "title": "SkillCandidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "displayName",
+    "namespace",
+    "owner",
+    "slug",
+    "canonicalIdentity",
+    "observedVersion",
+    "observedAt",
+    "evidenceTier",
+    "retrievalLimits",
+    "discoveryCoverage",
+    "latestRankingVerified",
+    "catalogScore",
+    "license",
+    "status",
+    "executable"
+  ],
+  "properties": {
+    "displayName": { "type": "string", "minLength": 1 },
+    "namespace": { "type": "string", "minLength": 1 },
+    "owner": { "type": ["string", "null"] },
+    "slug": { "type": ["string", "null"] },
+    "canonicalIdentity": { "type": ["string", "null"] },
+    "observedVersion": { "type": ["string", "null"] },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "evidenceTier": {
+      "enum": ["indexed-snapshot", "live-detail", "live-category", "package-bytes"]
+    },
+    "retrievalLimits": { "type": "array", "items": { "type": "string" } },
+    "discoveryCoverage": { "enum": ["partial", "complete"] },
+    "latestRankingVerified": { "type": "boolean" },
+    "catalogScore": { "type": ["number", "null"] },
+    "license": { "type": ["string", "null"] },
+    "status": {
+      "enum": [
+        "discovered",
+        "source_reviewed",
+        "candidate_approved",
+        "locked",
+        "installed",
+        "contract_verified",
+        "live_verified"
+      ]
+    },
+    "executable": { "type": "boolean" }
+  }
+}

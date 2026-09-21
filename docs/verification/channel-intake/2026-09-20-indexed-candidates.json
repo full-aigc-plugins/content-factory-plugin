@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-20T00:00:00Z",
+  "evidence_tier": "indexed-snapshot",
+  "coverage": "partial",
+  "retrieval_limits": [
+    "live category pagination unavailable",
+    "package bytes unavailable",
+    "license and exact version unresolved"
+  ],
+  "candidates": [
+    {
+      "publisher_display": "效享网络",
+      "owner": "org-cgmj9q07",
+      "display_name": "Douyin Data Method",
+      "slug": null,
+      "version": null,
+      "license": null,
+      "status": "discovered"
+    },
+    {
+      "publisher_display": "劳希",
+      "owner": "org-achi7v92",
+      "display_name": "写作文风复刻大师",
+      "slug": null,
+      "version": null,
+      "license": null,
+      "status": "discovered"
+    }
+  ],
+  "latest_ranking_verified": false,
+  "executable_capability_claimed": false
+}
