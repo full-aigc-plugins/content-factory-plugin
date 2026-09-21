@@ -40,7 +40,7 @@ npm run test -- tests/channels/context.test.ts
 
 ## 3. CF-045 — Versioned profiles and per-format recipe registry
 
-- [ ] 3.1 Complete CF-045: Versioned profiles and per-format recipe registry.
+- [x] 3.1 Complete CF-045: Versioned profiles and per-format recipe registry.
 
 **Dependencies:** CF-044.
 **Responsibility paths:** `profiles/channels/`, `recipes/`, `packages/core/src/channels/registry.ts`.

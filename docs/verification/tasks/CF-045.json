@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task": "CF-045",
+  "status": "COMPLETE",
+  "scope": "Versioned 16-channel profile catalog, explicit 39 channel-format recipes, native stage contracts, and remote-constraint fallback semantics",
+  "completed_at": "2026-09-21T16:29:24Z",
+  "branch": "main",
+  "implementation_commits": [
+    "fb0648d3b8f84fa4b1f7da7db8c01f13434281c3",
+    "8ea5bbdac2060669eb411b68d41cfc4983c2c197"
+  ],
+  "red_evidence": [
+    {
+      "commit": "fb0648d3b8f84fa4b1f7da7db8c01f13434281c3",
+      "conclusion": "failure",
+      "reason": "channel registry module and catalogs were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "8ea5bbdac2060669eb411b68d41cfc4983c2c197",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/channel-profiles.test.mjs (4 passed, 0 failed)",
+        "npm test (101 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "all 16 channel profiles and 39 declared channel-format pairs have explicit recipes",
+    "growth, podcast, and baidu remain non-destination categories",
+    "WeChat article, Xiaohongshu carousel, and Douyin script select different stage contracts",
+    "unknown mandatory remote constraints block the remote action while preserving a labeled working export"
+  ],
+  "outputs": [
+    "profiles/channels/catalog.json",
+    "recipes/catalog.json",
+    "packages/core/src/channels/registry.ts",
+    "test/channel-profiles.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}

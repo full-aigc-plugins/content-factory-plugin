@@ -445,10 +445,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/platforms.md#cf-045)
 
-- [ ] 45.1 [CF-045.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 45.2 [CF-045.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 45.3 [CF-045.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 45.4 [CF-045.4] 原要求与证据复核、独立 review/commit。
+- [x] 45.1 [CF-045.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 45.2 [CF-045.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 45.3 [CF-045.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 45.4 [CF-045.4] 原要求与证据复核、独立 review/commit。
 
 ## 46. CF-046 — Single-harness platform-aware routing
 
