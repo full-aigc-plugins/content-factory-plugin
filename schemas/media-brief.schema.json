@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/full-aigc-plugins/content-factory-plugin/schemas/media-brief.schema.json",
+  "title": "ChannelMediaBrief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "briefId",
+    "variantRef",
+    "contentRevisionId",
+    "channelId",
+    "formatId",
+    "kind",
+    "purpose",
+    "anchor"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "briefId": { "type": "string", "minLength": 1 },
+    "variantRef": { "type": "string", "minLength": 1 },
+    "contentRevisionId": { "type": "string", "minLength": 1 },
+    "channelId": { "type": "string", "minLength": 1 },
+    "formatId": { "type": "string", "minLength": 1 },
+    "kind": {
+      "enum": ["generated-image", "external-video", "external-audio"]
+    },
+    "purpose": { "type": "string", "minLength": 1 },
+    "anchor": { "type": "string", "minLength": 1 },
+    "scriptRef": { "type": "string", "minLength": 1 },
+    "imageProducer": { "const": "image-factory" },
+    "externalProducer": { "const": "external-capability" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "kind": { "const": "generated-image" } },
+        "required": ["kind"]
+      },
+      "then": { "required": ["imageProducer"] }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "enum": ["external-video", "external-audio"] }
+        },
+        "required": ["kind"]
+      },
+      "then": { "required": ["scriptRef", "externalProducer"] }
+    }
+  ]
+}

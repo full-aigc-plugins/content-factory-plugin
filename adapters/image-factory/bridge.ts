@@ -1,6 +1,11 @@
 import { createHash } from "node:crypto";
 
 import type { VisualBrief } from "../../packages/core/src/content/assets.ts";
+import { ContentFactoryError } from "../../packages/core/src/errors.ts";
+import {
+  bindChannelMediaReceipt,
+  type ChannelMediaPlan
+} from "../../packages/core/src/channels/assets.ts";
 import {
   authorizeGeneration,
   type GenerationApproval,
@@ -116,4 +121,50 @@ export async function invokeImageFactory(input: {
     }
     return accepted(reconciled, true);
   }
+}
+
+function imageMediaType(path: string): string | null {
+  const normalized = path.toLowerCase();
+  if (normalized.endsWith(".png")) return "image/png";
+  if (normalized.endsWith(".jpg") || normalized.endsWith(".jpeg")) {
+    return "image/jpeg";
+  }
+  if (normalized.endsWith(".webp")) return "image/webp";
+  return null;
+}
+
+export function bindImageFactoryResultToChannelPlan(
+  plan: ChannelMediaPlan,
+  branchId: string,
+  result: ImageFactoryResult
+): ChannelMediaPlan {
+  if (result.status !== "succeeded") {
+    throw new ContentFactoryError({
+      code: "IMAGE_FACTORY_RESULT_NOT_SUCCEEDED",
+      message: "only a verified successful Image Factory result can fulfill a media branch",
+      retryable: false,
+      details: { status: result.status }
+    });
+  }
+  const mediaType = imageMediaType(result.asset.path);
+  if (mediaType === null) {
+    throw new ContentFactoryError({
+      code: "IMAGE_FACTORY_MEDIA_TYPE_UNSUPPORTED",
+      message: "Image Factory receipt path does not identify a supported image media type",
+      retryable: false,
+      details: { path: result.asset.path }
+    });
+  }
+  return bindChannelMediaReceipt(plan, {
+    receiptId: `image_factory_${result.asset.requestId}`,
+    branchId,
+    variantRef: plan.variantRef,
+    contentRevisionId: result.asset.variantRef,
+    artifactId: result.asset.artifactId,
+    artifactKind: "binary-media",
+    mediaType,
+    sha256: result.asset.sha256,
+    bytes: result.asset.bytes,
+    producer: "image-factory"
+  });
 }
