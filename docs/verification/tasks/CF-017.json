@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task": "CF-017",
+  "status": "COMPLETE",
+  "scope": "Deterministic fact guards and independent semantic/human review reporting",
+  "completed_at": "2026-09-21T03:24:05Z",
+  "branch": "main",
+  "implementation_commits": [
+    "4f8dc739e297d0a84291f01dbe24da0c2d462488",
+    "9c656f6df013ce00a32244e1811c386c78ebac77"
+  ],
+  "red_evidence": [
+    {
+      "commit": "4f8dc739e297d0a84291f01dbe24da0c2d462488",
+      "run_id": 35557310539,
+      "conclusion": "failure",
+      "reason": "fact review module was absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "9c656f6df013ce00a32244e1811c386c78ebac77",
+      "run_id": 35557372183,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "number, percentage, unit, negation and time-range changes are blocking findings",
+    "command and URL changes retain exact before/after values",
+    "citation binding drift blocks verified delivery",
+    "semantic review cannot clear deterministic findings",
+    "human decision and reason are retained without deleting hard findings"
+  ],
+  "outputs": [
+    "packages/core/src/review/facts.ts",
+    "packages/core/src/review/reports.ts",
+    "test/fact-guards.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
