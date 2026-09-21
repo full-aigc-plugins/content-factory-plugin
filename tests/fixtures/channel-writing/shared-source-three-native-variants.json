@@ -1,0 +1,109 @@
+{
+  "sourceBundleId": "bundle_cf050_shared",
+  "claims": [
+    {
+      "claimId": "claim_runtime",
+      "statement": "Content Factory uses `content-factory doctor` to verify 16 channel profiles with a 120 ms budget.",
+      "kind": "verifiable",
+      "evidence": [
+        {
+          "sourceId": "architecture",
+          "locator": "channel-matrix"
+        }
+      ],
+      "verification": "source-backed",
+      "independentlyPublicVerified": true
+    },
+    {
+      "claimId": "claim_delivery",
+      "statement": "Public publishing is not enabled by default.",
+      "kind": "verifiable",
+      "evidence": [
+        {
+          "sourceId": "architecture",
+          "locator": "delivery-boundary"
+        }
+      ],
+      "verification": "source-backed",
+      "independentlyPublicVerified": true
+    }
+  ],
+  "restrictedContext": {
+    "privateAuthorFacts": [
+      "SecretCustomer-X uses this workflow internally."
+    ],
+    "sourceAnecdotes": [
+      "I rebuilt the campaign alone at 3 a.m."
+    ],
+    "unsupportedVendorClaims": [
+      "The platform gives every post a fixed 3.7x engagement multiplier."
+    ]
+  },
+  "targets": [
+    {
+      "channelId": "wechat-article",
+      "formatId": "article",
+      "locale": "zh-CN"
+    },
+    {
+      "channelId": "xiaohongshu",
+      "formatId": "note",
+      "locale": "zh-CN"
+    },
+    {
+      "channelId": "douyin",
+      "formatId": "short_video_script",
+      "locale": "zh-CN"
+    }
+  ],
+  "candidates": [
+    {
+      "channelId": "wechat-article",
+      "formatId": "article",
+      "sections": ["title", "lead", "sections", "sources"],
+      "text": "Content Factory evidence guide\n\nContent Factory uses `content-factory doctor` to verify 16 channel profiles with a 120 ms budget.\n\nPublic publishing is not enabled by default.",
+      "claimRenderings": [
+        {
+          "claimId": "claim_runtime",
+          "text": "Content Factory uses `content-factory doctor` to verify 16 channel profiles with a 120 ms budget."
+        },
+        {
+          "claimId": "claim_delivery",
+          "text": "Public publishing is not enabled by default."
+        }
+      ]
+    },
+    {
+      "channelId": "xiaohongshu",
+      "formatId": "note",
+      "sections": ["hook", "body", "takeaways", "tags"],
+      "text": "Three checks before writing\n\nContent Factory uses `content-factory doctor` to verify 16 channel profiles with a 120 ms budget.\n\nPublic publishing is not enabled by default.\n\n#ContentFactory",
+      "claimRenderings": [
+        {
+          "claimId": "claim_runtime",
+          "text": "Content Factory uses `content-factory doctor` to verify 16 channel profiles with a 120 ms budget."
+        },
+        {
+          "claimId": "claim_delivery",
+          "text": "Public publishing is not enabled by default."
+        }
+      ]
+    },
+    {
+      "channelId": "douyin",
+      "formatId": "short_video_script",
+      "sections": ["hook", "spoken-beats", "subtitle-cues", "closing"],
+      "text": "Hook: verify before delivery.\n\nContent Factory uses `content-factory doctor` to verify 16 channel profiles with a 120 ms budget.\n\nPublic publishing is not enabled by default.\n\nClosing: keep the evidence.",
+      "claimRenderings": [
+        {
+          "claimId": "claim_runtime",
+          "text": "Content Factory uses `content-factory doctor` to verify 16 channel profiles with a 120 ms budget."
+        },
+        {
+          "claimId": "claim_delivery",
+          "text": "Public publishing is not enabled by default."
+        }
+      ]
+    }
+  ]
+}
