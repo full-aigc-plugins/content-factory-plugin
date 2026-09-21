@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "profiles": [
+    { "id": "wechat-article", "revision": 1, "formats": ["article", "image_text"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "xiaohongshu", "revision": 1, "formats": ["note", "carousel_copy", "video_script"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "douyin", "revision": 1, "formats": ["short_video_script", "image_text_copy"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "bilibili", "revision": 1, "formats": ["video_script", "article", "dynamic"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "weibo", "revision": 1, "formats": ["post", "thread", "headline_article"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "zhihu", "revision": 1, "formats": ["answer", "article", "thought"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "toutiao", "revision": 1, "formats": ["article", "micro_post", "video_script"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "kuaishou", "revision": 1, "formats": ["video_script", "image_text_copy"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "juejin", "revision": 1, "formats": ["technical_article"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "wechat-video", "revision": 1, "formats": ["video_script", "caption"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "baijiahao", "revision": 1, "formats": ["article", "video_script"], "locales": ["zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "x", "revision": 1, "formats": ["post", "thread", "article"], "locales": ["en-US", "zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "linkedin", "revision": 1, "formats": ["post", "article", "document_copy"], "locales": ["en-US", "zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "instagram", "revision": 1, "formats": ["caption", "carousel_copy", "reel_script"], "locales": ["en-US", "zh-CN"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "tiktok", "revision": 1, "formats": ["short_video_script", "caption"], "locales": ["en-US"], "mandatoryRemoteConstraintStatus": "unknown" },
+    { "id": "reddit", "revision": 1, "formats": ["post", "comment_draft"], "locales": ["en-US"], "mandatoryRemoteConstraintStatus": "unknown" }
+  ]
+}
