@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://partme.ai/schemas/content-factory/content-output.schema.json",
+  "title": "ContentOutputRevision",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "contentType", "source", "sections", "fingerprint"],
+      "properties": {
+        "kind": { "const": "outline" },
+        "contentType": {
+          "enum": [
+            "research-analysis",
+            "technical-tutorial",
+            "product-update",
+            "customer-case",
+            "short-social-script"
+          ]
+        },
+        "source": { "enum": ["template", "user"] },
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "fingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "text", "vendorMethod", "outlineFingerprint", "fingerprint"],
+      "properties": {
+        "kind": { "const": "draft" },
+        "text": { "type": "string", "minLength": 1 },
+        "vendorMethod": { "type": "string", "minLength": 1 },
+        "outlineFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "fingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    }
+  ]
+}

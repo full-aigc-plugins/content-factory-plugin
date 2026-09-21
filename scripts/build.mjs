@@ -7,7 +7,7 @@ const output = path.resolve("dist");
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 
-const copyRoots = ["packages", "adapters", "schemas", "skills"];
+const copyRoots = ["packages", "adapters", "schemas", "skills", "templates"];
 for (const root of copyRoots) {
   await cp(root, path.join(output, root), {
     recursive: true,
