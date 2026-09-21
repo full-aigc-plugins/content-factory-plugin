@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/full-aigc-plugins/content-factory-plugin/schemas/visual-brief.schema.json",
+  "title": "VisualBrief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "briefId",
+    "revisionId",
+    "anchor",
+    "purpose",
+    "assetKind",
+    "textConstraints",
+    "sourceRefs",
+    "generationStatus"
+  ],
+  "properties": {
+    "briefId": { "type": "string", "minLength": 1 },
+    "revisionId": { "type": "string", "minLength": 1 },
+    "anchor": { "type": "string", "minLength": 1 },
+    "purpose": { "type": "string", "minLength": 1 },
+    "assetKind": { "type": "string", "minLength": 1 },
+    "aspectRatio": { "type": "string", "pattern": "^[1-9][0-9]*:[1-9][0-9]*$" },
+    "textConstraints": { "type": "array", "items": { "type": "string" } },
+    "sourceRefs": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "generationStatus": { "const": "not-requested" }
+  }
+}
