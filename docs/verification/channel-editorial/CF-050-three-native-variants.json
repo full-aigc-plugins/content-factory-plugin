@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task": "CF-050",
+  "evidence_class": "local-fixture-editorial-review",
+  "source_bundle_id": "bundle_cf050_shared",
+  "fixture": "tests/fixtures/channel-writing/shared-source-three-native-variants.json",
+  "shared_claim_ids": [
+    "claim_runtime",
+    "claim_delivery"
+  ],
+  "variants": [
+    {
+      "target": "wechat-article/article",
+      "recipe_ref": "wechat-article/article@1",
+      "output_contract": "native.wechat-article.article@1",
+      "required_sections": ["title", "lead", "sections", "sources"],
+      "structure_review": "PASS",
+      "protected_fact_review": "PASS"
+    },
+    {
+      "target": "xiaohongshu/note",
+      "recipe_ref": "xiaohongshu/note@1",
+      "output_contract": "native.xiaohongshu.note@1",
+      "required_sections": ["hook", "body", "takeaways", "tags"],
+      "structure_review": "PASS",
+      "protected_fact_review": "PASS"
+    },
+    {
+      "target": "douyin/short_video_script",
+      "recipe_ref": "douyin/short_video_script@1",
+      "output_contract": "native.douyin.short_video_script@1",
+      "required_sections": ["hook", "spoken-beats", "subtitle-cues", "closing"],
+      "structure_review": "PASS",
+      "protected_fact_review": "PASS"
+    }
+  ],
+  "review_assertions": {
+    "sibling_lineage_from_shared_source": "PASS",
+    "no_progressive_channel_compression": "PASS",
+    "private_author_facts_excluded": "PASS",
+    "source_anecdotes_excluded": "PASS",
+    "unsupported_algorithm_claims_excluded": "PASS",
+    "candidate_only_no_remote_delivery": "PASS"
+  },
+  "live_generation": "NOT_RUN",
+  "live_delivery": "NOT_RUN",
+  "secrets_in_record": false
+}
