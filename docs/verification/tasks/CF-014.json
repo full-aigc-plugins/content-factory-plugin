@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "task": "CF-014",
+  "status": "COMPLETE",
+  "scope": "Versioned author style profile, privacy-safe sample analysis, protected terminology validation, and immutable revision fingerprinting",
+  "completed_at": "2026-09-21T03:16:16Z",
+  "branch": "main",
+  "implementation_commits": [
+    "8c48aa54ae74d65452a5a08d904f4828c92a6c50",
+    "df3576d88b54fb603b951f8a2f5578a3a9bc69b3",
+    "15b03af523a57fc24d4de71b782f824ad9a2cc7b"
+  ],
+  "red_evidence": [
+    {
+      "commit": "8c48aa54ae74d65452a5a08d904f4828c92a6c50",
+      "run_id": 35556844398,
+      "conclusion": "failure",
+      "reason": "author-profile module absent; CF-014 tests failed at npm test"
+    }
+  ],
+  "correction_evidence": [
+    {
+      "commit": "df3576d88b54fb603b951f8a2f5578a3a9bc69b3",
+      "run_id": 35556909028,
+      "conclusion": "failure",
+      "finding": "test expected insertion order while revision case required deterministic sorted glossary",
+      "ruling": "use deterministic sorted glossary; align inconsistent test expectation without changing production semantics"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "15b03af523a57fc24d4de71b782f824ad9a2cc7b",
+      "run_id": 35556949328,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "default profile works without author samples",
+    "raw sample text and explicitly private facts are not retained in the profile",
+    "protected brand terms and units cannot be silently changed",
+    "profile changes create a new revision and fingerprint"
+  ],
+  "outputs": [
+    "packages/core/src/content/author-profile.ts",
+    "schemas/author-profile.schema.json",
+    "skills/content-harness/references/voice.md",
+    "test/author-profile.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
