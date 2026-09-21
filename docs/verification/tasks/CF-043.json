@@ -7,13 +7,20 @@
   "branch": "main",
   "implementation_commits": [
     "f73cf420c2e7f9eb071e2fef649a491fc421fc6c",
-    "7c86fa6f2c68996fbb36499de780442ccbc418c0"
+    "7c86fa6f2c68996fbb36499de780442ccbc418c0",
+    "1057707",
+    "ebb28c0"
   ],
   "red_evidence": [
     {
       "commit": "f73cf420c2e7f9eb071e2fef649a491fc421fc6c",
       "conclusion": "failure",
       "reason": "candidate intake module was absent"
+    },
+    {
+      "commit": "1057707",
+      "conclusion": "failure",
+      "reason": "live SkillHub candidates had no capability-claim or ownership assessment"
     }
   ],
   "green_evidence": [
@@ -29,20 +36,39 @@
         "npm run skills:check",
         "npm run build"
       ]
+    },
+    {
+      "commit": "ebb28c0",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/candidate-intake.test.mjs test/harness-routing.test.mjs (10 passed, 0 failed)",
+        "npm test (138 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run build"
+      ]
     }
   ],
   "assertions": [
     "display titles and catalog scores do not fabricate owner, slug, version, license, or executable status",
     "indexed-only discovery retains partial coverage and never claims a complete latest ranking",
-    "lock admission fails when license, source URL, immutable ref, commit, content hash, or signature evidence is missing"
+    "lock admission fails when license, source URL, immutable ref, commit, content hash, or signature evidence is missing",
+    "live catalog rank, downloads and publisher badges remain candidate-only without package and contract evidence",
+    "detector-evasion, traffic guarantees and automatic publishing are rejected capability claims",
+    "media generation candidates remain owned by Image Factory"
   ],
   "outputs": [
     "packages/core/src/skills/candidates.ts",
     "schemas/skill-candidate.schema.json",
     "docs/verification/channel-intake/2026-09-20-indexed-candidates.json",
+    "docs/verification/channel-intake/2026-09-22-skillhub-content-creation.json",
     "test/candidate-intake.test.mjs"
   ],
-  "fixture_or_live": "indexed-snapshot-and-local-fixture",
-  "live_catalog_status": "NOT_RUN",
+  "fixture_or_live": "live-first-page-plus-read-only-search-metadata-and-local-fixture",
+  "live_catalog_status": "PARTIAL_LIVE_FIRST_PAGE",
+  "updated_at": "2026-09-21T18:19:15Z",
   "secrets_in_record": false
 }

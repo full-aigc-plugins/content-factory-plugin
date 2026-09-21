@@ -7,13 +7,20 @@
   "branch": "main",
   "implementation_commits": [
     "92b925b5e80e66dc0ff4e71ea3fa37e34a5b8a96",
-    "112b4e7f83c9b568a1fce486fce058198fe44960"
+    "112b4e7f83c9b568a1fce486fce058198fe44960",
+    "1057707",
+    "ebb28c0"
   ],
   "red_evidence": [
     {
       "commit": "92b925b5e80e66dc0ff4e71ea3fa37e34a5b8a96",
       "conclusion": "failure",
       "reason": "platform-aware recipe selector was absent"
+    },
+    {
+      "commit": "1057707",
+      "conclusion": "failure",
+      "reason": "full native recipes did not consistently finish with edit, format and terminal review"
     }
   ],
   "green_evidence": [
@@ -29,13 +36,29 @@
         "npm run skills:check",
         "npm run build"
       ]
+    },
+    {
+      "commit": "ebb28c0",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/candidate-intake.test.mjs test/harness-routing.test.mjs (10 passed, 0 failed)",
+        "npm test (138 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run build"
+      ]
     }
   ],
   "assertions": [
     "a resolved target selects a versioned native recipe before writing and records the input hash and task kind",
     "format-only mode omits research, rewriting, detection, and delivery",
     "ambiguous or conflicting destinations select no default recipe and perform no remote work",
-    "Douyin and TikTok produce distinct profile and recipe decisions"
+    "Douyin and TikTok produce distinct profile and recipe decisions",
+    "full native recipes preserve their channel-specific stages and finish with bounded editing, formatting and terminal review",
+    "format-only mode still performs no rewriting or detection"
   ],
   "outputs": [
     "packages/core/src/channels/select-recipe.ts",
@@ -44,5 +67,6 @@
     "test/harness-routing.test.mjs"
   ],
   "fixture_or_live": "local-fixture",
+  "updated_at": "2026-09-21T18:19:15Z",
   "secrets_in_record": false
 }
