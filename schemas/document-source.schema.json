@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/full-aigc-plugins/content-factory-plugin/schemas/document-source.schema.json",
+  "title": "DocumentSourceRecord",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "sourceId",
+    "fileName",
+    "mediaType",
+    "rawSha256",
+    "textSha256",
+    "bytes",
+    "text",
+    "importedAt",
+    "warnings"
+  ],
+  "properties": {
+    "sourceId": {
+      "type": "string",
+      "pattern": "^src_[0-9a-f]{24}$"
+    },
+    "fileName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mediaType": {
+      "enum": [
+        "application/pdf",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      ]
+    },
+    "rawSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "textSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "importedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "TABLE_LINEARIZED",
+          "FORMULA_LINEARIZED",
+          "LAYOUT_NOT_PRESERVED"
+        ]
+      }
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "page",
+          "text"
+        ],
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

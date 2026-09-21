@@ -39,7 +39,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
 - [x] **CF-009 Controlled URL ingestion**
   - Prefer the locked `baoyu-url-to-markdown` capability when available.
   - Keep SSRF, redirects, access walls, prompt injection, size and extraction policy in the kernel.
-- [ ] **CF-010 DOCX and text-PDF ingestion**
+- [x] **CF-010 DOCX and text-PDF ingestion**
 - [x] **CF-011 Immutable revisions, diffs, and CAS conflict handling**
 - [ ] **CF-012 Run/Step ledger and recovery**
 
