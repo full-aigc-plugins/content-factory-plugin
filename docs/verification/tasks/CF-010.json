@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "task": "CF-010",
+  "status": "COMPLETE",
+  "scope": "Bounded DOCX and text-layer PDF ingestion with immutable raw bytes, extraction warnings, page locators, no OCR, and archive/file safety budgets",
+  "completed_at": "2026-09-21T02:57:00Z",
+  "branch": "impl/cf-010-document-ingestion",
+  "implementation_commits": [
+    "eb22de94ed4ab11bb39d1f9466e45f930e1eeb77",
+    "f384cf8f7803e5778e9a20526d83cfdb4caf3610",
+    "ba2832473e11e457ba5f58ae47c078259d9bf10f",
+    "1c559f2157dc999bc8848bc8158517514aa45c79"
+  ],
+  "red_evidence": [
+    {
+      "commit": "eb22de94ed4ab11bb39d1f9466e45f930e1eeb77",
+      "run_id": 35555467519,
+      "conclusion": "failure",
+      "reason": "ERR_MODULE_NOT_FOUND for import-docx.ts after lint/typecheck passed"
+    }
+  ],
+  "debugging_evidence": [
+    {
+      "commit": "f384cf8f7803e5778e9a20526d83cfdb4caf3610",
+      "run_id": 35555545574,
+      "conclusion": "failure",
+      "reason": "pdfjs-dist 6.3 DocumentInitParameters rejected isEvalSupported; PDFDocumentProxy.destroy removed"
+    },
+    {
+      "commit": "ba2832473e11e457ba5f58ae47c078259d9bf10f",
+      "run_id": 35555649679,
+      "conclusion": "failure",
+      "reason": "pdfjs-dist 6.3 DocumentInitParameters rejected stopEventPropagation"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "1c559f2157dc999bc8848bc8158517514aa45c79",
+      "run_id": 35555723119,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "DOCX text is extracted locally while original bytes are stored immutably",
+    "table/formula/layout loss is exposed through extraction warnings",
+    "external DOCX relationships are rejected without network resolution",
+    "DOCX cumulative expanded-size budget is checked before decompression",
+    "text PDF produces page-number locators and extracted text",
+    "PDF without a text layer fails with DOCUMENT_TEXT_UNAVAILABLE and ocrAttempted=false",
+    "corrupt documents and explicit file-size overflow are rejected"
+  ],
+  "dependencies": [
+    {
+      "name": "fflate",
+      "version": "0.8.3",
+      "license": "MIT"
+    },
+    {
+      "name": "pdfjs-dist",
+      "version": "6.3.289",
+      "license": "Apache-2.0"
+    }
+  ],
+  "outputs": [
+    "packages/core/src/content/document-common.ts",
+    "packages/core/src/content/import-docx.ts",
+    "packages/core/src/content/import-pdf.ts",
+    "schemas/document-source.schema.json",
+    "test/import-documents.test.mjs",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "fixture_or_live": "local-fixture",
+  "ocr": "NOT_USED",
+  "secrets_in_record": false
+}
