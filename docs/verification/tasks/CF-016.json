@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "task": "CF-016",
+  "status": "COMPLETE",
+  "scope": "Five content templates, user-outline preservation, vendor writing request contract, and outline-bound draft acceptance",
+  "completed_at": "2026-09-21T03:21:54Z",
+  "branch": "main",
+  "implementation_commits": [
+    "49a767e3217b670fa70238724e17e83192a18d31",
+    "b0843fdca2c509f0d94a1971a1468e6c083d24d2"
+  ],
+  "red_evidence": [
+    {
+      "commit": "49a767e3217b670fa70238724e17e83192a18d31",
+      "run_id": 35557171964,
+      "conclusion": "failure",
+      "reason": "vendor writing adapter was absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "b0843fdca2c509f0d94a1971a1468e6c083d24d2",
+      "run_id": 35557242327,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "five content types resolve to distinct suitable structures",
+    "explicit user outline overrides the default template",
+    "customer case with missing outcome reports a missing input and forbids invented metrics",
+    "vendor draft is accepted only against the approved outline fingerprint",
+    "templates are included in the packaged build"
+  ],
+  "outputs": [
+    "adapters/content-methods/write.ts",
+    "schemas/content-output.schema.json",
+    "templates/content/",
+    "test/writing-flow.test.mjs",
+    "scripts/build.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
