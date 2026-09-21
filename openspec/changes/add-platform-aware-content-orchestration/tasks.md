@@ -125,7 +125,7 @@ npm run test -- tests/channels/skill-routing.test.ts
 
 ## 8. CF-050 — Channel-native source-grounded writing and editing
 
-- [ ] 8.1 Complete CF-050: Channel-native source-grounded writing and editing.
+- [x] 8.1 Complete CF-050: Channel-native source-grounded writing and editing.
 
 **Dependencies:** CF-016, CF-019, CF-045, CF-049.
 **Responsibility paths:** `recipes/`, `tests/fixtures/channel-writing/`, `docs/verification/channel-editorial/`.

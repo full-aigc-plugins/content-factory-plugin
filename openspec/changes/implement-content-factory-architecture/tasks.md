@@ -490,10 +490,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/platforms.md#cf-050)
 
-- [ ] 50.1 [CF-050.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 50.2 [CF-050.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 50.3 [CF-050.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 50.4 [CF-050.4] 原要求与证据复核、独立 review/commit。
+- [x] 50.1 [CF-050.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 50.2 [CF-050.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 50.3 [CF-050.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 50.4 [CF-050.4] 原要求与证据复核、独立 review/commit。
 
 ## 51. CF-051 — Channel-format media briefs and external receipts
 

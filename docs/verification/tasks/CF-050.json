@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "task": "CF-050",
+  "status": "COMPLETE",
+  "scope": "Channel-native, source-grounded sibling writing requests and protected candidate acceptance",
+  "completed_at": "2026-09-21T17:52:12Z",
+  "branch": "main",
+  "implementation_commits": [
+    "05207c6",
+    "841dfb9da389cae3a0ee7f4e9780cca426803bd4"
+  ],
+  "red_evidence": [
+    {
+      "commit": "05207c6",
+      "conclusion": "failure",
+      "reason": "the native-writing production module was absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "841dfb9da389cae3a0ee7f4e9780cca426803bd4",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/native-writing.test.mjs (4 passed, 0 failed)",
+        "npm test (129 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build",
+        "python3 docs/architecture/verify-architecture.py"
+      ]
+    }
+  ],
+  "acceptance_cases": {
+    "R10": "WeChat article, Xiaohongshu note, and Douyin script resolve to distinct structures, recipes, and output contracts",
+    "R24": "private author facts and source anecdotes are absent from vendor requests and rejected in candidate text",
+    "R25": "unsupported fixed engagement multiplier claims are absent from vendor requests and rejected in candidate text",
+    "R26": "the existing protected-fact engine blocks changed commands, numbers, units, negation, URLs, and other deterministic facts"
+  },
+  "assertions": [
+    "all three channel variants descend independently from one source bundle and one sibling group",
+    "no channel variant derives from another channel's final text",
+    "every selected claim must have a final-text rendering",
+    "protected terminology and deterministic facts cannot be silently changed",
+    "accepted output remains review-required with fresh detection and approval required",
+    "the authoring boundary is candidate-only and cannot perform remote delivery"
+  ],
+  "outputs": [
+    "packages/core/src/channels/native-writing.ts",
+    "test/native-writing.test.mjs",
+    "tests/fixtures/channel-writing/shared-source-three-native-variants.json",
+    "docs/verification/channel-editorial/CF-050-three-native-variants.json"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS",
+    "findings": []
+  },
+  "fixture_or_live": "local-fixture",
+  "live_generation": "NOT_RUN",
+  "live_delivery": "NOT_RUN",
+  "secrets_in_record": false
+}
