@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task": "CF-014",
+  "status": "COMPLETE",
+  "scope": "Versioned privacy-safe AuthorProfile and exact protected terminology policy",
+  "completed_at": "2026-09-21T03:00:00Z",
+  "branch": "impl/cf-014-author-profile",
+  "implementation_commits": [
+    "9f1bac340ed3e43aab418eb62a2e8827e6776d33",
+    "5b5eb8f936b22a0b08354380f87a52e90267dab2"
+  ],
+  "red_evidence": [
+    {
+      "commit": "9f1bac340ed3e43aab418eb62a2e8827e6776d33",
+      "run_id": 35555863478,
+      "conclusion": "failure",
+      "reason": "ERR_MODULE_NOT_FOUND for packages/core/src/content/author-profile.ts"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "5b5eb8f936b22a0b08354380f87a52e90267dab2",
+      "run_id": 35555931530,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "profile works without writing samples",
+    "raw writing samples and sample-specific private names are not stored in AuthorProfile",
+    "sample hashes and style statistics make sample-derived voice revisions auditable",
+    "protected terms are exact, ordered and deduplicated",
+    "changing samples creates a new immutable profile revision with parent linkage"
+  ],
+  "outputs": [
+    "packages/core/src/content/author-profile.ts",
+    "schemas/author-profile.schema.json",
+    "skills/content-harness/references/voice.md",
+    "test/author-profile.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}

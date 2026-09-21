@@ -51,7 +51,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Select vendor capability sets by request type.
   - Do not duplicate vendor skills as local skills.
 
-- [ ] **CF-014 Author profile and terminology protection**
+- [x] **CF-014 Author profile and terminology protection**
   - Store versioned author/style constraints.
   - Ensure vendor editors cannot leak sample-specific private facts.
 
