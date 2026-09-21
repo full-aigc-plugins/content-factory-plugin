@@ -85,7 +85,7 @@ test("successful Factory run preserves actual receipt evidence", async () => {
       available: true,
       evidence: { cli: "bin/image-factory", selectedSkill: "image-factory-use" }
     }),
-    run: async (brief) => ({
+    run: async (brief: { revisionId: string }) => ({
       receipt: {
         receiptId: "receipt-1",
         artifactPath: "/artifacts/cover.png",
