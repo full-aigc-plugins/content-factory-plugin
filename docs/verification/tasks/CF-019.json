@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "task": "CF-019",
+  "status": "COMPLETE",
+  "scope": "Independent derivative content items with parent lineage, fresh review/detection/approval state, supported-number guard, and media handoff semantics",
+  "completed_at": "2026-09-21T03:29:12Z",
+  "branch": "main",
+  "implementation_commits": [
+    "6fa974275a2c233ed3f522c4be34f9b19255d17f",
+    "12cf1f275b0861bbb52f4151f3562890133bf97c",
+    "967283fbc144a086723465b2a0bd60ffbe0d768f"
+  ],
+  "red_evidence": [
+    {
+      "commit": "6fa974275a2c233ed3f522c4be34f9b19255d17f",
+      "run_id": 35557565850,
+      "conclusion": "failure",
+      "reason": "repurpose modules absent"
+    }
+  ],
+  "correction_evidence": [
+    {
+      "commit": "12cf1f275b0861bbb52f4151f3562890133bf97c",
+      "run_id": 35557612242,
+      "conclusion": "failure",
+      "finding": "adapter did not re-export createRepurposeRequest",
+      "ruling": "adapter is the public content-method entrypoint; re-export core request builder"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "967283fbc144a086723465b2a0bd60ffbe0d768f",
+      "run_id": 35557652284,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "derivative creates a new child content item with parent item/revision lineage",
+    "parent article is not mutated",
+    "detection and approval are not inherited",
+    "shortening may omit facts but cannot add unsupported new numeric facts",
+    "video-script derivative exposes script-only media handoff rather than claiming a finished video"
+  ],
+  "outputs": [
+    "packages/core/src/content/repurpose.ts",
+    "adapters/content-methods/repurpose.ts",
+    "test/repurpose.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
