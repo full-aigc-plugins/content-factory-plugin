@@ -82,7 +82,7 @@ test("CF-049 requires new consent when fallback changes recipient cost or permis
 });
 
 test("CF-049 never selects uninstalled, drifted, or contract-unverified bindings", () => {
-  assert.deepEqual(evaluateBindingEligibility(binding({ installed: false }), context).reasons, ["not-installed"]);
+  assert.deepEqual(evaluateBindingEligibility(binding({ installed: false, runtimes: ["node"] }), context).reasons, ["not-installed"]);
   assert.deepEqual(evaluateBindingEligibility(binding({ integrityVerified: false }), context).reasons, ["integrity-unverified", "runtime-unavailable"]);
   assert.deepEqual(evaluateBindingEligibility(binding({ contractVerified: false, runtimes: ["node"] }), context).reasons, ["contract-unverified"]);
   const result = selectBinding([
