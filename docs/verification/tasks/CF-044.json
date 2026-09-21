@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task": "CF-044",
+  "status": "COMPLETE",
+  "scope": "Independent HostContext, SourceContext and ChannelIntent resolution with alias handling, ambiguity, conflict preservation, and non-channel taxonomy",
+  "completed_at": "2026-09-21T16:24:15Z",
+  "branch": "main",
+  "implementation_commits": [
+    "44049f17e6dbf745670c2379235ff0ecbe4b967c",
+    "fbaf555081b3376c692c217e39635f773ef7b0f6"
+  ],
+  "red_evidence": [
+    {
+      "commit": "44049f17e6dbf745670c2379235ff0ecbe4b967c",
+      "conclusion": "failure",
+      "reason": "channel context resolver was absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "fbaf555081b3376c692c217e39635f773ef7b0f6",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/channel-context.test.mjs (5 passed, 0 failed)",
+        "npm test (97 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "execution host, source platform, and target channel remain independent",
+    "an ambiguous WeChat request requires clarification and performs zero remote calls",
+    "a selected account that conflicts with the explicit target does not silently replace it",
+    "Twitter normalizes to x while growth, podcast, and baidu do not become publishers",
+    "unknown host remains unknown and Douyin/TikTok retain distinct channel and locale intents"
+  ],
+  "outputs": [
+    "packages/core/src/channels/context.ts",
+    "schemas/channel-intent.schema.json",
+    "test/channel-context.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}

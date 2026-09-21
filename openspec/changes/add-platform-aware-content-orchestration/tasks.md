@@ -23,7 +23,7 @@ npm run test -- tests/channels/candidate-intake.test.ts
 
 ## 2. CF-044 — Separate host/source/channel context and resolve ambiguity
 
-- [ ] 2.1 Complete CF-044: Separate host/source/channel context and resolve ambiguity.
+- [x] 2.1 Complete CF-044: Separate host/source/channel context and resolve ambiguity.
 
 **Dependencies:** CF-002.
 **Responsibility paths:** `packages/core/src/channels/context.ts`, `schemas/channel-intent.schema.json`.
