@@ -87,7 +87,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Harness emits VisualBrief.
   - Track user images, real screenshots, licensed assets, and generated assets distinctly.
 
-- [ ] **CF-021 Controlled Image Factory invocation**
+- [x] **CF-021 Controlled Image Factory invocation**
   - All generated cover/illustration/infographic/social visuals go through Image Factory.
   - Require receipt/hash/budget evidence.
   - No Baoyu image-generation skill is vendored into Content Factory.

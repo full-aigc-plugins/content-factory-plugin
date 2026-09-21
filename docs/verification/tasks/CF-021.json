@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "task": "CF-021",
+  "status": "COMPLETE",
+  "scope": "Budget-gated Image Factory invocation, receipt integrity validation, and reconcile-first handling for possibly successful paid calls",
+  "completed_at": "2026-09-21T16:16:04Z",
+  "branch": "main",
+  "implementation_commits": [
+    "f3e423dabc01834b4601270f2f55b7367c5780c9",
+    "5746a35050ce6ac672d3eba51204b83f8048c9c0"
+  ],
+  "red_evidence": [
+    {
+      "commit": "f3e423dabc01834b4601270f2f55b7367c5780c9",
+      "conclusion": "failure",
+      "reason": "adapters/image-factory/bridge.ts was absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "5746a35050ce6ac672d3eba51204b83f8048c9c0",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/image-generation.test.mjs (3 passed, 0 failed)",
+        "npm test (86 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "missing generation approval or budget reference produces zero Image Factory calls",
+    "accepted assets bind request identity, revision identity, byte length, dimensions, and SHA-256",
+    "missing provider model identity remains null rather than invented",
+    "a response-loss outcome reconciles by request ID before any retry and never repeats the paid generation call"
+  ],
+  "outputs": [
+    "adapters/image-factory/bridge.ts",
+    "packages/core/src/security/generation-approval.ts",
+    "test/image-generation.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
