@@ -53,8 +53,7 @@ export async function importPdfSource(
   try {
     loadingTask = getDocument({
       data: new Uint8Array(input.bytes),
-      useSystemFonts: false,
-      stopEventPropagation: true
+      useSystemFonts: false
     });
     pdf = await loadingTask.promise;
   } catch (error) {
