@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task": "CF-018",
+  "status": "COMPLETE",
+  "scope": "Bounded vendor humanization/copy editing with protected facts, anti-fabrication and anti-obfuscation policy",
+  "completed_at": "2026-09-21T03:26:12Z",
+  "branch": "main",
+  "implementation_commits": [
+    "a8dd9d5087fff9b1546bbacb98311d91e193ccba",
+    "f360dd5be0eb214fcc6966bfed739dbc4f1bc6e1"
+  ],
+  "red_evidence": [
+    {
+      "commit": "a8dd9d5087fff9b1546bbacb98311d91e193ccba",
+      "run_id": 35557436687,
+      "conclusion": "failure",
+      "reason": "controlled edit adapter and policy were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "f360dd5be0eb214fcc6966bfed739dbc4f1bc6e1",
+      "run_id": 35557495539,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "standard intensity is default and conversation history is not a fact source",
+    "fabricated first-person experience triggers human review",
+    "zero-width text obfuscation triggers human review",
+    "protected terms, numbers and commands are revalidated after vendor editing",
+    "deep mode requires fact mapping and automatic editing stops after two rounds"
+  ],
+  "outputs": [
+    "packages/core/src/review/edit-policy.ts",
+    "adapters/content-methods/edit.ts",
+    "skills/content-harness/references/editing.md",
+    "test/humanize.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
