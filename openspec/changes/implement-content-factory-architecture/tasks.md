@@ -193,10 +193,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/foundation.md#cf-017)
 
-- [ ] 17.1 [CF-017.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 17.2 [CF-017.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 17.3 [CF-017.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 17.4 [CF-017.4] 原要求与证据复核、独立 review/commit。
+- [x] 17.1 [CF-017.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 17.2 [CF-017.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 17.3 [CF-017.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 17.4 [CF-017.4] 原要求与证据复核、独立 review/commit。
 
 ## 18. CF-018 — Vendor Humanizer/Copy Editing 与有限迭代
 
