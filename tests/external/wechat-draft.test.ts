@@ -29,7 +29,7 @@ test("missing credential blocks WeChat mutation before network", async () => {
 
 test("successful draft create records remote id but remains unverified", async () => {
   const transport: WechatDraftTransport = {
-    request: async (request) => {
+    request: async (request: { method: string; url: string; body?: unknown }) => {
       assert.equal(request.method, "POST");
       assert.match(request.url, /draft\/add/);
       assert.match(request.url, /access_token=token/);
@@ -75,7 +75,7 @@ test("ambiguous transport failure becomes unknown and never retries blindly", as
 
 test("readback returns remote content evidence independently from create", async () => {
   const transport: WechatDraftTransport = {
-    request: async (request) => {
+    request: async (request: { method: string; url: string; body?: unknown }) => {
       assert.equal(request.method, "POST");
       assert.match(request.url, /draft\/get/);
       assert.deepEqual(request.body, { media_id: "remote-draft-1" });
