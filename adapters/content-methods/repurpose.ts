@@ -2,9 +2,12 @@ import { createHash } from "node:crypto";
 
 import { ContentFactoryError } from "../../packages/core/src/errors.ts";
 import {
+  createRepurposeRequest,
   supportedNumbers,
   type RepurposeRequest
 } from "../../packages/core/src/content/repurpose.ts";
+
+export { createRepurposeRequest };
 
 export type RepurposedRevision = {
   kind: "repurposed";
