@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "task": "CF-024",
+  "status": "COMPLETE",
+  "scope": "Inert five-region local review preview with revision comparison, public-only evidence projection, stale binding protection, and explicit working/verified package status",
+  "completed_at": "2026-09-21T17:01:26Z",
+  "branch": "main",
+  "implementation_commits": [
+    "17a1b41",
+    "603bd0e509333f274b7c02dc1102498c3baeb3cc"
+  ],
+  "red_evidence": [
+    {
+      "commit": "17a1b41",
+      "conclusion": "failure",
+      "reason": "the local review-page renderer and review template were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "603bd0e509333f274b7c02dc1102498c3baeb3cc",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0; Google Chrome 153.0.8010.52",
+      "gates": [
+        "node --test test/review-preview.test.mjs (4 passed, 0 failed)",
+        "npm test (112 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "the local HTML has exactly five status, content, diff, sources, and reports regions",
+    "working draft and verified package are visibly distinct states",
+    "private sources and private report summaries are excluded from the generated public preview",
+    "a stale requested revision blocks rendering and a stale report is labeled without attaching its summary",
+    "the preview contains no script, form, button, or remote active resource and real Chromium records zero HTTP resource requests"
+  ],
+  "outputs": [
+    "packages/core/src/render/review-page.ts",
+    "templates/review/theme.css",
+    "test/review-preview.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS",
+    "findings": []
+  },
+  "fixture_or_live": "local-fixture-real-browser",
+  "secrets_in_record": false
+}

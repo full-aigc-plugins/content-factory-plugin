@@ -256,10 +256,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/production-delivery.md#cf-024)
 
-- [ ] 24.1 [CF-024.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 24.2 [CF-024.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 24.3 [CF-024.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 24.4 [CF-024.4] 原要求与证据复核、独立 review/commit。
+- [x] 24.1 [CF-024.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 24.2 [CF-024.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 24.3 [CF-024.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 24.4 [CF-024.4] 原要求与证据复核、独立 review/commit。
 
 ## 25. CF-025 — 朱雀 HTTP 适配与原始证据存储
 
