@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://partme.ai/schemas/content-factory/brief.schema.json",
+  "title": "ContentBrief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mode",
+    "topic",
+    "contentRef",
+    "sourceRefs",
+    "channel",
+    "accountRef",
+    "locale",
+    "audience",
+    "goal",
+    "missingInputs",
+    "assumptions"
+  ],
+  "properties": {
+    "mode": {
+      "enum": [
+        "full",
+        "edit",
+        "format",
+        "detect",
+        "repurpose",
+        "deliver"
+      ]
+    },
+    "topic": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contentRef": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "channel": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "accountRef": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "locale": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "audience": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "goal": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "missingInputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
