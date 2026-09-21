@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/full-aigc-plugins/content-factory-plugin/schemas/channel-intent.schema.json",
+  "title": "ChannelIntent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "channelId",
+    "formatId",
+    "locale",
+    "audience",
+    "goal",
+    "taskKind",
+    "requestedAction",
+    "accountRef",
+    "resolutionState",
+    "resolutionEvidence",
+    "candidates"
+  ],
+  "properties": {
+    "channelId": { "type": ["string", "null"] },
+    "formatId": { "type": ["string", "null"] },
+    "locale": { "type": ["string", "null"] },
+    "audience": { "type": ["string", "null"] },
+    "goal": { "type": ["string", "null"] },
+    "taskKind": { "type": ["string", "null"] },
+    "requestedAction": { "type": ["string", "null"] },
+    "accountRef": { "type": ["string", "null"] },
+    "resolutionState": {
+      "enum": ["resolved", "inferred", "needs_clarification", "unsupported"]
+    },
+    "resolutionEvidence": { "type": "array", "items": { "type": "string" } },
+    "candidates": { "type": "array", "items": { "type": "string" } }
+  }
+}
