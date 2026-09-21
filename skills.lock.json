@@ -19,6 +19,31 @@
         "spdx": "MIT",
         "evidence": "https://github.com/full-aigc-skills/baoyu-skills/blob/v1.63.0/LICENSE"
       }
+    },
+    {
+      "package": "marketingskills",
+      "repo": "https://github.com/coreyhaines31/marketingskills.git",
+      "ref": "v2.9.1",
+      "sha": "2c13accb72ee1feb847dedf16c6e59a53ee45c9b",
+      "skills": [
+        "content-strategy",
+        "product-marketing",
+        "copywriting",
+        "copy-editing",
+        "social"
+      ],
+      "dest": "skills/",
+      "sha256": {
+        "content-strategy": "e262522f71a023938fd56f33151a954869a754c5142f09abc476e45414ce2b89",
+        "product-marketing": "ebef5ee2c7b176af246680c77cab06d67e09c7be007a522626ad581426c9d12f",
+        "copywriting": "506f46f6bbb3b9c414a3d1d78fb1c598f0ed952a7d483cdd2a6ed33412a3198f",
+        "copy-editing": "2e9cd386736dbf7fc9555b5787af804b573611db1a1ea1b9a3857d019d2f112a",
+        "social": "e869e9ba894d3734f72482138b6307045576746bd3e7c01979aaad87545d5811"
+      },
+      "license": {
+        "spdx": "MIT",
+        "evidence": "https://github.com/coreyhaines31/marketingskills/blob/v2.9.1/LICENSE"
+      }
     }
   ]
 }

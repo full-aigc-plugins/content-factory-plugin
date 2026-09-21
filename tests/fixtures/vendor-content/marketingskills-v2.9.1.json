@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "source_package": "marketingskills",
+  "source_ref": "v2.9.1",
+  "source_commit": "2c13accb72ee1feb847dedf16c6e59a53ee45c9b",
+  "license": "MIT",
+  "reviewed_at": "2026-09-21T17:08:00Z",
+  "skills": {
+    "content-strategy": {
+      "capabilities": ["topic.strategy"],
+      "review_notes": [
+        "May recommend research and search, but the adapter grants no network action and accepts only a candidate strategy."
+      ]
+    },
+    "product-marketing": {
+      "capabilities": ["context.product"],
+      "review_notes": [
+        "Upstream proposes project context file-write workflows; Content Factory treats output as a candidate and the kernel owns any workspace mutation."
+      ]
+    },
+    "copywriting": {
+      "capabilities": ["writing.marketing"],
+      "review_notes": [
+        "Marketing claims remain bounded by the Content Factory claim registry and fact review."
+      ]
+    },
+    "copy-editing": {
+      "capabilities": ["editing.copy"],
+      "review_notes": [
+        "Editorial suggestions remain bounded by protected terms, protected facts, and edit-round limits."
+      ]
+    },
+    "social": {
+      "capabilities": ["writing.social", "writing.spoken"],
+      "review_notes": [
+        "References contain network recipes, package-install suggestions, and browser workflows; the adapter grants none of those actions.",
+        "Scheduling, posting, comments, direct messages, and engagement actions remain outside this shared writing binding."
+      ]
+    }
+  },
+  "runtime_policy": {
+    "permission_class": "candidate-only",
+    "direct_actions": [],
+    "kernel_validation_required": true,
+    "automatic_install": false,
+    "automatic_publish": false,
+    "automatic_file_write": false,
+    "automatic_network": false
+  },
+  "fixture_or_live": "local-fixture",
+  "live_capability_claim": "NOT_RUN"
+}

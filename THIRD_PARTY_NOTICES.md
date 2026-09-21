@@ -15,6 +15,22 @@ Content Factory vendors reviewed external skills as immutable snapshots declared
 
 The vendored files remain attributable to their upstream authors and are kept byte-identical to the locked upstream snapshot.
 
+## coreyhaines31/marketingskills
+
+- Repository: https://github.com/coreyhaines31/marketingskills
+- Release: `v2.9.1`
+- Commit: `2c13accb72ee1feb847dedf16c6e59a53ee45c9b`
+- License: MIT
+- License evidence: https://github.com/coreyhaines31/marketingskills/blob/v2.9.1/LICENSE
+- Vendored skills:
+  - `content-strategy`
+  - `product-marketing`
+  - `copywriting`
+  - `copy-editing`
+  - `social`
+
+The trees are retained byte-identical. Content Factory's adapter limits them to candidate generation; vendor instructions cannot grant network, account, budget, file-write, publishing, or policy authority.
+
 Plugin-local `content-harness` is not third-party content and is protected by `plugin-local-skills.json`.
 
 ## Runtime document parsing dependencies

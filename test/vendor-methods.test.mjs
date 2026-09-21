@@ -29,6 +29,9 @@ test("CF-047 installs the immutable reviewed marketingskills source", async () =
   for (const skill of source.skills) {
     assert.equal(await hashSkillDir(path.resolve("skills", skill)), source.sha256[skill]);
   }
+  const notice = await readFile("THIRD_PARTY_NOTICES.md", "utf8");
+  assert.match(notice, /coreyhaines31\/marketingskills/u);
+  assert.match(notice, /v2\.9\.1/u);
 });
 
 test("CF-047 retains complete references and evaluation fixtures", async () => {
@@ -68,4 +71,17 @@ test("CF-047 records unmodified effective hashes and rejects unrelated capabilit
   assert.equal(resolveSharedVendorMethod("baoyu-image-gen"), null);
   assert.equal(resolveSharedVendorMethod("baoyu-post-to-x"), null);
   assert.equal(resolveSharedVendorMethod("unknown-method"), null);
+});
+
+test("CF-047 security review records vendor instructions that remain behind kernel authority", async () => {
+  const review = JSON.parse(await readFile(
+    "tests/fixtures/vendor-content/marketingskills-v2.9.1.json",
+    "utf8"
+  ));
+  assert.equal(review.source_commit, MARKETINGSKILLS_SHA);
+  assert.deepEqual(Object.keys(review.skills).sort(), EXPECTED_SKILLS);
+  assert.deepEqual(review.runtime_policy.direct_actions, []);
+  assert.equal(review.runtime_policy.kernel_validation_required, true);
+  assert.match(review.skills.social.review_notes.join(" "), /network recipes/u);
+  assert.match(review.skills["product-marketing"].review_notes.join(" "), /file-write/u);
 });
