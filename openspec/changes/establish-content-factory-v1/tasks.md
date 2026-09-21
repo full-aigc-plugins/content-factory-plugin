@@ -92,7 +92,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Require receipt/hash/budget evidence.
   - No Baoyu image-generation skill is vendored into Content Factory.
 
-- [ ] **CF-022 Deterministic Markdown/HTML channel rendering**
+- [x] **CF-022 Deterministic Markdown/HTML channel rendering**
   - Integrate Baoyu formatter/HTML conversion.
   - Freeze substantive text before final render.
   - Channel conversion cannot silently rewrite title, summary, facts, or citations.

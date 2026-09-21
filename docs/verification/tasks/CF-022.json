@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task": "CF-022",
+  "status": "COMPLETE",
+  "scope": "Frozen visible-text canonicalization, deterministic Markdown/HTML rendering, substantive-field preservation, and unsafe HTML rejection",
+  "completed_at": "2026-09-21T16:18:49Z",
+  "branch": "main",
+  "implementation_commits": [
+    "039bbda41bf32a78c1150c989afbf0f6ae44da31",
+    "c692f549b5a5a26912b3309ab1c401c89791040f"
+  ],
+  "red_evidence": [
+    {
+      "commit": "039bbda41bf32a78c1150c989afbf0f6ae44da31",
+      "conclusion": "failure",
+      "reason": "format adapter and render pipeline modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "c692f549b5a5a26912b3309ab1c401c89791040f",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/render-text.test.mjs (3 passed, 0 failed)",
+        "npm test (89 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "WeChat external-link citation conversion changes visible text before the detection hash is frozen",
+    "same frozen text, theme revision, and vendor baseline produce the same render hash",
+    "title, summary, body, captions, citations, code, and URLs cannot be silently rewritten by formatting",
+    "script elements and javascript URLs are rejected from rendered HTML"
+  ],
+  "outputs": [
+    "adapters/content-methods/format.ts",
+    "packages/core/src/render/canonical-text.ts",
+    "packages/core/src/render/pipeline.ts",
+    "test/render-text.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
