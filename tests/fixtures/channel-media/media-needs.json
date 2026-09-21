@@ -1,0 +1,40 @@
+{
+  "article": {
+    "variantRef": "variant_wechat_article_1",
+    "contentRevisionId": "revision_wechat_article_3",
+    "channelId": "wechat-article",
+    "formatId": "article",
+    "needs": [
+      {
+        "needId": "cover",
+        "kind": "cover",
+        "purpose": "article cover",
+        "anchor": "document:cover",
+        "aspectRatio": "16:9",
+        "sourceRefs": ["claim_runtime"]
+      }
+    ]
+  },
+  "script": {
+    "variantRef": "variant_douyin_script_2",
+    "contentRevisionId": "revision_douyin_script_4",
+    "channelId": "douyin",
+    "formatId": "short_video_script",
+    "needs": [
+      {
+        "needId": "video",
+        "kind": "video",
+        "purpose": "render approved spoken beats",
+        "anchor": "script:all",
+        "scriptRef": "revision_douyin_script_4"
+      },
+      {
+        "needId": "audio",
+        "kind": "audio",
+        "purpose": "render approved narration",
+        "anchor": "script:narration",
+        "scriptRef": "revision_douyin_script_4"
+      }
+    ]
+  }
+}
