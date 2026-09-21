@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "task": "CF-049",
+  "status": "COMPLETE",
+  "scope": "Runtime eligibility, deterministic single-primary selection, progressive loading, and consent-bound fallback",
+  "completed_at": "2026-09-21T17:23:10Z",
+  "branch": "main",
+  "implementation_commits": [
+    "c4b072f",
+    "f622cf53475d677109278035b13a79122d8b5136"
+  ],
+  "red_evidence": [
+    {
+      "commit": "c4b072f",
+      "conclusion": "failure",
+      "reason": "the runtime eligibility and single-primary binding selection module was absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "f622cf53475d677109278035b13a79122d8b5136",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/skill-routing.test.mjs (4 passed, 0 failed)",
+        "npm test (125 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "eligibility filters integrity, contract, capability, host, runtime, channel, format, locale, output contract, action, permission, recipient, and budget before preference scoring",
+    "selection returns one deterministic compatible primary binding",
+    "progressive loading reads all binding identities but loads only the selected binding contract and resources",
+    "fallback that changes data recipients, cost, or permissions requires new consent",
+    "selection and fallback never install a missing skill implicitly"
+  ],
+  "outputs": [
+    "packages/core/src/skills/eligibility.ts",
+    "packages/core/src/skills/select-binding.ts",
+    "test/skill-routing.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS",
+    "findings": []
+  },
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}

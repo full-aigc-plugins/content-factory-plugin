@@ -108,7 +108,7 @@ npm run test -- tests/channels/channel-candidates.test.ts
 
 ## 7. CF-049 — Runtime eligibility, progressive loading and fallback
 
-- [ ] 7.1 Complete CF-049: Runtime eligibility, progressive loading and fallback.
+- [x] 7.1 Complete CF-049: Runtime eligibility, progressive loading and fallback.
 
 **Dependencies:** CF-046, CF-047, CF-048.
 **Responsibility paths:** `packages/core/src/skills/select-binding.ts`, `packages/core/src/skills/eligibility.ts`.
