@@ -202,10 +202,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/foundation.md#cf-018)
 
-- [ ] 18.1 [CF-018.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 18.2 [CF-018.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 18.3 [CF-018.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 18.4 [CF-018.4] 原要求与证据复核、独立 review/commit。
+- [x] 18.1 [CF-018.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 18.2 [CF-018.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 18.3 [CF-018.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 18.4 [CF-018.4] 原要求与证据复核、独立 review/commit。
 
 ## 19. CF-019 — 一稿多用的派生版本
 
