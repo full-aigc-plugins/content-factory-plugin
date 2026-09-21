@@ -1,4 +1,4 @@
-import { getDocument, PasswordResponses } from "pdfjs-dist/legacy/build/pdf.mjs";
+import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
 
 import { ContentFactoryError } from "../errors.ts";
 import type { WorkspaceStore } from "../workspace/store.ts";
@@ -48,15 +48,15 @@ export async function importPdfSource(
     throw documentError("DOCUMENT_PAGE_LIMIT_INVALID", "PDF page budget must be a positive integer");
   }
 
+  let loadingTask: ReturnType<typeof getDocument> | undefined;
   let pdf: Awaited<ReturnType<typeof getDocument>["promise"]> | undefined;
   try {
-    const task = getDocument({
+    loadingTask = getDocument({
       data: new Uint8Array(input.bytes),
-      isEvalSupported: false,
       useSystemFonts: false,
       stopEventPropagation: true
     });
-    pdf = await task.promise;
+    pdf = await loadingTask.promise;
   } catch (error) {
     const name = error instanceof Error ? error.name : "";
     if (name === "PasswordException") {
@@ -111,6 +111,6 @@ export async function importPdfSource(
     });
     return { ...record, mediaType: PDF_MEDIA_TYPE, pages };
   } finally {
-    await pdf.destroy();
+    await loadingTask?.destroy();
   }
 }
