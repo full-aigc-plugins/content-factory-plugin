@@ -7,6 +7,7 @@ import {
   createChannelMediaPlan,
   summarizeChannelMediaPlan
 } from "../packages/core/src/channels/assets.ts";
+import { bindImageFactoryResultToChannelPlan } from "../adapters/image-factory/bridge.ts";
 
 const fixture = JSON.parse(await readFile(
   new URL("../tests/fixtures/channel-media/media-needs.json", import.meta.url),
@@ -38,6 +39,18 @@ test("CF-051 keeps text ready while a missing Image Factory blocks only the visu
       sourceRefs: ["claim_runtime"],
       generationStatus: "not-requested"
     },
+    mediaBrief: {
+      schemaVersion: 1,
+      briefId: "media_cover",
+      variantRef: fixture.article.variantRef,
+      contentRevisionId: fixture.article.contentRevisionId,
+      channelId: "wechat-article",
+      formatId: "article",
+      kind: "generated-image",
+      purpose: "article cover",
+      anchor: "document:cover",
+      imageProducer: "image-factory"
+    },
     receipt: null
   }]);
   assert.deepEqual(summarizeChannelMediaPlan(plan), {
@@ -60,6 +73,43 @@ test("CF-051 routes generated images only to Image Factory and keeps visual skil
   const lock = JSON.parse(await readFile("skills.lock.json", "utf8"));
   const skillIds = lock.sources.flatMap(source => source.skills);
   assert.equal(skillIds.some(skillId => /image|cover|illustrat|diagram|infographic/u.test(skillId)), false);
+});
+
+test("CF-051 converts a verified Image Factory result into a variant-bound channel receipt", () => {
+  const plan = createChannelMediaPlan({
+    ...fixture.article,
+    imageFactoryStatus: "available"
+  });
+  const fulfilled = bindImageFactoryResultToChannelPlan(plan, "media_cover", {
+    status: "succeeded",
+    asset: {
+      requestId: "request_cover_1",
+      variantRef: fixture.article.contentRevisionId,
+      artifactId: "artifact_cover_1",
+      path: "generated/cover.png",
+      sha256: "b".repeat(64),
+      bytes: 4096,
+      width: 1200,
+      height: 628,
+      modelReported: null
+    },
+    reconciled: false,
+    retry: "never"
+  });
+
+  assert.equal(fulfilled.branches[0].status, "fulfilled");
+  assert.deepEqual(fulfilled.branches[0].receipt, {
+    receiptId: "image_factory_request_cover_1",
+    branchId: "media_cover",
+    variantRef: fixture.article.variantRef,
+    contentRevisionId: fixture.article.contentRevisionId,
+    artifactId: "artifact_cover_1",
+    artifactKind: "binary-media",
+    mediaType: "image/png",
+    sha256: "b".repeat(64),
+    bytes: 4096,
+    producer: "image-factory"
+  });
 });
 
 test("CF-051 reports script and show-notes as a script package until external media receipts exist", () => {
