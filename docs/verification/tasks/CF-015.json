@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task": "CF-015",
+  "status": "COMPLETE",
+  "scope": "SourceBundle and ClaimRegistry with read-evidence enforcement, conflict preservation, user-assertion semantics, and explicit materials-only mode",
+  "completed_at": "2026-09-21T03:19:15Z",
+  "branch": "main",
+  "implementation_commits": [
+    "c5f015fe85d5b460a527b35c3375ec57cfe8aed1",
+    "ae7cd90ff76e69dbbd342057f877a5c334c66307"
+  ],
+  "red_evidence": [
+    {
+      "commit": "c5f015fe85d5b460a527b35c3375ec57cfe8aed1",
+      "run_id": 35557019735,
+      "conclusion": "failure",
+      "reason": "claim registry and research adapter modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "ae7cd90ff76e69dbbd342057f877a5c334c66307",
+      "run_id": 35557105349,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "unread sources cannot support a verifiable claim",
+    "conflicting source-backed claims remain preserved as a conflict group",
+    "user assertions cannot be marked independently public-verified",
+    "materials-only mode is explicit when search is unavailable",
+    "source permission and delivery excerpt permission remain separate"
+  ],
+  "outputs": [
+    "packages/core/src/content/claims.ts",
+    "adapters/content-methods/research.ts",
+    "schemas/claim.schema.json",
+    "test/claims.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}
