@@ -1,0 +1,12 @@
+:root { color-scheme: light; --accent: #7c3aed; --surface: #ffffff; --muted: #6b7280; }
+* { box-sizing: border-box; }
+html, body { margin: 0; max-width: 100%; background: linear-gradient(135deg, #faf5ff, #eef2ff); color: #111827; }
+body { padding: clamp(12px, 3vw, 32px); font-family: system-ui, sans-serif; line-height: 1.75; }
+article { width: min(100%, 920px); margin: 0 auto; padding: clamp(16px, 4vw, 44px); background: var(--surface); border-radius: 16px; box-shadow: 0 16px 48px rgb(76 29 149 / 12%); }
+h1 { color: var(--accent); line-height: 1.2; overflow-wrap: anywhere; }
+p, figcaption, td, th { overflow-wrap: anywhere; }
+pre { max-width: 100%; padding: 16px; overflow-x: auto; background: #f5f3ff; border-left: 4px solid var(--accent); }
+table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+th, td { min-width: 120px; padding: 10px; border: 1px solid #ddd6fe; text-align: left; }
+img { display: block; max-width: 100%; height: auto; margin: 20px auto; border-radius: 10px; }
+figure { max-width: 100%; margin: 20px 0; }

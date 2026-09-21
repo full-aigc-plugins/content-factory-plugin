@@ -1,15 +1,9 @@
 import assert from "node:assert/strict";
-import { execFile } from "node:child_process";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
-import { promisify } from "node:util";
 import test from "node:test";
 
 import { renderThemedDocument } from "../packages/core/src/render/theme.ts";
+import { findChromiumExecutable, withChromiumPage } from "../scripts/chromium-harness.mjs";
 
-const run = promisify(execFile);
-const chromium = "/opt/homebrew/bin/chromium";
 const viewports = [
   { width: 375, height: 884 },
   { width: 390, height: 884 },
@@ -39,63 +33,34 @@ test("CF-023 three themes preserve text while changing style only", () => {
 });
 
 test("CF-023 real Chromium layout stays within 375 390 430 768 and 1280 pixel viewports", async t => {
-  try {
-    await readFile(chromium);
-  } catch {
+  if (!findChromiumExecutable()) {
     t.skip("pinned local Chromium executable unavailable");
     return;
   }
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-themes-"));
-  try {
-    for (const theme of ["simple", "technical", "brand"]) {
-      const document = renderThemedDocument({ theme, content, includeLayoutProbe: true });
-      const htmlPath = path.join(root, `${theme}.html`);
-      await writeFile(htmlPath, document.html, "utf8");
-      for (const viewport of viewports) {
-        const { stdout } = await run(chromium, [
-          "--headless",
-          "--no-sandbox",
-          "--disable-gpu",
-          `--window-size=${viewport.width},${viewport.height}`,
-          "--dump-dom",
-          `file://${htmlPath}`
-        ]);
-        assert.match(stdout, /data-layout-ok="true"/u, `${theme}@${viewport.width}`);
-      }
+  for (const theme of ["simple", "technical", "brand"]) {
+    const document = renderThemedDocument({ theme, content, includeLayoutProbe: true });
+    for (const viewport of viewports) {
+      const result = await withChromiumPage({ ...viewport, html: document.html }, async page => ({
+        viewport: await page.evaluate("window.innerWidth"),
+        layoutOk: await page.evaluate("document.body.dataset.layoutOk")
+      }));
+      assert.equal(result.viewport, viewport.width, `${theme}@${viewport.width} viewport`);
+      assert.equal(result.layoutOk, "true", `${theme}@${viewport.width} layout`);
     }
-  } finally {
-    await rm(root, { recursive: true, force: true });
   }
 });
 
 test("CF-023 real Chromium produces reviewable screenshots at requested mobile tablet and desktop sizes", async t => {
-  try {
-    await readFile(chromium);
-  } catch {
+  if (!findChromiumExecutable()) {
     t.skip("pinned local Chromium executable unavailable");
     return;
   }
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-screenshots-"));
-  try {
-    const document = renderThemedDocument({ theme: "technical", content });
-    const htmlPath = path.join(root, "technical.html");
-    await writeFile(htmlPath, document.html, "utf8");
-    for (const viewport of viewports.filter(item => [390, 768, 1280].includes(item.width))) {
-      const screenshot = path.join(root, `${viewport.width}x${viewport.height}.png`);
-      await run(chromium, [
-        "--headless",
-        "--no-sandbox",
-        "--disable-gpu",
-        "--hide-scrollbars",
-        `--window-size=${viewport.width},${viewport.height}`,
-        `--screenshot=${screenshot}`,
-        `file://${htmlPath}`
-      ]);
-      const png = await readFile(screenshot);
-      assert.equal(png.subarray(0, 8).toString("hex"), "89504e470d0a1a0a");
-      assert.ok(png.length > 1000);
-    }
-  } finally {
-    await rm(root, { recursive: true, force: true });
+  const document = renderThemedDocument({ theme: "technical", content });
+  for (const viewport of viewports.filter(item => [390, 768, 1280].includes(item.width))) {
+    const png = await withChromiumPage({ ...viewport, html: document.html }, page => page.screenshot());
+    assert.equal(png.subarray(0, 8).toString("hex"), "89504e470d0a1a0a");
+    assert.ok(png.length > 1000);
+    assert.equal(png.readUInt32BE(16), viewport.width);
+    assert.equal(png.readUInt32BE(20), viewport.height);
   }
 });
