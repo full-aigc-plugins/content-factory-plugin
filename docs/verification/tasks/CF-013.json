@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task": "CF-013",
+  "status": "COMPLETE",
+  "scope": "Single plugin-local content-harness with bounded mode-specific ContentBrief and stage DAG routing",
+  "completed_at": "2026-09-21T02:55:00Z",
+  "branch": "impl/cf-013-content-harness-routing",
+  "implementation_commits": [
+    "cc9d9ba9abbe031075de575996b5b24a070e8101",
+    "c8cd92806ed754e57f8e1942fd0e7543431c031f"
+  ],
+  "red_evidence": [
+    {
+      "commit": "cc9d9ba9abbe031075de575996b5b24a070e8101",
+      "run_id": 35555596624,
+      "conclusion": "failure",
+      "reason": "ERR_MODULE_NOT_FOUND for packages/core/src/application/dispatch.ts"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "c8cd92806ed754e57f8e1942fd0e7543431c031f",
+      "run_id": 35555696173,
+      "conclusion": "success",
+      "gates": [
+        "npm run lint",
+        "npm run typecheck",
+        "npm test",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "format mode routes only format and review and never research/rewrite/detect/deliver",
+    "deliver mode orders preflight, trusted approval, delivery and verification",
+    "known topic/channel/locale/audience/goal context is preserved without repeated invention",
+    "missing topic/source or required content/account references are explicit missingInputs with no implicit assumptions",
+    "edit, detect and repurpose use bounded mode-specific DAGs"
+  ],
+  "outputs": [
+    "packages/core/src/application/dispatch.ts",
+    "schemas/brief.schema.json",
+    "skills/content-harness/SKILL.md",
+    "test/brief-routing.test.mjs"
+  ],
+  "fixture_or_live": "local-fixture",
+  "secrets_in_record": false
+}

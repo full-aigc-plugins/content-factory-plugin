@@ -45,7 +45,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
 
 ## W2 — Harness-driven creation and editing
 
-- [ ] **CF-013 content-harness routing**
+- [x] **CF-013 content-harness routing**
   - Create the only plugin-local skill: `content-harness`.
   - Implement full/edit/format/detect/repurpose/deliver routing.
   - Select vendor capability sets by request type.
