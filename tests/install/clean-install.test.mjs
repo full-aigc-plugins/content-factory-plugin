@@ -145,3 +145,8 @@ test("CF-040 CI executes the release gate on Linux, macOS, and Windows", async (
   assert.match(workflow, /runs-on:\s*\$\{\{\s*matrix\.os\s*\}\}/);
   assert.match(workflow, /npm run audit:release/);
 });
+
+test("CF-040 Git checkout preserves LF source files on every runner", async () => {
+  const attributes = await readFile(path.resolve(".gitattributes"), "utf8");
+  assert.match(attributes, /^\* text=auto eol=lf$/m);
+});
