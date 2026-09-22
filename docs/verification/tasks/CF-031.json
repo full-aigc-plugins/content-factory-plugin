@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "task": "CF-031",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Alias-based delivery accounts, layered secret resolution, remote identity verification, permission preflight, and account-change reapproval",
+  "completed_at": "2026-09-22T13:00:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "16f5aae4064a34e8ce3dbf8999286e9cdbd9af4e",
+    "aa8ba12b457e9c84e969544714bcfe6175869537"
+  ],
+  "red_evidence": [
+    {
+      "commit": "16f5aae4064a34e8ce3dbf8999286e9cdbd9af4e",
+      "conclusion": "failure",
+      "command": "node --test test/delivery-account-preflight.test.mjs",
+      "reason": "the delivery account, credential provider, and preflight modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "aa8ba12b457e9c84e969544714bcfe6175869537",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/delivery-account-preflight.test.mjs (6 passed, 0 failed)",
+        "npm test (174 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "system credential storage takes priority over the explicit environment fallback",
+    "missing credentials block before any remote identity probe",
+    "a selected account resolving to a different remote identity is rejected before write",
+    "missing permissions do not silently select another account or delivery method",
+    "changing the approved account alias requires fresh approval",
+    "secret values never appear in preflight results or verification evidence"
+  ],
+  "outputs": [
+    "packages/core/src/delivery/accounts.ts",
+    "packages/core/src/security/credentials.ts",
+    "packages/core/src/delivery/preflight.ts",
+    "test/delivery-account-preflight.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "synthetic-account-probe",
+  "live_official_content_draft": "NOT_RUN",
+  "live_blocker": "The user authorized skipping the external account, so remote identity and permissions were not verified live.",
+  "dependency_status": {
+    "CF-004": "NOT_RUN",
+    "CF-007": "COMPLETE",
+    "CF-012": "COMPLETE"
+  },
+  "secrets_in_record": false
+}
