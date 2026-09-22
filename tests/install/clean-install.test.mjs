@@ -146,10 +146,12 @@ test("CF-040 build manifest is relocatable and contains no development-machine p
 
 test("CF-040 CI executes the release gate on Linux, macOS, and Windows", async () => {
   const workflow = await readFile(path.resolve(".github/workflows/ci.yml"), "utf8");
+  const packageJson = JSON.parse(await readFile(path.resolve("package.json"), "utf8"));
   assert.match(workflow, /os:\s*\[ubuntu-latest, macos-latest, windows-latest\]/);
   assert.match(workflow, /runs-on:\s*\$\{\{\s*matrix\.os\s*\}\}/);
   assert.match(workflow, /npm test/);
   assert.match(workflow, /npm run audit:release/);
+  assert.match(packageJson.scripts.test, /--test-concurrency=1/u);
 });
 
 test("CF-040 Git checkout preserves LF source files on every runner", async () => {
