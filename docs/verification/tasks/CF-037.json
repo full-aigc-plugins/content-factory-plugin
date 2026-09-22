@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "task": "CF-037",
+  "status": "COMPLETE",
+  "scope": "Release security and supply-chain gate covering network, document, rendering, filesystem, credential, account, approval, dependency, license, and vendor-lock boundaries",
+  "completed_at": "2026-09-22T06:38:30Z",
+  "branch": "main",
+  "implementation_commits": [
+    "6306e2954cfe0512669c355171f38b960c6f3514",
+    "0b325e680605efc61de641396a790dcfa1e6f930"
+  ],
+  "red_evidence": [
+    {
+      "commit": "6306e2954cfe0512669c355171f38b960c6f3514",
+      "conclusion": "failure",
+      "command": "node --test tests/security/release-security.test.mjs",
+      "reason": "symlink escape, event-handler XSS, forged approval, and missing release-audit assertions failed while established SSRF, malicious-document, secret, and wrong-account boundaries passed"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "0b325e680605efc61de641396a790dcfa1e6f930",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test tests/security/release-security.test.mjs (7 passed, 0 failed)",
+        "npm test (210 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run audit:release",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "SSRF redirects to private and link-local targets are rejected before the next request",
+    "DOCX external relationships are rejected without network resolution",
+    "script, dangerous-protocol, event-handler, and srcdoc XSS forms are rejected",
+    "an authorized export root is mandatory and symlink resolution cannot escape it",
+    "credential sentinels do not enter result objects, logs, or mismatch details",
+    "wrong remote account identity remains blocked",
+    "forged or structurally invalid approval records cannot authorize remote delivery",
+    "runtime dependencies are exact-version pinned and present in third-party notices",
+    "vendor tags, commits, directory hashes, notices, and license evidence pass offline and upstream checks",
+    "the host-provided shell remains an explicit trust boundary rather than a claimed absolute sandbox"
+  ],
+  "outputs": [
+    "tests/security/release-security.test.mjs",
+    "scripts/audit-release.mjs",
+    "docs/verification/security.md",
+    "packages/core/src/delivery/export.ts",
+    "packages/core/src/delivery/approve.ts",
+    "packages/core/src/render/pipeline.ts"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS",
+    "findings": []
+  },
+  "fixture_or_live": "offline-adversarial-fixtures-and-live-upstream-tag-check",
+  "external_account_actions": "NOT_RUN",
+  "secrets_in_record": false
+}
