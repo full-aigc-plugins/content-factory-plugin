@@ -4,7 +4,7 @@
 
 Define Content Factory's single plugin-local orchestration skill and keep canonical product state in deterministic services rather than prompt logic.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Content Factory SHALL have one plugin-local harness
 

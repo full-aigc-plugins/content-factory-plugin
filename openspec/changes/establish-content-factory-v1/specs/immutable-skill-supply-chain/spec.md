@@ -4,7 +4,7 @@
 
 Ensure every external skill packaged with Content Factory comes from an immutable, reviewable, license-verified source while protecting the plugin-local harness from vendor synchronization.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: External skills SHALL be immutable and verifiable
 

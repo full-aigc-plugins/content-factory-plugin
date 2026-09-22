@@ -4,7 +4,7 @@
 
 Improve clarity, naturalness, and author voice without fabricating experiences or corrupting factual/technical content.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Humanization SHALL be editorial, not detector evasion
 

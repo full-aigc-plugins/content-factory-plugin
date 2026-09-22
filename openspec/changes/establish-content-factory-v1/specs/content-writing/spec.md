@@ -4,7 +4,7 @@
 
 Use reviewed external writing methods while preserving source grounding, content-type intent, and Content Factory's evidence model.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Writing method SHALL match content intent
 

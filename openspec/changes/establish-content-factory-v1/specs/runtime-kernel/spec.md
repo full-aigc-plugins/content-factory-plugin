@@ -4,7 +4,7 @@
 
 Define deterministic state, evidence, authorization, and recovery rules that vendor skills cannot bypass.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Canonical revisions SHALL be immutable
 

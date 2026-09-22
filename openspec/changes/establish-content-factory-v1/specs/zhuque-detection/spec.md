@@ -4,7 +4,7 @@
 
 Provide real detector integration whose evidence is bound to the exact published text version without misrepresenting detector output as authorship proof.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Detection SHALL call the real configured provider
 

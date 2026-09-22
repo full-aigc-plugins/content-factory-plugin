@@ -4,7 +4,7 @@
 
 Ensure V1 is labeled usable only when implementation, vendor integrity, real external contracts, recovery, and cross-host evidence all correspond to the same release.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: V1 release SHALL include vendor integrity evidence
 

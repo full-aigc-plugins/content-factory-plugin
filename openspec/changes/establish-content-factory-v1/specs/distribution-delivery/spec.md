@@ -4,7 +4,7 @@
 
 Use channel-specific execution skills without surrendering Content Factory's approval, idempotency, recovery, and verification semantics.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Channel skills SHALL be execution adapters
 
@@ -32,7 +32,7 @@ A timeout after possible remote success SHALL enter an unknown state and trigger
 
 ### Requirement: V1 verified remote delivery SHALL focus on WeChat
 
-WeChat draft delivery is the V1 P0 verified remote channel. Weibo and X may be optional packaged capabilities without being release-blocking remote-delivery promises.
+V1 verified remote delivery SHALL use WeChat draft delivery as the P0 verified remote channel. Weibo and X may be optional packaged capabilities without being release-blocking remote-delivery promises.
 
 #### Scenario: Weibo capability is unavailable
 - **WHEN** the user asks for a V1 article workflow that does not require Weibo

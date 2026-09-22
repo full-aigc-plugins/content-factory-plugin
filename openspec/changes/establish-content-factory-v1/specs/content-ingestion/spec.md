@@ -4,7 +4,7 @@
 
 Normalize authorized external and local source material into traceable, untrusted SourceRecords for downstream research and writing.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: URL ingestion SHALL preserve source identity
 

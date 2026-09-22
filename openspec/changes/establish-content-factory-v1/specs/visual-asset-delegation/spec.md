@@ -4,7 +4,7 @@
 
 Keep Content Factory focused on content orchestration and delegate generated visual production to Image Factory.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Content Factory SHALL NOT vendor image-generation skills
 

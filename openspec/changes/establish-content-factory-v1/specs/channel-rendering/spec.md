@@ -4,7 +4,7 @@
 
 Reuse mature formatting/rendering skills while guaranteeing that rendering does not mutate approved substantive content.
 
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Markdown formatting SHALL preserve content
 
