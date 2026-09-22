@@ -45,3 +45,17 @@ test("CF-001 through CF-058 each retain evidence and task status matches it", ()
     assert.ok(occurrences.has(task), `${task} must appear in an OpenSpec task list`);
   }
 });
+
+test("architecture task index exposes the same authoritative status and evidence as every task receipt", () => {
+  const relativeIndexPath = "openspec/changes/implement-content-factory-architecture/task-index.json";
+  const index = JSON.parse(readFileSync(path.join(root, relativeIndexPath), "utf8"));
+  assert.equal(index.parent_count, 58);
+  assert.equal(index.tasks.length, 58);
+
+  for (const task of index.tasks) {
+    const relativeEvidencePath = `docs/verification/tasks/${task.id}.json`;
+    const record = JSON.parse(readFileSync(path.join(root, relativeEvidencePath), "utf8"));
+    assert.equal(task.status, record.status, `${task.id} index status must match its receipt`);
+    assert.equal(task.evidence, relativeEvidencePath, `${task.id} index must link its receipt`);
+  }
+});
