@@ -46,7 +46,7 @@ export type DeliverySubmissionRecord = {
   bundleHash: string;
   accountAlias: string;
   requestId: string;
-  status: "prepared" | "submitting" | "failed" | "unknown" | "succeeded";
+  status: "prepared" | "submitting" | "failed" | "unknown" | "conflict" | "succeeded";
   remoteDraftId: string | null;
   reason: string | null;
   createdAt: string;

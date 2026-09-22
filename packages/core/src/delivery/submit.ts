@@ -73,6 +73,13 @@ export async function submitApprovedDraft(input: {
       remoteDraftId: null, action: null, deduplicated: true
     };
   }
+  if (submission.status === "conflict") {
+    return {
+      status: "failed", reason: "remote-draft-conflict",
+      remoteDraftId: submission.remoteDraftId,
+      action: null, deduplicated: true
+    };
+  }
   submission = input.store.updateDeliverySubmission({
     intentId: input.intent.intentId,
     status: "submitting",
