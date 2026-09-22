@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task": "CF-055",
+  "status": "COMPLETE",
+  "scope": "Dated, sourced platform constraints and exact-final-text detector applicability",
+  "completed_at": "2026-09-22T07:42:37Z",
+  "branch": "main",
+  "implementation_commits": ["97d9a9b", "b0de41c"],
+  "red_evidence": [{
+    "commit": "97d9a9b",
+    "conclusion": "failure",
+    "command": "npm test -- tests/channels/constraints.test.ts",
+    "reason": "the platform constraint and detector applicability modules did not exist"
+  }],
+  "green_evidence": [{
+    "commit": "b0de41c",
+    "conclusion": "success",
+    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+    "gates": [
+      "npm test -- tests/channels/constraints.test.ts (6 passed, 0 failed)",
+      "npm test (251 passed, 0 failed)",
+      "npm run typecheck",
+      "npm run lint",
+      "npm run skills:check",
+      "npm run audit:release",
+      "npm run build"
+    ]
+  }],
+  "assertions": [
+    "platform requirements apply only to the exact channel, format, account, region, and action scope",
+    "expired or unknown mandatory requirements block the affected remote action while preserving working export",
+    "unsupported ranking-algorithm multipliers are rejected rather than represented as sourced constraints",
+    "unsupported detector language or input scope is not_evaluable and never a pass",
+    "detection report reuse requires the exact final-text hash and policy identity",
+    "no universal AI-content score or threshold is invented"
+  ],
+  "outputs": [
+    "packages/core/src/channels/constraints.ts",
+    "packages/core/src/detection/applicability.ts",
+    "tests/channels/constraints.test.ts"
+  ],
+  "fixture_status": "VERIFIED",
+  "live_status": "NOT_REQUIRED_FOR_POLICY_EVALUATION",
+  "external_writes": 0,
+  "review": {
+    "kind": "primary-agent policy and boundary review",
+    "result": "PASS",
+    "findings": []
+  },
+  "secrets_in_record": false
+}

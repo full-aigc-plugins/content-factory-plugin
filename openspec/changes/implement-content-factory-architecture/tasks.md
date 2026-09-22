@@ -535,10 +535,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/platforms.md#cf-055)
 
-- [ ] 55.1 [CF-055.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 55.2 [CF-055.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 55.3 [CF-055.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 55.4 [CF-055.4] 原要求与证据复核、独立 review/commit。
+- [x] 55.1 [CF-055.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 55.2 [CF-055.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 55.3 [CF-055.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 55.4 [CF-055.4] 原要求与证据复核、独立 review/commit。
 
 ## 56. CF-056 — Routing corpus, adversarial inputs and native quality
 
