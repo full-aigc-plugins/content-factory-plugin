@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "task": "CF-042",
+  "status": "PARTIAL_OFFLINE",
+  "release_verdict": "BLOCKED",
+  "scope": "Release candidate manifest, public documentation, host manifest version consistency, and final gate execution",
+  "completed_at": "2026-09-22T08:04:42Z",
+  "branch": "main",
+  "implementation_commits": ["f9f70ef", "fb68e77"],
+  "red_evidence": [{
+    "commit": "f9f70ef",
+    "conclusion": "failure",
+    "command": "npm test -- tests/contract/release-gate.test.ts",
+    "reason": "the release candidate manifest, changelog, and verification guide did not exist; two of four target tests failed"
+  }],
+  "green_evidence": [{
+    "commit": "fb68e77",
+    "conclusion": "success",
+    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+    "gates": [
+      "npm test -- tests/contract/release-gate.test.ts (4 passed, 0 failed)",
+      "npm test (267 passed, 0 failed)",
+      "npm run typecheck",
+      "npm run lint",
+      "npm run skills:check",
+      "npm run audit:release",
+      "npm run build",
+      "node scripts/release-gate.mjs --json (expected exit 1; verdict blocked)"
+    ]
+  }],
+  "verified": [
+    "package and Codex, ZCode, and Kimi manifest versions are all 0.1.0",
+    "the v1.0.0 candidate manifest references every required P0 evidence file",
+    "README, Chinese README, changelog, and status guide distinguish offline, live, NOT_RUN, and BLOCKED",
+    "no v1.0.0 tag, package publication, release, or marketplace update was created",
+    "the final release gate remains fail-closed"
+  ],
+  "current_gate_result": {
+    "evaluated_commit": "fb68e77d37fb9107e31e1cf652138e2b46cbb4b7",
+    "verdict": "blocked",
+    "blockers": [
+      "channel-live-task-not-complete:CF-057",
+      "release-candidate-not-selected",
+      "live-evidence-not-verified",
+      "live-combination-coverage-incomplete:0/117"
+    ]
+  },
+  "outputs": [
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "docs/guides/status-and-verification.md",
+    "docs/verification/release-candidate.json",
+    "tests/contract/release-gate.test.ts"
+  ],
+  "review": {
+    "kind": "primary-agent release-boundary and documentation review",
+    "result": "PASS_CANDIDATE_PREPARATION_RELEASE_BLOCKED",
+    "findings": []
+  },
+  "blocker": "Required live host, external account, detector, content-platform draft readback, and dual-human review evidence was explicitly skipped. CF-042 remains unchecked and no product version or marketplace entry may be published.",
+  "secrets_in_record": false
+}
