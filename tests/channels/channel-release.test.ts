@@ -7,7 +7,7 @@ import { evaluateReleaseGate } from "../../scripts/release-gate.mjs";
 
 const passingSnapshot = {
   currentEvidenceCommit: "e".repeat(40),
-  packageVersion: "1.0.0-rc.1",
+  packageVersion: "1.0.0-rc.2",
   requiredTasks: [
     { id: "CF-001", status: "COMPLETE" },
     { id: "CF-030", status: "COMPLETE" },
@@ -21,7 +21,7 @@ const passingSnapshot = {
   ],
   releaseCandidate: {
     selected: true,
-    packageVersion: "1.0.0-rc.1",
+    packageVersion: "1.0.0-rc.2",
     commit: "c".repeat(40),
     packageSha256: "f".repeat(64),
     candidateCommitIsAncestor: true,
@@ -44,7 +44,7 @@ test("CF-058 accepts a digest-bound ancestor candidate with complete evaluated c
     schemaVersion: 1,
     verdict: "passed",
     commit: "e".repeat(40),
-    packageVersion: "1.0.0-rc.1",
+    packageVersion: "1.0.0-rc.2",
     blockers: []
   });
 });
@@ -96,10 +96,7 @@ test("CF-058 checked-in release gate blocks the current skipped-live candidate",
   const report = JSON.parse(run.stdout);
   assert.equal(report.verdict, "blocked");
   assert.equal(report.blockers.includes("required-task-not-complete:CF-057"), true);
-  assert.equal(report.blockers.includes("release-candidate-not-selected"), false);
-  assert.equal(report.blockers.includes("release-candidate-commit-not-ancestor"), false);
-  assert.equal(report.blockers.includes("release-candidate-package-digest-unverified"), false);
-  assert.equal(report.blockers.includes("release-candidate-manifest-commit-unverified"), false);
+  assert.equal(report.blockers.includes("release-candidate-not-selected"), true);
   assert.equal(report.blockers.includes("live-evidence-not-verified"), true);
 });
 

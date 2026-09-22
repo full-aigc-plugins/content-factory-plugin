@@ -29,7 +29,7 @@
     ]
   }],
   "verified": [
-    "package and Codex, ZCode, and Kimi manifest versions are all 1.0.0-rc.1",
+    "package and Codex, ZCode, and Kimi manifest versions are all 1.0.0-rc.2",
     "the v1.0.0 candidate manifest references every required P0 evidence file",
     "README, Chinese README, changelog, and status guide distinguish offline, live, NOT_RUN, and BLOCKED",
     "no v1.0.0 tag, package publication, release, or marketplace update was created",

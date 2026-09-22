@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "targetVersion": "1.0.0",
-  "currentVersion": "1.0.0-rc.1",
+  "currentVersion": "1.0.0-rc.2",
   "releaseStatus": "BLOCKED",
-  "releaseCommit": "09de6466ebaeb0ea96bc48eb5ce6553c2365b4db",
-  "manifestSourceCommit": "09de6466ebaeb0ea96bc48eb5ce6553c2365b4db",
-  "packageSha256": "f10f9c8b9574a50536215f580c90fb79516f68458c21cedf5abcf2db1626fdd9",
+  "releaseCommit": null,
+  "manifestSourceCommit": null,
+  "packageSha256": null,
   "requiredTaskEvidence": [
     { "task": "CF-001", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-001.json" },
     { "task": "CF-030", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-030.json" },

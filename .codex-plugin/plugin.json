@@ -1,6 +1,6 @@
 {
   "name": "content-factory",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "Create, review, format, and export governed content for 16 channels.",
   "author": {
     "name": "Full AIGC Plugins"

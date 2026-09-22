@@ -124,7 +124,7 @@ test("MCP initialize reports the package release-candidate version", async () =>
   });
 
   assert.equal(initialized.result.serverInfo.version, pkg.version);
-  assert.equal(initialized.result.serverInfo.version, "1.0.0-rc.1");
+  assert.equal(initialized.result.serverInfo.version, "1.0.0-rc.2");
 });
 
 test("stage result schema declares deterministic status and evidence fields", async () => {

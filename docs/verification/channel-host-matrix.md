@@ -3,7 +3,7 @@
 Overall status: **NOT_RUN**
 
 Recorded: 2026-09-22
-Release candidate: `1.0.0-rc.1` from `09de6466ebaeb0ea96bc48eb5ce6553c2365b4db`, build-manifest SHA-256 `f10f9c8b9574a50536215f580c90fb79516f68458c21cedf5abcf2db1626fdd9`
+Release candidate: `1.0.0-rc.2` is prepared but not yet selected as an immutable candidate.
 
 Offline contract tests are not live host evidence. The checked-in Codex, ZCode, and Kimi manifests prove packaging shape only; they do not prove that this exact package was installed and executed in a real session.
 

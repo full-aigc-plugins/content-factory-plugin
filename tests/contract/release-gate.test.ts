@@ -17,7 +17,7 @@ test("CF-042 keeps package and three host manifest versions consistent", async (
   const manifests = await Promise.all(files.map(file => readJson(file)));
   assert.deepEqual(
     manifests.map(item => item.version),
-    ["1.0.0-rc.1", "1.0.0-rc.1", "1.0.0-rc.1", "1.0.0-rc.1"]
+    ["1.0.0-rc.2", "1.0.0-rc.2", "1.0.0-rc.2", "1.0.0-rc.2"]
   );
 });
 
@@ -25,10 +25,12 @@ test("CF-042 candidate manifest references every P0 task and remains blocked", a
   const candidate = await readJson("docs/verification/release-candidate.json");
   const liveIndex = await readJson("docs/verification/channel-live-index.json");
   assert.equal(candidate.targetVersion, "1.0.0");
-  assert.equal(candidate.currentVersion, "1.0.0-rc.1");
+  assert.equal(candidate.currentVersion, "1.0.0-rc.2");
   assert.equal(candidate.releaseStatus, "BLOCKED");
-  assert.match(candidate.releaseCommit, /^[a-f0-9]{40}$/u);
-  assert.match(candidate.packageSha256, /^[a-f0-9]{64}$/u);
+  assert.equal(liveIndex.releaseCandidate.selected, false);
+  assert.equal(candidate.releaseCommit, null);
+  assert.equal(candidate.manifestSourceCommit, null);
+  assert.equal(candidate.packageSha256, null);
   assert.equal(candidate.releaseCommit, liveIndex.releaseCandidate.commit);
   assert.equal(candidate.packageSha256, liveIndex.releaseCandidate.packageSha256);
   assert.deepEqual(candidate.requiredTaskEvidence.map((item: { task: string }) => item.task), [

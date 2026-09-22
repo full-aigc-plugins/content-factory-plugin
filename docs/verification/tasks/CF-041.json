@@ -98,7 +98,7 @@
     }
   ],
   "assertions": [
-    "Codex, ZCode, and Kimi manifests share content-factory version 1.0.0-rc.1 and resolve the real managed skills directory",
+    "Codex, ZCode, and Kimi manifests share content-factory version 1.0.0-rc.2 and resolve the real managed skills directory",
     "each declared host starts the shared CLI contract and performs zero paid calls",
     "filesystem, browser, image, credential, search, and MCP capabilities are derived only from explicit declarations",
     "the release build preserves each manifest byte-for-byte",
