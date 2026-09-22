@@ -151,6 +151,9 @@ test("CF-040 CI executes the release gate on Linux, macOS, and Windows", async (
   assert.match(workflow, /runs-on:\s*\$\{\{\s*matrix\.os\s*\}\}/);
   assert.match(workflow, /npm test/);
   assert.match(workflow, /npm run audit:release/);
+  assert.match(workflow, /actions\/checkout@v7/u);
+  assert.match(workflow, /actions\/setup-node@v7/u);
+  assert.doesNotMatch(workflow, /actions\/(?:checkout|setup-node)@v4/u);
   assert.match(packageJson.scripts.test, /--test-concurrency=1/u);
 });
 
