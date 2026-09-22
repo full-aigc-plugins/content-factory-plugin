@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { declareOfficialContentCapabilities } from "../../adapters/wechat/capabilities.ts";
 import {
   authorizeChannelAction,
   type ChannelDeliveryCapability
@@ -151,4 +152,22 @@ test("CF-053 unverified remote capability falls back to working export", () => {
   assert.equal(decision.status, "blocked");
   assert.equal(decision.reason, "capability-not-live-verified");
   assert.equal(decision.workingExportAllowed, true);
+});
+
+test("CF-053 content-platform adapters declare article actions without inventing video or publish", () => {
+  const capabilities = declareOfficialContentCapabilities({
+    accountAlias: "内容平台主账号",
+    apiLiveVerified: false,
+    browserLiveVerified: false,
+    readbackLiveVerified: false
+  });
+  assert.deepEqual(capabilities.map(item => item.adapterId), [
+    "content-platform-article-api",
+    "content-platform-article-browser",
+    "content-platform-article-readback"
+  ]);
+  assert.equal(capabilities.every(item => item.channelId === "wechat-article"), true);
+  assert.equal(capabilities.every(item => !item.actions.includes("publish")), true);
+  assert.equal(capabilities.every(item => item.liveVerified === false), true);
+  assert.equal(capabilities.some(item => item.channelId === "wechat-video"), false);
 });
