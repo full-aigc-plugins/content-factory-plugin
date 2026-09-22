@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "task": "CF-026",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Provider-semantic normalization and Unicode-safe segment location without fabricated document-level scores",
+  "completed_at": "2026-09-22T10:20:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "ee14dce13da639d316b635aab5d7c8c2f3caa6f4",
+    "2de0cf51ae856e42ea21383d9baf9df0d990431e"
+  ],
+  "red_evidence": [
+    {
+      "commit": "ee14dce13da639d316b635aab5d7c8c2f3caa6f4",
+      "conclusion": "failure",
+      "command": "node --test test/detection-normalization.test.mjs",
+      "reason": "the normalization and Unicode segment-location modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "2de0cf51ae856e42ea21383d9baf9df0d990431e",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/detection-normalization.test.mjs (5 passed, 0 failed)",
+        "npm test (148 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "AI ratio, suspected ratio, and confidence remain separately named provider semantics",
+    "missing or invalid required summary fields make the report not evaluable rather than zero",
+    "chunk-only results do not fabricate a whole-document average",
+    "emoji and combining-character spans are accepted only on exact grapheme boundaries",
+    "repeated provider text is marked ambiguous and receives no highlight coordinates"
+  ],
+  "outputs": [
+    "packages/core/src/detection/normalize.ts",
+    "packages/core/src/detection/segments.ts",
+    "test/detection-normalization.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "synthetic-contract-fixture",
+  "live_ai_content_detector": "NOT_RUN",
+  "live_blocker": "No authorized live response fixture was used, so provider field mapping remains unverified and cannot satisfy production admission.",
+  "dependency_status": {
+    "CF-025": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
