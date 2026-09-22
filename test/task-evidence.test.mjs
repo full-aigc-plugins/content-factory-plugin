@@ -24,7 +24,7 @@ test("CF-001 through CF-058 each retain evidence and task status matches it", ()
     if (record.status === "PARTIAL_OFFLINE") {
       assert.match(JSON.stringify(record), /NOT_RUN/u, `${task} must identify the skipped live or human evidence`);
     }
-    evidence.set(task, record.status);
+    evidence.set(task, record);
   }
 
   const occurrences = new Map();
@@ -36,7 +36,12 @@ test("CF-001 through CF-058 each retain evidence and task status matches it", ()
         continue;
       }
       const [, checked, task] = match;
-      const expected = evidence.get(task) === "COMPLETE" ? "x" : " ";
+      const record = evidence.get(task);
+      const subtask = line.match(/\[(CF-\d{3})\.([1-4])\]/u);
+      const hasOfflineImplementation = Array.isArray(record.red_evidence) && Array.isArray(record.green_evidence);
+      const expected = record.status === "COMPLETE" || (
+        subtask && Number(subtask[2]) < 4 && hasOfflineImplementation
+      ) ? "x" : " ";
       assert.equal(checked, expected, `${relativePath}:${offset + 1} disagrees with ${task} evidence`);
       occurrences.set(task, (occurrences.get(task) ?? 0) + 1);
     }
@@ -55,7 +60,14 @@ test("architecture task index exposes the same authoritative status and evidence
   for (const task of index.tasks) {
     const relativeEvidencePath = `docs/verification/tasks/${task.id}.json`;
     const record = JSON.parse(readFileSync(path.join(root, relativeEvidencePath), "utf8"));
+    const hasOfflineImplementation = Array.isArray(record.red_evidence) && Array.isArray(record.green_evidence);
+    const expectedSubtasks = record.status === "COMPLETE"
+      ? ["COMPLETE", "COMPLETE", "COMPLETE", "COMPLETE"]
+      : hasOfflineImplementation
+        ? ["COMPLETE", "COMPLETE", "COMPLETE", "PARTIAL_OFFLINE"]
+        : ["NOT_RUN", "NOT_RUN", "NOT_RUN", "NOT_RUN"];
     assert.equal(task.status, record.status, `${task.id} index status must match its receipt`);
     assert.equal(task.evidence, relativeEvidencePath, `${task.id} index must link its receipt`);
+    assert.deepEqual(task.subtask_statuses, expectedSubtasks, `${task.id} subtask status must reflect its evidence depth`);
   }
 });
