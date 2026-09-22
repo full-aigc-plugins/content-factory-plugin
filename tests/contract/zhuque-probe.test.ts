@@ -13,6 +13,12 @@ const observationPath = path.resolve(
 
 const comparisonObservationPaths = [
   {
+    category: "human",
+    path: path.resolve(
+      "tests/fixtures/zhuque/2026-09-22-human-website-observation.json"
+    )
+  },
+  {
     category: "original-ai",
     path: path.resolve(
       "tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json"
@@ -101,7 +107,7 @@ test("CF-030 website observation remains partial and cannot satisfy API admissio
   ));
 });
 
-test("CF-030 original AI and edited website observations are distinct, traceable, and secret-free", () => {
+test("CF-030 human, original AI, and edited website observations are distinct, traceable, and secret-free", () => {
   const observations = comparisonObservationPaths.map(({ category, path: fixturePath }) => {
     assert.equal(
       existsSync(fixturePath),
@@ -129,10 +135,10 @@ test("CF-030 original AI and edited website observations are distinct, traceable
     return observation;
   });
 
-  assert.notEqual(
-    observations[0].request.textSha256,
-    observations[1].request.textSha256,
-    "original AI and edited observations must bind different submitted texts"
+  assert.equal(
+    new Set(observations.map(observation => observation.request.textSha256)).size,
+    3,
+    "human, original AI, and edited observations must bind different submitted texts"
   );
 });
 
