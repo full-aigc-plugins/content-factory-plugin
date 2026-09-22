@@ -12,6 +12,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "node scripts/build.mjs",
     "audit:release": "node scripts/audit-release.mjs",
+    "release:gate": "node scripts/release-gate.mjs",
     "doctor": "node packages/cli/src/main.ts doctor --json",
     "mcp": "node packages/mcp/src/server.ts",
     "skills:check": "node scripts/check-skills.mjs --offline",
