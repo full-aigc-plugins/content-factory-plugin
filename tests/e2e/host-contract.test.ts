@@ -158,12 +158,23 @@ test("CF-041 records source-skill host sessions without claiming plugin installa
     writes: 0
   });
   assert.deepEqual(evidence.hosts.codex, {
-    status: "MANIFEST_VALIDATED_ONLY",
+    status: "SOURCE_SKILL_SESSION_PASSED",
     runtimeVersion: "0.153.4",
     pluginInstalled: false,
-    sessionStarted: false,
-    validators: ["plugin-creator"],
+    sessionStarted: true,
+    hostModelCalls: 1,
     businessRemoteCalls: 0,
-    writes: 0
+    writes: 0,
+    skillDiscoveryWarning:
+      "context-budget-descriptions-removed-explicit-source-read-succeeded",
+    result: {
+      host: "codex",
+      skill: "content-harness",
+      mode: "format",
+      stages: ["format", "review"],
+      missingInputs: ["文章正文或内容修订引用", "明确的目标内容平台"],
+      assumptions: [],
+      remoteCalls: []
+    }
   });
 });
