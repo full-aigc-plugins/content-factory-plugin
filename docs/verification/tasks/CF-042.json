@@ -36,7 +36,7 @@
     "the final release gate remains fail-closed"
   ],
   "current_gate_result": {
-    "evaluated_commit": "09de6466ebaeb0ea96bc48eb5ce6553c2365b4db",
+    "evaluated_commit": "33ff3315bbea626fb5428a70e9f445b2b9165bc4",
     "verdict": "blocked",
     "blockers": [
       "required-task-not-complete:CF-030",

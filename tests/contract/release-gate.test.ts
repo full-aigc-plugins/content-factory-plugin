@@ -27,10 +27,10 @@ test("CF-042 candidate manifest references every P0 task and remains blocked", a
   assert.equal(candidate.targetVersion, "1.0.0");
   assert.equal(candidate.currentVersion, "1.0.0-rc.2");
   assert.equal(candidate.releaseStatus, "BLOCKED");
-  assert.equal(liveIndex.releaseCandidate.selected, false);
-  assert.equal(candidate.releaseCommit, null);
-  assert.equal(candidate.manifestSourceCommit, null);
-  assert.equal(candidate.packageSha256, null);
+  assert.equal(liveIndex.releaseCandidate.selected, true);
+  assert.match(candidate.releaseCommit, /^[a-f0-9]{40}$/u);
+  assert.equal(candidate.manifestSourceCommit, candidate.releaseCommit);
+  assert.match(candidate.packageSha256, /^[a-f0-9]{64}$/u);
   assert.equal(candidate.releaseCommit, liveIndex.releaseCandidate.commit);
   assert.equal(candidate.packageSha256, liveIndex.releaseCandidate.packageSha256);
   assert.deepEqual(candidate.requiredTaskEvidence.map((item: { task: string }) => item.task), [

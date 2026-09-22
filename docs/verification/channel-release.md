@@ -9,7 +9,7 @@ The integrated gate exists and correctly refuses the current repository state. T
 ## Current blockers
 
 - CF-030, CF-035, CF-039, CF-041 and CF-057 still lack their required live or human evidence.
-- Version `1.0.0-rc.2` is prepared but has not yet been selected as an immutable candidate.
+- Immutable candidate `1.0.0-rc.2` is selected at `33ff3315bbea626fb5428a70e9f445b2b9165bc4` with build-manifest SHA-256 `35e74f6ea0d167ab120d7acd2a89df56e36647addd1116ddf0473dff66d6f447`; the manifest carries the same source commit.
 - Live evidence status is `NOT_RUN`.
 - 0 of 117 declared host × channel-format combinations have actual-host evaluation evidence.
 - 0 of 468 required profile-resolution, vendor-contract, authoring and working-export capabilities are verified.
