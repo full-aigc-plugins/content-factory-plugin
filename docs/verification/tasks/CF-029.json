@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "task": "CF-029",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Detection request budgets, attempt-level usage evidence, bounded rate-limit retries, cancellation, and unknown-cost handling",
+  "completed_at": "2026-09-22T12:00:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "c0fbe130a68cbdd781f55c7d543b731b85c9cd04",
+    "2150deefe6920c7b1aa46e79abd7712e6c091bf1"
+  ],
+  "red_evidence": [
+    {
+      "commit": "c0fbe130a68cbdd781f55c7d543b731b85c9cd04",
+      "conclusion": "failure",
+      "command": "node --test test/detection-budgets.test.mjs",
+      "reason": "the request-budget and detector-retry modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "2150deefe6920c7b1aa46e79abd7712e6c091bf1",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/detection-budgets.test.mjs (5 passed, 0 failed)",
+        "npm test (163 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "insufficient or uncertain budget blocks before a provider request",
+    "HTTP 429 permits at most two retries and honors the supplied retry delay",
+    "HTTP 401 is never retried",
+    "cancellation prevents a new request while retaining already incurred usage",
+    "every attempt binds the request identity, response status, and known or unknown usage",
+    "unknown network usage remains unknown rather than being recorded as zero"
+  ],
+  "outputs": [
+    "packages/core/src/security/budgets.ts",
+    "packages/core/src/detection/retry.ts",
+    "test/detection-budgets.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "synthetic-transport-fixture",
+  "live_ai_content_detector": "NOT_RUN",
+  "live_blocker": "No live rate-limit, billing, or usage response was observed, so provider-specific cost semantics remain unverified.",
+  "dependency_status": {
+    "CF-012": "COMPLETE",
+    "CF-025": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
