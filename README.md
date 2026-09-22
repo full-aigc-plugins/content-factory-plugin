@@ -6,16 +6,16 @@
 
 ## Current implementation status
 
-Content Factory is now in active implementation; it is no longer a documentation-only repository.
+Content Factory has a working offline runtime and a fail-closed release gate. It is not yet a production release.
 
 | Task | Status | Evidence |
 |---|---|---|
-| CF-001 | COMPLETE | Immutable vendor-skill supply chain, local-harness protection, sync/check entrypoints |
-| CF-002 | COMPLETE | CLI/MCP bootstrap, Codex/ZCode/Kimi host probing, lint/typecheck/build/CI gates |
-| CF-005 | IN_PROGRESS | Baoyu v1.63.0 formatting skills are locked and vendored; formal task evidence is not yet closed |
-| Remaining CF-003–CF-058 | NOT_STARTED / dependency-blocked | Implemented according to the OpenSpec dependency graph |
+| CF-001–002, 005–024, 037–038, 040, 043–052, 054–055, 058 | COMPLETE | Supply chain, Runtime Kernel, harness, import/edit/render/export, routing, recovery, security, and fail-closed release gate |
+| CF-025–036, 039, 041, 053, 056–057 | PARTIAL_OFFLINE | Offline contracts pass; real services, accounts, host sessions, or human review remain `NOT_RUN` |
+| CF-003–004 | NOT_RUN | Authorized AI content detection and content-platform draft contracts require external accounts |
+| v1.0.0 release | **BLOCKED** | No release candidate is selected; 0/117 live host × recipe combinations are verified |
 
-The current main branch already contains runtime code, tests, CI, the single local `content-harness`, the immutable skill vendor mechanism, and the first Baoyu formatting vendor baseline.
+The current baseline has 267 automated tests, 16 channel profiles, 39 explicit channel-format recipes, three host manifests, immutable vendor skills, and one plugin-local `content-harness`. Offline verification is not live verification.
 
 ## Verify the current baseline
 
@@ -29,9 +29,10 @@ npm test
 npm run skills:check
 npm run build
 npm run doctor
+npm run release:gate
 ```
 
-`npm run skills:check` performs offline integrity validation. `npm run skills:check:upstream` additionally resolves pinned upstream tags.
+`npm run skills:check` performs offline integrity validation. `npm run skills:check:upstream` additionally resolves pinned upstream tags. `npm run release:gate` currently exits non-zero by design and lists the missing live evidence.
 
 ## Architecture
 
@@ -71,6 +72,9 @@ Key invariants:
 - [Implementation plan](openspec/changes/implement-content-factory-architecture/plan.md)
 - [Traceability](openspec/changes/implement-content-factory-architecture/traceability.md)
 - [Task evidence](docs/verification/tasks/)
+- [Verification status guide](docs/guides/status-and-verification.md)
+- [Blocked release candidate](docs/verification/release-candidate.json)
+- [Integrated release result](docs/verification/channel-release.md)
 
 ## Current vendor baseline
 
@@ -84,8 +88,6 @@ Key invariants:
 
 Visual-generation Baoyu skills remain outside Content Factory and belong to Image Factory.
 
-## Next work
+## Release boundary
 
-The dependency graph currently allows CF-003, CF-004, CF-006, CF-007, CF-043, and CF-044 to proceed. Closing CF-005 evidence unlocks its downstream formatting/vendor tasks.
-
-A stable `v1.0.0` will only be published after the base P0 gates, platform-aware routing, real host verification, real detection, verified WeChat draft read-back, and the integrated release gate all pass.
+No `v1.0.0` tag, release, package publication, or marketplace update has been created. The remaining gates require authorized external accounts, actual Codex/ZCode/Kimi sessions, AI content detection evidence, content-platform draft save/readback, and the 30-document dual-human review. Until those checks bind to one exact commit and package digest, the release remains **BLOCKED**.

@@ -44,7 +44,7 @@ test("CF-042 public documentation reports current capabilities and blocked relea
   );
   for (const document of [english, chinese]) {
     assert.equal(document.includes("CF-005 | IN_PROGRESS"), false);
-    assert.equal(document.includes("263"), true);
+    assert.equal(document.includes("267"), true);
     assert.equal(document.includes("BLOCKED"), true);
   }
   assert.equal(changelog.includes("## [Unreleased]"), true);

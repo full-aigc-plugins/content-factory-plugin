@@ -6,16 +6,16 @@
 
 ## 当前状态
 
-项目已经进入真实实现阶段，不再只是架构文档仓库。
+Content Factory 已具备可运行的离线 Runtime 和失败关闭的发行门禁，但还不是生产发行版。
 
 | 任务 | 状态 | 说明 |
 |---|---|---|
-| CF-001 | ✅ COMPLETE | 不可变 Vendor Skill 供应链、local harness 保护、同步/校验入口 |
-| CF-002 | ✅ COMPLETE | CLI/MCP 引导、Codex/ZCode/Kimi 宿主探测、lint/typecheck/build/CI 门禁 |
-| CF-005 | 🚧 IN_PROGRESS | Baoyu v1.63.0 的 Markdown 排版与 HTML 转换 Skill 已锁定并 vendored；正式回执待闭合 |
-| 其他 CF-003～CF-058 | ⏳ NOT_STARTED / blocked by dependencies | 按 OpenSpec 依赖继续推进 |
+| CF-001～002、005～024、037～038、040、043～052、054～055、058 | ✅ COMPLETE | 供应链、Runtime Kernel、Harness、导入/编辑/排版/导出、路由、恢复、安全和失败关闭发行门 |
+| CF-025～036、039、041、053、056～057 | PARTIAL_OFFLINE | 离线合同通过；真实服务、账号、宿主会话或人工评审仍为 `NOT_RUN` |
+| CF-003～004 | NOT_RUN | AI 内容检测平台和内容平台草稿合同需要授权外部账号 |
+| v1.0.0 发行 | **BLOCKED** | 未选择发行候选；117 个真实宿主×渠道形式组合中 0 个完成验证 |
 
-当前 `main` 已包含实际代码：`package.json`、CLI/MCP、host probe、供应链脚本、`skills.lock.json`、唯一 `content-harness`、Baoyu 格式化 Skill、测试与 CI。
+当前基线包含 267 项自动化测试、16 个渠道档案、39 个明确的渠道形式配方、3 份宿主清单、不可变 Vendor Skills 和唯一的 `content-harness`。离线验证不等于真实宿主或真实账号验证。
 
 ## 快速验证
 
@@ -29,9 +29,10 @@ npm test
 npm run skills:check
 npm run build
 npm run doctor
+npm run release:gate
 ```
 
-`npm run skills:check` 默认离线验证 vendored Skill 内容摘要；`npm run skills:check:upstream` 会额外检查上游 tag 解析。
+`npm run skills:check` 默认离线验证 vendored Skill 内容摘要；`npm run skills:check:upstream` 会额外检查上游 tag 解析。`npm run release:gate` 当前会按设计返回非零状态，并列出缺少的真实证据。
 
 ## 架构
 
@@ -71,6 +72,9 @@ HostContext + SourceContext + ChannelIntent
 - [实施阶段与依赖](openspec/changes/implement-content-factory-architecture/plan.md)
 - [架构与任务追踪](openspec/changes/implement-content-factory-architecture/traceability.md)
 - [任务验证证据](docs/verification/tasks/)
+- [验证状态说明](docs/guides/status-and-verification.md)
+- [被阻断的发行候选](docs/verification/release-candidate.json)
+- [整合发行结果](docs/verification/channel-release.md)
 
 ## 当前 Vendor 基线
 
@@ -84,8 +88,6 @@ HostContext + SourceContext + ChannelIntent
 
 生成图片相关 Baoyu Skills 不进入本插件。
 
-## 下一步
+## 发行边界
 
-依赖图允许继续推进 CF-003、CF-004、CF-006、CF-007、CF-043、CF-044；CF-005 完成回执闭合后可解锁依赖它的 CF-022 / CF-047 等任务。
-
-正式 `v1.0.0` 只有在基础 P0、平台路由、真实宿主、真实检测、真实公众号草稿回读和整合发行门禁全部通过后才发布。
+当前没有创建 `v1.0.0` 标签、Release、包发布或市场更新。剩余门槛需要授权外部账号、真实 Codex/ZCode/Kimi 会话、AI 内容检测平台证据、内容平台草稿保存与回读，以及 30 篇内容的双人评审。所有证据绑定到同一个 commit 和包摘要以前，发行状态保持 **BLOCKED**。
