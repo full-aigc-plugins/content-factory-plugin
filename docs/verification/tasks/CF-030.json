@@ -21,6 +21,12 @@
       "conclusion": "failure",
       "command": "node --test tests/contract/zhuque-probe.test.ts",
       "reason": "a recorded website observation was incorrectly represented as NOT_RUN"
+    },
+    {
+      "commit": "9c2cb3d",
+      "conclusion": "failure",
+      "command": "node --test tests/contract/zhuque-probe.test.ts",
+      "reason": "the distinct original-AI and edited website observations did not exist"
     }
   ],
   "green_evidence": [
@@ -49,6 +55,24 @@
         "npm run skills:check:upstream",
         "npm run audit:release"
       ]
+    },
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 arm64; opencli 1.8.6; two additional unauthenticated official website trials",
+      "gates": [
+        "node --test tests/contract/zhuque-probe.test.ts test/detection-report.test.mjs test/task-evidence.test.mjs (10 passed, 0 failed)",
+        "npm test (274 passed, 0 failed; 261 files packaged)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run audit:release",
+        "python3 docs/architecture/verify-architecture.py",
+        "openspec validate establish-content-factory-v1 --strict",
+        "openspec validate add-platform-aware-content-orchestration --strict",
+        "openspec validate implement-content-factory-architecture --strict",
+        "npm run release:gate (expected blocked: CF-057, no release candidate, live evidence unverified, 0/117 live combinations)"
+      ]
     }
   ],
   "assertions": [
@@ -58,13 +82,16 @@
     "the report identifies itself as a self-built API summary rather than an official provider document",
     "classification ratios are evidence and never presented as plugin quality proof",
     "HTML escapes content and states that webpage-to-API parity is unverified",
-    "one live website observation is PARTIAL_LIVE_WEBSITE and never satisfies the three-live-API-sample admission gate"
+    "three live website observations are PARTIAL_LIVE_WEBSITE and never satisfy the three-live-API-sample admission gate",
+    "the original baseline and edited candidate observations bind different exact text hashes; their score difference is not treated as proof of authorship, quality, or successful detector evasion"
   ],
   "outputs": [
     "packages/core/src/render/detection-report.ts",
     "docs/verification/detection-live.md",
     "docs/verification/zhuque-contract.md",
     "tests/fixtures/zhuque/2026-09-22-website-observation.json",
+    "tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json",
+    "tests/fixtures/zhuque/2026-09-22-edited-website-observation.json",
     "test/detection-report.test.mjs"
   ],
   "review": {
@@ -72,10 +99,10 @@
     "result": "PASS_OFFLINE_SCOPE",
     "findings": []
   },
-  "fixture_or_live": "local-fixture-plus-one-live-website-observation",
+  "fixture_or_live": "local-fixture-plus-three-live-website-observations",
   "live_ai_content_detector": "PARTIAL_LIVE_WEBSITE",
   "production_admission": false,
-  "live_blocker": "The authenticated API was not called. Required immutable API records for human, original-AI, and edited comparison samples do not exist.",
+  "live_blocker": "The authenticated API was not called, and no human website comparison sample was submitted. Required immutable API records for human, original-AI, and edited comparison samples do not exist.",
   "dependency_status": {
     "CF-024": "COMPLETE",
     "CF-026": "PARTIAL_OFFLINE",

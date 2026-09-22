@@ -7,7 +7,8 @@
   "branch": "main",
   "implementation_commits": [
     "eeccbb0",
-    "82a1d51"
+    "82a1d51",
+    "9c2cb3d"
   ],
   "red_evidence": [
     {
@@ -21,6 +22,12 @@
       "conclusion": "failure",
       "command": "node --test tests/contract/zhuque-probe.test.ts",
       "reason": "the real unauthenticated API rejection had not been recorded separately from the credential-required success path"
+    },
+    {
+      "commit": "9c2cb3d",
+      "conclusion": "failure",
+      "command": "node --test tests/contract/zhuque-probe.test.ts",
+      "reason": "the distinct original-AI and edited website observations did not exist"
     }
   ],
   "green_evidence": [
@@ -50,17 +57,37 @@
         "npm test (273 passed, 0 failed; 261 files packaged)",
         "npm run typecheck"
       ]
+    },
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 arm64; opencli 1.8.6; two additional unauthenticated official website trials",
+      "gates": [
+        "node --test tests/contract/zhuque-probe.test.ts test/detection-report.test.mjs test/task-evidence.test.mjs (10 passed, 0 failed)",
+        "npm test (274 passed, 0 failed; 261 files packaged)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run audit:release",
+        "python3 docs/architecture/verify-architecture.py",
+        "openspec validate establish-content-factory-v1 --strict",
+        "openspec validate add-platform-aware-content-orchestration --strict",
+        "openspec validate implement-content-factory-architecture --strict",
+        "npm run release:gate (expected blocked: CF-057, no release candidate, live evidence unverified, 0/117 live combinations)"
+      ]
     }
   ],
   "live_verification": {
     "status": "PARTIAL_LIVE_WEBSITE",
-    "reason": "One project-owned synthetic text was sent through the authorized official website trial, one empty-input rejection was observed, and one credential-free API request returned HTTP 401 auth_missing. The authenticated API probe and three-sample comparison remain NOT_RUN_CREDENTIAL_REQUIRED."
+    "reason": "Three project-owned synthetic texts were sent through the authorized official website trial: one mixed-character contract sample, one 30-entry original baseline, and one distinct 30-entry edited candidate. One empty-input rejection was observed, and one credential-free API request returned HTTP 401 auth_missing. No human comparison sample or authenticated API response exists."
   },
   "offline_evidence": [
     "docs/verification/detection-live.md",
     "docs/verification/zhuque-contract.md",
     "schemas/zhuque.raw.schema.json",
     "tests/fixtures/zhuque/2026-09-22-website-observation.json",
+    "tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json",
+    "tests/fixtures/zhuque/2026-09-22-edited-website-observation.json",
     "docs/verification/tasks/CF-025.json",
     "docs/verification/tasks/CF-026.json",
     "docs/verification/tasks/CF-029.json",
@@ -69,10 +96,11 @@
   "assertions": [
     "the empty input was blocked client-side with zero network requests and zero quota change",
     "one Chinese newline and Emoji sample produced a real website result with exact text and segment hashes",
+    "distinct original baseline and edited candidate texts produced two additional website results with exact text and segment hashes",
     "one unauthenticated API request returned HTTP 401 auth_missing with no credential and zero paid calls",
     "the short-lived feedback token was removed and no credential or account identifier is recorded",
     "website classification remains partial evidence and cannot satisfy authenticated API or production admission",
-    "authenticated API success, usage fields, business failure and three-sample comparison remain NOT_RUN_CREDENTIAL_REQUIRED"
+    "authenticated API success, usage fields, business failure and the human/original-AI/edited API comparison remain NOT_RUN_CREDENTIAL_REQUIRED"
   ],
   "review": {
     "kind": "primary-agent evidence-boundary review",

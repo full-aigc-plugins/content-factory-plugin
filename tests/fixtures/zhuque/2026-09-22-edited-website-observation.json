@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-22T09:50:05.619Z",
+  "sampleCategory": "edited",
+  "evidenceClass": "PARTIAL_LIVE_WEBSITE",
+  "providerAlias": "AI 内容检测平台",
+  "officialWebsite": "https://matrix.tencent.com/ai-detect/",
+  "transport": "official-website-websocket",
+  "browserAutomation": {
+    "tool": "opencli",
+    "version": "1.8.6",
+    "profileAuthenticated": false,
+    "captchaBypassed": false
+  },
+  "request": {
+    "source": "tests/fixtures/corpus/manifest.json samples RA-01 through SS-06 candidateText fields joined by two newlines",
+    "provenance": "project synthetic edited candidate corpus",
+    "rightsBasis": "project-owned-fixture",
+    "textSha256": "c11fc98f31e79e04f0b34b7296cc08434f24d1c8e05e681e9da2b1016ebbe21a",
+    "unicodeScalars": 1002,
+    "utf16CodeUnits": 1002,
+    "utf8Bytes": 2834,
+    "containsChinese": true,
+    "containsNewlines": true,
+    "transmissionApproved": true
+  },
+  "response": {
+    "status": "success",
+    "visibleSummary": "人工创作特征较弱",
+    "confidence": 0.7305,
+    "labelsRatio": {
+      "0": 0.2695,
+      "1": 0,
+      "2": 0.7305
+    },
+    "contentType": 0,
+    "availableUsesBefore": 3,
+    "availableUsesAfter": 2,
+    "feedbackTokenPresent": true,
+    "feedbackTokenRedacted": true,
+    "segments": [
+      {
+        "textSha256": "13bb00ca83f4a0ddab6270c31c56c13419ea9113c3e6f5615ade0ddd08facf0d",
+        "unicodeScalars": 262,
+        "utf16CodeUnits": 262,
+        "utf8Bytes": 742,
+        "label": 2,
+        "confidence": 0.503,
+        "order": 1,
+        "position": [0, 262]
+      },
+      {
+        "textSha256": "6d3df28825681bb81b6d3763ca733552459d0afa8e03ee7bbe50f2cd51ecca35",
+        "unicodeScalars": 270,
+        "utf16CodeUnits": 270,
+        "utf8Bytes": 750,
+        "label": 0,
+        "confidence": 0.4602,
+        "order": 2,
+        "position": [262, 270]
+      },
+      {
+        "textSha256": "fa01e343ae43d46967e1510f9b4330260f945decb6ebb2a223fe45dd26af9b7c",
+        "unicodeScalars": 470,
+        "utf16CodeUnits": 470,
+        "utf8Bytes": 1342,
+        "label": 2,
+        "confidence": 0.5707,
+        "order": 3,
+        "position": [532, 470]
+      }
+    ],
+    "modelUpdatedAt": "2026-07-21T12:22:05.000Z"
+  },
+  "limitations": [
+    "This is an unauthenticated website observation, not an authenticated API response.",
+    "The provider classification is not authorship, quality, enforcement, publication, or plugin acceptance evidence.",
+    "No human comparison sample was submitted and website-to-API parity remains unverified."
+  ],
+  "productionAdmission": false,
+  "secretsInRecord": false
+}

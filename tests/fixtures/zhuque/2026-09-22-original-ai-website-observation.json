@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-22T09:48:17.493Z",
+  "sampleCategory": "original-ai",
+  "evidenceClass": "PARTIAL_LIVE_WEBSITE",
+  "providerAlias": "AI 内容检测平台",
+  "officialWebsite": "https://matrix.tencent.com/ai-detect/",
+  "transport": "official-website-websocket",
+  "browserAutomation": {
+    "tool": "opencli",
+    "version": "1.8.6",
+    "profileAuthenticated": false,
+    "captchaBypassed": false
+  },
+  "request": {
+    "source": "tests/fixtures/corpus/manifest.json samples RA-01 through SS-06 sourceText fields joined by two newlines",
+    "provenance": "project synthetic original baseline",
+    "rightsBasis": "project-owned-fixture",
+    "textSha256": "4b71d9d8e0e264a0e3fa6fd8a84739a6735c26c503b0f5552080f289434d7f66",
+    "unicodeScalars": 967,
+    "utf16CodeUnits": 967,
+    "utf8Bytes": 2395,
+    "containsChinese": true,
+    "containsNewlines": true,
+    "transmissionApproved": true
+  },
+  "response": {
+    "status": "success",
+    "visibleSummary": "未发现明显的人工创作特征",
+    "confidence": 1,
+    "labelsRatio": {
+      "0": 0,
+      "1": 0,
+      "2": 1
+    },
+    "contentType": 0,
+    "availableUsesBefore": 4,
+    "availableUsesAfter": 3,
+    "feedbackTokenPresent": true,
+    "feedbackTokenRedacted": true,
+    "segments": [
+      {
+        "textSha256": "4b71d9d8e0e264a0e3fa6fd8a84739a6735c26c503b0f5552080f289434d7f66",
+        "unicodeScalars": 967,
+        "utf16CodeUnits": 967,
+        "utf8Bytes": 2395,
+        "label": 2,
+        "confidence": 0.7128,
+        "order": 1,
+        "position": [0, 967]
+      }
+    ],
+    "modelUpdatedAt": "2026-07-21T12:22:05.000Z"
+  },
+  "limitations": [
+    "This is an unauthenticated website observation, not an authenticated API response.",
+    "The provider classification is not authorship, quality, enforcement, publication, or plugin acceptance evidence.",
+    "No human comparison sample was submitted and website-to-API parity remains unverified."
+  ],
+  "productionAdmission": false,
+  "secretsInRecord": false
+}
