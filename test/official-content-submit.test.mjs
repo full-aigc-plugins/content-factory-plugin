@@ -4,11 +4,32 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 
+import { createOfficialContentDraftApi } from "../adapters/wechat/api.ts";
 import { approveDeliveryIntent } from "../packages/core/src/delivery/approve.ts";
 import { createDeliveryIntent } from "../packages/core/src/delivery/intents.ts";
 import { prepareReleaseBundle } from "../packages/core/src/delivery/prepare.ts";
 import { submitApprovedDraft } from "../packages/core/src/delivery/submit.ts";
 import { openWorkspace } from "../packages/core/src/workspace/store.ts";
+
+test("CF-033 channel adapter exposes draft creation but no publish action", async () => {
+  const actions = [];
+  const api = createOfficialContentDraftApi({
+    async request(action, payload) {
+      actions.push([action, payload]);
+      if (action === "asset-upload") return { remoteAssetId: "remote-cover" };
+      return { remoteDraftId: "draft-1" };
+    }
+  });
+
+  assert.equal("publish" in api, false);
+  assert.deepEqual(await api.uploadAsset({ artifactId: "cover", sha256: "a".repeat(64) }), {
+    remoteAssetId: "remote-cover"
+  });
+  assert.deepEqual(await api.createDraft({
+    title: "标题", summary: "摘要", body: "正文", remoteAssetIds: ["remote-cover"]
+  }), { remoteDraftId: "draft-1" });
+  assert.deepEqual(actions.map(item => item[0]), ["asset-upload", "draft-create"]);
+});
 
 async function setup(t) {
   const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-submit-"));

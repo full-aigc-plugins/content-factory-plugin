@@ -1,6 +1,6 @@
 import type { DatabaseSync } from "node:sqlite";
 
-export const CURRENT_SCHEMA_VERSION = 4;
+export const CURRENT_SCHEMA_VERSION = 5;
 
 export type MigrationState = {
   schemaVersion: number;
@@ -107,6 +107,32 @@ export function migrateWorkspace(db: DatabaseSync): MigrationState {
           created_at TEXT NOT NULL,
           PRIMARY KEY (run_id, sequence),
           FOREIGN KEY (run_id) REFERENCES workflow_runs(run_id)
+        );
+      `);
+    }
+
+    if (current < 5) {
+      db.exec(`
+        CREATE TABLE IF NOT EXISTS delivery_submissions (
+          intent_id TEXT PRIMARY KEY,
+          bundle_hash TEXT NOT NULL,
+          account_alias TEXT NOT NULL,
+          request_id TEXT NOT NULL,
+          status TEXT NOT NULL,
+          remote_draft_id TEXT,
+          reason TEXT,
+          created_at TEXT NOT NULL,
+          updated_at TEXT NOT NULL
+        );
+
+        CREATE TABLE IF NOT EXISTS delivery_asset_maps (
+          intent_id TEXT NOT NULL,
+          artifact_id TEXT NOT NULL,
+          sha256 TEXT NOT NULL,
+          remote_asset_id TEXT NOT NULL,
+          created_at TEXT NOT NULL,
+          PRIMARY KEY (intent_id, artifact_id),
+          FOREIGN KEY (intent_id) REFERENCES delivery_submissions(intent_id)
         );
       `);
     }

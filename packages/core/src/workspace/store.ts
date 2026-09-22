@@ -41,6 +41,26 @@ export type RevisionCommitResult = {
   currentHeadRevisionId: string;
 };
 
+export type DeliverySubmissionRecord = {
+  intentId: string;
+  bundleHash: string;
+  accountAlias: string;
+  requestId: string;
+  status: "prepared" | "submitting" | "failed" | "unknown" | "succeeded";
+  remoteDraftId: string | null;
+  reason: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeliveryAssetMapRecord = {
+  intentId: string;
+  artifactId: string;
+  sha256: string;
+  remoteAssetId: string;
+  createdAt: string;
+};
+
 export class WorkspaceStore {
   readonly root: string;
   readonly stateDir: string;
@@ -283,6 +303,111 @@ export class WorkspaceStore {
       try { this.#db.exec("ROLLBACK"); } catch {}
       throw error;
     }
+  }
+
+  createOrLoadDeliverySubmission(input: DeliverySubmissionRecord): DeliverySubmissionRecord {
+    this.#assertWritable();
+    this.#db.prepare(`
+      INSERT OR IGNORE INTO delivery_submissions
+        (intent_id, bundle_hash, account_alias, request_id, status,
+         remote_draft_id, reason, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      input.intentId, input.bundleHash, input.accountAlias, input.requestId,
+      input.status, input.remoteDraftId, input.reason, input.createdAt, input.updatedAt
+    );
+    const persisted = this.getDeliverySubmission(input.intentId);
+    if (!persisted) throw new Error("delivery submission did not persist");
+    if (persisted.bundleHash !== input.bundleHash
+        || persisted.accountAlias !== input.accountAlias) {
+      throw new ContentFactoryError({
+        code: "DELIVERY_SUBMISSION_IDENTITY_CONFLICT",
+        message: "delivery intent identity is already bound to another bundle or account",
+        retryable: false
+      });
+    }
+    return persisted;
+  }
+
+  getDeliverySubmission(intentId: string): DeliverySubmissionRecord | null {
+    const row = this.#db.prepare(`
+      SELECT intent_id, bundle_hash, account_alias, request_id, status,
+             remote_draft_id, reason, created_at, updated_at
+      FROM delivery_submissions WHERE intent_id = ?
+    `).get(intentId) as {
+      intent_id: string; bundle_hash: string; account_alias: string; request_id: string;
+      status: DeliverySubmissionRecord["status"]; remote_draft_id: string | null;
+      reason: string | null; created_at: string; updated_at: string;
+    } | undefined;
+    return row ? {
+      intentId: row.intent_id,
+      bundleHash: row.bundle_hash,
+      accountAlias: row.account_alias,
+      requestId: row.request_id,
+      status: row.status,
+      remoteDraftId: row.remote_draft_id,
+      reason: row.reason,
+      createdAt: row.created_at,
+      updatedAt: row.updated_at
+    } : null;
+  }
+
+  updateDeliverySubmission(input: {
+    intentId: string;
+    status: DeliverySubmissionRecord["status"];
+    remoteDraftId: string | null;
+    reason: string | null;
+    updatedAt: string;
+  }): DeliverySubmissionRecord {
+    this.#assertWritable();
+    this.#db.prepare(`
+      UPDATE delivery_submissions
+      SET status = ?, remote_draft_id = ?, reason = ?, updated_at = ?
+      WHERE intent_id = ?
+    `).run(input.status, input.remoteDraftId, input.reason, input.updatedAt, input.intentId);
+    const persisted = this.getDeliverySubmission(input.intentId);
+    if (!persisted) throw new Error("delivery submission does not exist");
+    return persisted;
+  }
+
+  putDeliveryAssetMap(input: DeliveryAssetMapRecord): DeliveryAssetMapRecord {
+    this.#assertWritable();
+    this.#db.prepare(`
+      INSERT OR IGNORE INTO delivery_asset_maps
+        (intent_id, artifact_id, sha256, remote_asset_id, created_at)
+      VALUES (?, ?, ?, ?, ?)
+    `).run(
+      input.intentId, input.artifactId, input.sha256,
+      input.remoteAssetId, input.createdAt
+    );
+    const persisted = this.getDeliveryAssetMap(input.intentId, input.artifactId);
+    if (!persisted) throw new Error("delivery asset map did not persist");
+    if (persisted.sha256 !== input.sha256
+        || persisted.remoteAssetId !== input.remoteAssetId) {
+      throw new ContentFactoryError({
+        code: "DELIVERY_ASSET_MAP_CONFLICT",
+        message: "delivery asset mapping is immutable",
+        retryable: false
+      });
+    }
+    return persisted;
+  }
+
+  getDeliveryAssetMap(intentId: string, artifactId: string): DeliveryAssetMapRecord | null {
+    const row = this.#db.prepare(`
+      SELECT intent_id, artifact_id, sha256, remote_asset_id, created_at
+      FROM delivery_asset_maps WHERE intent_id = ? AND artifact_id = ?
+    `).get(intentId, artifactId) as {
+      intent_id: string; artifact_id: string; sha256: string;
+      remote_asset_id: string; created_at: string;
+    } | undefined;
+    return row ? {
+      intentId: row.intent_id,
+      artifactId: row.artifact_id,
+      sha256: row.sha256,
+      remoteAssetId: row.remote_asset_id,
+      createdAt: row.created_at
+    } : null;
   }
 
   async close(): Promise<void> {
