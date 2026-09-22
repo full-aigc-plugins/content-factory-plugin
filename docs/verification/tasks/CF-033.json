@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task": "CF-033",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Persistent draft submission intent, resumable asset mapping, local deduplication, unknown-outcome protection, and draft-only channel adapter",
+  "completed_at": "2026-09-22T14:30:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "6a4d1165caae82d0f42b663caabae6f79493ad9f",
+    "23538ea76ec6898d34f169a1f367166fd27a1536"
+  ],
+  "red_evidence": [
+    {
+      "commit": "6a4d1165caae82d0f42b663caabae6f79493ad9f",
+      "conclusion": "failure",
+      "command": "node --test test/official-content-submit.test.mjs",
+      "reason": "the persistent submission behavior was not implemented and all four initial behavior assertions failed"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "23538ea76ec6898d34f169a1f367166fd27a1536",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/official-content-submit.test.mjs (5 passed, 0 failed)",
+        "npm test (184 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "the submission identity is durable before the first remote asset request",
+    "successfully uploaded assets are mapped immutably and reused after a later asset failure",
+    "a possibly successful draft timeout becomes unknown and is never blindly retried",
+    "a successful repeated submit returns the stored draft identity without another remote call",
+    "bundle and account identity conflicts are rejected by durable storage",
+    "the channel adapter exposes asset upload and draft creation only, with no publish action"
+  ],
+  "outputs": [
+    "adapters/wechat/api.ts",
+    "packages/core/src/delivery/submit.ts",
+    "packages/core/src/delivery/asset-map.ts",
+    "packages/core/src/workspace/migrations.ts",
+    "packages/core/src/workspace/store.ts",
+    "test/official-content-submit.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "synthetic-remote-transport-with-real-local-database",
+  "live_official_content_draft": "NOT_RUN",
+  "remote_exactly_once_claim": false,
+  "live_blocker": "The user authorized skipping the external account, so no real asset upload or draft identity exists.",
+  "dependency_status": {
+    "CF-004": "NOT_RUN",
+    "CF-031": "PARTIAL_OFFLINE",
+    "CF-032": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
