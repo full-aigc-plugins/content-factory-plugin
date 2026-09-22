@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "task": "CF-038",
+  "status": "COMPLETE",
+  "scope": "Crash, storage, lock, unknown-write, external-edit, network-loss, schema-drift, and SQLite-backup recovery regression",
+  "completed_at": "2026-09-22T06:44:18Z",
+  "branch": "main",
+  "implementation_commits": [
+    "e8d1fbe85387f03209a55c45ef9bb30d31a67edc",
+    "6d288b4ac7cf7c0bede28a75df5edd6a6f60244d"
+  ],
+  "red_evidence": [
+    {
+      "commit": "e8d1fbe85387f03209a55c45ef9bb30d31a67edc",
+      "conclusion": "failure",
+      "command": "node --test tests/chaos/end-to-end-recovery.test.mjs",
+      "reason": "hard-kill recovery remained blocked by a stale writer lease and the database backup API returned no usable snapshot"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "6d288b4ac7cf7c0bede28a75df5edd6a6f60244d",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test tests/chaos/end-to-end-recovery.test.mjs (6 passed, 0 failed)",
+        "npm test (216 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run audit:release",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "a hard-killed child process leaves a durable running checkpoint that reopens after dead-PID lease recovery",
+    "a still-live writer lease continues to block a competing writer",
+    "simulated object-store failure cannot create dangling database metadata",
+    "an unknown remote draft outcome is persisted and repeated submission performs zero additional draft writes",
+    "remote human edits remain explicit readback conflicts rather than being overwritten",
+    "detector transport loss and response schema drift remain unknown and never become success",
+    "SQLite online backup captures one committed point in time and stays readable after the live database changes",
+    "backup files carry byte count and SHA-256 and existing targets are never overwritten"
+  ],
+  "outputs": [
+    "tests/chaos/end-to-end-recovery.test.mjs",
+    "packages/core/src/workspace/lease.ts",
+    "packages/core/src/workspace/backup.ts",
+    "docs/verification/recovery.md"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS",
+    "findings": []
+  },
+  "fixture_or_live": "local-fault-injection",
+  "real_incident_evidence": "NOT_RUN",
+  "external_paid_calls": 0,
+  "dependency_status": {
+    "CF-012": "COMPLETE",
+    "CF-028": "PARTIAL_OFFLINE",
+    "CF-029": "PARTIAL_OFFLINE",
+    "CF-033": "PARTIAL_OFFLINE",
+    "CF-034": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}

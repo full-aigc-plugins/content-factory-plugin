@@ -382,10 +382,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/production-delivery.md#cf-038)
 
-- [ ] 38.1 [CF-038.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 38.2 [CF-038.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 38.3 [CF-038.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 38.4 [CF-038.4] 原要求与证据复核、独立 review/commit。
+- [x] 38.1 [CF-038.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 38.2 [CF-038.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 38.3 [CF-038.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 38.4 [CF-038.4] 原要求与证据复核、独立 review/commit。
 
 ## 39. CF-039 — 30篇内容评测与编辑质量回归
 
