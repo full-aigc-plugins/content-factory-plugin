@@ -36,6 +36,10 @@ const humanAttemptPath = path.resolve(
   "tests/fixtures/zhuque/2026-09-22-human-website-attempt.json"
 );
 
+const humanMismatchPath = path.resolve(
+  "tests/fixtures/zhuque/2026-09-22-human-website-mismatch.json"
+);
+
 test("CF-003 checked-in website observation is secret-free and evidence-bound", () => {
   assert.equal(
     existsSync(observationPath),
@@ -164,5 +168,32 @@ test("CF-030 human website challenge remains NOT_RUN and cannot satisfy comparis
   assert.equal(attempt.submission.responseRecorded, false);
   assert.equal(attempt.productionAdmission, false);
   assert.equal(attempt.secretsInRecord, false);
+  assert.doesNotMatch(serialized, /feedback_token|Bearer\s+|eyJ[a-zA-Z0-9_-]*\./u);
+});
+
+test("CF-030 human website binding mismatch is rejected instead of admitted", () => {
+  assert.equal(
+    existsSync(humanMismatchPath),
+    true,
+    "a quota-consuming hash mismatch must be retained as rejected evidence"
+  );
+
+  const mismatch = JSON.parse(readFileSync(humanMismatchPath, "utf8"));
+  const serialized = JSON.stringify(mismatch);
+
+  assert.equal(mismatch.sampleCategory, "human");
+  assert.equal(mismatch.evidenceClass, "REJECTED_LIVE_WEBSITE_BINDING_MISMATCH");
+  assert.equal(mismatch.providerAlias, "AI 内容检测平台");
+  assert.equal(mismatch.request.textSha256,
+    "0fb04c9319ca0caf0e3ce5414aff18b7b522be8aeb1c9de6a8b1e14e93bb79d1");
+  assert.equal(mismatch.response.segmentConcatSha256,
+    "0d0370434f70950b897bb36628f6d26bdf046b2d3298ec8e17721bb43e9d18c7");
+  assert.equal(mismatch.response.segmentsEqualSubmittedText, false);
+  assert.notEqual(
+    mismatch.request.textSha256,
+    mismatch.response.segmentConcatSha256
+  );
+  assert.equal(mismatch.productionAdmission, false);
+  assert.equal(mismatch.secretsInRecord, false);
   assert.doesNotMatch(serialized, /feedback_token|Bearer\s+|eyJ[a-zA-Z0-9_-]*\./u);
 });
