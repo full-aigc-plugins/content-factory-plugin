@@ -28,7 +28,7 @@ Task evidence SHALL record exact code/package revision, commands, environment, a
 
 #### Scenario: Evidence is committed after an immutable candidate is built
 - **WHEN** evidence commit E records executions of the package built from candidate commit C
-- **THEN** C must be an ancestor of E and every receipt must match the immutable candidate package digest; exact equality between C and E is not required
+- **THEN** C must be an ancestor of E, the package manifest must identify C as its source commit, and every receipt must match the immutable candidate package digest; exact equality between C and E is not required
 
 ### Requirement: AEG-003 Original and channel acceptance SHALL remain required
 

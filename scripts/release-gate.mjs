@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -16,7 +17,8 @@ import { fileURLToPath } from "node:url";
  *     commit: string | null,
  *     packageSha256: string | null,
  *     candidateCommitIsAncestor: boolean,
- *     packageDigestVerified: boolean
+ *     packageDigestVerified: boolean,
+ *     manifestCommitVerified: boolean
  *   },
  *   liveEvidenceStatus: string,
  *   declaredCombinationCount: number,
@@ -45,6 +47,9 @@ export function evaluateReleaseGate(snapshot) {
     }
     if (!snapshot.releaseCandidate.packageDigestVerified) {
       blockers.push("release-candidate-package-digest-unverified");
+    }
+    if (!snapshot.releaseCandidate.manifestCommitVerified) {
+      blockers.push("release-candidate-manifest-commit-unverified");
     }
   }
   if (snapshot.liveEvidenceStatus !== "VERIFIED") blockers.push("live-evidence-not-verified");
@@ -80,6 +85,46 @@ async function readJson(root, relative) {
   return JSON.parse(await readFile(path.join(root, relative), "utf8"));
 }
 
+async function verifyCandidatePackage(root, releaseCandidate) {
+  if (!releaseCandidate.selected || !releaseCandidate.commit || !releaseCandidate.packageSha256) {
+    return { packageDigestVerified: false, manifestCommitVerified: false };
+  }
+  const checkout = await mkdtemp(path.join(os.tmpdir(), "content-factory-candidate-"));
+  try {
+    const clone = spawnSync(
+      "git",
+      ["clone", "--quiet", "--no-checkout", "--no-hardlinks", root, checkout],
+      { cwd: root, encoding: "utf8" }
+    );
+    if (clone.status !== 0) return { packageDigestVerified: false, manifestCommitVerified: false };
+    const checkoutCommit = spawnSync(
+      "git",
+      ["checkout", "--quiet", "--detach", releaseCandidate.commit],
+      { cwd: checkout, encoding: "utf8" }
+    );
+    if (checkoutCommit.status !== 0) {
+      return { packageDigestVerified: false, manifestCommitVerified: false };
+    }
+    const build = spawnSync(process.execPath, ["scripts/build.mjs"], {
+      cwd: checkout,
+      encoding: "utf8",
+      env: { ...process.env, CONTENT_FACTORY_SOURCE_COMMIT: releaseCandidate.commit }
+    });
+    if (build.status !== 0) return { packageDigestVerified: false, manifestCommitVerified: false };
+    const manifestBytes = await readFile(path.join(checkout, "dist/build-manifest.json"));
+    const manifest = JSON.parse(manifestBytes.toString("utf8"));
+    return {
+      packageDigestVerified: createHash("sha256").update(manifestBytes).digest("hex") ===
+        releaseCandidate.packageSha256,
+      manifestCommitVerified: manifest.sourceCommit === releaseCandidate.commit
+    };
+  } catch {
+    return { packageDigestVerified: false, manifestCommitVerified: false };
+  } finally {
+    await rm(checkout, { recursive: true, force: true });
+  }
+}
+
 async function currentSnapshot(root) {
   const packageJson = await readJson(root, "package.json");
   const liveIndex = await readJson(root, "docs/verification/channel-live-index.json");
@@ -106,16 +151,7 @@ async function currentSnapshot(root) {
         encoding: "utf8"
       }).status === 0
     : false;
-  let packageDigestVerified = false;
-  if (releaseCandidate.selected && releaseCandidate.packageSha256) {
-    try {
-      const manifestBytes = await readFile(path.join(root, "dist/build-manifest.json"));
-      packageDigestVerified = createHash("sha256").update(manifestBytes).digest("hex") ===
-        releaseCandidate.packageSha256;
-    } catch {
-      packageDigestVerified = false;
-    }
-  }
+  const candidateVerification = await verifyCandidatePackage(root, releaseCandidate);
   const declaredCombinationCount = liveIndex.declaredCombinationCount ??
     liveIndex.expectedCombinationCount;
   const evaluatedCombinationCount = liveIndex.evaluatedCombinationCount ??
@@ -134,7 +170,7 @@ async function currentSnapshot(root) {
     releaseCandidate: {
       ...releaseCandidate,
       candidateCommitIsAncestor: ancestry,
-      packageDigestVerified
+      ...candidateVerification
     },
     liveEvidenceStatus: liveIndex.status,
     declaredCombinationCount,

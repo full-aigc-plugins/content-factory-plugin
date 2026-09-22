@@ -25,7 +25,8 @@ const passingSnapshot = {
     commit: "c".repeat(40),
     packageSha256: "f".repeat(64),
     candidateCommitIsAncestor: true,
-    packageDigestVerified: true
+    packageDigestVerified: true,
+    manifestCommitVerified: true
   },
   liveEvidenceStatus: "VERIFIED",
   declaredCombinationCount: 117,
@@ -58,7 +59,8 @@ test("CF-058 blocks incomplete required capabilities without demanding optional 
       commit: "b".repeat(40),
       packageSha256: "f".repeat(64),
       candidateCommitIsAncestor: false,
-      packageDigestVerified: false
+      packageDigestVerified: false,
+      manifestCommitVerified: false
     },
     liveEvidenceStatus: "NOT_RUN",
     evaluatedCombinationCount: 116,
@@ -74,6 +76,7 @@ test("CF-058 blocks incomplete required capabilities without demanding optional 
     "release-candidate-commit-not-ancestor",
     "release-candidate-package-mismatch",
     "release-candidate-package-digest-unverified",
+    "release-candidate-manifest-commit-unverified",
     "live-evidence-not-verified",
     "combination-evaluation-incomplete:116/117",
     "required-capability-coverage-incomplete:466/468",

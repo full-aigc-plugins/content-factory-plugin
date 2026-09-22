@@ -1,7 +1,17 @@
 #!/usr/bin/env node
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+
+const sourceCommit = (process.env.CONTENT_FACTORY_SOURCE_COMMIT ?? execFileSync(
+  "git",
+  ["rev-parse", "HEAD"],
+  { cwd: process.cwd(), encoding: "utf8" }
+)).trim();
+if (!/^[a-f0-9]{40}$/u.test(sourceCommit)) {
+  throw new Error("CONTENT_FACTORY_SOURCE_COMMIT must be a full 40-character Git commit");
+}
 
 const output = path.resolve("dist");
 await rm(output, { recursive: true, force: true });
@@ -63,6 +73,11 @@ for (const file of await listFiles(output)) {
 }
 await writeFile(
   path.join(output, "build-manifest.json"),
-  JSON.stringify({ schemaVersion: 1, runtime: "node>=24-native-typescript", files: manifest }, null, 2) + "\n"
+  JSON.stringify({
+    schemaVersion: 1,
+    runtime: "node>=24-native-typescript",
+    sourceCommit,
+    files: manifest
+  }, null, 2) + "\n"
 );
 console.log("build passed: " + manifest.length + " files packaged");

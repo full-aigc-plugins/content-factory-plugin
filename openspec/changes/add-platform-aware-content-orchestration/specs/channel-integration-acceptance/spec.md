@@ -36,4 +36,4 @@ Document structure, official OpenSpec validation, vendor contract tests and live
 
 #### Scenario: Live evidence is recorded after candidate construction
 - **WHEN** an immutable candidate package is built from candidate commit C and live evidence is committed later in evidence commit E
-- **THEN** the gate verifies that C is an ancestor of E and that every live receipt binds the exact candidate package digest instead of requiring a tracked metadata file to contain E's own commit hash
+- **THEN** the gate rebuilds C, verifies that the package manifest identifies C as its source commit, verifies that C is an ancestor of E, and binds every live receipt to the exact candidate package digest instead of requiring a tracked metadata file to contain E's own commit hash

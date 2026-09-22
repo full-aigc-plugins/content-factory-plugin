@@ -143,7 +143,14 @@ test("CF-040 build manifest is relocatable and contains no development-machine p
     path.resolve("dist/build-manifest.json"),
     "utf8"
   ));
+  const git = spawnSync("git", ["rev-parse", "HEAD"], {
+    cwd: path.resolve("."),
+    encoding: "utf8"
+  });
+  assert.equal(git.status, 0, git.stderr || git.stdout);
   assert.equal(manifest.runtime, "node>=24-native-typescript");
+  assert.equal(manifest.sourceCommit, git.stdout.trim());
+  assert.match(manifest.sourceCommit, /^[a-f0-9]{40}$/u);
   assert.ok(manifest.files.length > 0);
   assert.ok(manifest.files.every(file => !path.isAbsolute(file.path)));
   assert.ok(manifest.files.every(file => !file.path.includes("\\")));
