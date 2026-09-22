@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "task": "CF-056",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "R01-R42 regression mapping and all declared channel-format native and misrouting fixtures",
+  "completed_at": "2026-09-22T07:50:13Z",
+  "branch": "main",
+  "implementation_commits": ["d458dcd", "9c8042d"],
+  "red_evidence": [{
+    "commit": "d458dcd",
+    "conclusion": "failure",
+    "command": "npm test -- tests/channels/channel-acceptance.test.ts",
+    "reason": "the R01-R42 and catalog-example fixtures did not exist; all four target tests failed"
+  }],
+  "green_evidence": [{
+    "commit": "9c8042d",
+    "conclusion": "success",
+    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+    "gates": [
+      "npm test -- tests/channels/channel-acceptance.test.ts (4 passed, 0 failed)",
+      "npm test (255 passed, 0 failed)",
+      "npm run typecheck",
+      "npm run lint",
+      "npm run skills:check",
+      "npm run audit:release",
+      "npm run build"
+    ]
+  }],
+  "coverage": {
+    "acceptance_cases": { "verified_offline": 42, "required": 42 },
+    "channels": { "verified_offline": 16, "required": 16 },
+    "channel_format_recipes": { "verified_offline": 39, "required": 39 },
+    "misrouting_examples": { "verified_offline": 39, "required": 39 },
+    "human_reviewed_documents": { "status": "NOT_RUN", "required": 30 }
+  },
+  "preserved_gates": [
+    "factual-integrity",
+    "privacy-and-permission",
+    "security-regression",
+    "30-document-dual-human-review"
+  ],
+  "outputs": [
+    "tests/channels/channel-acceptance.test.ts",
+    "tests/fixtures/channel-writing/acceptance-cases.json",
+    "tests/fixtures/channel-writing/catalog-examples.json",
+    "docs/verification/channel-regression/offline-matrix.md"
+  ],
+  "review": {
+    "kind": "primary-agent corpus completeness and no-live-claim review",
+    "result": "PASS_OFFLINE_ONLY",
+    "findings": []
+  },
+  "blocker": "The user authorized skipping real external and human validation. The 30-document owner plus independent human reviews remain NOT_RUN, so the OpenSpec task stays unchecked.",
+  "secrets_in_record": false
+}
