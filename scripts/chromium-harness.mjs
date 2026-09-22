@@ -17,10 +17,23 @@ export function findChromiumExecutable() {
   ].find(candidate => candidate && existsSync(candidate));
 }
 
+/** Keep the default above the observed 10-second Linux cold-start tail while allowing slower runners to opt in. */
+export function resolveChromiumStartupTimeout(env = process.env) {
+  const configured = env.CONTENT_FACTORY_CHROMIUM_STARTUP_TIMEOUT_MS;
+  if (typeof configured !== "string" || !/^\d+$/u.test(configured)) {
+    return 30_000;
+  }
+  const timeoutMs = Number(configured);
+  return Number.isSafeInteger(timeoutMs) && timeoutMs > 0 ? timeoutMs : 30_000;
+}
+
 function waitForDevTools(child) {
   return new Promise((resolve, reject) => {
     let stderr = "";
-    const timeout = setTimeout(() => reject(new Error(`Chromium startup timed out: ${stderr}`)), 10_000);
+    const timeout = setTimeout(
+      () => reject(new Error(`Chromium startup timed out: ${stderr}`)),
+      resolveChromiumStartupTimeout()
+    );
     child.stderr.setEncoding("utf8");
     child.stderr.on("data", chunk => {
       stderr += chunk;
