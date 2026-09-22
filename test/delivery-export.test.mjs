@@ -70,7 +70,7 @@ test("CF-036 working export lists gaps and excludes private audit material by de
   assert.equal(result.status, "exported");
   assert.equal(manifest.exportKind, "working");
   assert.deepEqual(manifest.missingRequirements, [
-    "detection", "editorial-approval", "visuals"
+    "detection", "editorial-approval", "package-status", "visuals"
   ]);
   assert.deepEqual(manifest.sources, [
     { sourceId: "source-public", label: "公开来源", visibility: "public" }
