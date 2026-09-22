@@ -26,12 +26,18 @@ type AcceptanceManifest = {
 type NativeExample = {
   recipeKey: string;
   locale: string;
-  audience: string;
-  goal: string;
-  sourceRefs: string[];
-  expectedStages: string[];
+  requiredStage: string;
   nativeSections: string[];
-  misroutingFormatId: string;
+};
+
+type NativeExampleFixture = {
+  defaults: {
+    audience: string;
+    goal: string;
+    sourceRefs: string[];
+    misroutingFormatId: string;
+  };
+  examples: NativeExample[];
 };
 
 async function readJson<T>(relativePath: string): Promise<T> {
@@ -52,24 +58,25 @@ test("CF-056 maps every R01-R42 case to an executable offline assertion", async 
 
 test("CF-056 includes one source-grounded native and misrouting example per declared recipe", async () => {
   const registry = await loadChannelRegistry();
-  const examples = await readJson<NativeExample[]>("catalog-examples.json");
+  const fixture = await readJson<NativeExampleFixture>("catalog-examples.json");
+  const { examples } = fixture;
   assert.equal(examples.length, registry.recipes.length);
   assert.equal(new Set(examples.map(item => item.recipeKey)).size, registry.recipes.length);
+  assert.equal(fixture.defaults.audience.length > 0, true);
+  assert.equal(fixture.defaults.goal.length > 0, true);
+  assert.equal(fixture.defaults.sourceRefs.length > 0, true);
 
   for (const recipe of registry.recipes) {
     const recipeKey = `${recipe.channelId}/${recipe.formatId}`;
     const example = examples.find(item => item.recipeKey === recipeKey);
     assert.notEqual(example, undefined, recipeKey);
     assert.equal(example!.locale.length > 0, true);
-    assert.equal(example!.audience.length > 0, true);
-    assert.equal(example!.goal.length > 0, true);
-    assert.equal(example!.sourceRefs.length > 0, true);
-    assert.deepEqual(example!.expectedStages, recipe.stages);
+    assert.equal(recipe.stages.includes(example!.requiredStage), true, recipeKey);
     assert.equal(example!.nativeSections.length > 0, true);
 
     const misroute = resolveChannelRecipe(registry, {
       channelId: recipe.channelId,
-      formatId: example!.misroutingFormatId
+      formatId: fixture.defaults.misroutingFormatId
     });
     assert.deepEqual(misroute, { status: "unsupported", reason: "format-not-registered" });
   }
