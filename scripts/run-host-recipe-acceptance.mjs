@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { readFile, mkdtemp, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
@@ -390,7 +390,7 @@ async function main() {
   process.stdout.write(`${JSON.stringify(report)}\n`);
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(new URL(import.meta.url).pathname)) {
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   main().catch(error => {
     process.stderr.write(`${JSON.stringify({
       error: {
