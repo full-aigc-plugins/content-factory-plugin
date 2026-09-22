@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "task": "CF-053",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Per-action channel delivery capabilities bound to channel, format, account, adapter, action, bundle, and trusted approval",
+  "completed_at": "2026-09-22T07:31:00Z",
+  "branch": "main",
+  "implementation_commits": ["612b1fa", "2a58991", "209f7c8"],
+  "red_evidence": [
+    {
+      "commit": "612b1fa",
+      "conclusion": "failure",
+      "command": "npm test -- tests/channels/delivery-capabilities.test.ts",
+      "reason": "the per-action authorization module did not exist"
+    },
+    {
+      "commit": "2a58991",
+      "conclusion": "failure",
+      "command": "npm test -- tests/channels/delivery-capabilities.test.ts",
+      "reason": "the content-platform adapter capability declarations did not exist"
+    }
+  ],
+  "green_evidence": [{
+    "commit": "209f7c8",
+    "conclusion": "success",
+    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+    "gates": [
+      "npm test -- tests/channels/delivery-capabilities.test.ts (7 passed, 0 failed)",
+      "npm test (240 passed, 0 failed)",
+      "npm run lint",
+      "npm run typecheck",
+      "npm run skills:check",
+      "npm run audit:release"
+    ]
+  }],
+  "assertions": [
+    "read, export, draft, and publish are distinct non-transitive permissions",
+    "remote writes require a trusted human approval bound to the exact channel, format, account, action, adapter, and bundle",
+    "unverified remote capabilities stop before a call and preserve working local export",
+    "article adapters cannot serve the adjacent video channel",
+    "draft authorization retains readback and unknown-write reconciliation",
+    "the content-platform adapters declare no publish capability"
+  ],
+  "outputs": [
+    "packages/core/src/delivery/capabilities.ts",
+    "adapters/wechat/capabilities.ts",
+    "tests/channels/delivery-capabilities.test.ts",
+    "docs/verification/channel-support/content-platform-article.md"
+  ],
+  "review": {"kind": "primary-agent permission-boundary review", "result": "PASS_OFFLINE_ONLY", "findings": []},
+  "live_status": {
+    "article_api_draft": "NOT_RUN",
+    "article_browser_draft": "NOT_RUN",
+    "article_readback": "NOT_RUN",
+    "publish": "UNSUPPORTED",
+    "adjacent_video_channel": "UNSUPPORTED"
+  },
+  "blocker": "The user authorized skipping live external validation, so no remote adapter binding is marked live-verified and the OpenSpec task remains unchecked.",
+  "secrets_in_record": false
+}
