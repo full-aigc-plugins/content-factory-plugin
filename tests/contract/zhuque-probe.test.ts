@@ -213,3 +213,28 @@ test("CF-030 human website binding mismatch is rejected instead of admitted", ()
   assert.equal(mismatch.secretsInRecord, false);
   assert.doesNotMatch(serialized, /feedback_token|Bearer\s+|eyJ[a-zA-Z0-9_-]*\./u);
 });
+
+test("CF-030 user screenshot explains the rejected mismatch without admitting its classification", () => {
+  const mismatch = JSON.parse(readFileSync(humanMismatchPath, "utf8"));
+
+  assert.deepEqual(mismatch.visualObservation.artifact, {
+    storage: "not-retained-privacy",
+    sha256: "4c5367437a13c44d643d018af42985ee7a65c76adbad098554eb4980c5e9264e",
+    pixelWidth: 1453,
+    pixelHeight: 842
+  });
+  assert.equal(
+    mismatch.visualObservation.selectedFixture,
+    "official-website-built-in-ai-example-1"
+  );
+  assert.equal(mismatch.visualObservation.visibleSummary, "人工创作特征较弱");
+  assert.deepEqual(mismatch.visualObservation.displayedRatios, {
+    human: 0.2631,
+    suspectedAi: 0.2568,
+    ai: 0.4801
+  });
+  assert.equal(mismatch.visualObservation.dailyQuotaExhausted, true);
+  assert.equal(mismatch.visualObservation.classificationAdmitted, false);
+  assert.equal(mismatch.rejection.classificationDiscarded, true);
+  assert.equal(mismatch.productionAdmission, false);
+});

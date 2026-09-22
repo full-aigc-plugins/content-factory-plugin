@@ -38,10 +38,31 @@
     "classificationDiscarded": true,
     "quotaConsumed": true
   },
+  "visualObservation": {
+    "source": "user-provided-screenshot",
+    "artifact": {
+      "storage": "not-retained-privacy",
+      "sha256": "4c5367437a13c44d643d018af42985ee7a65c76adbad098554eb4980c5e9264e",
+      "pixelWidth": 1453,
+      "pixelHeight": 842
+    },
+    "selectedFixture": "official-website-built-in-ai-example-1",
+    "visibleSummary": "人工创作特征较弱",
+    "displayedRatios": {
+      "human": 0.2631,
+      "suspectedAi": 0.2568,
+      "ai": 0.4801
+    },
+    "dailyQuotaExhausted": true,
+    "modelUpdatedDate": "2026-07-21",
+    "classificationAdmitted": false
+  },
   "limitations": [
     "The returned segment text matched a different built-in example, not the submitted human example.",
     "No classification values from this response are admitted or compared.",
-    "A quota decrement is operational evidence, not proof that the response belongs to the submitted text."
+    "A quota decrement is operational evidence, not proof that the response belongs to the submitted text.",
+    "The screenshot contains unrelated browser context and is therefore hash-bound but not retained in the repository.",
+    "The screenshot explains the visible mismatch only; it does not bind the classification to the submitted human sample."
   ],
   "productionAdmission": false,
   "secretsInRecord": false
