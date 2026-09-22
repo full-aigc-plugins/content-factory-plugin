@@ -2,13 +2,11 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import {
-  mkdtemp,
   readFile,
   rm,
   stat,
   writeFile
 } from "node:fs/promises";
-import os from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { DatabaseSync } from "node:sqlite";
@@ -23,11 +21,10 @@ import { runDetection } from "../../packages/core/src/detection/zhuque.ts";
 import { WorkflowRunner } from "../../packages/core/src/workflow/runner.ts";
 import { backupWorkspaceDatabase } from "../../packages/core/src/workspace/backup.ts";
 import { openWorkspace } from "../../packages/core/src/workspace/store.ts";
+import { manageCloseable, temporaryDirectory } from "../support/temp-directory.ts";
 
 async function sandbox(t) {
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-chaos-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
-  return root;
+  return temporaryDirectory(t, "content-factory-chaos-");
 }
 
 function childCrashScript(root) {
@@ -90,9 +87,9 @@ test("CF-038 hard-killed writer releases a stale lease and resumes its durable c
   assert.equal(child.stdout, "checkpoint-persisted");
 
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   const runner = new WorkflowRunner(store);
-  t.after(() => runner.close());
+  manageCloseable(t, runner);
   const resumed = runner.next("run-crash");
 
   assert.equal(resumed?.stageId, "remote-draft");
@@ -107,7 +104,7 @@ test("CF-038 hard-killed writer releases a stale lease and resumes its durable c
   assert.equal((await stat(backup.path)).isFile(), true);
   assert.match(backup.sha256, /^[0-9a-f]{64}$/u);
   const backupDb = new DatabaseSync(backup.path, { readOnly: true });
-  t.after(() => backupDb.close());
+  manageCloseable(t, backupDb);
   const row = backupDb.prepare(
     "SELECT status FROM workflow_runs WHERE run_id = ?"
   ).get("run-crash");
@@ -117,7 +114,7 @@ test("CF-038 hard-killed writer releases a stale lease and resumes its durable c
 test("CF-038 simulated storage failure does not commit dangling object metadata", async t => {
   const root = await sandbox(t);
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   const bytes = Buffer.from("must-not-be-registered");
   const digest = createHash("sha256").update(bytes).digest("hex");
   await rm(store.objectsDir, { recursive: true, force: true });
@@ -130,7 +127,7 @@ test("CF-038 simulated storage failure does not commit dangling object metadata"
 test("CF-038 live writer lease still blocks a competing writer", async t => {
   const root = await sandbox(t);
   const first = await openWorkspace(root);
-  t.after(async () => first.close());
+  manageCloseable(t, first);
 
   await assert.rejects(
     openWorkspace(root),
@@ -141,7 +138,7 @@ test("CF-038 live writer lease still blocks a competing writer", async t => {
 test("CF-038 unknown draft write is never repeated and external edits remain conflict", async t => {
   const root = await sandbox(t);
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   const context = delivery();
   let draftWrites = 0;
   const port = {
@@ -239,14 +236,14 @@ test("CF-038 detector network loss and schema drift never report success", async
 test("CF-038 backup bytes stay readable after the live database changes", async t => {
   const root = await sandbox(t);
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   const before = await store.putObject(Buffer.from("before-backup"));
   const backupPath = path.join(root, "snapshot", "workspace.db");
   await backupWorkspaceDatabase(store.stateDir, backupPath);
   await store.putObject(Buffer.from("after-backup"));
 
   const backupDb = new DatabaseSync(backupPath, { readOnly: true });
-  t.after(() => backupDb.close());
+  manageCloseable(t, backupDb);
   const count = backupDb.prepare("SELECT COUNT(*) AS count FROM object_refs").get();
   assert.equal(Number(count?.count), 1);
   assert.equal(

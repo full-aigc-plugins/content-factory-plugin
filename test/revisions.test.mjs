@@ -1,7 +1,4 @@
 import assert from "node:assert/strict";
-import { mkdtemp, rm } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
 import test from "node:test";
 
 import {
@@ -11,12 +8,12 @@ import {
 } from "../packages/core/src/content/revisions.ts";
 import { diffText } from "../packages/core/src/content/diff.ts";
 import { openWorkspace } from "../packages/core/src/workspace/store.ts";
+import { manageCloseable, temporaryDirectory } from "../tests/support/temp-directory.ts";
 
 async function workspace(t) {
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-revisions-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
+  const root = await temporaryDirectory(t, "content-factory-revisions-");
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   return store;
 }
 

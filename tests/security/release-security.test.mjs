@@ -1,6 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, rm, symlink } from "node:fs/promises";
-import os from "node:os";
+import { mkdir, symlink } from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
@@ -22,11 +21,10 @@ import { freezeCanonicalText } from "../../packages/core/src/render/canonical-te
 import { renderFrozenVariant } from "../../packages/core/src/render/pipeline.ts";
 import { LayeredSecretProvider } from "../../packages/core/src/security/credentials.ts";
 import { openWorkspace } from "../../packages/core/src/workspace/store.ts";
+import { manageCloseable, temporaryDirectory } from "../support/temp-directory.ts";
 
 async function sandbox(t) {
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-security-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
-  return root;
+  return temporaryDirectory(t, "content-factory-security-");
 }
 
 function delivery() {
@@ -148,7 +146,7 @@ test("CF-037 unsafe rendered HTML is rejected before export", async () => {
 test("CF-037 DOCX external relationships are rejected without network resolution", async t => {
   const root = await sandbox(t);
   const store = await openWorkspace(path.join(root, "workspace"));
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   const malicious = zipSync({
     "word/document.xml": strToU8(
       "<w:document xmlns:w=\"w\"><w:body><w:p><w:t>正文</w:t></w:p></w:body></w:document>"

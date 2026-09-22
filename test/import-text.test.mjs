@@ -1,17 +1,14 @@
 import assert from "node:assert/strict";
-import { mkdtemp, rm } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
 import test from "node:test";
 
 import { importTextSource } from "../packages/core/src/content/import-text.ts";
 import { openWorkspace } from "../packages/core/src/workspace/store.ts";
+import { manageCloseable, temporaryDirectory } from "../tests/support/temp-directory.ts";
 
 async function temporaryWorkspace(t) {
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-import-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
+  const root = await temporaryDirectory(t, "content-factory-import-");
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   return store;
 }
 

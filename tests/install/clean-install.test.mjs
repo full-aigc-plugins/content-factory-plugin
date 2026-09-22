@@ -20,12 +20,22 @@ assert.equal(build.status, 0, build.stderr || build.stdout);
 
 async function sandbox(t) {
   const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-install-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
-  return root;
+  const closers = [];
+  t.after(async () => {
+    for (const close of closers.reverse()) await close();
+    await rm(root, { recursive: true, force: true });
+  });
+  return {
+    root,
+    addCloser(close) {
+      closers.push(close);
+    }
+  };
 }
 
 test("CF-040 distribution runs from a non-ASCII clean home without Bun or native compilation", async t => {
-  const root = await sandbox(t);
+  const cleanup = await sandbox(t);
+  const { root } = cleanup;
   const unicodeHome = path.join(root, "用户-Δ-home");
   const installed = path.join(unicodeHome, "应用", "content-factory");
   await cp(path.resolve("dist"), installed, { recursive: true });
@@ -78,6 +88,7 @@ test("CF-040 distribution runs from a non-ASCII clean home without Bun or native
   ).href);
   const workspaceRoot = path.join(unicodeHome, "工作区");
   const store = await openWorkspace(workspaceRoot);
+  cleanup.addCloser(() => store.close());
   const object = await store.putObject(Buffer.from("跨系统安装验证"));
   const exportsRoot = path.join(unicodeHome, "导出");
   const delivery = await exportDeliveryPackage({
@@ -122,7 +133,7 @@ test("CF-040 distribution runs from a non-ASCII clean home without Bun or native
   assert.ok(backup.bytes > 0);
 
   const reopened = await openWorkspace(workspaceRoot);
-  t.after(async () => reopened.close());
+  cleanup.addCloser(() => reopened.close());
   assert.equal(reopened.getObjectRecord(object.sha256)?.sha256, object.sha256);
 });
 
@@ -143,8 +154,7 @@ test("CF-040 CI executes the release gate on Linux, macOS, and Windows", async (
   const workflow = await readFile(path.resolve(".github/workflows/ci.yml"), "utf8");
   assert.match(workflow, /os:\s*\[ubuntu-latest, macos-latest, windows-latest\]/);
   assert.match(workflow, /runs-on:\s*\$\{\{\s*matrix\.os\s*\}\}/);
-  assert.match(workflow, /if:\s*runner\.os == 'Windows'[\s\S]*node --test tests\/install\/clean-install\.test\.mjs/);
-  assert.match(workflow, /if:\s*runner\.os != 'Windows'[\s\S]*npm test/);
+  assert.match(workflow, /npm test/);
   assert.match(workflow, /npm run audit:release/);
 });
 

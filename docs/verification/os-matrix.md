@@ -7,8 +7,10 @@ compilation.
 ## Automated contract
 
 Each CI operating-system job performs a script-free dependency install and then
-runs lint, type checking, the release build, the complete test suite, the
-managed-skill integrity check, and the release security audit.
+runs lint, type checking, the release build, the complete regression suite, the
+managed-skill integrity check, and the release security audit. Test resources
+close database handles before temporary directories are removed, including on
+Windows where open SQLite files cannot be unlinked.
 
 | Runner | Installation and runtime coverage | Status |
 | --- | --- | --- |

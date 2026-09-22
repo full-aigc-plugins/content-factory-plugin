@@ -1,7 +1,4 @@
 import assert from "node:assert/strict";
-import { mkdtemp, rm } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
 import test from "node:test";
 
 import { createOfficialContentDraftApi } from "../adapters/wechat/api.ts";
@@ -10,6 +7,7 @@ import { createDeliveryIntent } from "../packages/core/src/delivery/intents.ts";
 import { prepareReleaseBundle } from "../packages/core/src/delivery/prepare.ts";
 import { submitApprovedDraft } from "../packages/core/src/delivery/submit.ts";
 import { openWorkspace } from "../packages/core/src/workspace/store.ts";
+import { manageCloseable, temporaryDirectory } from "../tests/support/temp-directory.ts";
 
 test("CF-033 channel adapter exposes draft creation but no publish action", async () => {
   const actions = [];
@@ -32,10 +30,9 @@ test("CF-033 channel adapter exposes draft creation but no publish action", asyn
 });
 
 async function setup(t) {
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-submit-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
+  const root = await temporaryDirectory(t, "content-factory-submit-");
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   const bundle = prepareReleaseBundle({
     bundleId: "bundle-1",
     variantRef: "variant-1",

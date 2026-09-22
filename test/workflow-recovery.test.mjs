@@ -1,17 +1,14 @@
 import assert from "node:assert/strict";
-import { mkdtemp, rm } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
 import test from "node:test";
 
 import { WorkflowRunner } from "../packages/core/src/workflow/runner.ts";
 import { openWorkspace } from "../packages/core/src/workspace/store.ts";
+import { manageCloseable, temporaryDirectory } from "../tests/support/temp-directory.ts";
 
 async function workspace(t) {
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-runner-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
+  const root = await temporaryDirectory(t, "content-factory-runner-");
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   return store;
 }
 
@@ -38,7 +35,7 @@ test("CF-012 restart resumes from the next durable checkpoint without repeating 
   first.close();
 
   const resumed = new WorkflowRunner(store);
-  t.after(() => resumed.close());
+  manageCloseable(t, resumed);
   const next = resumed.next("run_resume");
   assert.equal(next?.stageId, "write");
   assert.equal(resumed.getRun("run_resume")?.externalCalls, 1);
@@ -48,7 +45,7 @@ test("CF-012 restart resumes from the next durable checkpoint without repeating 
 test("CF-012 cancelled run ignores a late artifact and does not advance the running step", async t => {
   const store = await workspace(t);
   const runner = new WorkflowRunner(store);
-  t.after(() => runner.close());
+  manageCloseable(t, runner);
   runner.createRun({
     runId: "run_cancel",
     steps: [{ stageId: "generate", inputHash: "c".repeat(64) }]
@@ -72,7 +69,7 @@ test("CF-012 cancelled run ignores a late artifact and does not advance the runn
 test("CF-012 rejects output not present in the immutable object store", async t => {
   const store = await workspace(t);
   const runner = new WorkflowRunner(store);
-  t.after(() => runner.close());
+  manageCloseable(t, runner);
   runner.createRun({
     runId: "run_missing",
     steps: [{ stageId: "write", inputHash: "d".repeat(64) }]
@@ -92,7 +89,7 @@ test("CF-012 rejects output not present in the immutable object store", async t 
 test("CF-012 workflow events are durable and strictly monotonic per run", async t => {
   const store = await workspace(t);
   const runner = new WorkflowRunner(store);
-  t.after(() => runner.close());
+  manageCloseable(t, runner);
   runner.createRun({
     runId: "run_events",
     steps: [{ stageId: "format", inputHash: "e".repeat(64) }]

@@ -1,7 +1,4 @@
 import assert from "node:assert/strict";
-import { mkdtemp, rm } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
 import test from "node:test";
 
 import { createOfficialContentReadbackApi } from "../adapters/wechat/readback.ts";
@@ -12,6 +9,7 @@ import {
 } from "../packages/core/src/delivery/verify.ts";
 import { prepareReleaseBundle } from "../packages/core/src/delivery/prepare.ts";
 import { openWorkspace } from "../packages/core/src/workspace/store.ts";
+import { manageCloseable, temporaryDirectory } from "../tests/support/temp-directory.ts";
 
 function bundle() {
   return prepareReleaseBundle({
@@ -73,10 +71,9 @@ test("CF-034 title, body, and image order changes remain substantive conflicts",
 });
 
 test("CF-034 unknown write reconciles one matching draft without creating another", async t => {
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-readback-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
+  const root = await temporaryDirectory(t, "content-factory-readback-");
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   const frozen = bundle();
   store.createOrLoadDeliverySubmission({
     intentId: "intent-1", bundleHash: frozen.bundleHash,
@@ -114,10 +111,9 @@ test("CF-034 unknown write reconciles one matching draft without creating anothe
 });
 
 test("CF-034 zero or multiple reconciliation matches remain unknown", async t => {
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-readback-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
+  const root = await temporaryDirectory(t, "content-factory-readback-");
   const store = await openWorkspace(root);
-  t.after(async () => store.close());
+  manageCloseable(t, store);
   const frozen = bundle();
   store.createOrLoadDeliverySubmission({
     intentId: "intent-1", bundleHash: frozen.bundleHash,

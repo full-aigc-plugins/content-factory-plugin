@@ -1,13 +1,12 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { createAiContentDetectorClient } from "../adapters/zhuque/client.ts";
 import { WorkspaceDetectionStore } from "../packages/core/src/detection/store.ts";
 import { runDetection } from "../packages/core/src/detection/zhuque.ts";
 import { openWorkspace } from "../packages/core/src/workspace/store.ts";
+import { manageCloseable, temporaryDirectory } from "../tests/support/temp-directory.ts";
 
 const visibleText = "标题\n\n正文🙂";
 const textHash = "251555ec89a8c1d80e9c2c65d982ea515252014f8d620c705d20907c6cec6e89";
@@ -40,10 +39,9 @@ function syntheticContract(rawBody) {
 }
 
 async function workspaceStore(t) {
-  const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-detection-"));
-  t.after(async () => rm(root, { recursive: true, force: true }));
+  const root = await temporaryDirectory(t, "content-factory-detection-");
   const workspace = await openWorkspace(root);
-  t.after(async () => workspace.close());
+  manageCloseable(t, workspace);
   return new WorkspaceDetectionStore(workspace);
 }
 
