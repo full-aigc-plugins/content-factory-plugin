@@ -4,8 +4,9 @@
   "recordedAt": "2026-09-22T07:53:00Z",
   "releaseCandidate": {
     "selected": false,
-    "packageVersion": "0.1.0",
-    "commit": null
+    "packageVersion": "1.0.0-rc.1",
+    "commit": null,
+    "packageSha256": null
   },
   "hosts": ["codex", "zcode", "kimi"],
   "recipes": [
@@ -51,18 +52,22 @@
   ],
   "accountClasses": ["authorized-external-account"],
   "dimensions": [
-    { "id": "profile-resolution", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "vendor-contract", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "authoring", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "working-export", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "authorized-source-read", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "draft-save", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "draft-readback", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "public-publish", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "feedback-read", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "reply-draft", "status": "NOT_RUN", "evidenceRefs": [] }
+    { "id": "profile-resolution", "applicability": "required", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "vendor-contract", "applicability": "required", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "authoring", "applicability": "required", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "working-export", "applicability": "required", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "authorized-source-read", "applicability": "optional", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "draft-save", "applicability": "optional", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "draft-readback", "applicability": "optional", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "public-publish", "applicability": "out_of_scope", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "feedback-read", "applicability": "optional", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "reply-draft", "applicability": "optional", "status": "NOT_RUN", "evidenceRefs": [] }
   ],
-  "expectedCombinationCount": 117,
-  "liveCombinationCount": 0,
+  "declaredCombinationCount": 117,
+  "evaluatedCombinationCount": 0,
+  "requiredCapabilityCount": 468,
+  "verifiedRequiredCapabilityCount": 0,
+  "failedRequiredCapabilityCount": 0,
+  "notRunRequiredCapabilityCount": 468,
   "reason": "Actual host sessions and external accounts were explicitly skipped; offline contracts are recorded separately and are not promoted to live evidence."
 }

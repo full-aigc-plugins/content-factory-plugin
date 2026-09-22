@@ -12,6 +12,8 @@ const copyRoots = [
   ".zcode-plugin",
   "packages",
   "adapters",
+  "profiles",
+  "recipes",
   "schemas",
   "skills",
   "templates"

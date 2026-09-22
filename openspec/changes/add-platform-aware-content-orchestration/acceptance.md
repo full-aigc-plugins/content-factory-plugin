@@ -68,7 +68,11 @@ Retain the original 30-document benchmark and WeChat live draft/readback gates. 
 
 ## 4. Operational evidence matrix
 
-For each tested host/version + OS + plugin commit/package + channel/format/locale + account class, record separately: profile resolution, vendor contract, authoring, working export, authorized source read, draft save/readback, public publish, feedback read and reply draft. Each dimension is VERIFIED / FAILED / BLOCKED / NOT_RUN with evidence refs. Public publishing remains outside this V1 release promise.
+For each tested host/version + OS + plugin commit/package + channel/format/locale + account class, record separately: profile resolution, vendor contract, authoring, working export, authorized source read, draft save/readback, public publish, feedback read and reply draft. Each dimension declares whether it is required, optional or outside the V1 promise, and records VERIFIED / FAILED / BLOCKED / NOT_RUN with evidence refs. Public publishing remains outside this V1 release promise.
+
+The 117 declared host × recipe combinations measure evaluated recipe coverage across Codex, ZCode and Kimi. They do not require 117 external accounts or publications. Every combination requires actual-host profile resolution, vendor contract, authoring and working-export evidence. Remote dimensions are required only where the V1 capability promise says so; an optional or out-of-scope remote state does not become positive support and does not invalidate otherwise complete recipe evaluation.
+
+Candidate identity and evidence identity are separate. Build the immutable candidate from candidate commit C, record its package SHA-256, and allow later evidence commit E to reference C. The integrated gate verifies ancestry plus the package digest used by host and remote receipts; it never requires a tracked evidence file to contain its own enclosing commit hash.
 
 No mock is accepted as live external evidence. Missing dependencies/accounts remain NOT_RUN or BLOCKED. Provider pages and historical slugs cannot replace a recorded execution. Store no credentials or private source text in public test reports.
 

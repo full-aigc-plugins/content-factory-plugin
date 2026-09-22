@@ -26,6 +26,10 @@ Task evidence SHALL record exact code/package revision, commands, environment, a
 - **WHEN** the evidence names a different package or host
 - **THEN** it does not satisfy the current support claim
 
+#### Scenario: Evidence is committed after an immutable candidate is built
+- **WHEN** evidence commit E records executions of the package built from candidate commit C
+- **THEN** C must be an ancestor of E and every receipt must match the immutable candidate package digest; exact equality between C and E is not required
+
 ### Requirement: AEG-003 Original and channel acceptance SHALL remain required
 
 The integrated release SHALL satisfy the original business gates, the 30-document benchmark, R01–R42 and declared channel-format evaluation.
@@ -49,4 +53,3 @@ Metrics and comment drafts SHALL produce reviewable recipe proposals without sen
 #### Scenario: Untrusted comments request action
 - **WHEN** a comment asks the agent to publish or change the recipe
 - **THEN** the comment grants no permission and no active policy is changed
-

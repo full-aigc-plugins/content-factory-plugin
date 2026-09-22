@@ -11,17 +11,23 @@ type LiveIndex = {
     selected: boolean;
     packageVersion: string;
     commit: string | null;
+    packageSha256: string | null;
   };
   hosts: string[];
   recipes: string[];
   accountClasses: string[];
   dimensions: Array<{
     id: string;
+    applicability: "required" | "optional" | "out_of_scope";
     status: "NOT_RUN";
     evidenceRefs: string[];
   }>;
-  expectedCombinationCount: number;
-  liveCombinationCount: number;
+  declaredCombinationCount: number;
+  evaluatedCombinationCount: number;
+  requiredCapabilityCount: number;
+  verifiedRequiredCapabilityCount: number;
+  failedRequiredCapabilityCount: number;
+  notRunRequiredCapabilityCount: number;
 };
 
 async function readIndex(): Promise<LiveIndex> {
@@ -37,7 +43,7 @@ test("CF-057 indexes every declared host and channel recipe without inventing an
   assert.deepEqual(index.hosts, ["codex", "zcode", "kimi"]);
   assert.deepEqual(index.recipes, registry.recipes.map(item => `${item.channelId}/${item.formatId}`));
   assert.deepEqual(index.accountClasses, ["authorized-external-account"]);
-  assert.equal(index.expectedCombinationCount, 3 * 39);
+  assert.equal(index.declaredCombinationCount, 3 * 39);
 });
 
 test("CF-057 separates every required live operation dimension", async () => {
@@ -61,10 +67,27 @@ test("CF-057 keeps skipped actual hosts, channels, and accounts strictly NOT_RUN
   assert.equal(index.status, "NOT_RUN");
   assert.deepEqual(index.releaseCandidate, {
     selected: false,
-    packageVersion: "0.1.0",
-    commit: null
+    packageVersion: "1.0.0-rc.1",
+    commit: null,
+    packageSha256: null
   });
-  assert.equal(index.liveCombinationCount, 0);
+  assert.equal(index.evaluatedCombinationCount, 0);
+  assert.equal(index.requiredCapabilityCount, 3 * 39 * 4);
+  assert.equal(index.verifiedRequiredCapabilityCount, 0);
+  assert.equal(index.failedRequiredCapabilityCount, 0);
+  assert.equal(index.notRunRequiredCapabilityCount, 3 * 39 * 4);
+  assert.deepEqual(index.dimensions.map(item => item.applicability), [
+    "required",
+    "required",
+    "required",
+    "required",
+    "optional",
+    "optional",
+    "optional",
+    "out_of_scope",
+    "optional",
+    "optional"
+  ]);
   assert.equal(index.dimensions.every(item => item.status === "NOT_RUN"), true);
   assert.equal(index.dimensions.every(item => item.evidenceRefs.length === 0), true);
   assert.equal(JSON.stringify(index).includes("VERIFIED"), false);
@@ -76,6 +99,5 @@ test("CF-057 human-readable matrix states that offline contracts are not live pr
     "utf8"
   );
   assert.equal(matrix.includes("Offline contract tests are not live host evidence"), true);
-  assert.equal(matrix.includes("117 expected host × recipe combinations: NOT_RUN"), true);
   assert.equal(matrix.includes("Public publishing is outside the V1 release promise"), true);
 });

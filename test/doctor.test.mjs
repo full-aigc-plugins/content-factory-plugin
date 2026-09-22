@@ -114,6 +114,19 @@ test("MCP doctor tool delegates to the same domain service", async () => {
   assert.equal(report.paidCalls, 0);
 });
 
+test("MCP initialize reports the package release-candidate version", async () => {
+  const pkg = JSON.parse(await readFile("package.json", "utf8"));
+  const initialized = await handleMcpRequest({
+    jsonrpc: "2.0",
+    id: 3,
+    method: "initialize",
+    params: {}
+  });
+
+  assert.equal(initialized.result.serverInfo.version, pkg.version);
+  assert.equal(initialized.result.serverInfo.version, "1.0.0-rc.1");
+});
+
 test("stage result schema declares deterministic status and evidence fields", async () => {
   const schema = JSON.parse(await readFile("schemas/stage-result.schema.json", "utf8"));
   assert.deepEqual(schema.required, ["stageId", "status", "outputRefs", "evidenceRefs", "externalCalls"]);

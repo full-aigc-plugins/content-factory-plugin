@@ -1,18 +1,20 @@
 {
   "schemaVersion": 1,
   "targetVersion": "1.0.0",
-  "currentVersion": "0.1.0",
+  "currentVersion": "1.0.0-rc.1",
   "releaseStatus": "BLOCKED",
   "releaseCommit": null,
   "packageSha256": null,
   "requiredTaskEvidence": [
     { "task": "CF-001", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-001.json" },
+    { "task": "CF-030", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-030.json" },
     { "task": "CF-035", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-035.json" },
     { "task": "CF-037", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-037.json" },
     { "task": "CF-038", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-038.json" },
     { "task": "CF-039", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-039.json" },
     { "task": "CF-040", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-040.json" },
     { "task": "CF-041", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-041.json" },
+    { "task": "CF-057", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-057.json" },
     { "task": "CF-058", "status": "COMPLETE_GATE_BLOCKED", "evidenceRef": "docs/verification/tasks/CF-058.json" }
   ],
   "marketUpdates": [],
@@ -21,6 +23,6 @@
     "ai-content-detection-live-api-evidence-incomplete",
     "content-platform-draft-readback-not-run",
     "30-document-dual-human-review-not-run",
-    "same-commit-release-candidate-not-selected"
+    "immutable-release-candidate-not-selected"
   ]
 }

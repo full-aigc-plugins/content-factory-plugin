@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import readline from "node:readline";
 import { runDoctor } from "../../core/src/doctor.ts";
+import packageJson from "../../../package.json" with { type: "json" };
 
 type JsonRpcRequest = {
   jsonrpc: "2.0";
@@ -29,7 +30,7 @@ export async function handleMcpRequest(request: JsonRpcRequest, env: Env = proce
       result: {
         protocolVersion: "2025-06-18",
         capabilities: { tools: {} },
-        serverInfo: { name: "content-factory", version: "0.1.0" }
+        serverInfo: { name: "content-factory", version: packageJson.version }
       }
     };
   }

@@ -30,19 +30,25 @@
   }],
   "current_gate_result": {
     "verdict": "blocked",
-    "package_version": "0.1.0",
+    "package_version": "1.0.0-rc.1",
     "evaluated_commit": "3d682e1ded5af9beeb7f435625d1a16ad2cbbc18",
     "blockers": [
-      "channel-live-task-not-complete:CF-057",
+      "required-task-not-complete:CF-030",
+      "required-task-not-complete:CF-035",
+      "required-task-not-complete:CF-039",
+      "required-task-not-complete:CF-041",
+      "required-task-not-complete:CF-057",
       "release-candidate-not-selected",
       "live-evidence-not-verified",
-      "live-combination-coverage-incomplete:0/117"
+      "combination-evaluation-incomplete:0/117",
+      "required-capability-coverage-incomplete:0/468",
+      "required-capability-not-run:468"
     ]
   },
   "assertions": [
-    "the gate passes only when foundational tasks and CF-057 are complete",
-    "the release candidate package version and commit must exactly match the evaluated checkout",
-    "all expected live host-recipe combinations must be verified",
+    "the gate passes only when every explicitly required task is complete",
+    "the immutable candidate commit must be an ancestor of the evidence commit and the rebuilt package manifest must match the recorded SHA-256",
+    "all declared host-recipe combinations must be evaluated and every required capability must be verified without promoting optional or out-of-scope remote actions",
     "vendor audit failure and duplicate media-production skill ownership block release",
     "the gate has no dependency on the final release task and therefore no cycle",
     "a blocked release exits non-zero and cannot be presented as production-ready"

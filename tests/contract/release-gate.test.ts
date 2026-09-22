@@ -15,18 +15,21 @@ test("CF-042 keeps package and three host manifest versions consistent", async (
     "kimi.plugin.json"
   ];
   const manifests = await Promise.all(files.map(file => readJson(file)));
-  assert.deepEqual(manifests.map(item => item.version), ["0.1.0", "0.1.0", "0.1.0", "0.1.0"]);
+  assert.deepEqual(
+    manifests.map(item => item.version),
+    ["1.0.0-rc.1", "1.0.0-rc.1", "1.0.0-rc.1", "1.0.0-rc.1"]
+  );
 });
 
 test("CF-042 candidate manifest references every P0 task and remains blocked", async () => {
   const candidate = await readJson("docs/verification/release-candidate.json");
   assert.equal(candidate.targetVersion, "1.0.0");
-  assert.equal(candidate.currentVersion, "0.1.0");
+  assert.equal(candidate.currentVersion, "1.0.0-rc.1");
   assert.equal(candidate.releaseStatus, "BLOCKED");
   assert.equal(candidate.releaseCommit, null);
   assert.equal(candidate.packageSha256, null);
   assert.deepEqual(candidate.requiredTaskEvidence.map((item: { task: string }) => item.task), [
-    "CF-001", "CF-035", "CF-037", "CF-038", "CF-039", "CF-040", "CF-041", "CF-058"
+    "CF-001", "CF-030", "CF-035", "CF-037", "CF-038", "CF-039", "CF-040", "CF-041", "CF-057", "CF-058"
   ]);
   for (const item of candidate.requiredTaskEvidence) {
     await readFile(new URL(`../../${item.evidenceRef}`, import.meta.url), "utf8");

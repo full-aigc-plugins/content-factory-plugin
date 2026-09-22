@@ -29,7 +29,7 @@
     ]
   }],
   "verified": [
-    "package and Codex, ZCode, and Kimi manifest versions are all 0.1.0",
+    "package and Codex, ZCode, and Kimi manifest versions are all 1.0.0-rc.1",
     "the v1.0.0 candidate manifest references every required P0 evidence file",
     "README, Chinese README, changelog, and status guide distinguish offline, live, NOT_RUN, and BLOCKED",
     "no v1.0.0 tag, package publication, release, or marketplace update was created",
@@ -39,10 +39,16 @@
     "evaluated_commit": "fb68e77d37fb9107e31e1cf652138e2b46cbb4b7",
     "verdict": "blocked",
     "blockers": [
-      "channel-live-task-not-complete:CF-057",
+      "required-task-not-complete:CF-030",
+      "required-task-not-complete:CF-035",
+      "required-task-not-complete:CF-039",
+      "required-task-not-complete:CF-041",
+      "required-task-not-complete:CF-057",
       "release-candidate-not-selected",
       "live-evidence-not-verified",
-      "live-combination-coverage-incomplete:0/117"
+      "combination-evaluation-incomplete:0/117",
+      "required-capability-coverage-incomplete:0/468",
+      "required-capability-not-run:468"
     ]
   },
   "outputs": [
@@ -58,6 +64,6 @@
     "result": "PASS_CANDIDATE_PREPARATION_RELEASE_BLOCKED",
     "findings": []
   },
-  "blocker": "Required live host, external account, detector, content-platform draft readback, and dual-human review evidence was explicitly skipped. CF-042 remains unchecked and no product version or marketplace entry may be published.",
+  "blocker": "Required live host, external account, detector, content-platform draft readback, and dual-human review evidence is still incomplete. CF-042 remains unchecked and no final product version or marketplace entry may be published.",
   "secrets_in_record": false
 }

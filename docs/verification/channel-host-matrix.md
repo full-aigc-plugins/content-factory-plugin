@@ -22,7 +22,7 @@ Offline contract tests are not live host evidence. The checked-in Codex, ZCode, 
 | Reply draft | NOT_RUN | NOT_RUN | NOT_RUN |
 | Public publish | NOT_RUN | NOT_RUN | NOT_RUN |
 
-117 expected host × recipe combinations: NOT_RUN.
+117 declared host × recipe combinations: NOT_RUN. This is evaluated recipe coverage, not 117 remote publications. Each combination requires actual-host profile resolution, vendor-contract, authoring and working-export evidence; remote dimensions retain independent applicability and status.
 
 No external account alias, credential reference, private content, draft identifier, or remote receipt is recorded. A future live run must bind the exact host and version, OS, plugin commit/package digest, channel/format/locale, account class, action, and immutable evidence reference. Evidence from an older version, another account, a mock, or a manifest cannot update this matrix.
 

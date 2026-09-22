@@ -80,6 +80,13 @@ test("CF-040 distribution runs from a non-ASCII clean home without Bun or native
   const { renderReviewPage } = await import(pathToFileURL(
     path.join(installed, "packages/core/src/render/review-page.ts")
   ).href);
+  const { loadChannelRegistry, validateChannelRegistry } = await import(pathToFileURL(
+    path.join(installed, "packages/core/src/channels/registry.ts")
+  ).href);
+  const registry = await loadChannelRegistry();
+  assert.deepEqual(validateChannelRegistry(registry), { ok: true, errors: [] });
+  assert.equal(registry.profiles.length, 16);
+  assert.equal(registry.recipes.length, 39);
   const workspaceRoot = path.join(unicodeHome, "工作区");
   const store = await openWorkspace(workspaceRoot);
   cleanup.addCloser(() => store.close());

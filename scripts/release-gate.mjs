@@ -1,46 +1,68 @@
 #!/usr/bin/env node
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 /**
  * @param {{
- *   currentCommit: string,
+ *   currentEvidenceCommit: string,
  *   packageVersion: string,
- *   foundationalTasks: Array<{id: string, status: string}>,
- *   channelTask: {id: string, status: string},
- *   releaseCandidate: {selected: boolean, packageVersion: string, commit: string | null},
+ *   requiredTasks: Array<{id: string, status: string}>,
+ *   releaseCandidate: {
+ *     selected: boolean,
+ *     packageVersion: string,
+ *     commit: string | null,
+ *     packageSha256: string | null,
+ *     candidateCommitIsAncestor: boolean,
+ *     packageDigestVerified: boolean
+ *   },
  *   liveEvidenceStatus: string,
- *   liveCombinationCount: number,
- *   expectedCombinationCount: number,
+ *   declaredCombinationCount: number,
+ *   evaluatedCombinationCount: number,
+ *   requiredCapabilityCount: number,
+ *   verifiedRequiredCapabilityCount: number,
+ *   failedRequiredCapabilityCount: number,
+ *   notRunRequiredCapabilityCount: number,
  *   vendorAuditPassed: boolean,
  *   duplicateMediaSkills: string[]
  * }} snapshot
  */
 export function evaluateReleaseGate(snapshot) {
   const blockers = [];
-  for (const task of snapshot.foundationalTasks) {
-    if (task.status !== "COMPLETE") blockers.push(`foundational-task-not-complete:${task.id}`);
-  }
-  if (snapshot.channelTask.status !== "COMPLETE") {
-    blockers.push(`channel-live-task-not-complete:${snapshot.channelTask.id}`);
+  for (const task of snapshot.requiredTasks) {
+    if (task.status !== "COMPLETE") blockers.push(`required-task-not-complete:${task.id}`);
   }
   if (!snapshot.releaseCandidate.selected) {
     blockers.push("release-candidate-not-selected");
   } else {
-    if (snapshot.releaseCandidate.commit !== snapshot.currentCommit) {
-      blockers.push("release-candidate-commit-mismatch");
+    if (!snapshot.releaseCandidate.candidateCommitIsAncestor) {
+      blockers.push("release-candidate-commit-not-ancestor");
     }
     if (snapshot.releaseCandidate.packageVersion !== snapshot.packageVersion) {
       blockers.push("release-candidate-package-mismatch");
     }
+    if (!snapshot.releaseCandidate.packageDigestVerified) {
+      blockers.push("release-candidate-package-digest-unverified");
+    }
   }
   if (snapshot.liveEvidenceStatus !== "VERIFIED") blockers.push("live-evidence-not-verified");
-  if (snapshot.liveCombinationCount !== snapshot.expectedCombinationCount) {
+  if (snapshot.evaluatedCombinationCount !== snapshot.declaredCombinationCount) {
     blockers.push(
-      `live-combination-coverage-incomplete:${snapshot.liveCombinationCount}/${snapshot.expectedCombinationCount}`
+      `combination-evaluation-incomplete:${snapshot.evaluatedCombinationCount}/${snapshot.declaredCombinationCount}`
     );
+  }
+  if (snapshot.verifiedRequiredCapabilityCount !== snapshot.requiredCapabilityCount) {
+    blockers.push(
+      `required-capability-coverage-incomplete:${snapshot.verifiedRequiredCapabilityCount}/${snapshot.requiredCapabilityCount}`
+    );
+  }
+  if (snapshot.failedRequiredCapabilityCount > 0) {
+    blockers.push(`required-capability-failed:${snapshot.failedRequiredCapabilityCount}`);
+  }
+  if (snapshot.notRunRequiredCapabilityCount > 0) {
+    blockers.push(`required-capability-not-run:${snapshot.notRunRequiredCapabilityCount}`);
   }
   if (!snapshot.vendorAuditPassed) blockers.push("vendor-audit-failed");
   for (const skill of snapshot.duplicateMediaSkills) blockers.push(`duplicate-media-skill:${skill}`);
@@ -48,7 +70,7 @@ export function evaluateReleaseGate(snapshot) {
   return {
     schemaVersion: 1,
     verdict: blockers.length === 0 ? "passed" : "blocked",
-    commit: snapshot.currentCommit,
+    commit: snapshot.currentEvidenceCommit,
     packageVersion: snapshot.packageVersion,
     blockers
   };
@@ -62,13 +84,12 @@ async function currentSnapshot(root) {
   const packageJson = await readJson(root, "package.json");
   const liveIndex = await readJson(root, "docs/verification/channel-live-index.json");
   const skillLock = await readJson(root, "skills.lock.json");
-  const foundationalTasks = await Promise.all(
-    ["CF-001", "CF-037", "CF-040"].map(async id => {
+  const requiredTasks = await Promise.all(
+    ["CF-001", "CF-030", "CF-035", "CF-037", "CF-038", "CF-039", "CF-040", "CF-041", "CF-057"].map(async id => {
       const evidence = await readJson(root, `docs/verification/tasks/${id}.json`);
       return { id, status: evidence.status };
     })
   );
-  const channelEvidence = await readJson(root, "docs/verification/tasks/CF-057.json");
   const git = spawnSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8" });
   const audit = spawnSync(process.execPath, [path.join(root, "scripts/audit-release.mjs"), "--json"], {
     cwd: root,
@@ -78,16 +99,50 @@ async function currentSnapshot(root) {
   const duplicateMediaSkills = skills.filter(skill =>
     /(?:image|video|audio).*(?:gen|render|production)|(?:gen|render).*(?:image|video|audio)/iu.test(skill)
   );
+  const releaseCandidate = liveIndex.releaseCandidate;
+  const ancestry = releaseCandidate.selected && releaseCandidate.commit
+    ? spawnSync("git", ["merge-base", "--is-ancestor", releaseCandidate.commit, "HEAD"], {
+        cwd: root,
+        encoding: "utf8"
+      }).status === 0
+    : false;
+  let packageDigestVerified = false;
+  if (releaseCandidate.selected && releaseCandidate.packageSha256) {
+    try {
+      const manifestBytes = await readFile(path.join(root, "dist/build-manifest.json"));
+      packageDigestVerified = createHash("sha256").update(manifestBytes).digest("hex") ===
+        releaseCandidate.packageSha256;
+    } catch {
+      packageDigestVerified = false;
+    }
+  }
+  const declaredCombinationCount = liveIndex.declaredCombinationCount ??
+    liveIndex.expectedCombinationCount;
+  const evaluatedCombinationCount = liveIndex.evaluatedCombinationCount ??
+    liveIndex.liveCombinationCount;
+  const requiredCapabilityCount = liveIndex.requiredCapabilityCount ??
+    declaredCombinationCount * 4;
+  const verifiedRequiredCapabilityCount = liveIndex.verifiedRequiredCapabilityCount ?? 0;
+  const failedRequiredCapabilityCount = liveIndex.failedRequiredCapabilityCount ?? 0;
+  const notRunRequiredCapabilityCount = liveIndex.notRunRequiredCapabilityCount ??
+    requiredCapabilityCount - verifiedRequiredCapabilityCount - failedRequiredCapabilityCount;
 
   return {
-    currentCommit: git.status === 0 ? git.stdout.trim() : "unknown",
+    currentEvidenceCommit: git.status === 0 ? git.stdout.trim() : "unknown",
     packageVersion: packageJson.version,
-    foundationalTasks,
-    channelTask: { id: "CF-057", status: channelEvidence.status },
-    releaseCandidate: liveIndex.releaseCandidate,
+    requiredTasks,
+    releaseCandidate: {
+      ...releaseCandidate,
+      candidateCommitIsAncestor: ancestry,
+      packageDigestVerified
+    },
     liveEvidenceStatus: liveIndex.status,
-    liveCombinationCount: liveIndex.liveCombinationCount,
-    expectedCombinationCount: liveIndex.expectedCombinationCount,
+    declaredCombinationCount,
+    evaluatedCombinationCount,
+    requiredCapabilityCount,
+    verifiedRequiredCapabilityCount,
+    failedRequiredCapabilityCount,
+    notRunRequiredCapabilityCount,
     vendorAuditPassed: audit.status === 0,
     duplicateMediaSkills
   };

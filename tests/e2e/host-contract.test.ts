@@ -16,7 +16,7 @@ test("CF-041 ships three host manifests with one package identity and real paths
   for (const [hostId, relativePath] of Object.entries(manifests)) {
     const manifest = JSON.parse(await readFile(path.resolve(relativePath), "utf8"));
     assert.equal(manifest.name, "content-factory", hostId);
-    assert.equal(manifest.version, "0.1.0", hostId);
+    assert.equal(manifest.version, "1.0.0-rc.1", hostId);
     assert.equal(manifest.license, "Apache-2.0", hostId);
     assert.match(manifest.skills, /^\.?\/?skills\/?$/u, hostId);
     await access(path.resolve(manifest.skills));

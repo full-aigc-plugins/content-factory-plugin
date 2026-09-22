@@ -93,7 +93,7 @@ def verify(root, known_paths):
             scenarios += len(cases)
             for case in cases:
                 require('**WHEN**' in case and '**THEN**' in case, 'Scenario missing WHEN/THEN')
-    require((requirements, scenarios) == (12, 24), 'Specification counts mismatch')
+    require((requirements, scenarios) == (12, 25), 'Specification counts mismatch')
     docs = [root / ARCH, root / 'README.md', root / 'AGENTS.md', root / 'openspec/README.md']
     docs += sorted(c.rglob('*.md'))
     links = 0

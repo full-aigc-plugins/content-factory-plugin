@@ -6,55 +6,79 @@ import test from "node:test";
 import { evaluateReleaseGate } from "../../scripts/release-gate.mjs";
 
 const passingSnapshot = {
-  currentCommit: "a".repeat(40),
-  packageVersion: "1.0.0",
-  foundationalTasks: [
+  currentEvidenceCommit: "e".repeat(40),
+  packageVersion: "1.0.0-rc.1",
+  requiredTasks: [
     { id: "CF-001", status: "COMPLETE" },
+    { id: "CF-030", status: "COMPLETE" },
+    { id: "CF-035", status: "COMPLETE" },
     { id: "CF-037", status: "COMPLETE" },
-    { id: "CF-040", status: "COMPLETE" }
+    { id: "CF-038", status: "COMPLETE" },
+    { id: "CF-039", status: "COMPLETE" },
+    { id: "CF-040", status: "COMPLETE" },
+    { id: "CF-041", status: "COMPLETE" },
+    { id: "CF-057", status: "COMPLETE" }
   ],
-  channelTask: { id: "CF-057", status: "COMPLETE" },
   releaseCandidate: {
     selected: true,
-    packageVersion: "1.0.0",
-    commit: "a".repeat(40)
+    packageVersion: "1.0.0-rc.1",
+    commit: "c".repeat(40),
+    packageSha256: "f".repeat(64),
+    candidateCommitIsAncestor: true,
+    packageDigestVerified: true
   },
   liveEvidenceStatus: "VERIFIED",
-  liveCombinationCount: 117,
-  expectedCombinationCount: 117,
+  declaredCombinationCount: 117,
+  evaluatedCombinationCount: 117,
+  requiredCapabilityCount: 468,
+  verifiedRequiredCapabilityCount: 468,
+  failedRequiredCapabilityCount: 0,
+  notRunRequiredCapabilityCount: 0,
   vendorAuditPassed: true,
   duplicateMediaSkills: []
 };
 
-test("CF-058 passes only a same-commit package with complete base and live channel evidence", () => {
+test("CF-058 accepts a digest-bound ancestor candidate with complete evaluated coverage", () => {
   assert.deepEqual(evaluateReleaseGate(passingSnapshot), {
     schemaVersion: 1,
     verdict: "passed",
-    commit: "a".repeat(40),
-    packageVersion: "1.0.0",
+    commit: "e".repeat(40),
+    packageVersion: "1.0.0-rc.1",
     blockers: []
   });
 });
 
-test("CF-058 aggregates missing, stale, and duplicate ownership evidence into blockers", () => {
+test("CF-058 blocks incomplete required capabilities without demanding optional remote publication", () => {
   const result = evaluateReleaseGate({
     ...passingSnapshot,
-    foundationalTasks: [{ id: "CF-001", status: "PARTIAL_OFFLINE" }],
-    channelTask: { id: "CF-057", status: "PARTIAL_OFFLINE" },
-    releaseCandidate: { selected: true, packageVersion: "0.9.0", commit: "b".repeat(40) },
+    requiredTasks: [{ id: "CF-039", status: "PARTIAL_OFFLINE" }],
+    releaseCandidate: {
+      selected: true,
+      packageVersion: "0.9.0",
+      commit: "b".repeat(40),
+      packageSha256: "f".repeat(64),
+      candidateCommitIsAncestor: false,
+      packageDigestVerified: false
+    },
     liveEvidenceStatus: "NOT_RUN",
-    liveCombinationCount: 0,
+    evaluatedCombinationCount: 116,
+    verifiedRequiredCapabilityCount: 466,
+    failedRequiredCapabilityCount: 1,
+    notRunRequiredCapabilityCount: 1,
     vendorAuditPassed: false,
     duplicateMediaSkills: ["image-generation"]
   });
   assert.equal(result.verdict, "blocked");
   assert.deepEqual(result.blockers, [
-    "foundational-task-not-complete:CF-001",
-    "channel-live-task-not-complete:CF-057",
-    "release-candidate-commit-mismatch",
+    "required-task-not-complete:CF-039",
+    "release-candidate-commit-not-ancestor",
     "release-candidate-package-mismatch",
+    "release-candidate-package-digest-unverified",
     "live-evidence-not-verified",
-    "live-combination-coverage-incomplete:0/117",
+    "combination-evaluation-incomplete:116/117",
+    "required-capability-coverage-incomplete:466/468",
+    "required-capability-failed:1",
+    "required-capability-not-run:1",
     "vendor-audit-failed",
     "duplicate-media-skill:image-generation"
   ]);
@@ -68,7 +92,7 @@ test("CF-058 checked-in release gate blocks the current skipped-live candidate",
   assert.equal(run.status, 1);
   const report = JSON.parse(run.stdout);
   assert.equal(report.verdict, "blocked");
-  assert.equal(report.blockers.includes("channel-live-task-not-complete:CF-057"), true);
+  assert.equal(report.blockers.includes("required-task-not-complete:CF-057"), true);
   assert.equal(report.blockers.includes("release-candidate-not-selected"), true);
   assert.equal(report.blockers.includes("live-evidence-not-verified"), true);
 });
