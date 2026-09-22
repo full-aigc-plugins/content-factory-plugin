@@ -9,7 +9,7 @@
 
 ## 状态与编号
 
-58 个父任务沿用 CF-001–CF-058；每个拆成四个子项，共 232 个。当前 38 个父任务为 `COMPLETE`，20 个父任务为 `PARTIAL_OFFLINE`；状态以逐任务回执为准并由自动化一致性测试校验。本文件是执行明细，不增加第二套独立产品任务。父任务只能在其子项、原验收和所需真实证据都完成后汇总；不得仅凭子项数更新父状态。原 58 项文本保留，受影响实现职责以已确认的 Vendor/单 Harness 决策为准。
+58 个父任务沿用 CF-001–CF-058；每个拆成四个子项，共 232 个。当前 38 个父任务为 `COMPLETE`，20 个父任务为 `PARTIAL_OFFLINE`；206 个子项已完成，18 个最终证据复核子项保持未勾选，CF-003/004 的 8 个真实探测子项保持未勾选。状态以逐任务回执为准并由自动化一致性测试校验。本文件是执行明细，不增加第二套独立产品任务。父任务只能在其子项、原验收和所需真实证据都完成后汇总；不得仅凭子项数更新父状态。原 58 项文本保留，受影响实现职责以已确认的 Vendor/单 Harness 决策为准。
 
 ## 全局约束
 
@@ -265,108 +265,108 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/production-delivery.md#cf-025)
 
-- [ ] 25.1 [CF-025.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 25.2 [CF-025.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 25.3 [CF-025.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 25.1 [CF-025.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 25.2 [CF-025.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 25.3 [CF-025.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 25.4 [CF-025.4] 原要求与证据复核、独立 review/commit。
 
 ## 26. CF-026 — 分类比例解释与 Unicode 分段定位
 
 [详细任务卡](task-details/production-delivery.md#cf-026)
 
-- [ ] 26.1 [CF-026.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 26.2 [CF-026.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 26.3 [CF-026.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 26.1 [CF-026.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 26.2 [CF-026.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 26.3 [CF-026.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 26.4 [CF-026.4] 原要求与证据复核、独立 review/commit。
 
 ## 27. CF-027 — 检测政策、人工例外与交付门槛
 
 [详细任务卡](task-details/production-delivery.md#cf-027)
 
-- [ ] 27.1 [CF-027.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 27.2 [CF-027.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 27.3 [CF-027.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 27.1 [CF-027.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 27.2 [CF-027.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 27.3 [CF-027.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 27.4 [CF-027.4] 原要求与证据复核、独立 review/commit。
 
 ## 28. CF-028 — 报告失效、请求去重与时效政策
 
 [详细任务卡](task-details/production-delivery.md#cf-028)
 
-- [ ] 28.1 [CF-028.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 28.2 [CF-028.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 28.3 [CF-028.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 28.1 [CF-028.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 28.2 [CF-028.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 28.3 [CF-028.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 28.4 [CF-028.4] 原要求与证据复核、独立 review/commit。
 
 ## 29. CF-029 — 费用、额度、重试与取消
 
 [详细任务卡](task-details/production-delivery.md#cf-029)
 
-- [ ] 29.1 [CF-029.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 29.2 [CF-029.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 29.3 [CF-029.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 29.1 [CF-029.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 29.2 [CF-029.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 29.3 [CF-029.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 29.4 [CF-029.4] 原要求与证据复核、独立 review/commit。
 
 ## 30. CF-030 — 完整检测报告与真实对照样本
 
 [详细任务卡](task-details/production-delivery.md#cf-030)
 
-- [ ] 30.1 [CF-030.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 30.2 [CF-030.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 30.3 [CF-030.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 30.1 [CF-030.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 30.2 [CF-030.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 30.3 [CF-030.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 30.4 [CF-030.4] 原要求与证据复核、独立 review/commit。
 
 ## 31. CF-031 — 账号、凭据与交付权限预检
 
 [详细任务卡](task-details/production-delivery.md#cf-031)
 
-- [ ] 31.1 [CF-031.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 31.2 [CF-031.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 31.3 [CF-031.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 31.1 [CF-031.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 31.2 [CF-031.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 31.3 [CF-031.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 31.4 [CF-031.4] 原要求与证据复核、独立 review/commit。
 
 ## 32. CF-032 — 冻结交付包与受控审批记录
 
 [详细任务卡](task-details/production-delivery.md#cf-032)
 
-- [ ] 32.1 [CF-032.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 32.2 [CF-032.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 32.3 [CF-032.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 32.1 [CF-032.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 32.2 [CF-032.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 32.3 [CF-032.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 32.4 [CF-032.4] 原要求与证据复核、独立 review/commit。
 
 ## 33. CF-033 — Baoyu 微信渠道适配与持久提交意图
 
 [详细任务卡](task-details/production-delivery.md#cf-033)
 
-- [ ] 33.1 [CF-033.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 33.2 [CF-033.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 33.3 [CF-033.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 33.1 [CF-033.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 33.2 [CF-033.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 33.3 [CF-033.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 33.4 [CF-033.4] 原要求与证据复核、独立 review/commit。
 
 ## 34. CF-034 — 草稿回读、冲突与更新
 
 [详细任务卡](task-details/production-delivery.md#cf-034)
 
-- [ ] 34.1 [CF-034.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 34.2 [CF-034.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 34.3 [CF-034.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 34.1 [CF-034.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 34.2 [CF-034.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 34.3 [CF-034.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 34.4 [CF-034.4] 原要求与证据复核、独立 review/commit。
 
 ## 35. CF-035 — 受控浏览器草稿路径
 
 [详细任务卡](task-details/production-delivery.md#cf-035)
 
-- [ ] 35.1 [CF-035.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 35.2 [CF-035.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 35.3 [CF-035.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 35.1 [CF-035.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 35.2 [CF-035.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 35.3 [CF-035.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 35.4 [CF-035.4] 原要求与证据复核、独立 review/commit。
 
 ## 36. CF-036 — 工作稿/已验证交付包导出
 
 [详细任务卡](task-details/production-delivery.md#cf-036)
 
-- [ ] 36.1 [CF-036.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 36.2 [CF-036.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 36.3 [CF-036.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 36.1 [CF-036.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 36.2 [CF-036.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 36.3 [CF-036.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 36.4 [CF-036.4] 原要求与证据复核、独立 review/commit。
 
 ## 37. CF-037 — 安全与供应链专项验证
@@ -391,9 +391,9 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/production-delivery.md#cf-039)
 
-- [ ] 39.1 [CF-039.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 39.2 [CF-039.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 39.3 [CF-039.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 39.1 [CF-039.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 39.2 [CF-039.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 39.3 [CF-039.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 39.4 [CF-039.4] 原要求与证据复核、独立 review/commit。
 
 ## 40. CF-040 — 三操作系统安装与资源迁移
@@ -409,18 +409,18 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/production-delivery.md#cf-041)
 
-- [ ] 41.1 [CF-041.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 41.2 [CF-041.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 41.3 [CF-041.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 41.1 [CF-041.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 41.2 [CF-041.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 41.3 [CF-041.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 41.4 [CF-041.4] 原要求与证据复核、独立 review/commit。
 
 ## 42. CF-042 — 发行包、市场登记、文档与最终门禁
 
 [详细任务卡](task-details/production-delivery.md#cf-042)
 
-- [ ] 42.1 [CF-042.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 42.2 [CF-042.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 42.3 [CF-042.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 42.1 [CF-042.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 42.2 [CF-042.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 42.3 [CF-042.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 42.4 [CF-042.4] 原要求与证据复核、独立 review/commit。
 
 ## 43. CF-043 — Candidate provenance and intake snapshots
@@ -517,9 +517,9 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/platforms.md#cf-053)
 
-- [ ] 53.1 [CF-053.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 53.2 [CF-053.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 53.3 [CF-053.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 53.1 [CF-053.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 53.2 [CF-053.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 53.3 [CF-053.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 53.4 [CF-053.4] 原要求与证据复核、独立 review/commit。
 
 ## 54. CF-054 — Metrics and comment-draft feedback
@@ -544,18 +544,18 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/platforms.md#cf-056)
 
-- [ ] 56.1 [CF-056.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 56.2 [CF-056.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 56.3 [CF-056.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 56.1 [CF-056.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 56.2 [CF-056.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 56.3 [CF-056.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 56.4 [CF-056.4] 原要求与证据复核、独立 review/commit。
 
 ## 57. CF-057 — Actual host/channel/account verification
 
 [详细任务卡](task-details/platforms.md#cf-057)
 
-- [ ] 57.1 [CF-057.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 57.2 [CF-057.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 57.3 [CF-057.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 57.1 [CF-057.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 57.2 [CF-057.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 57.3 [CF-057.3] 目标测试、typecheck、lint、直接依赖回归。
 - [ ] 57.4 [CF-057.4] 原要求与证据复核、独立 review/commit。
 
 ## 58. CF-058 — Integrated V1 release evidence gate

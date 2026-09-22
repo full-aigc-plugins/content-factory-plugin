@@ -77,7 +77,13 @@
       "dependencies": [],
       "detail": "task-details/foundation.md#cf-001",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-001.json"
+      "evidence": "docs/verification/tasks/CF-001.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-002",
@@ -86,7 +92,13 @@
       ],
       "detail": "task-details/foundation.md#cf-002",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-002.json"
+      "evidence": "docs/verification/tasks/CF-002.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-003",
@@ -95,7 +107,13 @@
       ],
       "detail": "task-details/foundation.md#cf-003",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-003.json"
+      "evidence": "docs/verification/tasks/CF-003.json",
+      "subtask_statuses": [
+        "NOT_RUN",
+        "NOT_RUN",
+        "NOT_RUN",
+        "NOT_RUN"
+      ]
     },
     {
       "id": "CF-004",
@@ -104,7 +122,13 @@
       ],
       "detail": "task-details/foundation.md#cf-004",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-004.json"
+      "evidence": "docs/verification/tasks/CF-004.json",
+      "subtask_statuses": [
+        "NOT_RUN",
+        "NOT_RUN",
+        "NOT_RUN",
+        "NOT_RUN"
+      ]
     },
     {
       "id": "CF-005",
@@ -114,7 +138,13 @@
       ],
       "detail": "task-details/foundation.md#cf-005",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-005.json"
+      "evidence": "docs/verification/tasks/CF-005.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-006",
@@ -123,7 +153,13 @@
       ],
       "detail": "task-details/foundation.md#cf-006",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-006.json"
+      "evidence": "docs/verification/tasks/CF-006.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-007",
@@ -132,7 +168,13 @@
       ],
       "detail": "task-details/foundation.md#cf-007",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-007.json"
+      "evidence": "docs/verification/tasks/CF-007.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-008",
@@ -141,7 +183,13 @@
       ],
       "detail": "task-details/foundation.md#cf-008",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-008.json"
+      "evidence": "docs/verification/tasks/CF-008.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-009",
@@ -151,7 +199,13 @@
       ],
       "detail": "task-details/foundation.md#cf-009",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-009.json"
+      "evidence": "docs/verification/tasks/CF-009.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-010",
@@ -160,7 +214,13 @@
       ],
       "detail": "task-details/foundation.md#cf-010",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-010.json"
+      "evidence": "docs/verification/tasks/CF-010.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-011",
@@ -170,7 +230,13 @@
       ],
       "detail": "task-details/foundation.md#cf-011",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-011.json"
+      "evidence": "docs/verification/tasks/CF-011.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-012",
@@ -180,7 +246,13 @@
       ],
       "detail": "task-details/foundation.md#cf-012",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-012.json"
+      "evidence": "docs/verification/tasks/CF-012.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-013",
@@ -189,7 +261,13 @@
       ],
       "detail": "task-details/foundation.md#cf-013",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-013.json"
+      "evidence": "docs/verification/tasks/CF-013.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-014",
@@ -199,7 +277,13 @@
       ],
       "detail": "task-details/foundation.md#cf-014",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-014.json"
+      "evidence": "docs/verification/tasks/CF-014.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-015",
@@ -210,7 +294,13 @@
       ],
       "detail": "task-details/foundation.md#cf-015",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-015.json"
+      "evidence": "docs/verification/tasks/CF-015.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-016",
@@ -220,7 +310,13 @@
       ],
       "detail": "task-details/foundation.md#cf-016",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-016.json"
+      "evidence": "docs/verification/tasks/CF-016.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-017",
@@ -231,7 +327,13 @@
       ],
       "detail": "task-details/foundation.md#cf-017",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-017.json"
+      "evidence": "docs/verification/tasks/CF-017.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-018",
@@ -241,7 +343,13 @@
       ],
       "detail": "task-details/foundation.md#cf-018",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-018.json"
+      "evidence": "docs/verification/tasks/CF-018.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-019",
@@ -252,7 +360,13 @@
       ],
       "detail": "task-details/foundation.md#cf-019",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-019.json"
+      "evidence": "docs/verification/tasks/CF-019.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-020",
@@ -262,7 +376,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-020",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-020.json"
+      "evidence": "docs/verification/tasks/CF-020.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-021",
@@ -273,7 +393,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-021",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-021.json"
+      "evidence": "docs/verification/tasks/CF-021.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-022",
@@ -285,7 +411,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-022",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-022.json"
+      "evidence": "docs/verification/tasks/CF-022.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-023",
@@ -294,7 +426,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-023",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-023.json"
+      "evidence": "docs/verification/tasks/CF-023.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-024",
@@ -306,7 +444,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-024",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-024.json"
+      "evidence": "docs/verification/tasks/CF-024.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-025",
@@ -318,7 +462,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-025",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-025.json"
+      "evidence": "docs/verification/tasks/CF-025.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-026",
@@ -327,7 +477,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-026",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-026.json"
+      "evidence": "docs/verification/tasks/CF-026.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-027",
@@ -338,7 +494,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-027",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-027.json"
+      "evidence": "docs/verification/tasks/CF-027.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-028",
@@ -350,7 +512,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-028",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-028.json"
+      "evidence": "docs/verification/tasks/CF-028.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-029",
@@ -360,7 +528,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-029",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-029.json"
+      "evidence": "docs/verification/tasks/CF-029.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-030",
@@ -373,7 +547,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-030",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-030.json"
+      "evidence": "docs/verification/tasks/CF-030.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-031",
@@ -384,7 +564,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-031",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-031.json"
+      "evidence": "docs/verification/tasks/CF-031.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-032",
@@ -397,7 +583,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-032",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-032.json"
+      "evidence": "docs/verification/tasks/CF-032.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-033",
@@ -408,7 +600,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-033",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-033.json"
+      "evidence": "docs/verification/tasks/CF-033.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-034",
@@ -417,7 +615,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-034",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-034.json"
+      "evidence": "docs/verification/tasks/CF-034.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-035",
@@ -428,7 +632,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-035",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-035.json"
+      "evidence": "docs/verification/tasks/CF-035.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-036",
@@ -440,7 +650,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-036",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-036.json"
+      "evidence": "docs/verification/tasks/CF-036.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-037",
@@ -453,7 +669,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-037",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-037.json"
+      "evidence": "docs/verification/tasks/CF-037.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-038",
@@ -466,7 +688,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-038",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-038.json"
+      "evidence": "docs/verification/tasks/CF-038.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-039",
@@ -479,7 +707,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-039",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-039.json"
+      "evidence": "docs/verification/tasks/CF-039.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-040",
@@ -489,7 +723,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-040",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-040.json"
+      "evidence": "docs/verification/tasks/CF-040.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-041",
@@ -502,7 +742,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-041",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-041.json"
+      "evidence": "docs/verification/tasks/CF-041.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-042",
@@ -518,7 +764,13 @@
       ],
       "detail": "task-details/production-delivery.md#cf-042",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-042.json"
+      "evidence": "docs/verification/tasks/CF-042.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-043",
@@ -527,7 +779,13 @@
       ],
       "detail": "task-details/platforms.md#cf-043",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-043.json"
+      "evidence": "docs/verification/tasks/CF-043.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-044",
@@ -536,7 +794,13 @@
       ],
       "detail": "task-details/platforms.md#cf-044",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-044.json"
+      "evidence": "docs/verification/tasks/CF-044.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-045",
@@ -545,7 +809,13 @@
       ],
       "detail": "task-details/platforms.md#cf-045",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-045.json"
+      "evidence": "docs/verification/tasks/CF-045.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-046",
@@ -556,7 +826,13 @@
       ],
       "detail": "task-details/platforms.md#cf-046",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-046.json"
+      "evidence": "docs/verification/tasks/CF-046.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-047",
@@ -568,7 +844,13 @@
       ],
       "detail": "task-details/platforms.md#cf-047",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-047.json"
+      "evidence": "docs/verification/tasks/CF-047.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-048",
@@ -579,7 +861,13 @@
       ],
       "detail": "task-details/platforms.md#cf-048",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-048.json"
+      "evidence": "docs/verification/tasks/CF-048.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-049",
@@ -590,7 +878,13 @@
       ],
       "detail": "task-details/platforms.md#cf-049",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-049.json"
+      "evidence": "docs/verification/tasks/CF-049.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-050",
@@ -602,7 +896,13 @@
       ],
       "detail": "task-details/platforms.md#cf-050",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-050.json"
+      "evidence": "docs/verification/tasks/CF-050.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-051",
@@ -612,7 +912,13 @@
       ],
       "detail": "task-details/platforms.md#cf-051",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-051.json"
+      "evidence": "docs/verification/tasks/CF-051.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-052",
@@ -625,7 +931,13 @@
       ],
       "detail": "task-details/platforms.md#cf-052",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-052.json"
+      "evidence": "docs/verification/tasks/CF-052.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-053",
@@ -637,7 +949,13 @@
       ],
       "detail": "task-details/platforms.md#cf-053",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-053.json"
+      "evidence": "docs/verification/tasks/CF-053.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-054",
@@ -648,7 +966,13 @@
       ],
       "detail": "task-details/platforms.md#cf-054",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-054.json"
+      "evidence": "docs/verification/tasks/CF-054.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-055",
@@ -659,7 +983,13 @@
       ],
       "detail": "task-details/platforms.md#cf-055",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-055.json"
+      "evidence": "docs/verification/tasks/CF-055.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     },
     {
       "id": "CF-056",
@@ -675,7 +1005,13 @@
       ],
       "detail": "task-details/platforms.md#cf-056",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-056.json"
+      "evidence": "docs/verification/tasks/CF-056.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-057",
@@ -685,7 +1021,13 @@
       ],
       "detail": "task-details/platforms.md#cf-057",
       "status": "PARTIAL_OFFLINE",
-      "evidence": "docs/verification/tasks/CF-057.json"
+      "evidence": "docs/verification/tasks/CF-057.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
+      ]
     },
     {
       "id": "CF-058",
@@ -697,12 +1039,23 @@
       ],
       "detail": "task-details/platforms.md#cf-058",
       "status": "COMPLETE",
-      "evidence": "docs/verification/tasks/CF-058.json"
+      "evidence": "docs/verification/tasks/CF-058.json",
+      "subtask_statuses": [
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE"
+      ]
     }
   ],
   "status_source": "docs/verification/tasks/CF-001.json through CF-058.json",
   "evidence_summary": {
     "COMPLETE": 38,
     "PARTIAL_OFFLINE": 20
+  },
+  "child_evidence_summary": {
+    "COMPLETE": 206,
+    "PARTIAL_OFFLINE": 18,
+    "NOT_RUN": 8
   }
 }
