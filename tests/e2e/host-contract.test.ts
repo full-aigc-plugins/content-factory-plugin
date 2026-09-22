@@ -115,3 +115,55 @@ test("CF-041 release build retains every host manifest without changing its byte
     assert.deepEqual(packaged, source);
   }
 });
+
+test("CF-041 records source-skill host sessions without claiming plugin installation", async () => {
+  const evidence = JSON.parse(await readFile(
+    path.resolve("docs/verification/host-source-session.json"),
+    "utf8"
+  ));
+
+  assert.equal(evidence.schemaVersion, 1);
+  assert.match(evidence.sourceCommit, /^[a-f0-9]{40}$/u);
+  assert.match(evidence.skillSha256, /^[a-f0-9]{64}$/u);
+  assert.equal(evidence.secretsInRecord, false);
+  assert.equal(evidence.accountIdentifiersStored, false);
+
+  assert.deepEqual(evidence.hosts.zcode, {
+    status: "SOURCE_SKILL_SESSION_PASSED",
+    runtimeVersion: "0.16.9",
+    pluginInstalled: false,
+    sessionStarted: true,
+    hostModelCalls: 1,
+    businessRemoteCalls: 0,
+    writes: 0,
+    result: {
+      host: "zcode",
+      skill: "content-harness",
+      mode: "format",
+      stages: ["format", "review"],
+      missingInputs: ["content revision/reference"],
+      assumptions: [],
+      remoteCalls: []
+    }
+  });
+  assert.deepEqual(evidence.hosts.kimi, {
+    status: "BLOCKED_HOST_QUOTA",
+    runtimeVersion: "0.43.1",
+    pluginInstalled: false,
+    sessionStarted: true,
+    hostModelAttempts: 1,
+    httpStatus: 403,
+    modelResponseRecorded: false,
+    businessRemoteCalls: 0,
+    writes: 0
+  });
+  assert.deepEqual(evidence.hosts.codex, {
+    status: "MANIFEST_VALIDATED_ONLY",
+    runtimeVersion: "0.153.4",
+    pluginInstalled: false,
+    sessionStarted: false,
+    validators: ["plugin-creator", "zcode-runtime"],
+    businessRemoteCalls: 0,
+    writes: 0
+  });
+});
