@@ -54,7 +54,7 @@ test("CF-040 distribution runs from a non-ASCII clean home without Bun or native
         USERPROFILE: unicodeHome,
         PATH: nodeOnlyPath,
         Path: nodeOnlyPath,
-        CONTENT_FACTORY_HOST: "codex",
+        CONTENT_FACTORY_HOST_ID: "codex",
         CONTENT_FACTORY_HOST_CAPABILITIES: "filesystem"
       }
     }

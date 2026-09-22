@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+import { realpathSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
 import { runDoctor } from "../../core/src/doctor.ts";
 
 export async function runCli(
@@ -24,6 +27,9 @@ export async function runCli(
   return 0;
 }
 
-if (import.meta.url === new URL(`file://${process.argv[1]}`).href) {
+if (
+  process.argv[1] !== undefined
+  && realpathSync(fileURLToPath(import.meta.url)) === realpathSync(process.argv[1])
+) {
   process.exitCode = await runCli();
 }
