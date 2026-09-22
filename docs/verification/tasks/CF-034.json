@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "task": "CF-034",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Draft readback, explicit normalization, field conflict detection, unknown-write reconciliation, and controlled update planning",
+  "completed_at": "2026-09-22T15:30:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "f229c27e6efa91a1faed7a3d4ff3546e846fcc54",
+    "b679d8a654da9e91c03a2a4990dfc6864ebf0824"
+  ],
+  "red_evidence": [
+    {
+      "commit": "f229c27e6efa91a1faed7a3d4ff3546e846fcc54",
+      "conclusion": "failure",
+      "command": "node --test test/official-content-readback.test.mjs",
+      "reason": "four readback, conflict, reconciliation, and adapter behavior assertions failed against the explicit stubs"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "b679d8a654da9e91c03a2a4990dfc6864ebf0824",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/official-content-readback.test.mjs (5 passed, 0 failed)",
+        "npm test (189 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "only line endings are normalized before readback comparison",
+    "title, summary, body, and remote asset order remain substantive fields",
+    "one matching remote draft reconciles an unknown submission without creating another draft",
+    "zero or multiple matches remain unknown",
+    "a conflicting remote draft is persisted as conflict and requires a newly approved update",
+    "the readback adapter exposes lookup and read operations but no draft creation"
+  ],
+  "outputs": [
+    "adapters/wechat/readback.ts",
+    "packages/core/src/delivery/verify.ts",
+    "packages/core/src/delivery/update.ts",
+    "packages/core/src/delivery/submit.ts",
+    "packages/core/src/workspace/store.ts",
+    "test/official-content-readback.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "synthetic-readback-with-real-local-database",
+  "live_official_content_draft": "NOT_RUN",
+  "live_blocker": "No external draft was created or read back; remote normalization and edit behavior remain unverified.",
+  "dependency_status": {
+    "CF-033": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
