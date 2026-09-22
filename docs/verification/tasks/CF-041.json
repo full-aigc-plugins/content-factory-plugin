@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "task": "CF-041",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Codex, ZCode, and Kimi manifests, shared CLI startup contract, packaged-manifest integrity, and explicit live-run evidence boundaries",
+  "completed_at": "2026-09-22T07:17:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "af85550",
+    "77f04ee",
+    "2871433"
+  ],
+  "red_evidence": [
+    {
+      "commit": "af85550",
+      "conclusion": "failure",
+      "command": "node --test tests/e2e/host-contract.test.ts",
+      "reason": "the three host manifests and live-run index did not exist"
+    },
+    {
+      "conclusion": "failure",
+      "command": "npm test",
+      "reason": "two test files concurrently rebuilt dist and exposed a release-directory race"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "2871433",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test tests/e2e/host-contract.test.ts (4 passed, 0 failed)",
+        "npm test (229 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run audit:release"
+      ]
+    }
+  ],
+  "assertions": [
+    "Codex, ZCode, and Kimi manifests share content-factory version 0.1.0 and resolve the real managed skills directory",
+    "each declared host starts the shared CLI contract and performs zero paid calls",
+    "filesystem, browser, image, credential, search, and MCP capabilities are derived only from explicit declarations",
+    "the release build preserves each manifest byte-for-byte",
+    "manifest presence never advances a host to installed, contract-verified, or live-verified",
+    "every unexecuted host flow remains NOT_RUN with no remote evidence references"
+  ],
+  "outputs": [
+    ".codex-plugin/plugin.json",
+    ".zcode-plugin/plugin.json",
+    "kimi.plugin.json",
+    "tests/e2e/host-contract.test.ts",
+    "docs/verification/host-matrix.md",
+    "docs/verification/live-run-index.json"
+  ],
+  "review": {
+    "kind": "primary-agent manifest, package, and evidence-boundary review",
+    "result": "PASS_OFFLINE_ONLY",
+    "findings": []
+  },
+  "live_status": {
+    "codex": "NOT_RUN",
+    "zcode": "NOT_RUN",
+    "kimi": "NOT_RUN",
+    "external_detector": "NOT_RUN",
+    "content_platform_draft_readback": "NOT_RUN",
+    "image_capability": "NOT_RUN"
+  },
+  "blocker": "The user authorized skipping live external validation; no authorized clean-host sessions or external test accounts were supplied. CF-030, CF-034, and CF-039 also remain PARTIAL_OFFLINE.",
+  "secrets_in_record": false
+}
