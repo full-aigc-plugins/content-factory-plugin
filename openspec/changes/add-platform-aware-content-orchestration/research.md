@@ -2,9 +2,9 @@
 
 Checked: 2026-09-22. This register distinguishes observations from integration decisions. Catalog descriptions are not executed capability evidence. Source documents can change; release intake must pin the actual reviewed package.
 
-## 1. Repository baseline
+## 1. Initial repository baseline (historical)
 
-Target: full-aigc-plugins/content-factory-plugin, main commit `2fe35bcd499f7befcdb82804ea1504c2931671ab`, tree `99faadb20bc3f812610f1033a25f9b34393a9a76` at inspection. It contains the pending V1 OpenSpec and an initial README, not the earlier locally generated full documentation bundle or runtime. This change preserves existing files and does not imply those other files were uploaded.
+At the initial inspection, target commit `2fe35bcd499f7befcdb82804ea1504c2931671ab` (tree `99faadb20bc3f812610f1033a25f9b34393a9a76`) contained the pending V1 OpenSpec and an initial README but no runtime. This paragraph is a historical input to the platform-aware proposal; current implementation status comes from `docs/verification/tasks/CF-001.json` through `CF-058.json`, not from that old tree.
 
 ## 2. Historical Content Ops
 
@@ -53,4 +53,4 @@ Observed Git blob hashes: S2 `5857dbc76cb7bec4098542461308e1f02517f25c`; S3 `b3c
 
 Retrieve exact owner/slug, files, license, version and dependencies; inspect side effects and transitive calls; run isolated contracts; publish an approved immutable snapshot if needed; synchronize only the allowlist; verify installed effective bytes; test actual host/channel/account paths. Do not replace this sequence with market score sorting.
 
-Official OpenSpec CLI is not installed in the current environment. Document structure checks are possible, but official CLI validation, vendor execution, private-account access and live publication are NOT_RUN for this change.
+OpenSpec 1.8.0 is installed and all three related changes pass strict validation. Selected Vendor sources have immutable offline admission and integrity evidence; remaining catalog candidates are not admitted by ranking alone. Private-account access, live AI content detection, real host/channel sessions and live publication remain `NOT_RUN`.

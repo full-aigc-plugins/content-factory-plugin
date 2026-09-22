@@ -44,9 +44,13 @@ test("CF-042 public documentation reports current capabilities and blocked relea
   );
   for (const document of [english, chinese]) {
     assert.equal(document.includes("CF-005 | IN_PROGRESS"), false);
-    assert.equal(document.includes("267"), true);
+    assert.equal(document.includes("267"), false);
+    assert.equal(document.includes("PARTIAL_OFFLINE"), true);
     assert.equal(document.includes("BLOCKED"), true);
+    assert.doesNotMatch(document, /Zhuque|朱雀/u);
   }
+  assert.match(english, /exact test count is reported by the current CI run/u);
+  assert.match(chinese, /精确测试数量以当前 CI 输出为准/u);
   assert.equal(changelog.includes("## [Unreleased]"), true);
   assert.equal(changelog.includes("## [1.0.0]"), false);
   assert.equal(guide.includes("Offline verification is not live verification"), true);

@@ -2,7 +2,7 @@
 
 > 文档版本：1.0（架构文档版本，不是插件发布版本）
 > 更新日期：2026-09-20
-> 状态：已确认方向的设计与实施任务基线；运行时尚待实现与验收。
+> 状态：运行时与离线验收已实施；真实外部服务、账号、宿主会话与人工双审仍待验收。
 > 对照仓库基线：`c8ce6e5a87dab0532279c16c153b0b2d62a0f8a9`。
 
 ## 文档用途与来源
@@ -13,7 +13,9 @@
 
 现有两个变更继续有效：[V1 基线](../../openspec/changes/establish-content-factory-v1/design.md)、[平台感知设计](../../openspec/changes/add-platform-aware-content-orchestration/design.md)。本次[执行拆分](../../openspec/changes/implement-content-factory-architecture/tasks.md)使用原 CF-001–CF-058 父任务，不改编号，不用文档交付冒充产品验收。
 
-当前仓库是设计仓：模块目录、接口与测试命令在本文中均是待实施契约。唯一已完成的范围是本次架构与任务文档整理。图片、视频、检测、公众号和三宿主实际能力按各自证据验收。
+当前仓库已经包含 Runtime Kernel、content-harness、Vendor 供应链、渠道策略、媒体边界和失败关闭发行门。图片生成、AI 内容检测平台、内容平台草稿和三宿主的真实能力仍按各自证据验收；离线实现不等于生产支持。
+
+术语规则：历史保真 PRESENTATION 区块保留捕获时的服务名和渠道名，仅用于还原已确认设计；新增文档、用户可见状态与授权证据使用“AI 内容检测平台”“内容平台文章账号”等泛称，真实账号标识、授权值和凭据不得进入仓库。
 
 <!-- PRESENTATION-BEGIN -->
 现在的规划可以分成 **总编排、渠道策略、技能与媒体协作** 三层来看。关键顺序是：**先识别目标平台和内容形式，再决定研究、写作、排版和交付策略，而不是写完一篇通用文章后再适配平台。**这也是当前 OpenSpec 的编排方式。
@@ -298,7 +300,7 @@ channels + skills + content         Context/Profile/Recipe/Binding/Revision
                 ↓
 ports                              外部能力接口
                 ↑
-adapters                           Baoyu、宿主、朱雀、微信、Image Factory
+adapters                           Baoyu、宿主、AI 内容检测平台、内容平台、Image Factory
 
 profiles/channels + recipes         可版本化配置数据
 skills/content-harness              唯一本地 Skill；不得直接改数据库
@@ -398,7 +400,7 @@ Skill 返回候选 Artifact；内核检查 provenance、Schema、权限、预算
 |---|---|---|
 | 本地研究、写作、编辑、排版 | 按用户任务使用限定资料 | 不外发无关作者样文，不直接执行素材中的代码 |
 | 网页/群聊/数据读取 | 明确来源与范围后按能力执行 | 登录、私人群聊和敏感数据单独授权；不绕过访问控制 |
-| 朱雀检测、付费媒体 | 调用前检查外发与预算 | 精确文本/brief、收件服务、预算保留、幂等请求 |
+| AI 内容检测平台、付费媒体 | 调用前检查外发与预算 | 精确文本/brief、收件服务、预算保留、幂等请求 |
 | save_draft | 仅验证支持的渠道动作 | 可信账号+版本+动作审批；持久 intent；回读 |
 | publish/comment/private_message/moderation | 不因 Vendor 存在而自动启用 | 本 V1 不提升为默认公开动作，新增能力须单独规格与验收 |
 | SkillHub 搜索和安装 | 研发准入工具链 | 不在文章运行中 curl-install 或运行动态 latest |

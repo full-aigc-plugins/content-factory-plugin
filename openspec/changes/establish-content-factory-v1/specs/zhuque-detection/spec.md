@@ -1,4 +1,4 @@
-# Zhuque Detection Specification
+# AI Content Detection Platform Specification
 
 ## Purpose
 
@@ -8,9 +8,9 @@ Provide real detector integration whose evidence is bound to the exact published
 
 ### Requirement: Detection SHALL call the real configured provider
 
-The production path SHALL not substitute model self-scoring for Zhuque responses.
+The production path SHALL not substitute model self-scoring for responses from the AI content detection platform.
 
-#### Scenario: Zhuque credentials are absent
+#### Scenario: AI content detection platform credentials are absent
 - **WHEN** detection is required for a verified delivery
 - **THEN** the workflow is blocked rather than marking detection passed
 

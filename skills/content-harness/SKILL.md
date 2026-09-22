@@ -42,7 +42,7 @@ The harness may choose methods and request stages, but the Runtime Kernel owns:
 - immutable revisions and conflicts;
 - claims and fact guards;
 - budgets and credentials;
-- Zhuque validity;
+- AI content detection platform validity;
 - trusted approval;
 - delivery intent, recovery and readback verification.
 

@@ -1,6 +1,6 @@
 # platforms 详细任务卡
 
-全部 NOT_STARTED。子项状态在 [tasks.md](../tasks.md)；不重复创建父任务。先读完整架构和原变更，以下测试命令均为实施入口，不是已执行结果。
+子项状态以 [tasks.md](../tasks.md) 与逐任务证据为准；不重复创建父任务。当前本文件覆盖任务中 13 项为 `COMPLETE`，CF-053、CF-056、CF-057 为 `PARTIAL_OFFLINE`。以下命令是可复现验证入口，是否执行及结果以对应回执为准。
 
 <a id="cf-043"></a>
 ## CF-043 — Candidate provenance and intake snapshots
@@ -337,4 +337,3 @@
 **验证命令：** `npm run test -- tests/channels/channel-release.test.ts`。
 
 **证据：** `docs/verification/tasks/CF-058.json`，需原要求/失败断言、实际环境、commit/package、fixture/live 与 review 信息。
-

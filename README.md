@@ -11,11 +11,11 @@ Content Factory has a working offline runtime and a fail-closed release gate. It
 | Task | Status | Evidence |
 |---|---|---|
 | CF-001–002, 005–024, 037–038, 040, 043–052, 054–055, 058 | COMPLETE | Supply chain, Runtime Kernel, harness, import/edit/render/export, routing, recovery, security, and fail-closed release gate |
+| CF-003–004 | PARTIAL_OFFLINE | Skip boundaries are recorded; authorized AI content detection and content-platform draft probes remain `NOT_RUN` |
 | CF-025–036, 039, 041, 053, 056–057 | PARTIAL_OFFLINE | Offline contracts pass; real services, accounts, host sessions, or human review remain `NOT_RUN` |
-| CF-003–004 | NOT_RUN | Authorized AI content detection and content-platform draft contracts require external accounts |
 | v1.0.0 release | **BLOCKED** | No release candidate is selected; 0/117 live host × recipe combinations are verified |
 
-The current baseline has 267 automated tests, 16 channel profiles, 39 explicit channel-format recipes, three host manifests, immutable vendor skills, and one plugin-local `content-harness`. Offline verification is not live verification.
+The current baseline has a cross-platform automated regression suite, 16 channel profiles, 39 explicit channel-format recipes, three host manifests, immutable vendor skills, and one plugin-local `content-harness`. The exact test count is reported by the current CI run rather than frozen in documentation. Offline verification is not live verification.
 
 ## Verify the current baseline
 

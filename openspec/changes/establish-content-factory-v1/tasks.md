@@ -1,6 +1,6 @@
 # Content Factory V1 Tasks
 
-All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are preserved from the approved V1 plan.
+A task remains unchecked until qualifying implementation evidence exists. The checkboxes below reflect the current per-task receipts, and task IDs are preserved from the approved V1 plan.
 
 ## W0 — Supply chain and external contracts
 
@@ -15,7 +15,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Establish CLI/MCP domain entry points.
   - Detect host, search, browser, credential, and external-plugin capabilities without paid calls.
 
-- [ ] **CF-003 Zhuque live contract probe**
+- [ ] **CF-003 AI content detection platform live contract probe**
   - Validate whole-text/segment responses, Unicode behavior, auth, quota, and raw evidence using an authorized account.
 
 - [ ] **CF-004 WeChat draft permission/readback probe**
@@ -102,7 +102,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
 
 ## W4 — Real detection and validity
 
-- [ ] **CF-025 Zhuque adapter and raw evidence storage**
+- [ ] **CF-025 AI content detection platform adapter and raw evidence storage**
 - [ ] **CF-026 Ratio interpretation and Unicode segment mapping**
 - [ ] **CF-027 Detection policy and human exception semantics**
 - [ ] **CF-028 Detection invalidation, request deduplication, and freshness**

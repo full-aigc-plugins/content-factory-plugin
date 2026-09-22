@@ -100,7 +100,7 @@ A batch is not one success bit: report working_exported, blocked, submitted_unve
 
 ## 8. Detection, delivery, and feedback
 
-Inherit the baseline real-Zhuque requirement for verified WeChat drafts. Other channels declare their own review/detection policy; unsupported detector language or input form must remain not_evaluable, not passed. Detection scope includes the actual final text submitted under the declared scope, not generated pixels or future subtitles that were never checked. No universal AI-score threshold is introduced.
+Inherit the baseline real AI content detection platform requirement for verified content-platform article drafts. Other channels declare their own review/detection policy; unsupported detector language or input form must remain not_evaluable, not passed. Detection scope includes the actual final text submitted under the declared scope, not generated pixels or future subtitles that were never checked. No universal AI-score threshold is introduced.
 
 Split prepare, save_draft, publish, comment, private_message, and moderation permissions. This V1 does not promote X/Weibo or other public publication simply because vendor scripts can click Publish. Unsupported direct delivery returns a working package; login/CAPTCHA stays user-controlled. Readback still determines verified state.
 

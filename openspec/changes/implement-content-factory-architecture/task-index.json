@@ -4,7 +4,7 @@
   "base_commit": "c8ce6e5a87dab0532279c16c153b0b2d62a0f8a9",
   "parent_count": 58,
   "child_count": 232,
-  "status": "IN_PROGRESS",
+  "status": "PARTIAL_OFFLINE",
   "child_suffixes": [
     1,
     2,
@@ -94,7 +94,8 @@
         "CF-002"
       ],
       "detail": "task-details/foundation.md#cf-003",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-003.json"
     },
     {
       "id": "CF-004",
@@ -102,7 +103,8 @@
         "CF-002"
       ],
       "detail": "task-details/foundation.md#cf-004",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-004.json"
     },
     {
       "id": "CF-005",
@@ -111,7 +113,7 @@
         "CF-002"
       ],
       "detail": "task-details/foundation.md#cf-005",
-      "status": "IN_PROGRESS",
+      "status": "COMPLETE",
       "evidence": "docs/verification/tasks/CF-005.json"
     },
     {
@@ -120,7 +122,8 @@
         "CF-002"
       ],
       "detail": "task-details/foundation.md#cf-006",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-006.json"
     },
     {
       "id": "CF-007",
@@ -128,7 +131,8 @@
         "CF-002"
       ],
       "detail": "task-details/foundation.md#cf-007",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-007.json"
     },
     {
       "id": "CF-008",
@@ -136,7 +140,8 @@
         "CF-007"
       ],
       "detail": "task-details/foundation.md#cf-008",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-008.json"
     },
     {
       "id": "CF-009",
@@ -145,7 +150,8 @@
         "CF-008"
       ],
       "detail": "task-details/foundation.md#cf-009",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-009.json"
     },
     {
       "id": "CF-010",
@@ -153,7 +159,8 @@
         "CF-008"
       ],
       "detail": "task-details/foundation.md#cf-010",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-010.json"
     },
     {
       "id": "CF-011",
@@ -162,7 +169,8 @@
         "CF-008"
       ],
       "detail": "task-details/foundation.md#cf-011",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-011.json"
     },
     {
       "id": "CF-012",
@@ -171,7 +179,8 @@
         "CF-011"
       ],
       "detail": "task-details/foundation.md#cf-012",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-012.json"
     },
     {
       "id": "CF-013",
@@ -179,7 +188,8 @@
         "CF-012"
       ],
       "detail": "task-details/foundation.md#cf-013",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-013.json"
     },
     {
       "id": "CF-014",
@@ -188,7 +198,8 @@
         "CF-013"
       ],
       "detail": "task-details/foundation.md#cf-014",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-014.json"
     },
     {
       "id": "CF-015",
@@ -198,7 +209,8 @@
         "CF-013"
       ],
       "detail": "task-details/foundation.md#cf-015",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-015.json"
     },
     {
       "id": "CF-016",
@@ -207,7 +219,8 @@
         "CF-015"
       ],
       "detail": "task-details/foundation.md#cf-016",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-016.json"
     },
     {
       "id": "CF-017",
@@ -217,7 +230,8 @@
         "CF-016"
       ],
       "detail": "task-details/foundation.md#cf-017",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-017.json"
     },
     {
       "id": "CF-018",
@@ -226,7 +240,8 @@
         "CF-017"
       ],
       "detail": "task-details/foundation.md#cf-018",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-018.json"
     },
     {
       "id": "CF-019",
@@ -236,7 +251,8 @@
         "CF-018"
       ],
       "detail": "task-details/foundation.md#cf-019",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-019.json"
     },
     {
       "id": "CF-020",
@@ -245,7 +261,8 @@
         "CF-017"
       ],
       "detail": "task-details/production-delivery.md#cf-020",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-020.json"
     },
     {
       "id": "CF-021",
@@ -255,7 +272,8 @@
         "CF-020"
       ],
       "detail": "task-details/production-delivery.md#cf-021",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-021.json"
     },
     {
       "id": "CF-022",
@@ -266,7 +284,8 @@
         "CF-020"
       ],
       "detail": "task-details/production-delivery.md#cf-022",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-022.json"
     },
     {
       "id": "CF-023",
@@ -274,7 +293,8 @@
         "CF-022"
       ],
       "detail": "task-details/production-delivery.md#cf-023",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-023.json"
     },
     {
       "id": "CF-024",
@@ -285,7 +305,8 @@
         "CF-023"
       ],
       "detail": "task-details/production-delivery.md#cf-024",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-024.json"
     },
     {
       "id": "CF-025",
@@ -296,7 +317,8 @@
         "CF-022"
       ],
       "detail": "task-details/production-delivery.md#cf-025",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-025.json"
     },
     {
       "id": "CF-026",
@@ -304,7 +326,8 @@
         "CF-025"
       ],
       "detail": "task-details/production-delivery.md#cf-026",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-026.json"
     },
     {
       "id": "CF-027",
@@ -314,7 +337,8 @@
         "CF-017"
       ],
       "detail": "task-details/production-delivery.md#cf-027",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-027.json"
     },
     {
       "id": "CF-028",
@@ -325,7 +349,8 @@
         "CF-027"
       ],
       "detail": "task-details/production-delivery.md#cf-028",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-028.json"
     },
     {
       "id": "CF-029",
@@ -334,7 +359,8 @@
         "CF-012"
       ],
       "detail": "task-details/production-delivery.md#cf-029",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-029.json"
     },
     {
       "id": "CF-030",
@@ -346,7 +372,8 @@
         "CF-029"
       ],
       "detail": "task-details/production-delivery.md#cf-030",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-030.json"
     },
     {
       "id": "CF-031",
@@ -356,7 +383,8 @@
         "CF-012"
       ],
       "detail": "task-details/production-delivery.md#cf-031",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-031.json"
     },
     {
       "id": "CF-032",
@@ -368,7 +396,8 @@
         "CF-031"
       ],
       "detail": "task-details/production-delivery.md#cf-032",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-032.json"
     },
     {
       "id": "CF-033",
@@ -378,7 +407,8 @@
         "CF-032"
       ],
       "detail": "task-details/production-delivery.md#cf-033",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-033.json"
     },
     {
       "id": "CF-034",
@@ -386,7 +416,8 @@
         "CF-033"
       ],
       "detail": "task-details/production-delivery.md#cf-034",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-034.json"
     },
     {
       "id": "CF-035",
@@ -396,7 +427,8 @@
         "CF-034"
       ],
       "detail": "task-details/production-delivery.md#cf-035",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-035.json"
     },
     {
       "id": "CF-036",
@@ -407,7 +439,8 @@
         "CF-034"
       ],
       "detail": "task-details/production-delivery.md#cf-036",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-036.json"
     },
     {
       "id": "CF-037",
@@ -419,7 +452,8 @@
         "CF-036"
       ],
       "detail": "task-details/production-delivery.md#cf-037",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-037.json"
     },
     {
       "id": "CF-038",
@@ -431,7 +465,8 @@
         "CF-034"
       ],
       "detail": "task-details/production-delivery.md#cf-038",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-038.json"
     },
     {
       "id": "CF-039",
@@ -443,7 +478,8 @@
         "CF-036"
       ],
       "detail": "task-details/production-delivery.md#cf-039",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-039.json"
     },
     {
       "id": "CF-040",
@@ -452,7 +488,8 @@
         "CF-038"
       ],
       "detail": "task-details/production-delivery.md#cf-040",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-040.json"
     },
     {
       "id": "CF-041",
@@ -464,7 +501,8 @@
         "CF-040"
       ],
       "detail": "task-details/production-delivery.md#cf-041",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-041.json"
     },
     {
       "id": "CF-042",
@@ -479,7 +517,8 @@
         "CF-058"
       ],
       "detail": "task-details/production-delivery.md#cf-042",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-042.json"
     },
     {
       "id": "CF-043",
@@ -487,7 +526,8 @@
         "CF-001"
       ],
       "detail": "task-details/platforms.md#cf-043",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-043.json"
     },
     {
       "id": "CF-044",
@@ -495,7 +535,8 @@
         "CF-002"
       ],
       "detail": "task-details/platforms.md#cf-044",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-044.json"
     },
     {
       "id": "CF-045",
@@ -503,7 +544,8 @@
         "CF-044"
       ],
       "detail": "task-details/platforms.md#cf-045",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-045.json"
     },
     {
       "id": "CF-046",
@@ -513,7 +555,8 @@
         "CF-045"
       ],
       "detail": "task-details/platforms.md#cf-046",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-046.json"
     },
     {
       "id": "CF-047",
@@ -524,7 +567,8 @@
         "CF-043"
       ],
       "detail": "task-details/platforms.md#cf-047",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-047.json"
     },
     {
       "id": "CF-048",
@@ -534,7 +578,8 @@
         "CF-047"
       ],
       "detail": "task-details/platforms.md#cf-048",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-048.json"
     },
     {
       "id": "CF-049",
@@ -544,7 +589,8 @@
         "CF-048"
       ],
       "detail": "task-details/platforms.md#cf-049",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-049.json"
     },
     {
       "id": "CF-050",
@@ -555,7 +601,8 @@
         "CF-049"
       ],
       "detail": "task-details/platforms.md#cf-050",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-050.json"
     },
     {
       "id": "CF-051",
@@ -564,7 +611,8 @@
         "CF-050"
       ],
       "detail": "task-details/platforms.md#cf-051",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-051.json"
     },
     {
       "id": "CF-052",
@@ -576,7 +624,8 @@
         "CF-051"
       ],
       "detail": "task-details/platforms.md#cf-052",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-052.json"
     },
     {
       "id": "CF-053",
@@ -587,7 +636,8 @@
         "CF-052"
       ],
       "detail": "task-details/platforms.md#cf-053",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-053.json"
     },
     {
       "id": "CF-054",
@@ -597,7 +647,8 @@
         "CF-052"
       ],
       "detail": "task-details/platforms.md#cf-054",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-054.json"
     },
     {
       "id": "CF-055",
@@ -607,7 +658,8 @@
         "CF-049"
       ],
       "detail": "task-details/platforms.md#cf-055",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-055.json"
     },
     {
       "id": "CF-056",
@@ -622,7 +674,8 @@
         "CF-055"
       ],
       "detail": "task-details/platforms.md#cf-056",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-056.json"
     },
     {
       "id": "CF-057",
@@ -631,7 +684,8 @@
         "CF-056"
       ],
       "detail": "task-details/platforms.md#cf-057",
-      "status": "NOT_STARTED"
+      "status": "PARTIAL_OFFLINE",
+      "evidence": "docs/verification/tasks/CF-057.json"
     },
     {
       "id": "CF-058",
@@ -642,7 +696,13 @@
         "CF-057"
       ],
       "detail": "task-details/platforms.md#cf-058",
-      "status": "NOT_STARTED"
+      "status": "COMPLETE",
+      "evidence": "docs/verification/tasks/CF-058.json"
     }
-  ]
+  ],
+  "status_source": "docs/verification/tasks/CF-001.json through CF-058.json",
+  "evidence_summary": {
+    "COMPLETE": 38,
+    "PARTIAL_OFFLINE": 20
+  }
 }

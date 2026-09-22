@@ -44,7 +44,7 @@ One representative default format per profile is insufficient to claim all alter
 
 ## 4. Task execution and evidence
 
-Each task in [tasks](tasks.md) names responsibility paths, dependencies and one exact future test entry. Establish its fixtures and expected failures first, implement the behavior, run the same entry plus adjacent regression, and save a task receipt with revision, runtime, command, exit status, fixture/live distinction and artifact hashes. Source/credential unavailability is blocked or NOT_RUN, not a passing test.
+Each task in [tasks](tasks.md) names responsibility paths, dependencies and one exact verification entry. Establish its fixtures and expected failures first, implement the behavior, run the same entry plus adjacent regression, and save a task receipt with revision, runtime, command, exit status, fixture/live distinction and artifact hashes. Source/credential unavailability is blocked or NOT_RUN, not a passing test.
 
 Test commands use `npm run test -- <entry>` only after CF-002 establishes that script. These are future implementation commands, not commands currently supported by the documentation-only repository. Do not claim a missing-command failure as a business-test RED.
 

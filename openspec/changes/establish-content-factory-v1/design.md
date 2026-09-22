@@ -30,7 +30,7 @@ Runtime Kernel                          <- deterministic authority
     +------------------------+
     |                        |
     v                        v
-Zhuque / channel APIs         image-factory-plugin
+AI detector / channel APIs    image-factory-plugin
                               (all generated visual production)
 ```
 
@@ -200,7 +200,7 @@ All content revisions are immutable. Head updates use expected-revision/CAS sema
 
 ## 9. Detection
 
-Zhuque remains a real external detector, not a self-evaluation prompt.
+The AI content detection platform remains a real external detector, not a self-evaluation prompt.
 
 The exact submitted text bytes, normalized text hash, provider configuration, timestamp, raw response, normalized interpretation, policy verdict, and human decision SHALL remain separately recorded.
 

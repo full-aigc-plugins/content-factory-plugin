@@ -1,6 +1,6 @@
 # Platform integration implementation tasks
 
-Status: all tasks NOT_STARTED. This file adds CF-043–CF-058 and does not replace CF-001–CF-042. All tests and product paths below are implementation contracts, not claims of existing code. Read [plan](plan.md), [design](design.md), [candidate catalog](references/skill-integration-catalog.md) and [acceptance](acceptance.md) first.
+Status: 13 tasks are `COMPLETE`; CF-053, CF-056, and CF-057 are `PARTIAL_OFFLINE`. This file adds CF-043–CF-058 and does not replace CF-001–CF-042. Checked boxes indicate completed implementation evidence; unchecked boxes retain missing live or human evidence. Read [plan](plan.md), [design](design.md), [candidate catalog](references/skill-integration-catalog.md) and [acceptance](acceptance.md) first.
 
 Each task requires fixtures -> targeted assertions -> implementation -> regression -> evidence -> review. Required receipts identify source/effective hashes, task and code revision, exact command/environment, actual output, and fixture vs live status. No public posting or paid call is authorized merely by this task list.
 
@@ -15,7 +15,7 @@ Each task requires fixtures -> targeted assertions -> implementation -> regressi
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-043.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/candidate-intake.test.ts
@@ -32,7 +32,7 @@ npm run test -- tests/channels/candidate-intake.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-044.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/context.test.ts
@@ -49,7 +49,7 @@ npm run test -- tests/channels/context.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-045.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/profiles.test.ts
@@ -66,7 +66,7 @@ npm run test -- tests/channels/profiles.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-046.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/harness-routing.test.ts
@@ -83,7 +83,7 @@ npm run test -- tests/channels/harness-routing.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-047.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/vendor-methods.test.ts
@@ -100,7 +100,7 @@ npm run test -- tests/channels/vendor-methods.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-048.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/channel-candidates.test.ts
@@ -117,7 +117,7 @@ npm run test -- tests/channels/channel-candidates.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-049.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/skill-routing.test.ts
@@ -134,7 +134,7 @@ npm run test -- tests/channels/skill-routing.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-050.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/native-writing.test.ts
@@ -151,7 +151,7 @@ npm run test -- tests/channels/native-writing.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-051.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/media-boundary.test.ts
@@ -168,7 +168,7 @@ npm run test -- tests/channels/media-boundary.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-052.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/variant-isolation.test.ts
@@ -185,7 +185,7 @@ npm run test -- tests/channels/variant-isolation.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-053.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/delivery-capabilities.test.ts
@@ -202,7 +202,7 @@ npm run test -- tests/channels/delivery-capabilities.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-054.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/feedback.test.ts
@@ -219,7 +219,7 @@ npm run test -- tests/channels/feedback.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-055.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/constraints.test.ts
@@ -236,7 +236,7 @@ npm run test -- tests/channels/constraints.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-056.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/channel-acceptance.test.ts
@@ -253,7 +253,7 @@ npm run test -- tests/channels/channel-acceptance.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-057.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/host-channel-contract.test.ts
@@ -270,7 +270,7 @@ npm run test -- tests/channels/host-channel-contract.test.ts
 **Acceptance:** listed case assertions pass; unsupported capabilities and missing external evidence stay blocked/NOT_RUN; no bypass of baseline consent, fact or revision rules.
 **Evidence:** `docs/verification/tasks/CF-058.json` with the targeted result and adjacent regression.
 
-Future test entry, after CF-002 establishes the test script:
+Verification entry:
 
 ```bash
 npm run test -- tests/channels/channel-release.test.ts

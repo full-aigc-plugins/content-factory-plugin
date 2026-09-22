@@ -45,7 +45,7 @@
 **证据：** `docs/verification/tasks/CF-002.json`，需原要求/失败断言、实际环境、commit/package、fixture/live 与 review 信息。
 
 <a id="cf-003"></a>
-## CF-003 — 朱雀官方接口真实契约探测
+## CF-003 — AI 内容检测平台真实契约探测
 
 **依赖：** CF-002。
 
@@ -400,4 +400,3 @@
 **验证命令：** `npm run test -- tests/e2e/repurpose.test.ts`。
 
 **证据：** `docs/verification/tasks/CF-019.json`，需原要求/失败断言、实际环境、commit/package、fixture/live 与 review 信息。
-

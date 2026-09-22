@@ -1,6 +1,6 @@
 # production-delivery 详细任务卡
 
-全部 NOT_STARTED。子项状态在 [tasks.md](../tasks.md)；不重复创建父任务。先读完整架构和原变更，以下测试命令均为实施入口，不是已执行结果。
+子项状态以 [tasks.md](../tasks.md) 与逐任务证据为准；不重复创建父任务。离线实现已按回执推进，真实服务、账号、宿主会话和人工双审仍保持 `PARTIAL_OFFLINE/NOT_RUN`。以下命令是可复现验证入口，是否执行及结果以对应回执为准。
 
 <a id="cf-020"></a>
 ## CF-020 — 配图计划、现有图片导入与资产权属
@@ -108,7 +108,7 @@
 **证据：** `docs/verification/tasks/CF-024.json`，需原要求/失败断言、实际环境、commit/package、fixture/live 与 review 信息。
 
 <a id="cf-025"></a>
-## CF-025 — 朱雀 HTTP 适配与原始证据存储
+## CF-025 — AI 内容检测平台 HTTP 适配与原始证据存储
 
 **依赖：** CF-003、CF-007、CF-012、CF-022。
 
@@ -484,4 +484,3 @@
 **验证命令：** `npm run test -- tests/contract/release-gate.test.ts`。
 
 **证据：** `docs/verification/tasks/CF-042.json`，需原要求/失败断言、实际环境、commit/package、fixture/live 与 review 信息。
-

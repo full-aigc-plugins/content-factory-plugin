@@ -9,7 +9,7 @@
 
 ## 状态与编号
 
-58 个父任务沿用 CF-001–CF-058；每个拆成四个子项，共 232 个。当前 CF-001、CF-002 已完成；CF-005 已完成并有 RED→GREEN CI 与供应链校验证据；其余保持未开始。本文件是执行明细，不增加第二套独立产品任务。父任务只能在其子项、原验收和所需真实证据都完成后汇总；不得仅凭子项数更新父任务。原 58 项文本保留不覆盖，受影响实现职责以已确认的 Vendor/单 Harness 决策为准。
+58 个父任务沿用 CF-001–CF-058；每个拆成四个子项，共 232 个。当前 38 个父任务为 `COMPLETE`，20 个父任务为 `PARTIAL_OFFLINE`；状态以逐任务回执为准并由自动化一致性测试校验。本文件是执行明细，不增加第二套独立产品任务。父任务只能在其子项、原验收和所需真实证据都完成后汇总；不得仅凭子项数更新父状态。原 58 项文本保留，受影响实现职责以已确认的 Vendor/单 Harness 决策为准。
 
 ## 全局约束
 
@@ -61,7 +61,7 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 - [x] 2.3 [CF-002.3] 目标测试、typecheck、lint、直接依赖回归。
 - [x] 2.4 [CF-002.4] 原要求与证据复核、独立 review/commit。
 
-## 3. CF-003 — 朱雀官方接口真实契约探测
+## 3. CF-003 — AI 内容检测平台真实契约探测
 
 [详细任务卡](task-details/foundation.md#cf-003)
 
@@ -261,7 +261,7 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 - [x] 24.3 [CF-024.3] 目标测试、typecheck、lint、直接依赖回归。
 - [x] 24.4 [CF-024.4] 原要求与证据复核、独立 review/commit。
 
-## 25. CF-025 — 朱雀 HTTP 适配与原始证据存储
+## 25. CF-025 — AI 内容检测平台 HTTP 适配与原始证据存储
 
 [详细任务卡](task-details/production-delivery.md#cf-025)
 

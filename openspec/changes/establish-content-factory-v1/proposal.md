@@ -2,7 +2,7 @@
 
 ## Why
 
-Content Factory must ship as a usable content-production plugin rather than a prompt bundle. The previously approved V1 scope already covers source ingestion, research and writing, editorial refinement, deterministic formatting, real Zhuque detection, explicit approval, portable export, WeChat draft delivery, recovery, and release evidence.
+Content Factory must ship as a usable content-production plugin rather than a prompt bundle. The previously approved V1 scope already covers source ingestion, research and writing, editorial refinement, deterministic formatting, real AI content detection platform integration, explicit approval, portable export, content-platform article draft delivery, recovery, and release evidence.
 
 The implementation architecture is now refined to align with the existing Full AIGC plugin ecosystem:
 

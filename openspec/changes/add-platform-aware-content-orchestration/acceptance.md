@@ -1,6 +1,6 @@
 # Channel integration acceptance and traceability
 
-All results below are NOT_RUN product acceptance cases. This document does not claim that the router, vendor integrations or live channels have been executed.
+R01–R42 are mapped to executable offline assertions and the offline suite has run. Live host/channel/account dimensions remain `NOT_RUN`; this document does not promote fixtures, manifests, or offline contracts into live support.
 
 ## 1. Concrete cases
 
@@ -81,4 +81,4 @@ openspec status --change add-platform-aware-content-orchestration --json
 openspec validate add-platform-aware-content-orchestration --strict
 ```
 
-These commands have not run in the current environment. The old pending baseline may also need a format-only delta-header normalization before a whole-repository CLI check. Do not mark it passed based on the new change's local structure check.
+OpenSpec 1.8.0 has run both commands successfully for this change. The two related changes are validated separately; strict document validation does not prove live channel, account, host, or content-quality acceptance.
