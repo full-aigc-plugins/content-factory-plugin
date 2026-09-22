@@ -23,11 +23,14 @@ test("CF-042 keeps package and three host manifest versions consistent", async (
 
 test("CF-042 candidate manifest references every P0 task and remains blocked", async () => {
   const candidate = await readJson("docs/verification/release-candidate.json");
+  const liveIndex = await readJson("docs/verification/channel-live-index.json");
   assert.equal(candidate.targetVersion, "1.0.0");
   assert.equal(candidate.currentVersion, "1.0.0-rc.1");
   assert.equal(candidate.releaseStatus, "BLOCKED");
-  assert.equal(candidate.releaseCommit, null);
-  assert.equal(candidate.packageSha256, null);
+  assert.match(candidate.releaseCommit, /^[a-f0-9]{40}$/u);
+  assert.match(candidate.packageSha256, /^[a-f0-9]{64}$/u);
+  assert.equal(candidate.releaseCommit, liveIndex.releaseCandidate.commit);
+  assert.equal(candidate.packageSha256, liveIndex.releaseCandidate.packageSha256);
   assert.deepEqual(candidate.requiredTaskEvidence.map((item: { task: string }) => item.task), [
     "CF-001", "CF-030", "CF-035", "CF-037", "CF-038", "CF-039", "CF-040", "CF-041", "CF-057", "CF-058"
   ]);

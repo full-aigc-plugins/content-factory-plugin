@@ -3,8 +3,8 @@
   "targetVersion": "1.0.0",
   "currentVersion": "1.0.0-rc.1",
   "releaseStatus": "BLOCKED",
-  "releaseCommit": null,
-  "packageSha256": null,
+  "releaseCommit": "8ab9a1d11a0a89bbf4ca1050d13af5ce50122bf6",
+  "packageSha256": "bc5b8abe77b39d350c5d382e9aa059d0d793968b94b2268378c1de9b11591512",
   "requiredTaskEvidence": [
     { "task": "CF-001", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-001.json" },
     { "task": "CF-030", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-030.json" },
@@ -23,6 +23,6 @@
     "ai-content-detection-live-api-evidence-incomplete",
     "content-platform-draft-readback-not-run",
     "30-document-dual-human-review-not-run",
-    "immutable-release-candidate-not-selected"
+    "immutable-release-candidate-live-validation-incomplete"
   ]
 }

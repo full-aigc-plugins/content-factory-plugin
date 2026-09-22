@@ -13,7 +13,7 @@ Content Factory has a working offline runtime and a fail-closed release gate. It
 | CF-001–002, 005–024, 037–038, 040, 043–052, 054–055, 058 | COMPLETE | Supply chain, Runtime Kernel, harness, import/edit/render/export, routing, recovery, security, and fail-closed release gate |
 | CF-003–004 | PARTIAL_OFFLINE | One sanitized AI content detector website observation is recorded; the authenticated API contract and content-platform account probe remain `NOT_RUN` |
 | CF-025–036, 039, 041, 053, 056–057 | PARTIAL_OFFLINE | Offline contracts pass; real services, accounts, host sessions, or human review remain `NOT_RUN` |
-| v1.0.0 release | **BLOCKED** | `1.0.0-rc.1` is prepared but not yet selected as an immutable candidate; 0/117 actual-host recipe combinations are evaluated |
+| v1.0.0 release | **BLOCKED** | Immutable candidate `1.0.0-rc.1` is selected; 0/117 actual-host recipe combinations are evaluated |
 
 The current baseline has a cross-platform automated regression suite, 16 channel profiles, 39 explicit channel-format recipes, three host manifests, immutable vendor skills, and one plugin-local `content-harness`. The exact test count is reported by the current CI run rather than frozen in documentation. Offline verification is not live verification.
 

@@ -31,14 +31,13 @@
   "current_gate_result": {
     "verdict": "blocked",
     "package_version": "1.0.0-rc.1",
-    "evaluated_commit": "3d682e1ded5af9beeb7f435625d1a16ad2cbbc18",
+    "evaluated_commit": "8ab9a1d11a0a89bbf4ca1050d13af5ce50122bf6",
     "blockers": [
       "required-task-not-complete:CF-030",
       "required-task-not-complete:CF-035",
       "required-task-not-complete:CF-039",
       "required-task-not-complete:CF-041",
       "required-task-not-complete:CF-057",
-      "release-candidate-not-selected",
       "live-evidence-not-verified",
       "combination-evaluation-incomplete:0/117",
       "required-capability-coverage-incomplete:0/468",

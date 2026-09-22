@@ -3,10 +3,10 @@
   "status": "NOT_RUN",
   "recordedAt": "2026-09-22T07:53:00Z",
   "releaseCandidate": {
-    "selected": false,
+    "selected": true,
     "packageVersion": "1.0.0-rc.1",
-    "commit": null,
-    "packageSha256": null
+    "commit": "8ab9a1d11a0a89bbf4ca1050d13af5ce50122bf6",
+    "packageSha256": "bc5b8abe77b39d350c5d382e9aa059d0d793968b94b2268378c1de9b11591512"
   },
   "hosts": ["codex", "zcode", "kimi"],
   "recipes": [
@@ -69,5 +69,5 @@
   "verifiedRequiredCapabilityCount": 0,
   "failedRequiredCapabilityCount": 0,
   "notRunRequiredCapabilityCount": 468,
-  "reason": "Actual host sessions and external accounts were explicitly skipped; offline contracts are recorded separately and are not promoted to live evidence."
+  "reason": "Immutable candidate 1.0.0-rc.1 is selected. Actual installed-host sessions, required recipe capabilities and external account evidence have not yet been recorded; offline contracts are not promoted to live evidence."
 }

@@ -65,12 +65,10 @@ test("CF-057 separates every required live operation dimension", async () => {
 test("CF-057 keeps skipped actual hosts, channels, and accounts strictly NOT_RUN", async () => {
   const index = await readIndex();
   assert.equal(index.status, "NOT_RUN");
-  assert.deepEqual(index.releaseCandidate, {
-    selected: false,
-    packageVersion: "1.0.0-rc.1",
-    commit: null,
-    packageSha256: null
-  });
+  assert.equal(index.releaseCandidate.selected, true);
+  assert.equal(index.releaseCandidate.packageVersion, "1.0.0-rc.1");
+  assert.match(index.releaseCandidate.commit!, /^[a-f0-9]{40}$/u);
+  assert.match(index.releaseCandidate.packageSha256!, /^[a-f0-9]{64}$/u);
   assert.equal(index.evaluatedCombinationCount, 0);
   assert.equal(index.requiredCapabilityCount, 3 * 39 * 4);
   assert.equal(index.verifiedRequiredCapabilityCount, 0);
