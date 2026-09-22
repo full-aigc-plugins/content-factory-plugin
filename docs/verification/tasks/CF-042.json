@@ -36,7 +36,7 @@
     "the final release gate remains fail-closed"
   ],
   "current_gate_result": {
-    "evaluated_commit": "33ff3315bbea626fb5428a70e9f445b2b9165bc4",
+    "evaluated_commit": "28311701d357ba93d4987fa12173c78f7e986272",
     "verdict": "blocked",
     "blockers": [
       "required-task-not-complete:CF-030",
@@ -45,9 +45,9 @@
       "required-task-not-complete:CF-041",
       "required-task-not-complete:CF-057",
       "live-evidence-not-verified",
-      "combination-evaluation-incomplete:0/117",
-      "required-capability-coverage-incomplete:0/468",
-      "required-capability-not-run:468"
+      "combination-evaluation-incomplete:78/117",
+      "required-capability-coverage-incomplete:312/468",
+      "required-capability-not-run:156"
     ]
   },
   "outputs": [
@@ -63,6 +63,6 @@
     "result": "PASS_CANDIDATE_PREPARATION_RELEASE_BLOCKED",
     "findings": []
   },
-  "blocker": "Required live host, external account, detector, content-platform draft readback, and dual-human review evidence is still incomplete. CF-042 remains unchecked and no final product version or marketplace entry may be published.",
+  "blocker": "Codex and ZCode recipe acceptance is verified, but Kimi still lacks 39 recipe combinations and 156 required capabilities because of host quota. External detector evidence, content-platform draft readback, and dual-human review evidence are also incomplete. CF-042 remains unchecked and no final product version or marketplace entry may be published.",
   "secrets_in_record": false
 }

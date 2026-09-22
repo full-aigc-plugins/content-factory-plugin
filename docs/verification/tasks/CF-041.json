@@ -140,7 +140,8 @@
     "docs/verification/live-run-index.json",
     "docs/verification/host-runtime-preflight.json",
     "docs/verification/host-source-session.json",
-    "docs/verification/host-installed-session.json"
+    "docs/verification/host-installed-session.json",
+    "docs/verification/host-recipe-acceptance.json"
   ],
   "review": {
     "kind": "primary-agent manifest, package, and evidence-boundary review",
@@ -151,6 +152,8 @@
     "codex": "INSTALLED_SESSION_VERIFIED",
     "zcode": "INSTALLED_SESSION_VERIFIED",
     "kimi": "BLOCKED_HOST_QUOTA",
+    "host_recipe_combinations": "PARTIAL: 78/117",
+    "required_recipe_capabilities": "PARTIAL: 312/468",
     "source_skill_session": {
       "codex": "SOURCE_SKILL_SESSION_PASSED",
       "zcode": "SOURCE_SKILL_SESSION_PASSED",
@@ -160,6 +163,6 @@
     "content_platform_draft_readback": "NOT_RUN",
     "image_capability": "NOT_RUN"
   },
-  "blocker": "Codex and ZCode installed-candidate sessions passed. Kimi candidate installation is hash-verified but its model session is blocked by monthly quota. No external test accounts were supplied, and CF-030, CF-034, CF-039, and the 117 recipe combinations remain incomplete.",
+  "blocker": "Codex and ZCode installed-candidate sessions each verified all 39 recipes. Kimi candidate installation is hash-verified but its model session is blocked by monthly quota, leaving 39/117 combinations and 156/468 required capabilities NOT_RUN. No external test accounts were supplied, and CF-030, CF-035, and CF-039 remain incomplete.",
   "secrets_in_record": false
 }

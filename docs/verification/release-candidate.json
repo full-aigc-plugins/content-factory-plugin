@@ -21,7 +21,7 @@
   ],
   "marketUpdates": [],
   "blockers": [
-    "actual-host-channel-account-verification-not-run",
+    "actual-host-channel-account-verification-incomplete-78-of-117",
     "ai-content-detection-live-api-evidence-incomplete",
     "content-platform-draft-readback-not-run",
     "30-document-dual-human-review-not-run",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "status": "NOT_RUN",
-  "recordedAt": "2026-09-22T07:53:00Z",
+  "status": "PARTIAL",
+  "recordedAt": "2026-09-22T16:25:00Z",
   "releaseCandidate": {
     "selected": true,
     "packageVersion": "1.0.0-rc.2",
@@ -52,10 +52,10 @@
   ],
   "accountClasses": ["authorized-external-account"],
   "dimensions": [
-    { "id": "profile-resolution", "applicability": "required", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "vendor-contract", "applicability": "required", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "authoring", "applicability": "required", "status": "NOT_RUN", "evidenceRefs": [] },
-    { "id": "working-export", "applicability": "required", "status": "NOT_RUN", "evidenceRefs": [] },
+    { "id": "profile-resolution", "applicability": "required", "status": "PARTIAL", "evidenceRefs": ["docs/verification/host-recipe-acceptance.json"] },
+    { "id": "vendor-contract", "applicability": "required", "status": "PARTIAL", "evidenceRefs": ["docs/verification/host-recipe-acceptance.json"] },
+    { "id": "authoring", "applicability": "required", "status": "PARTIAL", "evidenceRefs": ["docs/verification/host-recipe-acceptance.json"] },
+    { "id": "working-export", "applicability": "required", "status": "PARTIAL", "evidenceRefs": ["docs/verification/host-recipe-acceptance.json"] },
     { "id": "authorized-source-read", "applicability": "optional", "status": "NOT_RUN", "evidenceRefs": [] },
     { "id": "draft-save", "applicability": "optional", "status": "NOT_RUN", "evidenceRefs": [] },
     { "id": "draft-readback", "applicability": "optional", "status": "NOT_RUN", "evidenceRefs": [] },
@@ -64,10 +64,10 @@
     { "id": "reply-draft", "applicability": "optional", "status": "NOT_RUN", "evidenceRefs": [] }
   ],
   "declaredCombinationCount": 117,
-  "evaluatedCombinationCount": 0,
+  "evaluatedCombinationCount": 78,
   "requiredCapabilityCount": 468,
-  "verifiedRequiredCapabilityCount": 0,
+  "verifiedRequiredCapabilityCount": 312,
   "failedRequiredCapabilityCount": 0,
-  "notRunRequiredCapabilityCount": 468,
-  "reason": "Immutable candidate 1.0.0-rc.2 is selected. Codex and ZCode installed-skill sessions are verified, while Kimi is quota-blocked; all 117 recipe combinations, required recipe capabilities, and external account evidence remain NOT_RUN."
+  "notRunRequiredCapabilityCount": 156,
+  "reason": "Codex and ZCode each executed all 39 recipes against immutable candidate 1.0.0-rc.2, verifying 78 combinations and 312 required capabilities. Kimi returned HTTP 403 before a model response, so its 39 combinations and 156 required capabilities remain NOT_RUN. External account dimensions remain independently NOT_RUN."
 }

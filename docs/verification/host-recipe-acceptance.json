@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-22T16:25:00Z",
+  "scope": "Actual-host execution of profile resolution, immutable Vendor contract verification, source-grounded authoring acceptance, and temporary working-export verification for all 39 declared recipes. No external account or business API is used.",
+  "candidate": {
+    "version": "1.0.0-rc.2",
+    "sourceCommit": "33ff3315bbea626fb5428a70e9f445b2b9165bc4",
+    "manifestSha256": "35e74f6ea0d167ab120d7acd2a89df56e36647addd1116ddf0473dff66d6f447",
+    "manifestFiles": 263
+  },
+  "fixture": {
+    "pathAlias": "tests/fixtures/channel-writing/catalog-examples.json",
+    "sha256": "d6662ecd3c1b7953c1ac2951bf06e9301f6fc5a8d92d7e60df283f305fbdd89c"
+  },
+  "vendorContract": {
+    "skillCount": 8,
+    "fingerprint": "2622fea4ad7badd6515ece019e8b1e58996fa941101c66dccc760cbe219e2006"
+  },
+  "hosts": {
+    "codex": {
+      "status": "VERIFIED_HOST_RECIPES",
+      "runtimeVersion": "0.153.4",
+      "hostThreadId": "01a0c9ee-d063-73a2-9076-bf2b94f77770",
+      "sessionId": "cf057-codex-20260923T0040Z",
+      "skillLoadedFromInstalledCandidate": true,
+      "recipeCount": 39,
+      "verifiedRequiredCapabilityCount": 156,
+      "recipeEvidenceSha256": "8d537e0f91e69a5deaa9ed104b6e9a3be6077e2f1b09bc3711a17a093ebbac90",
+      "commandExitCode": 0,
+      "temporaryExportsRemoved": true
+    },
+    "zcode": {
+      "status": "VERIFIED_HOST_RECIPES",
+      "runtimeVersion": "0.16.9",
+      "sessionId": "cf057-zcode-20260923T0035Z",
+      "permissionMode": "yolo",
+      "skillLoadedFromInstalledCandidate": true,
+      "recipeCount": 39,
+      "verifiedRequiredCapabilityCount": 156,
+      "recipeEvidenceSha256": "8d537e0f91e69a5deaa9ed104b6e9a3be6077e2f1b09bc3711a17a093ebbac90",
+      "commandExitCode": 0,
+      "temporaryExportsRemoved": true,
+      "manifestBinding": "external-package-manifest",
+      "manifestReason": "The ZCode cache is a tag-bound source checkout, so its 263 packaged files were checked against the immutable RC package manifest."
+    },
+    "kimi": {
+      "status": "BLOCKED_HOST_QUOTA",
+      "runtimeVersion": "0.43.1",
+      "sessionId": "cf057-kimi-20260923T0045Z",
+      "httpStatus": 403,
+      "modelResponseRecorded": false,
+      "recipeCount": 0,
+      "verifiedRequiredCapabilityCount": 0,
+      "reason": "monthly usage limit reached before a model response"
+    }
+  },
+  "declaredCombinationCount": 117,
+  "evaluatedCombinationCount": 78,
+  "requiredCapabilityCount": 468,
+  "verifiedRequiredCapabilityCount": 312,
+  "failedRequiredCapabilityCount": 0,
+  "notRunRequiredCapabilityCount": 156,
+  "remoteCalls": 0,
+  "accountAccess": "NOT_RUN",
+  "secretsInRecord": false,
+  "accountIdentifiersStored": false
+}

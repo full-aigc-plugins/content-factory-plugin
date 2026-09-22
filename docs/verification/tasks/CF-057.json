@@ -12,20 +12,34 @@
     "command": "npm test -- tests/channels/host-channel-contract.test.ts",
     "reason": "the live host-channel index and human-readable matrix did not exist; all four target tests failed"
   }],
-  "green_evidence": [{
-    "commit": "2a2dd53",
-    "conclusion": "success",
-    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
-    "gates": [
-      "npm test -- tests/channels/host-channel-contract.test.ts (4 passed, 0 failed)",
-      "npm test (259 passed, 0 failed)",
-      "npm run typecheck",
-      "npm run lint",
-      "npm run skills:check",
-      "npm run audit:release",
-      "npm run build"
-    ]
-  }],
+  "green_evidence": [
+    {
+      "commit": "2a2dd53",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "npm test -- tests/channels/host-channel-contract.test.ts (4 passed, 0 failed)",
+        "npm test (259 passed, 0 failed)",
+        "npm run typecheck",
+        "npm run lint",
+        "npm run skills:check",
+        "npm run audit:release",
+        "npm run build"
+      ]
+    },
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 arm64; Codex CLI 0.153.4; ZCode CLI 0.16.9; Kimi CLI 0.43.1; immutable candidate 1.0.0-rc.2",
+      "gates": [
+        "host acceptance runner RED: missing runner, missing digest summary, and missing external-manifest support",
+        "node --test --test-concurrency=1 tests/channels/host-channel-contract.test.ts tests/channels/host-recipe-acceptance-runner.test.mjs (10 passed, 0 failed)",
+        "Codex installed-host session: 39/39 recipes and 156/156 required capabilities verified",
+        "ZCode installed-host session in yolo mode: 39/39 recipes and 156/156 required capabilities verified",
+        "Kimi installed-host session attempt: HTTP 403 monthly quota before model response"
+      ],
+      "result": "PARTIAL_HOST_ACCEPTANCE; 78/117 combinations and 312/468 required capabilities verified"
+    }
+  ],
   "offline_contract": {
     "hosts": 3,
     "channel_format_recipes": 39,
@@ -37,7 +51,9 @@
     "release_candidate_selected": true,
     "actual_host_sessions": "PARTIAL: CODEX_AND_ZCODE_VERIFIED_KIMI_QUOTA_BLOCKED",
     "external_accounts": "NOT_RUN",
-    "host_recipe_combinations_verified": 0,
+    "host_recipe_combinations_verified": 78,
+    "required_capabilities_verified": 312,
+    "required_capabilities_not_run": 156,
     "draft_save_and_readback": "NOT_RUN",
     "feedback_read_and_reply_draft": "NOT_RUN",
     "public_publish": "NOT_RUN_OUTSIDE_V1_PROMISE"
@@ -46,13 +62,16 @@
     "tests/channels/host-channel-contract.test.ts",
     "docs/verification/channel-live-index.json",
     "docs/verification/channel-host-matrix.md",
-    "docs/verification/host-installed-session.json"
+    "docs/verification/host-installed-session.json",
+    "docs/verification/host-recipe-acceptance.json",
+    "scripts/run-host-recipe-acceptance.mjs",
+    "tests/channels/host-recipe-acceptance-runner.test.mjs"
   ],
   "review": {
     "kind": "primary-agent evidence classification review",
     "result": "PASS_PARTIAL_HOST_LIVE",
     "findings": []
   },
-  "blocker": "The exact RC2 candidate is installed on all three hosts and Codex/ZCode read-only sessions passed, but Kimi is blocked by monthly quota. No host executed the 39 recipe acceptance set, no external account evidence exists, and all 117 live combinations remain NOT_RUN.",
+  "blocker": "Codex and ZCode each verified all 39 recipes, advancing coverage to 78/117 combinations and 312/468 required capabilities. Kimi remains 0/39 and 0/156 because its model provider returned HTTP 403 before a response. External account dimensions remain NOT_RUN.",
   "secrets_in_record": false
 }
