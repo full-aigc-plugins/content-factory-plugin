@@ -33,6 +33,12 @@ test("CF-042 candidate manifest references every P0 task and remains blocked", a
   assert.match(candidate.packageSha256, /^[a-f0-9]{64}$/u);
   assert.equal(candidate.releaseCommit, liveIndex.releaseCandidate.commit);
   assert.equal(candidate.packageSha256, liveIndex.releaseCandidate.packageSha256);
+  const candidateTag = spawnSync("git", ["rev-list", "-n", "1", candidate.releaseTag], {
+    cwd: new URL("../../", import.meta.url),
+    encoding: "utf8"
+  });
+  assert.equal(candidateTag.status, 0, candidateTag.stderr);
+  assert.equal(candidateTag.stdout.trim(), candidate.releaseCommit);
   assert.deepEqual(candidate.requiredTaskEvidence.map((item: { task: string }) => item.task), [
     "CF-001", "CF-030", "CF-035", "CF-037", "CF-038", "CF-039", "CF-040", "CF-041", "CF-057", "CF-058"
   ]);

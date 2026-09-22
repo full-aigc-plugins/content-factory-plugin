@@ -178,3 +178,34 @@ test("CF-041 records source-skill host sessions without claiming plugin installa
     }
   });
 });
+
+test("CF-041 binds installed-host sessions to the immutable rc2 candidate", async () => {
+  const evidence = JSON.parse(await readFile(
+    path.resolve("docs/verification/host-installed-session.json"),
+    "utf8"
+  ));
+
+  assert.equal(evidence.schemaVersion, 1);
+  assert.equal(evidence.candidate.version, "1.0.0-rc.2");
+  assert.equal(evidence.candidate.sourceCommit, "33ff3315bbea626fb5428a70e9f445b2b9165bc4");
+  assert.equal(
+    evidence.candidate.manifestSha256,
+    "35e74f6ea0d167ab120d7acd2a89df56e36647addd1116ddf0473dff66d6f447"
+  );
+  assert.equal(evidence.candidate.manifestFiles, 263);
+  assert.deepEqual(evidence.candidate.badFiles, []);
+  assert.equal(evidence.hosts.codex.status, "INSTALLED_SESSION_VERIFIED");
+  assert.equal(evidence.hosts.codex.skillLoaded, true);
+  assert.equal(evidence.hosts.zcode.status, "INSTALLED_SESSION_VERIFIED");
+  assert.equal(evidence.hosts.zcode.skillLoaded, true);
+  assert.equal(evidence.hosts.kimi.status, "BLOCKED_HOST_QUOTA");
+  assert.equal(evidence.hosts.kimi.pluginInstalled, true);
+  assert.equal(evidence.hosts.kimi.httpStatus, 403);
+  assert.equal(evidence.hosts.kimi.modelResponseRecorded, false);
+  for (const host of Object.values(evidence.hosts) as Array<Record<string, unknown>>) {
+    assert.equal(host.businessRemoteCalls, 0);
+    assert.equal(host.writes, 0);
+  }
+  assert.equal(evidence.secretsInRecord, false);
+  assert.equal(evidence.accountIdentifiersStored, false);
+});

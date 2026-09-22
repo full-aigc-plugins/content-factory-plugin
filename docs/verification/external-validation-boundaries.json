@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-22T15:08:00Z",
+  "scope": "Credential-presence and permitted-interface boundary check only; no secret value, account identifier, business request, draft, or publication is recorded.",
+  "aiContentDetectionPlatform": {
+    "status": "BLOCKED_CREDENTIAL_AND_QUOTA",
+    "credentialRef": "AI_CONTENT_DETECTOR_PRIMARY",
+    "environmentCredentialPresent": false,
+    "systemCredentialPresent": false,
+    "apiCredentialPresent": false,
+    "websiteQuotaStatus": "EXHAUSTED_OBSERVED_USER_SCREENSHOT",
+    "apiSamplesExecuted": 0,
+    "businessRemoteCalls": 0,
+    "reason": "No authenticated API credential exists and the observed website session has no remaining daily quota."
+  },
+  "contentPlatformAccount": {
+    "status": "BLOCKED_INTERFACE_AND_CREDENTIAL",
+    "credentialRef": "CONTENT_PLATFORM_PRIMARY",
+    "environmentCredentialPresent": false,
+    "systemCredentialPresent": false,
+    "apiCredentialPresent": false,
+    "browserStatus": "BLOCKED_SITE_SAFETY_POLICY",
+    "browserWorkaroundAttempted": false,
+    "apiTransportImplementation": "PORT_ONLY_NO_EXECUTABLE_TRANSPORT",
+    "draftCreated": false,
+    "draftReadbackVerified": false,
+    "publicationAttempted": false,
+    "businessRemoteCalls": 0,
+    "reason": "Browser automation is prohibited for the logged-in site, no API credential exists, and the package contains no executable authenticated transport."
+  },
+  "secretsInRecord": false,
+  "accountIdentifiersStored": false
+}

@@ -69,5 +69,5 @@
   "verifiedRequiredCapabilityCount": 0,
   "failedRequiredCapabilityCount": 0,
   "notRunRequiredCapabilityCount": 468,
-  "reason": "Immutable candidate 1.0.0-rc.2 is selected. Actual installed-host sessions, required recipe capabilities and external account evidence have not yet been recorded; offline contracts are not promoted to live evidence."
+  "reason": "Immutable candidate 1.0.0-rc.2 is selected. Codex and ZCode installed-skill sessions are verified, while Kimi is quota-blocked; all 117 recipe combinations, required recipe capabilities, and external account evidence remain NOT_RUN."
 }

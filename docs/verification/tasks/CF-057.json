@@ -34,8 +34,8 @@
     "status": "VERIFIED_OFFLINE"
   },
   "live_status": {
-    "release_candidate_selected": false,
-    "actual_host_sessions": "NOT_RUN",
+    "release_candidate_selected": true,
+    "actual_host_sessions": "PARTIAL: CODEX_AND_ZCODE_VERIFIED_KIMI_QUOTA_BLOCKED",
     "external_accounts": "NOT_RUN",
     "host_recipe_combinations_verified": 0,
     "draft_save_and_readback": "NOT_RUN",
@@ -45,13 +45,14 @@
   "outputs": [
     "tests/channels/host-channel-contract.test.ts",
     "docs/verification/channel-live-index.json",
-    "docs/verification/channel-host-matrix.md"
+    "docs/verification/channel-host-matrix.md",
+    "docs/verification/host-installed-session.json"
   ],
   "review": {
     "kind": "primary-agent evidence classification review",
-    "result": "PASS_OFFLINE_ONLY",
+    "result": "PASS_PARTIAL_HOST_LIVE",
     "findings": []
   },
-  "blocker": "The user authorized skipping actual host sessions and external accounts. No exact release candidate was selected or installed, so every live combination remains NOT_RUN and the OpenSpec task stays unchecked.",
+  "blocker": "The exact RC2 candidate is installed on all three hosts and Codex/ZCode read-only sessions passed, but Kimi is blocked by monthly quota. No host executed the 39 recipe acceptance set, no external account evidence exists, and all 117 live combinations remain NOT_RUN.",
   "secrets_in_record": false
 }

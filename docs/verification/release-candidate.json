@@ -3,6 +3,7 @@
   "targetVersion": "1.0.0",
   "currentVersion": "1.0.0-rc.2",
   "releaseStatus": "BLOCKED",
+  "releaseTag": "v1.0.0-rc.2",
   "releaseCommit": "33ff3315bbea626fb5428a70e9f445b2b9165bc4",
   "manifestSourceCommit": "33ff3315bbea626fb5428a70e9f445b2b9165bc4",
   "packageSha256": "35e74f6ea0d167ab120d7acd2a89df56e36647addd1116ddf0473dff66d6f447",

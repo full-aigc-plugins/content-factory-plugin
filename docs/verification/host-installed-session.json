@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-22T15:05:00Z",
+  "scope": "Read-only installed-candidate discovery, integrity, doctor, and host-model session checks; no channel recipe matrix, business API, account, or delivery claim.",
+  "candidate": {
+    "version": "1.0.0-rc.2",
+    "tag": "v1.0.0-rc.2",
+    "sourceCommit": "33ff3315bbea626fb5428a70e9f445b2b9165bc4",
+    "manifestSha256": "35e74f6ea0d167ab120d7acd2a89df56e36647addd1116ddf0473dff66d6f447",
+    "manifestFiles": 263,
+    "badFiles": [],
+    "profiles": 16,
+    "recipes": 39
+  },
+  "hosts": {
+    "codex": {
+      "status": "INSTALLED_SESSION_VERIFIED",
+      "runtimeVersion": "0.153.4",
+      "pluginInstalled": true,
+      "pluginEnabled": true,
+      "pluginRoot": "<CODEX_HOME>/plugins/cache/personal/content-factory/1.0.0-rc.2",
+      "skillLoaded": true,
+      "sessionStarted": true,
+      "hostModelCalls": 1,
+      "doctorHostStatus": "supported",
+      "doctorPaidCalls": 0,
+      "businessRemoteCalls": 0,
+      "writes": 0,
+      "result": {
+        "host": "codex",
+        "plugin": "content-factory",
+        "version": "1.0.0-rc.2",
+        "sourceCommit": "33ff3315bbea626fb5428a70e9f445b2b9165bc4",
+        "manifestSha256": "35e74f6ea0d167ab120d7acd2a89df56e36647addd1116ddf0473dff66d6f447",
+        "manifestFiles": 263,
+        "badFiles": [],
+        "profiles": 16,
+        "recipes": 39
+      }
+    },
+    "zcode": {
+      "status": "INSTALLED_SESSION_VERIFIED",
+      "runtimeVersion": "0.16.9",
+      "pluginInstalled": true,
+      "pluginEnabled": true,
+      "installSource": "immutable-github-tag",
+      "pluginRoot": "<ZCODE_HOME>/cli/plugins/cache/content-factory-candidate/content-factory/1.0.0-rc.2",
+      "skillLoaded": true,
+      "sessionStarted": true,
+      "hostModelCalls": 1,
+      "doctorHostStatus": "supported",
+      "doctorPaidCalls": 0,
+      "businessRemoteCalls": 0,
+      "writes": 0,
+      "result": {
+        "host": "zcode",
+        "skillLoaded": true,
+        "remoteBusinessCalls": 0
+      }
+    },
+    "kimi": {
+      "status": "BLOCKED_HOST_QUOTA",
+      "runtimeVersion": "0.43.1",
+      "pluginInstalled": true,
+      "pluginEnabled": true,
+      "installSource": "immutable-github-tag",
+      "pluginRoot": "<KIMI_HOME>/plugins/managed/content-factory",
+      "skillLoaded": false,
+      "sessionStarted": true,
+      "hostModelAttempts": 1,
+      "httpStatus": 403,
+      "modelResponseRecorded": false,
+      "businessRemoteCalls": 0,
+      "writes": 0,
+      "reason": "monthly usage limit reached before a model response"
+    }
+  },
+  "channelCombinationCoverageAdvanced": false,
+  "accountAccess": "NOT_RUN",
+  "secretsInRecord": false,
+  "accountIdentifiersStored": false
+}

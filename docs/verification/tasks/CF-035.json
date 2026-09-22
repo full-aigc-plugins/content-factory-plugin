@@ -45,6 +45,7 @@
   "outputs": [
     "adapters/wechat/browser.ts",
     "docs/guides/wechat-browser.md",
+    "docs/verification/external-validation-boundaries.json",
     "test/official-content-browser.test.mjs"
   ],
   "review": {
@@ -53,8 +54,8 @@
     "findings": []
   },
   "fixture_or_live": "synthetic-browser-boundary",
-  "live_official_content_browser": "NOT_RUN",
-  "live_blocker": "No user-authorized content-platform browser session was used; login, editor selectors, save behavior, and live readback remain unverified.",
+  "live_official_content_browser": "NOT_RUN_BLOCKED_SITE_SAFETY_POLICY",
+  "live_blocker": "The user authorized draft-only validation, but browser automation is prohibited for the logged-in content-platform site and was not bypassed. No CONTENT_PLATFORM_PRIMARY credential exists, and no executable authenticated API transport is implemented; save and readback remain unverified.",
   "dependency_status": {
     "CF-031": "PARTIAL_OFFLINE",
     "CF-032": "PARTIAL_OFFLINE",

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "task": "CF-041",
   "status": "PARTIAL_OFFLINE",
-  "scope": "Codex, ZCode, and Kimi manifests, shared CLI startup contract, packaged-manifest integrity, read-only runtime preflight, and explicit live-run evidence boundaries",
+  "scope": "Codex, ZCode, and Kimi manifests, shared CLI startup contract, packaged-manifest integrity, read-only runtime preflight, immutable installed-candidate sessions, and explicit live-run evidence boundaries",
   "completed_at": "2026-09-22T11:32:22Z",
   "branch": "main",
   "implementation_commits": [
@@ -95,6 +95,25 @@
         "openspec validate implement-content-factory-architecture --strict"
       ],
       "result": "PASS_PARTIAL_SOURCE_SESSION; Codex and ZCode source sessions passed, Kimi quota blocked, no plugin installation claimed"
+    },
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 arm64; immutable candidate 1.0.0-rc.2",
+      "gates": [
+        "Codex installed-candidate skill session (passed; 0 business remote calls; 0 writes)",
+        "ZCode installed-candidate skill session (passed; 0 business remote calls; 0 writes)",
+        "Kimi installed-candidate session attempt (BLOCKED_HOST_QUOTA; HTTP 403 before model response)",
+        "candidate manifest (263 files; 0 hash mismatches; 16 profiles; 39 recipes)",
+        "npm test (281 passed, 0 failed; 263 files packaged)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run audit:release",
+        "python3 docs/architecture/verify-architecture.py",
+        "three OpenSpec changes validated with --strict"
+      ],
+      "result": "PASS_PARTIAL_INSTALLED_SESSION; Codex and ZCode installed sessions passed, Kimi quota blocked, and no recipe or external-account coverage was advanced"
     }
   ],
   "assertions": [
@@ -109,7 +128,8 @@
     "one ephemeral read-only Codex source-skill session selected format then review, reported the missing content revision and ambiguous target platform, and performed zero business remote calls or writes",
     "one read-only ZCode source-skill session selected format then review, reported the missing content revision, and performed zero business remote calls or writes",
     "the Kimi source-skill session is recorded as BLOCKED_HOST_QUOTA without a fabricated model response",
-    "source-skill and manifest validation never imply that the plugin was installed"
+    "source-skill and manifest validation never imply that the plugin was installed",
+    "candidate 1.0.0-rc.2 is installed and hash-verified on Codex, ZCode, and Kimi; new Codex and ZCode skill sessions passed while Kimi returned HTTP 403 monthly quota before a model response"
   ],
   "outputs": [
     ".codex-plugin/plugin.json",
@@ -119,17 +139,18 @@
     "docs/verification/host-matrix.md",
     "docs/verification/live-run-index.json",
     "docs/verification/host-runtime-preflight.json",
-    "docs/verification/host-source-session.json"
+    "docs/verification/host-source-session.json",
+    "docs/verification/host-installed-session.json"
   ],
   "review": {
     "kind": "primary-agent manifest, package, and evidence-boundary review",
-    "result": "PASS_OFFLINE_ONLY",
+    "result": "PASS_PARTIAL_HOST_LIVE",
     "findings": []
   },
   "live_status": {
-    "codex": "NOT_RUN",
-    "zcode": "NOT_RUN",
-    "kimi": "NOT_RUN",
+    "codex": "INSTALLED_SESSION_VERIFIED",
+    "zcode": "INSTALLED_SESSION_VERIFIED",
+    "kimi": "BLOCKED_HOST_QUOTA",
     "source_skill_session": {
       "codex": "SOURCE_SKILL_SESSION_PASSED",
       "zcode": "SOURCE_SKILL_SESSION_PASSED",
@@ -139,6 +160,6 @@
     "content_platform_draft_readback": "NOT_RUN",
     "image_capability": "NOT_RUN"
   },
-  "blocker": "Codex and ZCode source-skill sessions passed, while Kimi is blocked by the host monthly quota. No plugin installation or installed-plugin session has been verified, and no external test accounts were supplied. CF-030, CF-034, and CF-039 also remain PARTIAL_OFFLINE.",
+  "blocker": "Codex and ZCode installed-candidate sessions passed. Kimi candidate installation is hash-verified but its model session is blocked by monthly quota. No external test accounts were supplied, and CF-030, CF-034, CF-039, and the 117 recipe combinations remain incomplete.",
   "secrets_in_record": false
 }

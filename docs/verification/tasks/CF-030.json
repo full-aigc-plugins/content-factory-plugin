@@ -157,6 +157,7 @@
     "tests/fixtures/zhuque/2026-09-22-human-website-attempt.json",
     "tests/fixtures/zhuque/2026-09-22-human-website-mismatch.json",
     "tests/fixtures/zhuque/2026-09-22-human-website-observation.json",
+    "docs/verification/external-validation-boundaries.json",
     "test/detection-report.test.mjs"
   ],
   "review": {
@@ -167,7 +168,7 @@
   "fixture_or_live": "local-fixture-plus-four-bound-live-website-observations-plus-one-user-challenge-plus-one-rejected-binding-mismatch",
   "live_ai_content_detector": "PARTIAL_LIVE_WEBSITE",
   "production_admission": false,
-  "live_blocker": "The authenticated API was not called. Human, original-AI, and edited website observations now exist, but the required immutable authenticated API records for all three comparison samples do not exist.",
+  "live_blocker": "The authenticated API was not called. No AI_CONTENT_DETECTOR_PRIMARY credential exists in the environment or system credential store, the observed website daily quota is exhausted, and the required immutable authenticated API records for all three comparison samples do not exist.",
   "dependency_status": {
     "CF-024": "COMPLETE",
     "CF-026": "PARTIAL_OFFLINE",

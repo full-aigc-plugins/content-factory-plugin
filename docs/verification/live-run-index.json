@@ -1,13 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-22T09:00:00Z",
-  "evidenceBoundary": "Manifest, shared CLI contract, and read-only runtime preflight checks are offline evidence. They do not prove plugin installation, a host session, external provider call, or content-platform draft readback.",
+  "updatedAt": "2026-09-22T15:05:00Z",
+  "evidenceBoundary": "Installed-candidate discovery and read-only skill sessions are host evidence only. They do not prove any of the 117 host-recipe combinations, an external provider call, an account action, or content-platform draft readback.",
   "runs": [
     {
       "hostId": "codex",
       "hostVersion": "codex-cli 0.153.4",
       "operatingSystem": "macOS 27.0 arm64",
       "runtimePreflight": "OBSERVED",
+      "installedPluginSession": "VERIFIED",
+      "installedPluginEvidenceRef": "docs/verification/host-installed-session.json",
       "preflightEvidenceRefs": [
         "docs/verification/host-runtime-preflight.json"
       ],
@@ -18,13 +20,15 @@
       "draftReadback": "NOT_RUN",
       "imageCapability": "NOT_RUN",
       "remoteEvidenceRefs": [],
-      "reason": "The host runtime was observed read-only; plugin installation, a new host session, and external accounts were not verified or used."
+      "reason": "The immutable candidate and content-harness loaded in a new read-only Codex session; recipe execution and external accounts remain NOT_RUN."
     },
     {
       "hostId": "zcode",
       "hostVersion": "desktop 3.14.3 (build 3.14.3.7762)",
       "operatingSystem": "macOS 27.0 arm64",
       "runtimePreflight": "OBSERVED",
+      "installedPluginSession": "VERIFIED",
+      "installedPluginEvidenceRef": "docs/verification/host-installed-session.json",
       "preflightEvidenceRefs": [
         "docs/verification/host-runtime-preflight.json"
       ],
@@ -35,13 +39,15 @@
       "draftReadback": "NOT_RUN",
       "imageCapability": "NOT_RUN",
       "remoteEvidenceRefs": [],
-      "reason": "The host runtime was observed read-only; plugin installation, a new host session, and external accounts were not verified or used."
+      "reason": "The immutable candidate installed from its RC tag and content-harness loaded in a new read-only ZCode session; recipe execution and external accounts remain NOT_RUN."
     },
     {
       "hostId": "kimi",
       "hostVersion": "cli 0.43.1; desktop 3.2.11",
       "operatingSystem": "macOS 27.0 arm64",
       "runtimePreflight": "OBSERVED",
+      "installedPluginSession": "BLOCKED_HOST_QUOTA",
+      "installedPluginEvidenceRef": "docs/verification/host-installed-session.json",
       "preflightEvidenceRefs": [
         "docs/verification/host-runtime-preflight.json"
       ],
@@ -52,7 +58,7 @@
       "draftReadback": "NOT_RUN",
       "imageCapability": "NOT_RUN",
       "remoteEvidenceRefs": [],
-      "reason": "The host runtime was observed read-only; plugin installation, a new host session, and external accounts were not verified or used."
+      "reason": "The immutable candidate is installed and hash-verified, but Kimi returned HTTP 403 monthly quota before a model response; recipe execution and external accounts remain NOT_RUN."
     }
   ]
 }
