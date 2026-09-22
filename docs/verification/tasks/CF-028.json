@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "task": "CF-028",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Detection request identity, report freshness, cross-run reuse denial, and downstream invalidation planning",
+  "completed_at": "2026-09-22T11:30:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "ca71034f19edf7e16115a0944aacbb041846d94c",
+    "495762011b2ed3a66aab16850e3850476e06fa27"
+  ],
+  "red_evidence": [
+    {
+      "commit": "ca71034f19edf7e16115a0944aacbb041846d94c",
+      "conclusion": "failure",
+      "command": "node --test test/detection-freshness.test.mjs",
+      "reason": "the detector freshness and workflow invalidation modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "495762011b2ed3a66aab16850e3850476e06fa27",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/detection-freshness.test.mjs (5 passed, 0 failed)",
+        "npm test (158 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "request deduplication identity includes run, canonical text hash, canonicalization version, and request configuration hash",
+    "any canonical visible-text change invalidates detection and its review approval",
+    "presentation-only change can reuse detection but requires delivery review",
+    "cross-run reuse is denied by default",
+    "expired evidence requires explicit redetection",
+    "provider model-version and delivery-account changes remain explicit invalidation reasons"
+  ],
+  "outputs": [
+    "packages/core/src/detection/freshness.ts",
+    "packages/core/src/workflow/invalidation.ts",
+    "test/detection-freshness.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "local-fixture",
+  "live_ai_content_detector": "NOT_RUN",
+  "live_blocker": "Freshness behavior is verified locally, but provider-side model/version behavior has not been observed live.",
+  "dependency_status": {
+    "CF-011": "COMPLETE",
+    "CF-022": "COMPLETE",
+    "CF-025": "PARTIAL_OFFLINE",
+    "CF-027": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
