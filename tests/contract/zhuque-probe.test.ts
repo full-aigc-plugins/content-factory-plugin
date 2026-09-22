@@ -34,7 +34,23 @@ test("CF-003 checked-in website observation is secret-free and evidence-bound", 
   });
   assert.equal(observation.response.feedbackTokenPresent, true);
   assert.equal(observation.response.feedbackTokenRedacted, true);
-  assert.equal(observation.apiProbe.status, "NOT_RUN_CREDENTIAL_REQUIRED");
+  assert.deepEqual(observation.apiProbe.unauthenticated, {
+    status: "OBSERVED_AUTH_REJECTION",
+    observedAt: "2026-09-22T09:34:25Z",
+    requestBodySha256:
+      "6abf230d1e6c479023842f3a6ef89f5b3629e9162bc85fdf4854d86be15c11ac",
+    requestBytes: 72,
+    credentialSent: false,
+    httpStatus: 401,
+    errorType: "auth_missing",
+    errorCode: "auth_missing",
+    paidCalls: 0,
+    traceIdentifiersRedacted: true
+  });
+  assert.equal(
+    observation.apiProbe.authenticated.status,
+    "NOT_RUN_CREDENTIAL_REQUIRED"
+  );
   assert.equal(observation.productionAdmission, false);
   assert.equal(observation.secretsInRecord, false);
   assert.doesNotMatch(serialized, /feedback_token|Bearer\s+|eyJ[a-zA-Z0-9_-]*\./u);
