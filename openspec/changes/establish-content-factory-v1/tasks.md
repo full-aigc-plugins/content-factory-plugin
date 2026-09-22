@@ -41,7 +41,7 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Keep SSRF, redirects, access walls, prompt injection, size and extraction policy in the kernel.
 - [x] **CF-010 DOCX and text-PDF ingestion**
 - [x] **CF-011 Immutable revisions, diffs, and CAS conflict handling**
-- [ ] **CF-012 Run/Step ledger and recovery**
+- [x] **CF-012 Run/Step ledger and recovery**
 
 ## W2 — Harness-driven creation and editing
 
@@ -51,16 +51,16 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Select vendor capability sets by request type.
   - Do not duplicate vendor skills as local skills.
 
-- [ ] **CF-014 Author profile and terminology protection**
+- [x] **CF-014 Author profile and terminology protection**
   - Store versioned author/style constraints.
   - Ensure vendor editors cannot leak sample-specific private facts.
 
-- [ ] **CF-015 Research, SourceBundle, and ClaimRegistry**
+- [x] **CF-015 Research, SourceBundle, and ClaimRegistry**
   - Integrate approved source/research skills.
   - Require source + locator for important verifiable claims.
   - Preserve conflicting evidence.
 
-- [ ] **CF-016 Five content templates using vendor writing capabilities**
+- [x] **CF-016 Five content templates using vendor writing capabilities**
   - Research analysis.
   - Technical tutorial.
   - Product/update.
@@ -68,18 +68,18 @@ All tasks remain NOT_STARTED until implementation evidence exists. Task IDs are 
   - Short/social/script adaptation.
   - Harness chooses source-grounded writing vs marketing/copywriting methods.
 
-- [ ] **CF-017 Protected-fact checks and review report**
+- [x] **CF-017 Protected-fact checks and review report**
   - Deterministically guard numbers, units, dates, names, URLs, code, commands, and citation targets.
   - Model review must remain distinguishable from deterministic checks.
 
-- [ ] **CF-018 Humanization and copy editing**
+- [x] **CF-018 Humanization and copy editing**
   - Integrate reviewed Chinese humanizer/copy-editing skills.
   - Validate resulting revision against protected facts.
   - Keep light/standard/deep modes and bounded iteration.
 
 ## W3 — Repurposing, visuals, rendering
 
-- [ ] **CF-019 Repurposed content revisions**
+- [x] **CF-019 Repurposed content revisions**
   - Use vendor writing methods via harness.
   - Never reuse the parent article's detection report for materially changed derivatives.
 
@@ -128,12 +128,12 @@ Optional packaged distribution skills `baoyu-post-to-weibo` and `baoyu-post-to-x
 
 ## W6 — Security, quality, install, release
 
-- [ ] **CF-037 Security/privacy/supply-chain validation**
+- [x] **CF-037 Security/privacy/supply-chain validation**
   - Include vendor drift, malicious skill content, secret leakage, URL attacks, approval forgery, and wrong-account delivery.
 
-- [ ] **CF-038 Crash/duplicate/dependency failure regression**
+- [x] **CF-038 Crash/duplicate/dependency failure regression**
 - [ ] **CF-039 30-document editorial benchmark**
-- [ ] **CF-040 macOS/Windows/Linux clean install and migration**
+- [x] **CF-040 macOS/Windows/Linux clean install and migration**
 - [ ] **CF-041 Codex/ZCode/Kimi real-host end-to-end acceptance**
 - [ ] **CF-042 Release bundle, marketplace registration, documentation, and final gate**
   - Same commit/tag/package/market metadata.

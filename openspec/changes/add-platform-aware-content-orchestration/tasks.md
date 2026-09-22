@@ -159,7 +159,7 @@ npm run test -- tests/channels/media-boundary.test.ts
 
 ## 10. CF-052 — Sibling variants and dependent evidence invalidation
 
-- [ ] 10.1 Complete CF-052: Sibling variants and dependent evidence invalidation.
+- [x] 10.1 Complete CF-052: Sibling variants and dependent evidence invalidation.
 
 **Dependencies:** CF-011, CF-028, CF-032, CF-050, CF-051.
 **Responsibility paths:** `packages/core/src/content/channel-variants.ts`, `packages/core/src/review/channel-validity.ts`.
@@ -193,7 +193,7 @@ npm run test -- tests/channels/delivery-capabilities.test.ts
 
 ## 12. CF-054 — Metrics and comment-draft feedback
 
-- [ ] 12.1 Complete CF-054: Metrics and comment-draft feedback.
+- [x] 12.1 Complete CF-054: Metrics and comment-draft feedback.
 
 **Dependencies:** CF-044, CF-049, CF-052.
 **Responsibility paths:** `packages/core/src/channels/feedback.ts`, `schemas/channel-metric.schema.json`, `schemas/comment-draft.schema.json`.
@@ -210,7 +210,7 @@ npm run test -- tests/channels/feedback.test.ts
 
 ## 13. CF-055 — Sourced platform constraints and detector applicability
 
-- [ ] 13.1 Complete CF-055: Sourced platform constraints and detector applicability.
+- [x] 13.1 Complete CF-055: Sourced platform constraints and detector applicability.
 
 **Dependencies:** CF-027, CF-045, CF-049.
 **Responsibility paths:** `packages/core/src/channels/constraints.ts`, `packages/core/src/detection/applicability.ts`.
@@ -261,7 +261,7 @@ npm run test -- tests/channels/host-channel-contract.test.ts
 
 ## 16. CF-058 — Integrated V1 release evidence gate
 
-- [ ] 16.1 Complete CF-058: Integrated V1 release evidence gate.
+- [x] 16.1 Complete CF-058: Integrated V1 release evidence gate.
 
 **Dependencies:** CF-001, CF-037, CF-040, CF-057.
 **Responsibility paths:** `scripts/release-gate.mjs`, `docs/verification/channel-release.md`.
