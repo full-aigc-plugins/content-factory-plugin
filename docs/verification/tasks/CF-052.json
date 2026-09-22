@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "task": "CF-052",
+  "status": "COMPLETE",
+  "scope": "Independent sibling channel revisions and evidence invalidation",
+  "completed_at": "2026-09-22T07:22:00Z",
+  "branch": "main",
+  "implementation_commits": ["48b7ea1", "3c0c3fc"],
+  "red_evidence": [{
+    "commit": "48b7ea1",
+    "conclusion": "failure",
+    "command": "npm test -- tests/channels/variant-isolation.test.ts",
+    "reason": "channel variant and validity modules did not exist"
+  }],
+  "green_evidence": [{
+    "commit": "3c0c3fc",
+    "conclusion": "success",
+    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+    "gates": [
+      "npm test -- tests/channels/variant-isolation.test.ts (4 passed, 0 failed)",
+      "npm test (233 passed, 0 failed)",
+      "npm run lint",
+      "npm run typecheck"
+    ]
+  }],
+  "assertions": [
+    "one source bundle creates independent channel variant ids, revisions, and hashes",
+    "revising one sibling preserves untouched sibling object identities and evidence validity",
+    "text, channel, format, locale, source, and presentation changes invalidate only dependent evidence",
+    "a stale expected revision returns conflict and mutates no sibling",
+    "variant orchestration does not install skills or elevate channel permissions"
+  ],
+  "outputs": [
+    "packages/core/src/content/channel-variants.ts",
+    "packages/core/src/review/channel-validity.ts",
+    "tests/channels/variant-isolation.test.ts"
+  ],
+  "fixture_or_live": "deterministic fixture",
+  "review": {"kind": "primary-agent code and contract review", "result": "PASS", "findings": []},
+  "secrets_in_record": false
+}

@@ -508,10 +508,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/platforms.md#cf-052)
 
-- [ ] 52.1 [CF-052.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 52.2 [CF-052.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 52.3 [CF-052.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 52.4 [CF-052.4] 原要求与证据复核、独立 review/commit。
+- [x] 52.1 [CF-052.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 52.2 [CF-052.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 52.3 [CF-052.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 52.4 [CF-052.4] 原要求与证据复核、独立 review/commit。
 
 ## 53. CF-053 — Per-action channel delivery capabilities
 
