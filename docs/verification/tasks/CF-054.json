@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task": "CF-054",
+  "status": "COMPLETE",
+  "scope": "Attributed channel metrics, unsent comment drafts, and proposal-only recipe feedback",
+  "completed_at": "2026-09-22T07:36:15Z",
+  "branch": "main",
+  "implementation_commits": ["c450560", "0155bc7"],
+  "red_evidence": [{
+    "commit": "c450560",
+    "conclusion": "failure",
+    "command": "npm test -- tests/channels/feedback.test.ts",
+    "reason": "the attributed feedback module did not exist"
+  }],
+  "green_evidence": [{
+    "commit": "0155bc7",
+    "conclusion": "success",
+    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+    "gates": [
+      "npm test -- tests/channels/feedback.test.ts (5 passed, 0 failed)",
+      "npm test (245 passed, 0 failed)",
+      "npm run typecheck",
+      "npm run lint",
+      "npm run skills:check",
+      "npm run audit:release",
+      "npm run build"
+    ]
+  }],
+  "assertions": [
+    "a metric is evaluable only when its attributed observation has a finite positive denominator",
+    "missing denominators remain not_evaluable with null values rather than becoming zero",
+    "comment text is untrusted data and is never copied into an executable instruction path",
+    "feedback creates only unsent reply drafts and proposal-only recipe revisions",
+    "unauthorized observations produce no report, draft, recipe change, or external effect"
+  ],
+  "outputs": [
+    "packages/core/src/channels/feedback.ts",
+    "schemas/channel-metric.schema.json",
+    "schemas/comment-draft.schema.json",
+    "tests/channels/feedback.test.ts"
+  ],
+  "fixture_status": "VERIFIED",
+  "live_status": "NOT_REQUIRED_FOR_PURE_FEEDBACK_TRANSFORM",
+  "external_writes": 0,
+  "review": {
+    "kind": "primary-agent contract and side-effect review",
+    "result": "PASS",
+    "findings": []
+  },
+  "secrets_in_record": false
+}
