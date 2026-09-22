@@ -5,7 +5,7 @@
   "scope": "Attributed channel metrics, unsent comment drafts, and proposal-only recipe feedback",
   "completed_at": "2026-09-22T07:36:15Z",
   "branch": "main",
-  "implementation_commits": ["c450560", "0155bc7"],
+  "implementation_commits": ["c450560", "0155bc7", "0520538"],
   "red_evidence": [{
     "commit": "c450560",
     "conclusion": "failure",
@@ -28,6 +28,7 @@
   }],
   "assertions": [
     "a metric is evaluable only when its attributed observation has a finite positive denominator",
+    "metric definition and observation window are preserved without unsupported normalization",
     "missing denominators remain not_evaluable with null values rather than becoming zero",
     "comment text is untrusted data and is never copied into an executable instruction path",
     "feedback creates only unsent reply drafts and proposal-only recipe revisions",

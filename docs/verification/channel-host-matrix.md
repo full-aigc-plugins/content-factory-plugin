@@ -1,7 +1,8 @@
 # Actual host, channel, and account matrix
 
-Overall status: **NOT_RUN**  
-Recorded: 2026-09-22  
+Overall status: **NOT_RUN**
+
+Recorded: 2026-09-22
 Release candidate: not selected
 
 Offline contract tests are not live host evidence. The checked-in Codex, ZCode, and Kimi manifests prove packaging shape only; they do not prove that this exact package was installed and executed in a real session.

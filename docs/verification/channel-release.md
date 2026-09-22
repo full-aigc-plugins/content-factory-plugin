@@ -1,6 +1,7 @@
 # Integrated V1 release gate
 
-Release verdict: **BLOCKED**  
+Release verdict: **BLOCKED**
+
 Recorded: 2026-09-22
 
 The integrated gate exists and correctly refuses the current repository state. This package must not be released or published as production-ready while the blockers below remain.

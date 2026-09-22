@@ -4,7 +4,7 @@ import test from "node:test";
 import { probeHost } from "../adapters/host/probe.ts";
 import { resolvePlatformContext } from "../packages/core/src/channels/context.ts";
 
-test("CF-044 keeps Codex host, YouTube source and Xiaohongshu target independent", () => {
+test("CF-044 keeps Codex host and YouTube source independent from Xiaohongshu and WeChat targets", () => {
   const result = resolvePlatformContext({
     host: probeHost({ env: { CONTENT_FACTORY_HOST_ID: "codex" } }),
     sources: [{ sourceId: "s1", platform: "youtube", uri: "https://youtube.com/watch?v=1" }],
@@ -25,6 +25,25 @@ test("CF-044 keeps Codex host, YouTube source and Xiaohongshu target independent
   assert.equal(result.channelIntent.channelId, "xiaohongshu");
   assert.equal(result.channelIntent.formatId, "note");
   assert.equal(result.channelIntent.resolutionState, "resolved");
+
+  const wechat = resolvePlatformContext({
+    host: probeHost({ env: { CONTENT_FACTORY_HOST_ID: "codex" } }),
+    sources: [{ sourceId: "s1", platform: "youtube", uri: "https://youtube.com/watch?v=1" }],
+    explicitTarget: {
+      channel: "wechat-article",
+      format: "article",
+      locale: "zh-CN",
+      audience: "开发者",
+      goal: "教程",
+      taskKind: "original_write",
+      requestedAction: "draft",
+      accountRef: null
+    }
+  });
+  assert.equal(wechat.sourceContexts[0]?.sourcePlatform, "youtube");
+  assert.equal(wechat.channelIntent.channelId, "wechat-article");
+  assert.equal(wechat.channelIntent.formatId, "article");
+  assert.equal(wechat.channelIntent.channelId === wechat.sourceContexts[0]?.sourcePlatform, false);
 });
 
 test("CF-044 ambiguous WeChat request performs no remote call", () => {

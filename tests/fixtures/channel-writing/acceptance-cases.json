@@ -1,6 +1,6 @@
 {
   "cases": [
-    { "id": "R01", "status": "VERIFIED_OFFLINE", "evidenceFile": "test/channel-context.test.mjs", "assertionFragment": "YouTube source and Xiaohongshu target independent" },
+    { "id": "R01", "status": "VERIFIED_OFFLINE", "evidenceFile": "test/channel-context.test.mjs", "assertionFragment": "YouTube source independent from Xiaohongshu and WeChat targets" },
     { "id": "R02", "status": "VERIFIED_OFFLINE", "evidenceFile": "test/harness-routing.test.mjs", "assertionFragment": "selects a native recipe before writing" },
     { "id": "R03", "status": "VERIFIED_OFFLINE", "evidenceFile": "test/channel-context.test.mjs", "assertionFragment": "ambiguous WeChat request performs no remote call" },
     { "id": "R04", "status": "VERIFIED_OFFLINE", "evidenceFile": "test/channel-context.test.mjs", "assertionFragment": "conflicting target and selected account remain a conflict" },
@@ -36,12 +36,12 @@
     { "id": "R34", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/channels/variant-isolation.test.ts", "assertionFragment": "invalidates only evidence bound to that sibling" },
     { "id": "R35", "status": "VERIFIED_OFFLINE", "evidenceFile": "test/official-content-submit.test.mjs", "assertionFragment": "draft timeout becomes unknown and repeated submit never creates another draft" },
     { "id": "R36", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/channels/feedback.test.ts", "assertionFragment": "computes only attributed metrics with a real denominator" },
-    { "id": "R37", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/channels/feedback.test.ts", "assertionFragment": "share-rate\", status: \"not_evaluable\"" },
+    { "id": "R37", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/channels/feedback.test.ts", "assertionFragment": "status: \"not_evaluable\"" },
     { "id": "R38", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/channels/feedback.test.ts", "assertionFragment": "comment instructions as untrusted data" },
     { "id": "R39", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/channels/feedback.test.ts", "assertionFragment": "proposes but never applies a recipe revision" },
     { "id": "R40", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/channels/constraints.test.ts", "assertionFragment": "unsupported detector language is not_evaluable" },
     { "id": "R41", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/e2e/host-contract.test.ts", "assertionFragment": "keeps every unexecuted live run as NOT_RUN" },
-    { "id": "R42", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/channels/channel-acceptance.test.ts", "assertionFragment": "never upgrades offline regression evidence into live channel support" }
+    { "id": "R42", "status": "VERIFIED_OFFLINE", "evidenceFile": "tests/channels/channel-release.test.ts", "assertionFragment": "has no dependency on CF-042 and documents the blocked release" }
   ],
   "preservedGates": [
     { "gate": "30-document-dual-human-review", "status": "NOT_RUN", "evidenceFile": "tests/editorial/corpus.test.mjs", "assertionFragment": "remains NOT_RUN until both human reviews exist" },

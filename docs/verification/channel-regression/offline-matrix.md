@@ -1,7 +1,9 @@
 # Channel regression matrix
 
-Status: **PARTIAL_OFFLINE**  
-Plugin commit: `9c8042d`  
+Status: **PARTIAL_OFFLINE**
+
+Plugin commit: `9c8042d`
+
 Recorded: 2026-09-22
 
 This matrix records deterministic offline behavior only. It does not prove a live host session, external account, remote draft, public publish, feedback read, or reply send.

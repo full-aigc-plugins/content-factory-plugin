@@ -2,8 +2,11 @@ import { createHash } from "node:crypto";
 
 type MetricObservation = {
   name: string;
+  definition: string;
   numerator: number;
   denominator: number | null;
+  windowStart: string;
+  windowEnd: string;
   observedAt: string;
   sourceRef: string;
 };
@@ -36,11 +39,22 @@ function normalizeMetric(channelId: string, observation: MetricObservation) {
     && observation.denominator > 0;
 
   return {
-    metricId: stableId("metric", [channelId, observation.name, observation.observedAt, observation.sourceRef]),
+    metricId: stableId("metric", [
+      channelId,
+      observation.name,
+      observation.definition,
+      observation.windowStart,
+      observation.windowEnd,
+      observation.observedAt,
+      observation.sourceRef
+    ]),
     channelId,
     name: observation.name,
+    definition: observation.definition,
     numerator: observation.numerator,
     denominator: observation.denominator,
+    windowStart: observation.windowStart,
+    windowEnd: observation.windowEnd,
     value: evaluable ? observation.numerator / observation.denominator! : null,
     status: evaluable ? "observed" as const : "not_evaluable" as const,
     observedAt: observation.observedAt,
