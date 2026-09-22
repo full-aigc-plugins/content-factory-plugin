@@ -143,6 +143,8 @@ test("CF-040 CI executes the release gate on Linux, macOS, and Windows", async (
   const workflow = await readFile(path.resolve(".github/workflows/ci.yml"), "utf8");
   assert.match(workflow, /os:\s*\[ubuntu-latest, macos-latest, windows-latest\]/);
   assert.match(workflow, /runs-on:\s*\$\{\{\s*matrix\.os\s*\}\}/);
+  assert.match(workflow, /if:\s*runner\.os == 'Windows'[\s\S]*node --test tests\/install\/clean-install\.test\.mjs/);
+  assert.match(workflow, /if:\s*runner\.os != 'Windows'[\s\S]*npm test/);
   assert.match(workflow, /npm run audit:release/);
 });
 
