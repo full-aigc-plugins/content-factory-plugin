@@ -5,11 +5,11 @@ manifests bind the same package identity and managed `skills/` tree. The shared
 CLI contract recognizes each host only when the host declares its identity and
 reports every capability from an explicit capability manifest.
 
-| Host | Manifest | Package contract | Live host session | External detector | Draft readback | Image capability |
-| --- | --- | --- | --- | --- | --- | --- |
-| Codex | `.codex-plugin/plugin.json` | Verified offline | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN |
-| ZCode | `.zcode-plugin/plugin.json` | Verified offline | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN |
-| Kimi | `kimi.plugin.json` | Verified offline | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN |
+| Host | Manifest | Package contract | Runtime preflight | Plugin/live session | External detector | Draft readback | Image capability |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Codex | `.codex-plugin/plugin.json` | Verified offline | OBSERVED: CLI 0.153.4 | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN |
+| ZCode | `.zcode-plugin/plugin.json` | Verified offline | OBSERVED: desktop 3.14.3 | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN |
+| Kimi | `kimi.plugin.json` | Verified offline | OBSERVED: CLI 0.43.1; desktop 3.2.11 | NOT_RUN | NOT_RUN | NOT_RUN | NOT_RUN |
 
 The offline contract starts the same CLI for each declared host, verifies that
 the filesystem capability is available only when declared, keeps browser and
@@ -21,3 +21,9 @@ is [live-run-index.json](live-run-index.json); it remains `NOT_RUN` until a new
 session on the named host produces material-to-export, detection, and draft
 readback evidence. No external provider or content-platform brand is used as a
 credential, account, or capability placeholder.
+
+The read-only [host runtime preflight](host-runtime-preflight.json) records only
+locally observed runtime versions and operating-system metadata. It started no
+plugin session, accessed no account, and made no paid or remote call. Runtime
+presence therefore does not imply that Content Factory is installed or works
+inside that host.

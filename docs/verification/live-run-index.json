@@ -1,12 +1,16 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-22T07:14:00Z",
-  "evidenceBoundary": "Manifest and shared CLI contract checks are offline evidence. They do not prove a host session, external provider call, or content-platform draft readback.",
+  "updatedAt": "2026-09-22T09:00:00Z",
+  "evidenceBoundary": "Manifest, shared CLI contract, and read-only runtime preflight checks are offline evidence. They do not prove plugin installation, a host session, external provider call, or content-platform draft readback.",
   "runs": [
     {
       "hostId": "codex",
-      "hostVersion": null,
-      "operatingSystem": null,
+      "hostVersion": "codex-cli 0.153.4",
+      "operatingSystem": "macOS 27.0 arm64",
+      "runtimePreflight": "OBSERVED",
+      "preflightEvidenceRefs": [
+        "docs/verification/host-runtime-preflight.json"
+      ],
       "status": "NOT_RUN",
       "sessionStarted": false,
       "materialToExport": "NOT_RUN",
@@ -14,12 +18,16 @@
       "draftReadback": "NOT_RUN",
       "imageCapability": "NOT_RUN",
       "remoteEvidenceRefs": [],
-      "reason": "No authorized clean-host live session and external test accounts were supplied."
+      "reason": "The host runtime was observed read-only; plugin installation, a new host session, and external accounts were not verified or used."
     },
     {
       "hostId": "zcode",
-      "hostVersion": null,
-      "operatingSystem": null,
+      "hostVersion": "desktop 3.14.3 (build 3.14.3.7762)",
+      "operatingSystem": "macOS 27.0 arm64",
+      "runtimePreflight": "OBSERVED",
+      "preflightEvidenceRefs": [
+        "docs/verification/host-runtime-preflight.json"
+      ],
       "status": "NOT_RUN",
       "sessionStarted": false,
       "materialToExport": "NOT_RUN",
@@ -27,12 +35,16 @@
       "draftReadback": "NOT_RUN",
       "imageCapability": "NOT_RUN",
       "remoteEvidenceRefs": [],
-      "reason": "No authorized clean-host live session and external test accounts were supplied."
+      "reason": "The host runtime was observed read-only; plugin installation, a new host session, and external accounts were not verified or used."
     },
     {
       "hostId": "kimi",
-      "hostVersion": null,
-      "operatingSystem": null,
+      "hostVersion": "cli 0.43.1; desktop 3.2.11",
+      "operatingSystem": "macOS 27.0 arm64",
+      "runtimePreflight": "OBSERVED",
+      "preflightEvidenceRefs": [
+        "docs/verification/host-runtime-preflight.json"
+      ],
       "status": "NOT_RUN",
       "sessionStarted": false,
       "materialToExport": "NOT_RUN",
@@ -40,7 +52,7 @@
       "draftReadback": "NOT_RUN",
       "imageCapability": "NOT_RUN",
       "remoteEvidenceRefs": [],
-      "reason": "No authorized clean-host live session and external test accounts were supplied."
+      "reason": "The host runtime was observed read-only; plugin installation, a new host session, and external accounts were not verified or used."
     }
   ]
 }

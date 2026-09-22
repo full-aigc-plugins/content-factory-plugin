@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-22T09:00:00Z",
+  "scope": "Read-only host runtime presence and version preflight; not plugin installation or session evidence.",
+  "operatingSystem": {
+    "name": "macOS",
+    "version": "27.0",
+    "build": "26A428",
+    "architecture": "arm64"
+  },
+  "hosts": [
+    {
+      "hostId": "codex",
+      "runtimeObserved": true,
+      "runtimes": [
+        {
+          "kind": "cli",
+          "version": "0.153.4",
+          "command": "codex --version"
+        }
+      ],
+      "pluginInstallation": "NOT_VERIFIED",
+      "pluginSession": "NOT_RUN",
+      "accountAccess": "NOT_RUN",
+      "paidCalls": 0
+    },
+    {
+      "hostId": "zcode",
+      "runtimeObserved": true,
+      "runtimes": [
+        {
+          "kind": "desktop",
+          "version": "3.14.3",
+          "build": "3.14.3.7762",
+          "evidence": "application bundle metadata"
+        }
+      ],
+      "pluginInstallation": "NOT_VERIFIED",
+      "pluginSession": "NOT_RUN",
+      "accountAccess": "NOT_RUN",
+      "paidCalls": 0
+    },
+    {
+      "hostId": "kimi",
+      "runtimeObserved": true,
+      "runtimes": [
+        {
+          "kind": "cli",
+          "version": "0.43.1",
+          "command": "kimi --version"
+        },
+        {
+          "kind": "desktop",
+          "version": "3.2.11",
+          "evidence": "application bundle metadata"
+        }
+      ],
+      "pluginInstallation": "NOT_VERIFIED",
+      "pluginSession": "NOT_RUN",
+      "accountAccess": "NOT_RUN",
+      "paidCalls": 0
+    }
+  ],
+  "remoteCalls": 0,
+  "secretsInRecord": false
+}

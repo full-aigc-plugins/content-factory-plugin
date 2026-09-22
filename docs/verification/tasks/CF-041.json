@@ -2,13 +2,14 @@
   "schema_version": 1,
   "task": "CF-041",
   "status": "PARTIAL_OFFLINE",
-  "scope": "Codex, ZCode, and Kimi manifests, shared CLI startup contract, packaged-manifest integrity, and explicit live-run evidence boundaries",
-  "completed_at": "2026-09-22T07:17:00Z",
+  "scope": "Codex, ZCode, and Kimi manifests, shared CLI startup contract, packaged-manifest integrity, read-only runtime preflight, and explicit live-run evidence boundaries",
+  "completed_at": "2026-09-22T09:00:00Z",
   "branch": "main",
   "implementation_commits": [
     "af85550",
     "77f04ee",
-    "2871433"
+    "2871433",
+    "adbd79c"
   ],
   "red_evidence": [
     {
@@ -21,6 +22,12 @@
       "conclusion": "failure",
       "command": "npm test",
       "reason": "two test files concurrently rebuilt dist and exposed a release-directory race"
+    },
+    {
+      "commit": "adbd79c",
+      "conclusion": "failure",
+      "command": "node --test tests/e2e/host-contract.test.ts",
+      "reason": "the checked-in runtime preflight evidence did not exist"
     }
   ],
   "green_evidence": [
@@ -36,6 +43,23 @@
         "npm run skills:check",
         "npm run audit:release"
       ]
+    },
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 build 26A428 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test tests/e2e/host-contract.test.ts (5 passed, 0 failed)",
+        "npm test (271 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run build (260 files packaged)",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run audit:release",
+        "openspec validate establish-content-factory-v1 --strict",
+        "openspec validate add-platform-aware-content-orchestration --strict",
+        "openspec validate implement-content-factory-architecture --strict"
+      ]
     }
   ],
   "assertions": [
@@ -44,7 +68,9 @@
     "filesystem, browser, image, credential, search, and MCP capabilities are derived only from explicit declarations",
     "the release build preserves each manifest byte-for-byte",
     "manifest presence never advances a host to installed, contract-verified, or live-verified",
-    "every unexecuted host flow remains NOT_RUN with no remote evidence references"
+    "every unexecuted host flow remains NOT_RUN with no remote evidence references",
+    "read-only runtime versions are recorded separately from plugin installation and host-session evidence",
+    "the runtime preflight accessed no account and performed zero paid or remote calls"
   ],
   "outputs": [
     ".codex-plugin/plugin.json",
@@ -52,7 +78,8 @@
     "kimi.plugin.json",
     "tests/e2e/host-contract.test.ts",
     "docs/verification/host-matrix.md",
-    "docs/verification/live-run-index.json"
+    "docs/verification/live-run-index.json",
+    "docs/verification/host-runtime-preflight.json"
   ],
   "review": {
     "kind": "primary-agent manifest, package, and evidence-boundary review",
@@ -67,6 +94,6 @@
     "content_platform_draft_readback": "NOT_RUN",
     "image_capability": "NOT_RUN"
   },
-  "blocker": "The user authorized skipping live external validation; no authorized clean-host sessions or external test accounts were supplied. CF-030, CF-034, and CF-039 also remain PARTIAL_OFFLINE.",
+  "blocker": "The host runtimes were observed read-only, but plugin installation and new host sessions were not verified. The user authorized skipping live external validation, and no external test accounts were supplied. CF-030, CF-034, and CF-039 also remain PARTIAL_OFFLINE.",
   "secrets_in_record": false
 }
