@@ -11,7 +11,9 @@
     "02071f8",
     "ef8a230",
     "8a411e5",
-    "7aeb080"
+    "7aeb080",
+    "dc7e294",
+    "835e03a"
   ],
   "red_evidence": [
     {
@@ -62,6 +64,26 @@
         "npm run skills:check",
         "npm run audit:release"
       ]
+    },
+    {
+      "run": "https://github.com/full-aigc-plugins/content-factory-plugin/actions/runs/35703271836",
+      "commit": "835e03a",
+      "conclusion": "success",
+      "reason": "serialized browser integration tests removed Linux Chromium startup contention",
+      "jobs": [
+        "ubuntu-latest",
+        "macos-latest",
+        "windows-latest"
+      ],
+      "per_job_gates": [
+        "npm install --ignore-scripts",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run build",
+        "npm test (267 passed, 0 failed)",
+        "npm run skills:check",
+        "npm run audit:release"
+      ]
     }
   ],
   "assertions": [
@@ -72,7 +94,8 @@
     "LICENSE, both readmes, third-party notices, templates, schemas, skills, and runtime source are packaged",
     "Git checkout preserves LF source on all runners",
     "test cleanup closes database handles before removing temporary directories on Windows",
-    "all three operating systems execute the same full 225-test regression and release gates"
+    "all three operating systems execute the same full 267-test regression and release gates",
+    "browser-backed integration tests are serialized to avoid resource contention between parallel Chromium processes"
   ],
   "outputs": [
     ".gitattributes",
