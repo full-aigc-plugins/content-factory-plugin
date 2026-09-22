@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "task": "CF-035",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Controlled browser draft state machine with account, approval, capability, operating-system, session, editor, save, and readback gates",
+  "completed_at": "2026-09-22T06:18:51Z",
+  "branch": "main",
+  "implementation_commits": [
+    "f68d2a736fa153c73ab01bc61e12da389d7603e2",
+    "1146529b9ab2cd53733952f2fdf4f11ed898ccde"
+  ],
+  "red_evidence": [
+    {
+      "commit": "f68d2a736fa153c73ab01bc61e12da389d7603e2",
+      "conclusion": "failure",
+      "command": "node --test test/official-content-browser.test.mjs",
+      "reason": "all seven capability, account, session, editor, save, readback, and conflict assertions failed against the explicit not-implemented result"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "1146529b9ab2cd53733952f2fdf4f11ed898ccde",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/official-content-browser.test.mjs (7 passed, 0 failed)",
+        "npm test (196 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "browser capability and operating-system support are separate explicit gates",
+    "only save-draft is accepted and no publish action exists on the browser port",
+    "the frozen bundle, approval, selected account, and active session account must agree",
+    "expired login and verification challenges stop before content is filled",
+    "editor structure drift stops before save and remains recoverable",
+    "filled and saved evidence are recorded independently",
+    "a saved draft without readback is never reported as verified",
+    "exact readback records verified evidence while substantive differences produce conflict"
+  ],
+  "outputs": [
+    "adapters/wechat/browser.ts",
+    "docs/guides/wechat-browser.md",
+    "test/official-content-browser.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "synthetic-browser-boundary",
+  "live_official_content_browser": "NOT_RUN",
+  "live_blocker": "No user-authorized content-platform browser session was used; login, editor selectors, save behavior, and live readback remain unverified.",
+  "dependency_status": {
+    "CF-031": "PARTIAL_OFFLINE",
+    "CF-032": "PARTIAL_OFFLINE",
+    "CF-034": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
