@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "task": "CF-027",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Detection policy evaluation, explicit human review decisions, and delivery-safe separation of policy verdict from exception approval",
+  "completed_at": "2026-09-22T11:00:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "95f8f3832a0c79a3e95b58e02e319f2c85a6d3d7",
+    "836f0d9aa7320db6dd66d2e15cf5a4151081768e"
+  ],
+  "red_evidence": [
+    {
+      "commit": "95f8f3832a0c79a3e95b58e02e319f2c85a6d3d7",
+      "conclusion": "failure",
+      "command": "node --test test/detection-policy.test.mjs",
+      "reason": "the detection policy, review approval, and policy schema modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "836f0d9aa7320db6dd66d2e15cf5a4151081768e",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/detection-policy.test.mjs (5 passed, 0 failed)",
+        "npm test (153 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "the default policy requires review and contains no invented threshold",
+    "failed, blocked, unknown, or not-evaluable detection cannot pass policy",
+    "threshold fields retain their declared semantics and invalid thresholds are not evaluable",
+    "a human exception preserves the original not-met verdict",
+    "model self-approval and stale policy-version approval are rejected",
+    "review records bind actor, action, reason, policy version, and decision time"
+  ],
+  "outputs": [
+    "packages/core/src/detection/policy.ts",
+    "packages/core/src/review/approval.ts",
+    "schemas/detection-policy.schema.json",
+    "test/detection-policy.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "synthetic-policy-fixture",
+  "live_ai_content_detector": "NOT_RUN",
+  "live_blocker": "Policy behavior is verified locally, but no authorized live report was evaluated and production admission remains blocked.",
+  "dependency_status": {
+    "CF-017": "COMPLETE",
+    "CF-025": "PARTIAL_OFFLINE",
+    "CF-026": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
