@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "task": "CF-058",
+  "status": "COMPLETE",
+  "release_verdict": "BLOCKED",
+  "scope": "Integrated foundational, supply-chain, and live channel release evidence gate",
+  "completed_at": "2026-09-22T07:59:10Z",
+  "branch": "main",
+  "implementation_commits": ["50a2bdd", "3d682e1"],
+  "red_evidence": [{
+    "commit": "50a2bdd",
+    "conclusion": "failure",
+    "command": "npm test -- tests/channels/channel-release.test.ts",
+    "reason": "the integrated release gate module did not exist"
+  }],
+  "green_evidence": [{
+    "commit": "3d682e1",
+    "conclusion": "success",
+    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+    "gates": [
+      "npm test -- tests/channels/channel-release.test.ts (4 passed, 0 failed)",
+      "npm test (263 passed, 0 failed)",
+      "npm run typecheck",
+      "npm run lint",
+      "npm run skills:check",
+      "npm run audit:release",
+      "npm run build",
+      "node scripts/release-gate.mjs --json (expected exit 1; verdict blocked)"
+    ]
+  }],
+  "current_gate_result": {
+    "verdict": "blocked",
+    "package_version": "0.1.0",
+    "evaluated_commit": "3d682e1ded5af9beeb7f435625d1a16ad2cbbc18",
+    "blockers": [
+      "channel-live-task-not-complete:CF-057",
+      "release-candidate-not-selected",
+      "live-evidence-not-verified",
+      "live-combination-coverage-incomplete:0/117"
+    ]
+  },
+  "assertions": [
+    "the gate passes only when foundational tasks and CF-057 are complete",
+    "the release candidate package version and commit must exactly match the evaluated checkout",
+    "all expected live host-recipe combinations must be verified",
+    "vendor audit failure and duplicate media-production skill ownership block release",
+    "the gate has no dependency on the final release task and therefore no cycle",
+    "a blocked release exits non-zero and cannot be presented as production-ready"
+  ],
+  "outputs": [
+    "scripts/release-gate.mjs",
+    "tests/channels/channel-release.test.ts",
+    "docs/verification/channel-release.md",
+    "package.json"
+  ],
+  "review": {
+    "kind": "primary-agent fail-closed release-gate review",
+    "result": "PASS_GATE_IMPLEMENTATION_RELEASE_BLOCKED",
+    "findings": []
+  },
+  "secrets_in_record": false
+}
