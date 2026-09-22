@@ -70,11 +70,6 @@ test("CF-041 checked-in host evidence keeps every unexecuted live run as NOT_RUN
 });
 
 test("CF-041 release build retains every host manifest without changing its bytes", async () => {
-  const build = spawnSync(process.execPath, ["scripts/build.mjs"], {
-    cwd: process.cwd(),
-    encoding: "utf8"
-  });
-  assert.equal(build.status, 0, build.stderr || build.stdout);
   for (const relativePath of Object.values(manifests)) {
     const source = await readFile(path.resolve(relativePath));
     const packaged = await readFile(path.resolve("dist", relativePath));

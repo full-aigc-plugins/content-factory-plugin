@@ -7,7 +7,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "test": "node --test",
+    "test": "node scripts/build.mjs && node --test",
     "lint": "node scripts/lint.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "node scripts/build.mjs",

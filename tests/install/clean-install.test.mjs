@@ -12,12 +12,6 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import test from "node:test";
 
-const build = spawnSync(process.execPath, ["scripts/build.mjs"], {
-  cwd: process.cwd(),
-  encoding: "utf8"
-});
-assert.equal(build.status, 0, build.stderr || build.stdout);
-
 async function sandbox(t) {
   const root = await mkdtemp(path.join(os.tmpdir(), "content-factory-install-"));
   const closers = [];
