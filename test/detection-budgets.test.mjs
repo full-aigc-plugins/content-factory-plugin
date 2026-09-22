@@ -43,6 +43,8 @@ test("CF-029 retries HTTP 429 at most twice and records every charged attempt", 
   });
 
   assert.equal(result.status, "succeeded");
+  assert.equal(result.requestId, "detect-rate-limit");
+  assert.equal(result.attempts.every(item => item.requestId === result.requestId), true);
   assert.deepEqual(result.attempts.map(item => item.httpStatus), [429, 429, 200]);
   assert.deepEqual(result.attempts.map(item => item.usageCost), [0.1, 0.1, 0.2]);
   assert.deepEqual(waits, [20, 40]);
