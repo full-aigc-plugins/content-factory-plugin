@@ -5,27 +5,38 @@
   "scope": "Attributed channel metrics, unsent comment drafts, and proposal-only recipe feedback",
   "completed_at": "2026-09-22T07:36:15Z",
   "branch": "main",
-  "implementation_commits": ["c450560", "0155bc7", "0520538"],
+  "implementation_commits": ["c450560", "0155bc7", "0520538", "4ed6dc5"],
   "red_evidence": [{
     "commit": "c450560",
     "conclusion": "failure",
     "command": "npm test -- tests/channels/feedback.test.ts",
     "reason": "the attributed feedback module did not exist"
   }],
-  "green_evidence": [{
-    "commit": "0155bc7",
-    "conclusion": "success",
-    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
-    "gates": [
-      "npm test -- tests/channels/feedback.test.ts (5 passed, 0 failed)",
-      "npm test (245 passed, 0 failed)",
-      "npm run typecheck",
-      "npm run lint",
-      "npm run skills:check",
-      "npm run audit:release",
-      "npm run build"
-    ]
-  }],
+  "green_evidence": [
+    {
+      "commit": "0155bc7",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "npm test -- tests/channels/feedback.test.ts (5 passed, 0 failed)",
+        "npm test (245 passed, 0 failed)",
+        "npm run typecheck",
+        "npm run lint",
+        "npm run skills:check",
+        "npm run audit:release",
+        "npm run build"
+      ]
+    },
+    {
+      "commit": "4ed6dc5",
+      "conclusion": "success",
+      "reason": "R36 supplement preserves metric definitions and observation windows",
+      "gates": [
+        "npm test -- tests/channels/feedback.test.ts (5 passed, 0 failed)",
+        "npm test -- test/channel-context.test.mjs tests/channels/channel-acceptance.test.ts tests/channels/feedback.test.ts (14 passed, 0 failed)"
+      ]
+    }
+  ],
   "assertions": [
     "a metric is evaluable only when its attributed observation has a finite positive denominator",
     "metric definition and observation window are preserved without unsupported normalization",
