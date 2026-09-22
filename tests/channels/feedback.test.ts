@@ -11,15 +11,21 @@ const input = {
   metrics: [
     {
       name: "save-rate",
+      definition: "saved views divided by eligible views",
       numerator: 24,
       denominator: 120,
+      windowStart: "2026-09-15T00:00:00Z",
+      windowEnd: "2026-09-22T00:00:00Z",
       observedAt: "2026-09-22T08:00:00Z",
       sourceRef: "observation:metric-1"
     },
     {
       name: "share-rate",
+      definition: "shares divided by eligible views",
       numerator: 7,
       denominator: null,
+      windowStart: "2026-09-15T00:00:00Z",
+      windowEnd: "2026-09-22T00:00:00Z",
       observedAt: "2026-09-22T08:00:00Z",
       sourceRef: "observation:metric-2"
     }
@@ -37,12 +43,31 @@ test("CF-054 computes only attributed metrics with a real denominator", () => {
   assert.equal(result.status, "proposed");
   assert.deepEqual(result.metrics.map(metric => ({
     name: metric.name,
+    definition: metric.definition,
+    windowStart: metric.windowStart,
+    windowEnd: metric.windowEnd,
     status: metric.status,
     value: metric.value,
     sourceRef: metric.sourceRef
   })), [
-    { name: "save-rate", status: "observed", value: 0.2, sourceRef: "observation:metric-1" },
-    { name: "share-rate", status: "not_evaluable", value: null, sourceRef: "observation:metric-2" }
+    {
+      name: "save-rate",
+      definition: "saved views divided by eligible views",
+      windowStart: "2026-09-15T00:00:00Z",
+      windowEnd: "2026-09-22T00:00:00Z",
+      status: "observed",
+      value: 0.2,
+      sourceRef: "observation:metric-1"
+    },
+    {
+      name: "share-rate",
+      definition: "shares divided by eligible views",
+      windowStart: "2026-09-15T00:00:00Z",
+      windowEnd: "2026-09-22T00:00:00Z",
+      status: "not_evaluable",
+      value: null,
+      sourceRef: "observation:metric-2"
+    }
   ]);
 });
 
