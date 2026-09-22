@@ -1,0 +1,36 @@
+{
+  "name": "content-factory",
+  "version": "0.1.0",
+  "description": "Create, review, format, and export governed content for 16 channels.",
+  "author": {
+    "name": "Full AIGC Plugins"
+  },
+  "homepage": "https://github.com/full-aigc-plugins/content-factory-plugin",
+  "repository": "https://github.com/full-aigc-plugins/content-factory-plugin",
+  "license": "Apache-2.0",
+  "keywords": [
+    "content",
+    "editorial",
+    "workflow",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Content Factory",
+    "shortDescription": "Create and review governed multi-channel content",
+    "longDescription": "Research, draft, edit, format, review, and export evidence-bound content while preserving facts, approvals, revisions, and external-action boundaries.",
+    "developerName": "Full AIGC Plugins",
+    "category": "Creativity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/full-aigc-plugins/content-factory-plugin",
+    "defaultPrompt": [
+      "Create an evidence-bound article from supplied materials",
+      "Edit and format content without changing protected facts",
+      "Prepare a reviewed package for a selected channel"
+    ]
+  }
+}

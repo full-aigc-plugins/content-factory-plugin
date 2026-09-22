@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-22T07:14:00Z",
+  "evidenceBoundary": "Manifest and shared CLI contract checks are offline evidence. They do not prove a host session, external provider call, or content-platform draft readback.",
+  "runs": [
+    {
+      "hostId": "codex",
+      "hostVersion": null,
+      "operatingSystem": null,
+      "status": "NOT_RUN",
+      "sessionStarted": false,
+      "materialToExport": "NOT_RUN",
+      "detection": "NOT_RUN",
+      "draftReadback": "NOT_RUN",
+      "imageCapability": "NOT_RUN",
+      "remoteEvidenceRefs": [],
+      "reason": "No authorized clean-host live session and external test accounts were supplied."
+    },
+    {
+      "hostId": "zcode",
+      "hostVersion": null,
+      "operatingSystem": null,
+      "status": "NOT_RUN",
+      "sessionStarted": false,
+      "materialToExport": "NOT_RUN",
+      "detection": "NOT_RUN",
+      "draftReadback": "NOT_RUN",
+      "imageCapability": "NOT_RUN",
+      "remoteEvidenceRefs": [],
+      "reason": "No authorized clean-host live session and external test accounts were supplied."
+    },
+    {
+      "hostId": "kimi",
+      "hostVersion": null,
+      "operatingSystem": null,
+      "status": "NOT_RUN",
+      "sessionStarted": false,
+      "materialToExport": "NOT_RUN",
+      "detection": "NOT_RUN",
+      "draftReadback": "NOT_RUN",
+      "imageCapability": "NOT_RUN",
+      "remoteEvidenceRefs": [],
+      "reason": "No authorized clean-host live session and external test accounts were supplied."
+    }
+  ]
+}

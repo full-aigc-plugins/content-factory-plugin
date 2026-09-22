@@ -7,7 +7,15 @@ const output = path.resolve("dist");
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 
-const copyRoots = ["packages", "adapters", "schemas", "skills", "templates"];
+const copyRoots = [
+  ".codex-plugin",
+  ".zcode-plugin",
+  "packages",
+  "adapters",
+  "schemas",
+  "skills",
+  "templates"
+];
 for (const root of copyRoots) {
   await cp(root, path.join(output, root), {
     recursive: true,
@@ -21,6 +29,7 @@ for (const file of [
   "LICENSE",
   "README.md",
   "README.zh-CN.md",
+  "kimi.plugin.json",
   "package.json",
   "skills.lock.json",
   "plugin-local-skills.json",
