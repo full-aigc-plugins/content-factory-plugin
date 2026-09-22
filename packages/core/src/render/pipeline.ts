@@ -35,7 +35,9 @@ function sameFields(left: CanonicalFields, right: CanonicalFields): boolean {
 
 function unsafeHtml(html: string): boolean {
   return /<script\b/iu.test(html)
-    || /\b(?:href|src)\s*=\s*["']?\s*javascript:/iu.test(html);
+    || /\b(?:href|src)\s*=\s*["']?\s*javascript:/iu.test(html)
+    || /\son[a-z0-9_-]+\s*=/iu.test(html)
+    || /\bsrcdoc\s*=/iu.test(html);
 }
 
 export async function renderFrozenVariant(input: {

@@ -25,6 +25,7 @@ async function sandbox(t) {
 
 function input(destination, overrides = {}) {
   return {
+    allowedRoot: path.dirname(destination),
     destination,
     kind: "working",
     variant: {

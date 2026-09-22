@@ -1,8 +1,10 @@
 import { createHash, randomUUID } from "node:crypto";
 import {
   access,
+  lstat,
   mkdir,
   open,
+  realpath,
   rename,
   rm,
   unlink,
@@ -24,6 +26,7 @@ type ExportReadiness = {
 };
 
 export type DeliveryExportInput = {
+  allowedRoot: string;
   destination: string;
   kind: "working" | "verified";
   variant: {
@@ -104,6 +107,60 @@ async function exists(target: string): Promise<boolean> {
   }
 }
 
+function isInside(root: string, target: string): boolean {
+  const relative = path.relative(root, target);
+  return relative === ""
+    || (!relative.startsWith(`..${path.sep}`) && relative !== ".." && !path.isAbsolute(relative));
+}
+
+async function nearestExistingAncestor(target: string): Promise<string> {
+  let current = target;
+  while (true) {
+    try {
+      await lstat(current);
+      return current;
+    } catch (caught) {
+      const error = caught as NodeJS.ErrnoException;
+      if (error.code !== "ENOENT") throw caught;
+      const parent = path.dirname(current);
+      if (parent === current) throw caught;
+      current = parent;
+    }
+  }
+}
+
+async function assertAuthorizedDestination(
+  allowedRoot: string,
+  destination: string
+): Promise<{ root: string; destination: string }> {
+  const resolvedRoot = path.resolve(allowedRoot);
+  const resolvedDestination = path.resolve(destination);
+  if (!isInside(resolvedRoot, resolvedDestination)) {
+    throw exportError(
+      "DELIVERY_EXPORT_PATH_ESCAPE",
+      "export destination is outside the authorized root"
+    );
+  }
+  let realRoot: string;
+  try {
+    realRoot = await realpath(resolvedRoot);
+  } catch {
+    throw exportError(
+      "DELIVERY_EXPORT_ROOT_INVALID",
+      "authorized export root must already exist"
+    );
+  }
+  const ancestor = await nearestExistingAncestor(path.dirname(resolvedDestination));
+  const realAncestor = await realpath(ancestor);
+  if (!isInside(realRoot, realAncestor)) {
+    throw exportError(
+      "DELIVERY_EXPORT_PATH_ESCAPE",
+      "export destination resolves outside the authorized root"
+    );
+  }
+  return { root: realRoot, destination: resolvedDestination };
+}
+
 async function writePayload(root: string, relative: string, bytes: Buffer): Promise<void> {
   const target = path.join(root, relative);
   await mkdir(path.dirname(target), { recursive: true });
@@ -136,7 +193,11 @@ export async function exportDeliveryPackage(input: DeliveryExportInput): Promise
     );
   }
 
-  const destination = path.resolve(input.destination);
+  const authorized = await assertAuthorizedDestination(
+    input.allowedRoot,
+    input.destination
+  );
+  const destination = authorized.destination;
   if (path.dirname(destination) === destination) {
     throw exportError(
       "DELIVERY_EXPORT_UNSAFE_PATH",
@@ -207,6 +268,13 @@ export async function exportDeliveryPackage(input: DeliveryExportInput): Promise
   const parent = path.dirname(destination);
   const base = path.basename(destination);
   await mkdir(parent, { recursive: true });
+  const realParent = await realpath(parent);
+  if (!isInside(authorized.root, realParent)) {
+    throw exportError(
+      "DELIVERY_EXPORT_PATH_ESCAPE",
+      "created export parent resolves outside the authorized root"
+    );
+  }
   const temporary = path.join(parent, `.${base}.tmp-${randomUUID()}`);
   const lockPath = path.join(parent, `.${base}.export.lock`);
   let lock: Awaited<ReturnType<typeof open>>;

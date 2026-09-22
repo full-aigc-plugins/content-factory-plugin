@@ -55,6 +55,13 @@ export function validateApprovedDelivery(input: {
   approval: DeliveryApproval;
   currentBundle: ReleaseBundle;
 }): { allowed: boolean; reason: string | null } {
+  if ((input.approval.actorKind !== "human"
+      && input.approval.actorKind !== "trusted-system")
+      || input.approval.actorId.trim() === ""
+      || input.approval.remoteWriteAuthorized !== true
+      || Number.isNaN(Date.parse(input.approval.approvedAt))) {
+    return { allowed: false, reason: "approval-record-invalid" };
+  }
   if (input.approval.intentId !== input.intent.intentId
       || input.approval.bundleHash !== input.intent.bundleHash
       || input.approval.targetAccountAlias !== input.intent.targetAccountAlias) {
