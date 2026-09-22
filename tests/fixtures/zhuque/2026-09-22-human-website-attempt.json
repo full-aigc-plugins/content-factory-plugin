@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-22T10:02:40Z",
+  "sampleCategory": "human",
+  "evidenceClass": "NOT_RUN_USER_CHALLENGE",
+  "providerAlias": "AI 内容检测平台",
+  "officialWebsite": "https://matrix.tencent.com/ai-detect/",
+  "transport": "official-website-websocket",
+  "browserAutomation": {
+    "tool": "opencli",
+    "version": "1.8.6",
+    "profileAuthenticated": false
+  },
+  "request": {
+    "source": "official-website-built-in-human-example-3",
+    "rightsBasis": "website-provided-test-fixture",
+    "textStored": false,
+    "textSha256": "0fb04c9319ca0caf0e3ce5414aff18b7b522be8aeb1c9de6a8b1e14e93bb79d1",
+    "unicodeScalars": 461,
+    "utf16CodeUnits": 461,
+    "utf8Bytes": 1329,
+    "containsChinese": true,
+    "containsNewlines": true,
+    "transmissionApproved": true
+  },
+  "submission": {
+    "status": "CAPTCHA_REQUIRED",
+    "buttonActivated": true,
+    "captchaIframeObserved": true,
+    "challengeBypassed": false,
+    "responseRecorded": false,
+    "availableUsesBefore": 2,
+    "availableUsesAfter": null,
+    "quotaOutcome": "NOT_OBSERVED"
+  },
+  "limitations": [
+    "The interactive challenge requires user action and was not bypassed.",
+    "No post-submission provider response or quota change was observed.",
+    "The built-in example preview was not treated as a new live detection response.",
+    "This record cannot satisfy the human comparison sample or authenticated API admission gate."
+  ],
+  "productionAdmission": false,
+  "secretsInRecord": false
+}

@@ -8,7 +8,8 @@
   "implementation_commits": [
     "eeccbb0",
     "82a1d51",
-    "9c2cb3d"
+    "9c2cb3d",
+    "0b1b98b"
   ],
   "red_evidence": [
     {
@@ -28,6 +29,12 @@
       "conclusion": "failure",
       "command": "node --test tests/contract/zhuque-probe.test.ts",
       "reason": "the distinct original-AI and edited website observations did not exist"
+    },
+    {
+      "commit": "0b1b98b",
+      "conclusion": "failure",
+      "command": "node --test tests/contract/zhuque-probe.test.ts",
+      "reason": "the human website observation did not exist; the subsequent real submission attempt exposed an interactive CAPTCHA instead of a response"
     }
   ],
   "green_evidence": [
@@ -75,11 +82,30 @@
         "openspec validate implement-content-factory-architecture --strict",
         "npm run release:gate (expected blocked: CF-057, no release candidate, live evidence unverified, 0/117 live combinations)"
       ]
+    },
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 arm64; opencli 1.8.6; official website built-in human example",
+      "gates": [
+        "node --test tests/contract/zhuque-probe.test.ts test/detection-report.test.mjs test/task-evidence.test.mjs (11 passed, 0 failed)",
+        "npm test (275 passed, 0 failed; 261 files packaged)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run audit:release",
+        "python3 docs/architecture/verify-architecture.py",
+        "openspec validate establish-content-factory-v1 --strict",
+        "openspec validate add-platform-aware-content-orchestration --strict",
+        "openspec validate implement-content-factory-architecture --strict",
+        "npm run release:gate (expected blocked: CF-057, no release candidate, live evidence unverified, 0/117 live combinations)"
+      ],
+      "result": "NOT_RUN_USER_CHALLENGE; CAPTCHA observed and not bypassed; no provider response recorded"
     }
   ],
   "live_verification": {
     "status": "PARTIAL_LIVE_WEBSITE",
-    "reason": "Three project-owned synthetic texts were sent through the authorized official website trial: one mixed-character contract sample, one 30-entry original baseline, and one distinct 30-entry edited candidate. One empty-input rejection was observed, and one credential-free API request returned HTTP 401 auth_missing. No human comparison sample or authenticated API response exists."
+    "reason": "Three project-owned synthetic texts were sent through the authorized official website trial: one mixed-character contract sample, one 30-entry original baseline, and one distinct 30-entry edited candidate. A built-in human example submission reached an interactive CAPTCHA and remains NOT_RUN_USER_CHALLENGE. One empty-input rejection was observed, and one credential-free API request returned HTTP 401 auth_missing. No human response or authenticated API response exists."
   },
   "offline_evidence": [
     "docs/verification/detection-live.md",
@@ -88,6 +114,7 @@
     "tests/fixtures/zhuque/2026-09-22-website-observation.json",
     "tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json",
     "tests/fixtures/zhuque/2026-09-22-edited-website-observation.json",
+    "tests/fixtures/zhuque/2026-09-22-human-website-attempt.json",
     "docs/verification/tasks/CF-025.json",
     "docs/verification/tasks/CF-026.json",
     "docs/verification/tasks/CF-029.json",
@@ -97,6 +124,7 @@
     "the empty input was blocked client-side with zero network requests and zero quota change",
     "one Chinese newline and Emoji sample produced a real website result with exact text and segment hashes",
     "distinct original baseline and edited candidate texts produced two additional website results with exact text and segment hashes",
+    "the built-in human sample attempt records only a text hash and CAPTCHA boundary; it cannot satisfy comparison admission",
     "one unauthenticated API request returned HTTP 401 auth_missing with no credential and zero paid calls",
     "the short-lived feedback token was removed and no credential or account identifier is recorded",
     "website classification remains partial evidence and cannot satisfy authenticated API or production admission",

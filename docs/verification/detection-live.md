@@ -2,7 +2,7 @@
 
 Live status: `PARTIAL_LIVE_WEBSITE`
 
-本仓库已经完成本地契约、合成响应、Unicode 定位、审阅政策、失效规则、预算重试与报告渲染验证。2026-09-22 又使用官网游客额度完成了三次不含私密内容的真实网页文本探测，并记录了空文本客户端阻断。首份混合字符观察、30 条合成原始基线和相应编辑候选稿均保留精确输入哈希，短期反馈令牌全部脱敏。证据见 [首份官网观察](../../tests/fixtures/zhuque/2026-09-22-website-observation.json)、[原始基线观察](../../tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json)、[编辑稿观察](../../tests/fixtures/zhuque/2026-09-22-edited-website-observation.json) 与[契约观察说明](zhuque-contract.md)。
+本仓库已经完成本地契约、合成响应、Unicode 定位、审阅政策、失效规则、预算重试与报告渲染验证。2026-09-22 又使用官网游客额度完成了三次不含私密内容的真实网页文本探测，并记录了空文本客户端阻断。首份混合字符观察、30 条合成原始基线和相应编辑候选稿均保留精确输入哈希，短期反馈令牌全部脱敏。人工对照尝试使用官网内置示例三，但在提交后出现交互验证码，因此只记录 `NOT_RUN_USER_CHALLENGE`，没有保存正文或伪造响应。证据见 [首份官网观察](../../tests/fixtures/zhuque/2026-09-22-website-observation.json)、[原始基线观察](../../tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json)、[编辑稿观察](../../tests/fixtures/zhuque/2026-09-22-edited-website-observation.json)、[人工样本尝试](../../tests/fixtures/zhuque/2026-09-22-human-website-attempt.json) 与[契约观察说明](zhuque-contract.md)。
 
 这些官网观察不是带 API Key 的正式 API 调用。官方 API 的无认证请求已经观察到 HTTP 401 `auth_missing`，但当前仍没有以下生产准入证据：
 

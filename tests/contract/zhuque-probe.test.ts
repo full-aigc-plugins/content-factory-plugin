@@ -13,12 +13,6 @@ const observationPath = path.resolve(
 
 const comparisonObservationPaths = [
   {
-    category: "human",
-    path: path.resolve(
-      "tests/fixtures/zhuque/2026-09-22-human-website-observation.json"
-    )
-  },
-  {
     category: "original-ai",
     path: path.resolve(
       "tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json"
@@ -31,6 +25,10 @@ const comparisonObservationPaths = [
     )
   }
 ] as const;
+
+const humanAttemptPath = path.resolve(
+  "tests/fixtures/zhuque/2026-09-22-human-website-attempt.json"
+);
 
 test("CF-003 checked-in website observation is secret-free and evidence-bound", () => {
   assert.equal(
@@ -103,7 +101,7 @@ test("CF-030 website observation remains partial and cannot satisfy API admissio
   ));
 });
 
-test("CF-030 human, original AI, and edited website observations are distinct, traceable, and secret-free", () => {
+test("CF-030 original AI and edited website observations are distinct, traceable, and secret-free", () => {
   const observations = comparisonObservationPaths.map(({ category, path: fixturePath }) => {
     assert.equal(
       existsSync(fixturePath),
@@ -131,9 +129,34 @@ test("CF-030 human, original AI, and edited website observations are distinct, t
     return observation;
   });
 
-  assert.equal(
-    new Set(observations.map(observation => observation.request.textSha256)).size,
-    3,
-    "human, original AI, and edited observations must bind different submitted texts"
+  assert.notEqual(
+    observations[0].request.textSha256,
+    observations[1].request.textSha256,
+    "original AI and edited observations must bind different submitted texts"
   );
+});
+
+test("CF-030 human website challenge remains NOT_RUN and cannot satisfy comparison admission", () => {
+  assert.equal(
+    existsSync(humanAttemptPath),
+    true,
+    "the blocked human website attempt must be recorded without fabricating a response"
+  );
+
+  const attempt = JSON.parse(readFileSync(humanAttemptPath, "utf8"));
+  const serialized = JSON.stringify(attempt);
+
+  assert.equal(attempt.sampleCategory, "human");
+  assert.equal(attempt.evidenceClass, "NOT_RUN_USER_CHALLENGE");
+  assert.equal(attempt.providerAlias, "AI 内容检测平台");
+  assert.equal(attempt.request.source, "official-website-built-in-human-example-3");
+  assert.equal(attempt.request.textStored, false);
+  assert.equal(attempt.request.textSha256,
+    "0fb04c9319ca0caf0e3ce5414aff18b7b522be8aeb1c9de6a8b1e14e93bb79d1");
+  assert.equal(attempt.submission.status, "CAPTCHA_REQUIRED");
+  assert.equal(attempt.submission.challengeBypassed, false);
+  assert.equal(attempt.submission.responseRecorded, false);
+  assert.equal(attempt.productionAdmission, false);
+  assert.equal(attempt.secretsInRecord, false);
+  assert.doesNotMatch(serialized, /feedback_token|Bearer\s+|eyJ[a-zA-Z0-9_-]*\./u);
 });
