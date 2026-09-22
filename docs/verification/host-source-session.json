@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-09-22T11:24:06Z",
+  "capturedAt": "2026-09-22T11:32:22Z",
   "evidenceBoundary": "Source-skill and manifest validation only. No plugin was installed, no release candidate was selected, and no external content account or business service was used.",
   "sourceCommit": "261a359830eca6015090c29cc83382a5256232fc",
   "skillPath": "skills/content-harness/SKILL.md",
@@ -41,13 +41,23 @@
       "writes": 0
     },
     "codex": {
-      "status": "MANIFEST_VALIDATED_ONLY",
+      "status": "SOURCE_SKILL_SESSION_PASSED",
       "runtimeVersion": "0.153.4",
       "pluginInstalled": false,
-      "sessionStarted": false,
-      "validators": ["plugin-creator"],
+      "sessionStarted": true,
+      "hostModelCalls": 1,
       "businessRemoteCalls": 0,
-      "writes": 0
+      "writes": 0,
+      "skillDiscoveryWarning": "context-budget-descriptions-removed-explicit-source-read-succeeded",
+      "result": {
+        "host": "codex",
+        "skill": "content-harness",
+        "mode": "format",
+        "stages": ["format", "review"],
+        "missingInputs": ["文章正文或内容修订引用", "明确的目标内容平台"],
+        "assumptions": [],
+        "remoteCalls": []
+      }
     }
   },
   "accountIdentifiersStored": false,

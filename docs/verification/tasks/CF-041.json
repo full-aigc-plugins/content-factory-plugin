@@ -3,14 +3,15 @@
   "task": "CF-041",
   "status": "PARTIAL_OFFLINE",
   "scope": "Codex, ZCode, and Kimi manifests, shared CLI startup contract, packaged-manifest integrity, read-only runtime preflight, and explicit live-run evidence boundaries",
-  "completed_at": "2026-09-22T11:24:06Z",
+  "completed_at": "2026-09-22T11:32:22Z",
   "branch": "main",
   "implementation_commits": [
     "af85550",
     "77f04ee",
     "2871433",
     "adbd79c",
-    "3891247"
+    "3891247",
+    "83fae96"
   ],
   "red_evidence": [
     {
@@ -35,6 +36,12 @@
       "conclusion": "failure",
       "command": "node --test tests/e2e/host-contract.test.ts",
       "reason": "the source-skill host session and host-quota boundary evidence did not exist"
+    },
+    {
+      "commit": "83fae96",
+      "conclusion": "failure",
+      "command": "node --test tests/e2e/host-contract.test.ts",
+      "reason": "the Codex source-skill session was still represented as manifest-only validation"
     }
   ],
   "green_evidence": [
@@ -74,6 +81,7 @@
       "gates": [
         "ZCode runtime plugins validate repository (ok=true, 0 diagnostics)",
         "plugin-creator validate_plugin.py via existing Anaconda Python (passed)",
+        "Codex ephemeral read-only source-skill session (format then review; two missing inputs; 0 business remote calls; 0 writes)",
         "ZCode read-only source-skill session (format then review; one missing input; 0 business remote calls; 0 writes)",
         "Kimi read-only source-skill session attempt (BLOCKED_HOST_QUOTA; HTTP 403; no model response)",
         "node --test tests/e2e/host-contract.test.ts test/task-evidence.test.mjs (8 passed, 0 failed)",
@@ -86,7 +94,7 @@
         "python3 docs/architecture/verify-architecture.py",
         "openspec validate implement-content-factory-architecture --strict"
       ],
-      "result": "PASS_PARTIAL_SOURCE_SESSION; no plugin installation or installed-plugin session claimed"
+      "result": "PASS_PARTIAL_SOURCE_SESSION; Codex and ZCode source sessions passed, Kimi quota blocked, no plugin installation claimed"
     }
   ],
   "assertions": [
@@ -98,6 +106,7 @@
     "every unexecuted host flow remains NOT_RUN with no remote evidence references",
     "read-only runtime versions are recorded separately from plugin installation and host-session evidence",
     "the runtime preflight accessed no account and performed zero paid or remote calls",
+    "one ephemeral read-only Codex source-skill session selected format then review, reported the missing content revision and ambiguous target platform, and performed zero business remote calls or writes",
     "one read-only ZCode source-skill session selected format then review, reported the missing content revision, and performed zero business remote calls or writes",
     "the Kimi source-skill session is recorded as BLOCKED_HOST_QUOTA without a fabricated model response",
     "source-skill and manifest validation never imply that the plugin was installed"
@@ -122,7 +131,7 @@
     "zcode": "NOT_RUN",
     "kimi": "NOT_RUN",
     "source_skill_session": {
-      "codex": "MANIFEST_VALIDATED_ONLY",
+      "codex": "SOURCE_SKILL_SESSION_PASSED",
       "zcode": "SOURCE_SKILL_SESSION_PASSED",
       "kimi": "BLOCKED_HOST_QUOTA"
     },
@@ -130,6 +139,6 @@
     "content_platform_draft_readback": "NOT_RUN",
     "image_capability": "NOT_RUN"
   },
-  "blocker": "A ZCode source-skill session passed, Kimi is blocked by the host monthly quota, and Codex has manifest validation only. No plugin installation or installed-plugin session has been verified, and no external test accounts were supplied. CF-030, CF-034, and CF-039 also remain PARTIAL_OFFLINE.",
+  "blocker": "Codex and ZCode source-skill sessions passed, while Kimi is blocked by the host monthly quota. No plugin installation or installed-plugin session has been verified, and no external test accounts were supplied. CF-030, CF-034, and CF-039 also remain PARTIAL_OFFLINE.",
   "secrets_in_record": false
 }
