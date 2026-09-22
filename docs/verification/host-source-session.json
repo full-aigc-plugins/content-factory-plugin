@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-22T11:24:06Z",
+  "evidenceBoundary": "Source-skill and manifest validation only. No plugin was installed, no release candidate was selected, and no external content account or business service was used.",
+  "sourceCommit": "261a359830eca6015090c29cc83382a5256232fc",
+  "skillPath": "skills/content-harness/SKILL.md",
+  "skillSha256": "456a6fe66200ea09a850e13922e1db0b87846e9f1c280cb95688285717ae28a8",
+  "buildManifestSha256": "667bf179474b4ccdf5a41ec1c4752aa81fc624ba57142b000d333e4e264b3342",
+  "manifestValidation": {
+    "pluginCreator": "PASS",
+    "zcodeRuntime": "PASS"
+  },
+  "hosts": {
+    "zcode": {
+      "status": "SOURCE_SKILL_SESSION_PASSED",
+      "runtimeVersion": "0.16.9",
+      "pluginInstalled": false,
+      "sessionStarted": true,
+      "hostModelCalls": 1,
+      "businessRemoteCalls": 0,
+      "writes": 0,
+      "result": {
+        "host": "zcode",
+        "skill": "content-harness",
+        "mode": "format",
+        "stages": ["format", "review"],
+        "missingInputs": ["content revision/reference"],
+        "assumptions": [],
+        "remoteCalls": []
+      }
+    },
+    "kimi": {
+      "status": "BLOCKED_HOST_QUOTA",
+      "runtimeVersion": "0.43.1",
+      "pluginInstalled": false,
+      "sessionStarted": true,
+      "hostModelAttempts": 1,
+      "httpStatus": 403,
+      "modelResponseRecorded": false,
+      "businessRemoteCalls": 0,
+      "writes": 0
+    },
+    "codex": {
+      "status": "MANIFEST_VALIDATED_ONLY",
+      "runtimeVersion": "0.153.4",
+      "pluginInstalled": false,
+      "sessionStarted": false,
+      "validators": ["plugin-creator"],
+      "businessRemoteCalls": 0,
+      "writes": 0
+    }
+  },
+  "accountIdentifiersStored": false,
+  "secretsInRecord": false
+}

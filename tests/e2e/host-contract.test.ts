@@ -162,7 +162,7 @@ test("CF-041 records source-skill host sessions without claiming plugin installa
     runtimeVersion: "0.153.4",
     pluginInstalled: false,
     sessionStarted: false,
-    validators: ["plugin-creator", "zcode-runtime"],
+    validators: ["plugin-creator"],
     businessRemoteCalls: 0,
     writes: 0
   });
