@@ -14,9 +14,11 @@ Windows where open SQLite files cannot be unlinked.
 
 | Runner | Installation and runtime coverage | Status |
 | --- | --- | --- |
-| Linux | CLI doctor, SQLite workspace, review rendering, delivery export, online backup and reopen | CI pending |
-| macOS | CLI doctor, SQLite workspace, review rendering, delivery export, online backup and reopen | Local pass; CI pending |
-| Windows | CLI doctor, SQLite workspace, review rendering, delivery export, online backup and reopen | CI pending |
+| Linux | CLI doctor, SQLite workspace, review rendering, delivery export, online backup and reopen | Passed |
+| macOS | CLI doctor, SQLite workspace, review rendering, delivery export, online backup and reopen | Passed |
+| Windows | CLI doctor, SQLite workspace, review rendering, delivery export, online backup and reopen | Passed |
+
+The three jobs passed in [CI run 35698161234](https://github.com/full-aigc-plugins/content-factory-plugin/actions/runs/35698161234).
 
 The clean-install test copies only `dist/` into a Unicode path. It rejects
 absolute paths and backslashes in the build manifest and asserts that the

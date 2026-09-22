@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "task": "CF-040",
+  "status": "COMPLETE",
+  "scope": "Relocatable release installation and full release gates on Linux, macOS, and Windows",
+  "completed_at": "2026-09-22T07:10:16Z",
+  "branch": "main",
+  "implementation_commits": [
+    "cfabb87",
+    "3a38b2c",
+    "02071f8",
+    "ef8a230",
+    "8a411e5",
+    "7aeb080"
+  ],
+  "red_evidence": [
+    {
+      "commit": "cfabb87",
+      "conclusion": "failure",
+      "command": "node --test tests/install/clean-install.test.mjs",
+      "reason": "the distribution omitted LICENSE and readmes, and CI had no three-operating-system matrix"
+    },
+    {
+      "run": "https://github.com/full-aigc-plugins/content-factory-plugin/actions/runs/35697290236",
+      "conclusion": "failure",
+      "reason": "Windows checkout converted source files to CRLF"
+    },
+    {
+      "run": "https://github.com/full-aigc-plugins/content-factory-plugin/actions/runs/35697457021",
+      "conclusion": "failure",
+      "reason": "Windows correctly retained LF, then exposed SQLite cleanup ordering in the complete regression suite"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "7aeb080",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test tests/install/clean-install.test.mjs (4 passed, 0 failed)",
+        "npm test (225 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run audit:release"
+      ]
+    },
+    {
+      "run": "https://github.com/full-aigc-plugins/content-factory-plugin/actions/runs/35698161234",
+      "conclusion": "success",
+      "jobs": [
+        "ubuntu-latest",
+        "macos-latest",
+        "windows-latest"
+      ],
+      "per_job_gates": [
+        "npm install --ignore-scripts",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run build",
+        "npm test",
+        "npm run skills:check",
+        "npm run audit:release"
+      ]
+    }
+  ],
+  "assertions": [
+    "the release runs from a non-ASCII clean home using Node.js 24 with no Bun dependency",
+    "SQLite uses the Node.js built-in module and requires no install-time native compilation",
+    "CLI doctor, workspace persistence, review rendering, delivery export, backup, and reopen work from dist",
+    "the release manifest contains relative POSIX paths and no development-machine home path",
+    "LICENSE, both readmes, third-party notices, templates, schemas, skills, and runtime source are packaged",
+    "Git checkout preserves LF source on all runners",
+    "test cleanup closes database handles before removing temporary directories on Windows",
+    "all three operating systems execute the same full 225-test regression and release gates"
+  ],
+  "outputs": [
+    ".gitattributes",
+    ".github/workflows/ci.yml",
+    "scripts/build.mjs",
+    "tests/install/clean-install.test.mjs",
+    "tests/support/temp-directory.ts",
+    "docs/verification/os-matrix.md"
+  ],
+  "review": {
+    "kind": "primary-agent code and evidence review after two real Windows CI failures",
+    "result": "PASS",
+    "findings": []
+  },
+  "evidence_boundary": "Automated OS portability is verified; real Codex, ZCode, Kimi, external provider, and publishing-account validation is not inferred.",
+  "secrets_in_record": false
+}

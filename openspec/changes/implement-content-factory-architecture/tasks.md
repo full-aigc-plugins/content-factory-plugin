@@ -400,10 +400,10 @@ export type CaseRunner = (spec: CaseSpec) => Promise<CaseOutcome>;
 
 [详细任务卡](task-details/production-delivery.md#cf-040)
 
-- [ ] 40.1 [CF-040.1] 正反例 fixture 与精确断言，确认业务 RED。
-- [ ] 40.2 [CF-040.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
-- [ ] 40.3 [CF-040.3] 目标测试、typecheck、lint、直接依赖回归。
-- [ ] 40.4 [CF-040.4] 原要求与证据复核、独立 review/commit。
+- [x] 40.1 [CF-040.1] 正反例 fixture 与精确断言，确认业务 RED。
+- [x] 40.2 [CF-040.2] 实现任务卡输入输出和拒绝路径，确认 GREEN。
+- [x] 40.3 [CF-040.3] 目标测试、typecheck、lint、直接依赖回归。
+- [x] 40.4 [CF-040.4] 原要求与证据复核、独立 review/commit。
 
 ## 41. CF-041 — 三宿主实装与真实端到端验收
 
