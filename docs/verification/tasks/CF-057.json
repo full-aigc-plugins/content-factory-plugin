@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "task": "CF-057",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Actual Codex, ZCode, and Kimi host by channel recipe by external account evidence matrix",
+  "completed_at": "2026-09-22T07:54:18Z",
+  "branch": "main",
+  "implementation_commits": ["fb6c172", "2a2dd53"],
+  "red_evidence": [{
+    "commit": "fb6c172",
+    "conclusion": "failure",
+    "command": "npm test -- tests/channels/host-channel-contract.test.ts",
+    "reason": "the live host-channel index and human-readable matrix did not exist; all four target tests failed"
+  }],
+  "green_evidence": [{
+    "commit": "2a2dd53",
+    "conclusion": "success",
+    "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+    "gates": [
+      "npm test -- tests/channels/host-channel-contract.test.ts (4 passed, 0 failed)",
+      "npm test (259 passed, 0 failed)",
+      "npm run typecheck",
+      "npm run lint",
+      "npm run skills:check",
+      "npm run audit:release",
+      "npm run build"
+    ]
+  }],
+  "offline_contract": {
+    "hosts": 3,
+    "channel_format_recipes": 39,
+    "expected_host_recipe_combinations": 117,
+    "operation_dimensions": 10,
+    "status": "VERIFIED_OFFLINE"
+  },
+  "live_status": {
+    "release_candidate_selected": false,
+    "actual_host_sessions": "NOT_RUN",
+    "external_accounts": "NOT_RUN",
+    "host_recipe_combinations_verified": 0,
+    "draft_save_and_readback": "NOT_RUN",
+    "feedback_read_and_reply_draft": "NOT_RUN",
+    "public_publish": "NOT_RUN_OUTSIDE_V1_PROMISE"
+  },
+  "outputs": [
+    "tests/channels/host-channel-contract.test.ts",
+    "docs/verification/channel-live-index.json",
+    "docs/verification/channel-host-matrix.md"
+  ],
+  "review": {
+    "kind": "primary-agent evidence classification review",
+    "result": "PASS_OFFLINE_ONLY",
+    "findings": []
+  },
+  "blocker": "The user authorized skipping actual host sessions and external accounts. No exact release candidate was selected or installed, so every live combination remains NOT_RUN and the OpenSpec task stays unchecked.",
+  "secrets_in_record": false
+}
