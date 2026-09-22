@@ -7,7 +7,9 @@
   "branch": "main",
   "implementation_commits": [
     "4c27e25248d4b2db054faf2f5cc565e0db7c32f1",
-    "37c656bad3d4120d9ae1d06a6e05610ad33e9aa8"
+    "37c656bad3d4120d9ae1d06a6e05610ad33e9aa8",
+    "efa8eef",
+    "a110949"
   ],
   "red_evidence": [
     {
@@ -33,6 +35,18 @@
       "conclusion": "failure",
       "command": "node --test tests/contract/zhuque-probe.test.ts",
       "reason": "the human website observation did not exist; the subsequent real submission attempt exposed an interactive CAPTCHA instead of a response"
+    },
+    {
+      "commit": "efa8eef",
+      "conclusion": "failure",
+      "command": "node --test tests/contract/zhuque-probe.test.ts",
+      "reason": "the exact-bound successful human website observation did not exist"
+    },
+    {
+      "commit": "a110949",
+      "conclusion": "failure",
+      "command": "node --test tests/contract/zhuque-probe.test.ts",
+      "reason": "the quota-consuming response whose returned text did not match the submitted text was not preserved as rejected evidence"
     }
   ],
   "green_evidence": [
@@ -98,6 +112,26 @@
         "npm run release:gate (expected blocked: CF-057, no release candidate, live evidence unverified, 0/117 live combinations)"
       ],
       "result": "NOT_RUN_USER_CHALLENGE; CAPTCHA observed and not bypassed; no provider response recorded"
+    },
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 arm64; opencli 1.8.6; resumed official website trial with exact request/response binding",
+      "gates": [
+        "node --test tests/contract/zhuque-probe.test.ts (5 passed, 0 failed)",
+        "node --test tests/contract/zhuque-probe.test.ts test/detection-report.test.mjs test/task-evidence.test.mjs (12 passed, 0 failed)",
+        "npm test (276 passed, 0 failed; 261 files packaged)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run audit:release",
+        "python3 docs/architecture/verify-architecture.py",
+        "openspec validate establish-content-factory-v1 --strict",
+        "openspec validate add-platform-aware-content-orchestration --strict",
+        "openspec validate implement-content-factory-architecture --strict",
+        "npm run release:gate (expected blocked: CF-057, no release candidate, live evidence unverified, 0/117 live combinations)"
+      ],
+      "result": "PARTIAL_LIVE_WEBSITE; one mismatched response rejected, then one exact-bound human observation recorded; authenticated API still not run"
     }
   ],
   "assertions": [
@@ -107,9 +141,11 @@
     "the report identifies itself as a self-built API summary rather than an official provider document",
     "classification ratios are evidence and never presented as plugin quality proof",
     "HTML escapes content and states that webpage-to-API parity is unverified",
-    "three live website observations are PARTIAL_LIVE_WEBSITE and never satisfy the three-live-API-sample admission gate",
+    "four exact-bound live website observations are PARTIAL_LIVE_WEBSITE and never satisfy the three-live-API-sample admission gate",
     "the original baseline and edited candidate observations bind different exact text hashes; their score difference is not treated as proof of authorship, quality, or successful detector evasion",
-    "the built-in human example submission stopped at a CAPTCHA and remains NOT_RUN_USER_CHALLENGE rather than a fabricated live observation"
+    "the historical built-in human example submission stopped at a CAPTCHA and remains NOT_RUN_USER_CHALLENGE rather than a fabricated live observation",
+    "the accepted human website observation binds request, component state, and returned segment text to the same SHA-256 without storing the body",
+    "the quota-consuming mismatched response is retained as rejected evidence and cannot satisfy comparison admission"
   ],
   "outputs": [
     "packages/core/src/render/detection-report.ts",
@@ -119,6 +155,8 @@
     "tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json",
     "tests/fixtures/zhuque/2026-09-22-edited-website-observation.json",
     "tests/fixtures/zhuque/2026-09-22-human-website-attempt.json",
+    "tests/fixtures/zhuque/2026-09-22-human-website-mismatch.json",
+    "tests/fixtures/zhuque/2026-09-22-human-website-observation.json",
     "test/detection-report.test.mjs"
   ],
   "review": {
@@ -126,10 +164,10 @@
     "result": "PASS_OFFLINE_SCOPE",
     "findings": []
   },
-  "fixture_or_live": "local-fixture-plus-three-live-website-observations-plus-one-user-challenge",
+  "fixture_or_live": "local-fixture-plus-four-bound-live-website-observations-plus-one-user-challenge-plus-one-rejected-binding-mismatch",
   "live_ai_content_detector": "PARTIAL_LIVE_WEBSITE",
   "production_admission": false,
-  "live_blocker": "The authenticated API was not called, and the human website comparison submission stopped at an interactive CAPTCHA without a response. Required immutable API records for human, original-AI, and edited comparison samples do not exist.",
+  "live_blocker": "The authenticated API was not called. Human, original-AI, and edited website observations now exist, but the required immutable authenticated API records for all three comparison samples do not exist.",
   "dependency_status": {
     "CF-024": "COMPLETE",
     "CF-026": "PARTIAL_OFFLINE",

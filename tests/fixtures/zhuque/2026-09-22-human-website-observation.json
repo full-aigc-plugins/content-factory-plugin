@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-22T10:33:07.112Z",
+  "sampleCategory": "human",
+  "evidenceClass": "PARTIAL_LIVE_WEBSITE",
+  "providerAlias": "AI 内容检测平台",
+  "officialWebsite": "https://matrix.tencent.com/ai-detect/",
+  "transport": "official-website-websocket",
+  "browserAutomation": {
+    "tool": "opencli",
+    "version": "1.8.6",
+    "profileAuthenticated": false,
+    "captchaBypassed": false
+  },
+  "request": {
+    "source": "official-website-built-in-human-example-3",
+    "rightsBasis": "website-provided-test-fixture",
+    "textStored": false,
+    "textSha256": "0fb04c9319ca0caf0e3ce5414aff18b7b522be8aeb1c9de6a8b1e14e93bb79d1",
+    "unicodeScalars": 461,
+    "utf16CodeUnits": 461,
+    "utf8Bytes": 1329,
+    "containsChinese": true,
+    "containsNewlines": true,
+    "transmissionApproved": true
+  },
+  "response": {
+    "status": "success",
+    "confidence": 0,
+    "labelsRatio": {
+      "0": 1,
+      "1": 0,
+      "2": 0
+    },
+    "contentType": 0,
+    "availableUsesBefore": 1,
+    "availableUsesAfter": 0,
+    "feedbackTokenPresent": true,
+    "feedbackTokenRedacted": true,
+    "segments": [
+      {
+        "textSha256": "0fb04c9319ca0caf0e3ce5414aff18b7b522be8aeb1c9de6a8b1e14e93bb79d1",
+        "unicodeScalars": 461,
+        "utf16CodeUnits": 461,
+        "utf8Bytes": 1329,
+        "label": 0,
+        "confidence": 0.0082,
+        "order": 1,
+        "position": [0, 461]
+      }
+    ],
+    "modelUpdatedAt": "2026-07-21T12:22:05.000Z"
+  },
+  "binding": {
+    "lastSubmittedTextSha256": "0fb04c9319ca0caf0e3ce5414aff18b7b522be8aeb1c9de6a8b1e14e93bb79d1",
+    "segmentConcatSha256": "0fb04c9319ca0caf0e3ce5414aff18b7b522be8aeb1c9de6a8b1e14e93bb79d1",
+    "segmentsEqualSubmittedText": true
+  },
+  "limitations": [
+    "This is an unauthenticated website observation, not an authenticated API response.",
+    "The provider classification is not authorship, quality, enforcement, publication, or plugin acceptance evidence.",
+    "Website-to-API parity remains unverified."
+  ],
+  "productionAdmission": false,
+  "secretsInRecord": false
+}

@@ -14,18 +14,21 @@ const observationPath = path.resolve(
 const comparisonObservationPaths = [
   {
     category: "human",
+    rightsBasis: "website-provided-test-fixture",
     path: path.resolve(
       "tests/fixtures/zhuque/2026-09-22-human-website-observation.json"
     )
   },
   {
     category: "original-ai",
+    rightsBasis: "project-owned-fixture",
     path: path.resolve(
       "tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json"
     )
   },
   {
     category: "edited",
+    rightsBasis: "project-owned-fixture",
     path: path.resolve(
       "tests/fixtures/zhuque/2026-09-22-edited-website-observation.json"
     )
@@ -112,7 +115,7 @@ test("CF-030 website observation remains partial and cannot satisfy API admissio
 });
 
 test("CF-030 human, original AI, and edited website observations are distinct, traceable, and secret-free", () => {
-  const observations = comparisonObservationPaths.map(({ category, path: fixturePath }) => {
+  const observations = comparisonObservationPaths.map(({ category, rightsBasis, path: fixturePath }) => {
     assert.equal(
       existsSync(fixturePath),
       true,
@@ -126,7 +129,7 @@ test("CF-030 human, original AI, and edited website observations are distinct, t
     assert.equal(observation.evidenceClass, "PARTIAL_LIVE_WEBSITE");
     assert.equal(observation.providerAlias, "AI 内容检测平台");
     assert.equal(observation.transport, "official-website-websocket");
-    assert.equal(observation.request.rightsBasis, "project-owned-fixture");
+    assert.equal(observation.request.rightsBasis, rightsBasis);
     assert.equal(observation.request.transmissionApproved, true);
     assert.match(observation.request.textSha256, /^[a-f0-9]{64}$/u);
     assert.equal(observation.response.status, "success");
@@ -144,6 +147,19 @@ test("CF-030 human, original AI, and edited website observations are distinct, t
     3,
     "human, original AI, and edited observations must bind different submitted texts"
   );
+
+  const humanObservation = observations.find(
+    observation => observation.sampleCategory === "human"
+  );
+  assert.equal(
+    humanObservation.binding.lastSubmittedTextSha256,
+    humanObservation.request.textSha256
+  );
+  assert.equal(
+    humanObservation.binding.segmentConcatSha256,
+    humanObservation.request.textSha256
+  );
+  assert.equal(humanObservation.binding.segmentsEqualSubmittedText, true);
 });
 
 test("CF-030 human website challenge remains NOT_RUN and cannot satisfy comparison admission", () => {

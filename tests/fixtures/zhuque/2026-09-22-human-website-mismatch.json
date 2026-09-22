@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-22T10:28:43.574Z",
+  "sampleCategory": "human",
+  "evidenceClass": "REJECTED_LIVE_WEBSITE_BINDING_MISMATCH",
+  "providerAlias": "AI 内容检测平台",
+  "officialWebsite": "https://matrix.tencent.com/ai-detect/",
+  "transport": "official-website-websocket",
+  "browserAutomation": {
+    "tool": "opencli",
+    "version": "1.8.6",
+    "profileAuthenticated": false,
+    "captchaBypassed": false
+  },
+  "request": {
+    "source": "official-website-built-in-human-example-3",
+    "rightsBasis": "website-provided-test-fixture",
+    "textStored": false,
+    "textSha256": "0fb04c9319ca0caf0e3ce5414aff18b7b522be8aeb1c9de6a8b1e14e93bb79d1",
+    "unicodeScalars": 461,
+    "utf16CodeUnits": 461,
+    "utf8Bytes": 1329,
+    "transmissionApproved": true
+  },
+  "response": {
+    "status": "success",
+    "segmentConcatSha256": "0d0370434f70950b897bb36628f6d26bdf046b2d3298ec8e17721bb43e9d18c7",
+    "segmentUnicodeScalars": 1110,
+    "segmentUtf16CodeUnits": 1110,
+    "segmentUtf8Bytes": 3318,
+    "segmentsEqualSubmittedText": false,
+    "availableUsesBefore": 2,
+    "availableUsesAfter": 1,
+    "feedbackTokenPresent": false
+  },
+  "rejection": {
+    "reason": "returned-segment-text-does-not-match-submitted-text",
+    "classificationDiscarded": true,
+    "quotaConsumed": true
+  },
+  "limitations": [
+    "The returned segment text matched a different built-in example, not the submitted human example.",
+    "No classification values from this response are admitted or compared.",
+    "A quota decrement is operational evidence, not proof that the response belongs to the submitted text."
+  ],
+  "productionAdmission": false,
+  "secretsInRecord": false
+}
