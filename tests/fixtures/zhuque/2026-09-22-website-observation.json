@@ -69,11 +69,25 @@
     "modelUpdatedAt": "2026-07-21T12:22:05.000Z"
   },
   "apiProbe": {
-    "status": "NOT_RUN_CREDENTIAL_REQUIRED",
     "model": "@makers/zhuque-text",
     "endpoint": "https://ai-gateway.edgeone.link/v1/providers/zhuque-text/classify",
-    "credentialRecorded": false,
-    "usageFieldsObserved": false
+    "unauthenticated": {
+      "status": "OBSERVED_AUTH_REJECTION",
+      "observedAt": "2026-09-22T09:34:25Z",
+      "requestBodySha256": "6abf230d1e6c479023842f3a6ef89f5b3629e9162bc85fdf4854d86be15c11ac",
+      "requestBytes": 72,
+      "credentialSent": false,
+      "httpStatus": 401,
+      "errorType": "auth_missing",
+      "errorCode": "auth_missing",
+      "paidCalls": 0,
+      "traceIdentifiersRedacted": true
+    },
+    "authenticated": {
+      "status": "NOT_RUN_CREDENTIAL_REQUIRED",
+      "credentialRecorded": false,
+      "usageFieldsObserved": false
+    }
   },
   "limitations": [
     "The website observation is not an authenticated API response.",

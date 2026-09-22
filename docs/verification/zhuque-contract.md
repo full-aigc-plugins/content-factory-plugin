@@ -19,7 +19,9 @@
 
 ## API 边界
 
-官方 API 文档当前列出的文本模型为 `@makers/zhuque-text`，请求需要 API Key，并分别返回模型自身用量与 Makers 免费额度扣减字段。由于本轮没有 API Key，鉴权错误、HTTP 200 业务失败、`usage`、`makers_models_usage` 以及网页/API 一致性均保持 `NOT_RUN_CREDENTIAL_REQUIRED`。
+官方 API 文档当前列出的文本模型为 `@makers/zhuque-text`，请求需要 API Key，并分别返回模型自身用量与 Makers 免费额度扣减字段。本轮向官方端点发送了一次不带认证头的最小请求，真实观察到 HTTP 401、`type=auth_missing`、`code=auth_missing`；没有发送凭据，付费调用为零，响应头中的请求追踪标识已删除。
+
+由于本轮没有 API Key，带认证的成功调用、HTTP 200 业务失败、`usage`、`makers_models_usage` 以及网页/API 一致性仍保持 `NOT_RUN_CREDENTIAL_REQUIRED`。
 
 官方文档当前还明确说明 API 仅支持文本检测；官网上的图片/视频试用能力不能被扩写为当前 API 合同。
 
@@ -27,7 +29,7 @@
 
 - 人工稿、原始 AI 稿、编辑稿三类独立 API 记录；
 - API 原始响应字节及其不可变哈希；
-- 鉴权失败、配额失败和 HTTP 200 业务失败的真实响应；
+- 带 API Key 的成功、配额失败和 HTTP 200 业务失败真实响应；
 - 独立复核与生产准入。
 
 因此 CF-003 和 CF-030 仍未完成，发布门禁不得解除。

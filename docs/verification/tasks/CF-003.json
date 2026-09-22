@@ -6,7 +6,8 @@
   "recorded_at": "2026-09-22T09:26:43Z",
   "branch": "main",
   "implementation_commits": [
-    "eeccbb0"
+    "eeccbb0",
+    "82a1d51"
   ],
   "red_evidence": [
     {
@@ -14,6 +15,12 @@
       "conclusion": "failure",
       "command": "node --test tests/contract/zhuque-probe.test.ts",
       "reason": "the sanitized live website observation did not exist and website evidence collapsed to NOT_RUN"
+    },
+    {
+      "commit": "82a1d51",
+      "conclusion": "failure",
+      "command": "node --test tests/contract/zhuque-probe.test.ts",
+      "reason": "the real unauthenticated API rejection had not been recorded separately from the credential-required success path"
     }
   ],
   "green_evidence": [
@@ -33,11 +40,21 @@
         "openspec validate add-platform-aware-content-orchestration --strict",
         "openspec validate implement-content-factory-architecture --strict"
       ]
+    },
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 arm64; credential-free official API request",
+      "gates": [
+        "node --test tests/contract/zhuque-probe.test.ts (2 passed, 0 failed)",
+        "node --test tests/contract/zhuque-probe.test.ts test/detection-report.test.mjs test/task-evidence.test.mjs (9 passed, 0 failed)",
+        "npm test (273 passed, 0 failed; 261 files packaged)",
+        "npm run typecheck"
+      ]
     }
   ],
   "live_verification": {
     "status": "PARTIAL_LIVE_WEBSITE",
-    "reason": "One project-owned synthetic text was sent through the authorized official website trial and one empty-input rejection was observed. The authenticated API probe and three-sample comparison remain NOT_RUN_CREDENTIAL_REQUIRED."
+    "reason": "One project-owned synthetic text was sent through the authorized official website trial, one empty-input rejection was observed, and one credential-free API request returned HTTP 401 auth_missing. The authenticated API probe and three-sample comparison remain NOT_RUN_CREDENTIAL_REQUIRED."
   },
   "offline_evidence": [
     "docs/verification/detection-live.md",
@@ -52,9 +69,10 @@
   "assertions": [
     "the empty input was blocked client-side with zero network requests and zero quota change",
     "one Chinese newline and Emoji sample produced a real website result with exact text and segment hashes",
+    "one unauthenticated API request returned HTTP 401 auth_missing with no credential and zero paid calls",
     "the short-lived feedback token was removed and no credential or account identifier is recorded",
     "website classification remains partial evidence and cannot satisfy authenticated API or production admission",
-    "API authorization, usage fields, business failure and three-sample comparison remain NOT_RUN_CREDENTIAL_REQUIRED"
+    "authenticated API success, usage fields, business failure and three-sample comparison remain NOT_RUN_CREDENTIAL_REQUIRED"
   ],
   "review": {
     "kind": "primary-agent evidence-boundary review",
