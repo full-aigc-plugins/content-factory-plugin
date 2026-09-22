@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://content-factory.local/schemas/comment-draft.schema.json",
+  "title": "Unsent channel comment draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "draftId",
+    "channelId",
+    "commentId",
+    "body",
+    "status",
+    "sourceTextTrust",
+    "observedAt",
+    "sourceRef"
+  ],
+  "properties": {
+    "draftId": { "type": "string", "minLength": 1 },
+    "channelId": { "type": "string", "minLength": 1 },
+    "commentId": { "type": "string", "minLength": 1 },
+    "body": { "type": "string", "minLength": 1 },
+    "status": { "const": "draft" },
+    "sourceTextTrust": { "const": "untrusted" },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "sourceRef": { "type": "string", "minLength": 1 }
+  }
+}
