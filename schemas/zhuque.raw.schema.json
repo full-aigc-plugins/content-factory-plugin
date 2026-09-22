@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/full-aigc-plugins/content-factory-plugin/schemas/zhuque.raw.schema.json",
+  "title": "AI Content Detector Raw Response",
+  "type": "object",
+  "required": ["status", "labels_ratio", "segment_labels"],
+  "properties": {
+    "status": { "type": "string" },
+    "softmax_confidence": { "type": "number" },
+    "confidence": { "type": "number" },
+    "ratio_confidence": { "type": "number" },
+    "labels_ratio": {
+      "type": "object",
+      "required": ["0", "1", "2"],
+      "properties": {
+        "0": { "type": "number", "minimum": 0, "maximum": 1 },
+        "1": { "type": "number", "minimum": 0, "maximum": 1 },
+        "2": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": true
+    },
+    "segment_labels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "label", "conf", "order", "position"],
+        "properties": {
+          "text": { "type": "string" },
+          "label": { "type": "integer", "minimum": 0, "maximum": 2 },
+          "conf": { "type": "number", "minimum": 0, "maximum": 1 },
+          "order": { "type": "integer", "minimum": 1 },
+          "position": {
+            "type": "array",
+            "prefixItems": [
+              { "type": "integer", "minimum": 0 },
+              { "type": "integer", "minimum": 0 }
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "usage": { "type": "object", "additionalProperties": true },
+    "makers_models_usage": { "type": "object", "additionalProperties": true },
+    "msg": { "type": "string" }
+  },
+  "additionalProperties": true
+}

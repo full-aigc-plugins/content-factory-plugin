@@ -2,7 +2,7 @@
   "schema_version": 1,
   "task": "CF-030",
   "status": "PARTIAL_OFFLINE",
-  "scope": "Self-built detector evidence report, three-sample live admission gate, safe HTML rendering, and explicit NOT_RUN record",
+  "scope": "Self-built detector evidence report, three-sample live admission gate, safe HTML rendering, and partial live website evidence",
   "completed_at": "2026-09-22T12:30:00Z",
   "branch": "main",
   "implementation_commits": [
@@ -15,6 +15,12 @@
       "conclusion": "failure",
       "command": "node --test test/detection-report.test.mjs",
       "reason": "the detector evidence report renderer and live evidence record were absent"
+    },
+    {
+      "commit": "eeccbb0",
+      "conclusion": "failure",
+      "command": "node --test tests/contract/zhuque-probe.test.ts",
+      "reason": "a recorded website observation was incorrectly represented as NOT_RUN"
     }
   ],
   "green_evidence": [
@@ -30,6 +36,19 @@
         "npm run skills:check",
         "npm run build"
       ]
+    },
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 arm64; opencli 1.8.6",
+      "gates": [
+        "node --test tests/contract/zhuque-probe.test.ts test/detection-report.test.mjs (7 passed, 0 failed)",
+        "npm test (273 passed, 0 failed; 261 files packaged)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run audit:release"
+      ]
     }
   ],
   "assertions": [
@@ -38,11 +57,14 @@
     "human, original-AI, and edited categories require distinct live API records and immutable raw-response hashes",
     "the report identifies itself as a self-built API summary rather than an official provider document",
     "classification ratios are evidence and never presented as plugin quality proof",
-    "HTML escapes content and states that webpage-to-API parity is unverified"
+    "HTML escapes content and states that webpage-to-API parity is unverified",
+    "one live website observation is PARTIAL_LIVE_WEBSITE and never satisfies the three-live-API-sample admission gate"
   ],
   "outputs": [
     "packages/core/src/render/detection-report.ts",
     "docs/verification/detection-live.md",
+    "docs/verification/zhuque-contract.md",
+    "tests/fixtures/zhuque/2026-09-22-website-observation.json",
     "test/detection-report.test.mjs"
   ],
   "review": {
@@ -50,10 +72,10 @@
     "result": "PASS_OFFLINE_SCOPE",
     "findings": []
   },
-  "fixture_or_live": "local-fixture",
-  "live_ai_content_detector": "NOT_RUN",
+  "fixture_or_live": "local-fixture-plus-one-live-website-observation",
+  "live_ai_content_detector": "PARTIAL_LIVE_WEBSITE",
   "production_admission": false,
-  "live_blocker": "The user authorized skipping the external account. Required live records for all three comparison samples do not exist.",
+  "live_blocker": "The authenticated API was not called. Required immutable API records for human, original-AI, and edited comparison samples do not exist.",
   "dependency_status": {
     "CF-024": "COMPLETE",
     "CF-026": "PARTIAL_OFFLINE",

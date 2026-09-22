@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-22T09:19:39.805Z",
+  "evidenceClass": "PARTIAL_LIVE_WEBSITE",
+  "providerAlias": "AI 内容检测平台",
+  "officialWebsite": "https://matrix.tencent.com/ai-detect/",
+  "transport": "official-website-websocket",
+  "browserAutomation": {
+    "tool": "opencli",
+    "version": "1.8.6",
+    "profileAuthenticated": false,
+    "captchaBypassed": false
+  },
+  "emptyInputObservation": {
+    "result": "CLIENT_BLOCKED",
+    "message": "检测文本长度需大于350字",
+    "networkRequests": 0,
+    "availableUsesBefore": 5,
+    "availableUsesAfter": 5
+  },
+  "request": {
+    "source": "tests/fixtures/corpus/manifest.json samples RA-01 through TT-06",
+    "rightsBasis": "project-owned-fixture",
+    "textSha256": "34ae95c92ee27328622d4acad86df8515b2a29c641204c7592626fde075b2d97",
+    "unicodeScalars": 828,
+    "utf16CodeUnits": 829,
+    "utf8Bytes": 2199,
+    "platformEffectiveLength": 767,
+    "containsChinese": true,
+    "containsNewlines": true,
+    "containsEmoji": true,
+    "transmissionApproved": true
+  },
+  "response": {
+    "status": "success",
+    "visibleSummary": "人工创作特征显著",
+    "confidence": 0.3659,
+    "labelsRatio": {
+      "0": 0.6341,
+      "1": 0,
+      "2": 0.3659
+    },
+    "contentType": 0,
+    "availableUsesAfter": 4,
+    "feedbackTokenPresent": true,
+    "feedbackTokenRedacted": true,
+    "segments": [
+      {
+        "textSha256": "12c670f78cffa0ff88e987d8a918741307b61dde5eb18a3caac86dd122bf627c",
+        "unicodeScalars": 525,
+        "utf16CodeUnits": 525,
+        "utf8Bytes": 1405,
+        "label": 0,
+        "confidence": 0.2593,
+        "order": 1,
+        "position": [0, 525]
+      },
+      {
+        "textSha256": "de1eb30bdbb5818990a2f16d2001df19919e443fcb55d154467c09be4c972a82",
+        "unicodeScalars": 303,
+        "utf16CodeUnits": 304,
+        "utf8Bytes": 794,
+        "label": 2,
+        "confidence": 0.8294,
+        "order": 2,
+        "position": [525, 303]
+      }
+    ],
+    "modelUpdatedAt": "2026-07-21T12:22:05.000Z"
+  },
+  "apiProbe": {
+    "status": "NOT_RUN_CREDENTIAL_REQUIRED",
+    "model": "@makers/zhuque-text",
+    "endpoint": "https://ai-gateway.edgeone.link/v1/providers/zhuque-text/classify",
+    "credentialRecorded": false,
+    "usageFieldsObserved": false
+  },
+  "limitations": [
+    "The website observation is not an authenticated API response.",
+    "Website-to-API parity remains unverified.",
+    "The required human, original-AI, and edited three-sample comparison is incomplete.",
+    "The classification is not authorship, quality, enforcement, or publication evidence."
+  ],
+  "productionAdmission": false,
+  "secretsInRecord": false
+}

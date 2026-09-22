@@ -3,28 +3,62 @@
   "task": "CF-003",
   "status": "PARTIAL_OFFLINE",
   "scope": "Live contract probe for the AI content detection platform",
-  "recorded_at": "2026-09-22T08:30:00Z",
+  "recorded_at": "2026-09-22T09:26:43Z",
   "branch": "main",
+  "implementation_commits": [
+    "eeccbb0"
+  ],
+  "red_evidence": [
+    {
+      "commit": "eeccbb0",
+      "conclusion": "failure",
+      "command": "node --test tests/contract/zhuque-probe.test.ts",
+      "reason": "the sanitized live website observation did not exist and website evidence collapsed to NOT_RUN"
+    }
+  ],
+  "green_evidence": [
+    {
+      "conclusion": "success",
+      "environment": "macOS 27.0 arm64; opencli 1.8.6; unauthenticated official website trial",
+      "gates": [
+        "node --test tests/contract/zhuque-probe.test.ts test/detection-report.test.mjs (7 passed, 0 failed)",
+        "npm test (273 passed, 0 failed; 261 files packaged)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run skills:check:upstream",
+        "npm run audit:release",
+        "python3 docs/architecture/verify-architecture.py",
+        "openspec validate establish-content-factory-v1 --strict",
+        "openspec validate add-platform-aware-content-orchestration --strict",
+        "openspec validate implement-content-factory-architecture --strict"
+      ]
+    }
+  ],
   "live_verification": {
-    "status": "NOT_RUN",
-    "reason": "User-authorized skip: no external test account or credential was supplied, so no text, authorization data, quota, or request was sent to the AI content detection platform."
+    "status": "PARTIAL_LIVE_WEBSITE",
+    "reason": "One project-owned synthetic text was sent through the authorized official website trial and one empty-input rejection was observed. The authenticated API probe and three-sample comparison remain NOT_RUN_CREDENTIAL_REQUIRED."
   },
   "offline_evidence": [
     "docs/verification/detection-live.md",
+    "docs/verification/zhuque-contract.md",
+    "schemas/zhuque.raw.schema.json",
+    "tests/fixtures/zhuque/2026-09-22-website-observation.json",
     "docs/verification/tasks/CF-025.json",
     "docs/verification/tasks/CF-026.json",
     "docs/verification/tasks/CF-029.json",
     "docs/verification/tasks/CF-030.json"
   ],
   "assertions": [
-    "synthetic contract fixtures do not satisfy a live provider probe",
-    "whole-text and segment response behavior remains unverified against an authorized external account",
-    "Unicode, authorization, and quota observations remain NOT_RUN",
-    "no provider identity, account alias, credential reference, or raw live response is recorded"
+    "the empty input was blocked client-side with zero network requests and zero quota change",
+    "one Chinese newline and Emoji sample produced a real website result with exact text and segment hashes",
+    "the short-lived feedback token was removed and no credential or account identifier is recorded",
+    "website classification remains partial evidence and cannot satisfy authenticated API or production admission",
+    "API authorization, usage fields, business failure and three-sample comparison remain NOT_RUN_CREDENTIAL_REQUIRED"
   ],
   "review": {
     "kind": "primary-agent evidence-boundary review",
-    "result": "PASS_SKIP_RECORD",
+    "result": "PASS_PARTIAL_LIVE_WEBSITE",
     "findings": []
   },
   "secrets_in_record": false

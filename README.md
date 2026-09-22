@@ -11,7 +11,7 @@ Content Factory has a working offline runtime and a fail-closed release gate. It
 | Task | Status | Evidence |
 |---|---|---|
 | CF-001–002, 005–024, 037–038, 040, 043–052, 054–055, 058 | COMPLETE | Supply chain, Runtime Kernel, harness, import/edit/render/export, routing, recovery, security, and fail-closed release gate |
-| CF-003–004 | PARTIAL_OFFLINE | Skip boundaries are recorded; authorized AI content detection and content-platform draft probes remain `NOT_RUN` |
+| CF-003–004 | PARTIAL_OFFLINE | One sanitized AI content detector website observation is recorded; the authenticated API contract and content-platform account probe remain `NOT_RUN` |
 | CF-025–036, 039, 041, 053, 056–057 | PARTIAL_OFFLINE | Offline contracts pass; real services, accounts, host sessions, or human review remain `NOT_RUN` |
 | v1.0.0 release | **BLOCKED** | No release candidate is selected; 0/117 live host × recipe combinations are verified |
 
@@ -90,4 +90,4 @@ Visual-generation Baoyu skills remain outside Content Factory and belong to Imag
 
 ## Release boundary
 
-No `v1.0.0` tag, release, package publication, or marketplace update has been created. The remaining gates require authorized external accounts, actual Codex/ZCode/Kimi sessions, AI content detection evidence, content-platform draft save/readback, and the 30-document dual-human review. Until those checks bind to one exact commit and package digest, the release remains **BLOCKED**.
+No `v1.0.0` tag, release, package publication, or marketplace update has been created. The remaining gates require authorized external accounts, actual Codex/ZCode/Kimi sessions, three-sample authenticated AI content detection API evidence, content-platform draft save/readback, and the 30-document dual-human review. Until those checks bind to one exact commit and package digest, the release remains **BLOCKED**.

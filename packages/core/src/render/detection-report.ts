@@ -1,5 +1,9 @@
 export type DetectionEvidenceCategory = "human" | "original-ai" | "edited";
-export type DetectionEvidenceKind = "none" | "synthetic-fixture" | "live-api";
+export type DetectionEvidenceKind =
+  | "none"
+  | "synthetic-fixture"
+  | "live-web"
+  | "live-api";
 
 export type DetectionEvidenceSample = {
   category: DetectionEvidenceCategory;
@@ -21,7 +25,7 @@ export type DetectionEvidenceReport = {
   officialProviderDocument: false;
   qualityProofClaim: false;
   webApiParity: "not-verified";
-  liveStatus: "NOT_RUN" | "RECORDED";
+  liveStatus: "NOT_RUN" | "PARTIAL_LIVE_WEBSITE" | "RECORDED";
   productionAdmission: boolean;
   samples: DetectionEvidenceSample[];
   notes: string[];
@@ -52,6 +56,9 @@ export function buildDetectionEvidenceReport(input: {
   samples: DetectionEvidenceSample[];
 }): DetectionEvidenceReport {
   const productionAdmission = completeLiveSet(input.samples);
+  const hasLiveWebsiteObservation = input.samples.some(item =>
+    item.status === "recorded" && item.evidenceKind === "live-web"
+  );
   const notes = [
     "low-scores-are-not-quality-proof",
     "web-api-parity-not-verified"
@@ -59,7 +66,12 @@ export function buildDetectionEvidenceReport(input: {
   if (input.samples.some(item => item.evidenceKind === "synthetic-fixture")) {
     notes.push("synthetic-fixtures-are-not-live-evidence");
   }
-  if (!productionAdmission) notes.push("live-evidence-not-run");
+  if (hasLiveWebsiteObservation) {
+    notes.push("website-observation-does-not-prove-api-contract");
+  }
+  if (!productionAdmission && !hasLiveWebsiteObservation) {
+    notes.push("live-evidence-not-run");
+  }
 
   return {
     title: input.title,
@@ -68,7 +80,11 @@ export function buildDetectionEvidenceReport(input: {
     officialProviderDocument: false,
     qualityProofClaim: false,
     webApiParity: "not-verified",
-    liveStatus: productionAdmission ? "RECORDED" : "NOT_RUN",
+    liveStatus: productionAdmission
+      ? "RECORDED"
+      : hasLiveWebsiteObservation
+        ? "PARTIAL_LIVE_WEBSITE"
+        : "NOT_RUN",
     productionAdmission,
     samples: input.samples.map(sample => ({
       ...sample,

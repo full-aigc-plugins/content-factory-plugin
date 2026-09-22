@@ -80,13 +80,13 @@ test("CF-030 HTML identifies a self-built API summary and escapes content", () =
   assert.equal(html.includes("官方 PDF"), false);
 });
 
-test("CF-030 checked-in live evidence page explicitly records NOT_RUN", async () => {
+test("CF-030 checked-in live evidence page keeps website evidence partial", async () => {
   const markdown = await readFile(
     new URL("../docs/verification/detection-live.md", import.meta.url),
     "utf8"
   );
 
-  assert.match(markdown, /Live status:\s*`NOT_RUN`/u);
+  assert.match(markdown, /Live status:\s*`PARTIAL_LIVE_WEBSITE`/u);
   assert.match(markdown, /AI 内容检测平台/u);
   assert.match(markdown, /不能作为生产准入证据/u);
   assert.doesNotMatch(markdown, /AppSecret|Cookie|朱雀/u);

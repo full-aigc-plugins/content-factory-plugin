@@ -7,7 +7,7 @@
 
 ## 1. 当前交付与产品实现分开
 
-当前实现状态以 `docs/verification/tasks/CF-001.json` 至 `CF-058.json` 为唯一状态源：38 个父任务为 `COMPLETE`，20 个父任务为 `PARTIAL_OFFLINE`。232 个执行子项中，206 个有完整离线实施证据，18 个停在最终真实/人工证据复核，CF-003/004 的 8 个子项保持 `NOT_RUN`。对应子项勾选同步在 [tasks.md](tasks.md)，机器可读汇总同步在 [task-index.json](task-index.json)。没有凭据不执行付费或远程写入测试，不以环境错误作为业务 RED，也不把离线合同通过扩写为真实服务、宿主或人工验收通过。
+当前实现状态以 `docs/verification/tasks/CF-001.json` 至 `CF-058.json` 为唯一状态源：38 个父任务为 `COMPLETE`，20 个父任务为 `PARTIAL_OFFLINE`。232 个执行子项中，209 个已有实施证据，19 个停在最终真实/人工证据复核，CF-004 的 4 个真实账号探测子项保持 `NOT_RUN`。CF-003 已完成一次官网游客额度探测和脱敏证据，但正式 API Key 契约与三类样本对照仍未完成。对应子项勾选同步在 [tasks.md](tasks.md)，机器可读汇总同步在 [task-index.json](task-index.json)。没有凭据不执行付费或远程写入测试，不以环境错误作为业务 RED，也不把官网观察扩写为 API、宿主或人工验收通过。
 
 ## 2. 依赖驱动实施波次
 

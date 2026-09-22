@@ -109,10 +109,10 @@
       "status": "PARTIAL_OFFLINE",
       "evidence": "docs/verification/tasks/CF-003.json",
       "subtask_statuses": [
-        "NOT_RUN",
-        "NOT_RUN",
-        "NOT_RUN",
-        "NOT_RUN"
+        "COMPLETE",
+        "COMPLETE",
+        "COMPLETE",
+        "PARTIAL_OFFLINE"
       ]
     },
     {
@@ -1054,8 +1054,8 @@
     "PARTIAL_OFFLINE": 20
   },
   "child_evidence_summary": {
-    "COMPLETE": 206,
-    "PARTIAL_OFFLINE": 18,
-    "NOT_RUN": 8
+    "COMPLETE": 209,
+    "PARTIAL_OFFLINE": 19,
+    "NOT_RUN": 4
   }
 }
