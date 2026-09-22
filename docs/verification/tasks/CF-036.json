@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task": "CF-036",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Atomic working and verified package export with public/audit separation, immutable manifests, gap reporting, and no-overwrite behavior",
+  "completed_at": "2026-09-22T06:31:04Z",
+  "branch": "main",
+  "implementation_commits": [
+    "cef1765584f5fb846f14a7bd38b859273b638950",
+    "96b6e12216e0757b5a83b5edffaf6e7e6414b51e"
+  ],
+  "red_evidence": [
+    {
+      "commit": "cef1765584f5fb846f14a7bd38b859273b638950",
+      "conclusion": "failure",
+      "command": "node --test test/delivery-export.test.mjs",
+      "reason": "all seven working, verified, privacy, conflict, path, and integrity assertions failed against explicit export and manifest stubs"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "96b6e12216e0757b5a83b5edffaf6e7e6414b51e",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/delivery-export.test.mjs (7 passed, 0 failed)",
+        "npm test (203 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "working exports list package, visual, detection, and editorial gaps without claiming verified status",
+    "verified exports reject missing required visuals, detection, and remote-delivery verification",
+    "a verified local package can be delivered without any remote write receipt",
+    "public content and internal audit artifacts are written to separate directory trees",
+    "private sources, reports, assets, and receipts are excluded unless internal audit export is explicit",
+    "every payload file has a reproducible byte count and SHA-256 manifest entry",
+    "changed or missing bytes make manifest verification fail",
+    "unsafe child paths and existing target directories are rejected without overwrite",
+    "the export is assembled in a sibling temporary directory and renamed only after completion"
+  ],
+  "outputs": [
+    "packages/core/src/delivery/export.ts",
+    "packages/core/src/delivery/manifest.ts",
+    "test/delivery-export.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "real-local-filesystem-with-synthetic-content",
+  "live_remote_delivery_receipt": "NOT_RUN",
+  "live_blocker": "Verified local export is exercised, but remote content-platform delivery receipts remain unavailable because live account validation was skipped.",
+  "dependency_status": {
+    "CF-024": "COMPLETE",
+    "CF-030": "PARTIAL_OFFLINE",
+    "CF-032": "PARTIAL_OFFLINE",
+    "CF-034": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
