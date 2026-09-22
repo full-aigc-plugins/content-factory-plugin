@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "task": "CF-030",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Self-built detector evidence report, three-sample live admission gate, safe HTML rendering, and explicit NOT_RUN record",
+  "completed_at": "2026-09-22T12:30:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "4c27e25248d4b2db054faf2f5cc565e0db7c32f1",
+    "37c656bad3d4120d9ae1d06a6e05610ad33e9aa8"
+  ],
+  "red_evidence": [
+    {
+      "commit": "4c27e25248d4b2db054faf2f5cc565e0db7c32f1",
+      "conclusion": "failure",
+      "command": "node --test test/detection-report.test.mjs",
+      "reason": "the detector evidence report renderer and live evidence record were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "37c656bad3d4120d9ae1d06a6e05610ad33e9aa8",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/detection-report.test.mjs (5 passed, 0 failed)",
+        "npm test (168 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "missing live samples remain NOT_RUN and cannot produce production admission",
+    "synthetic fixtures never satisfy the live three-sample gate",
+    "human, original-AI, and edited categories require distinct live API records and immutable raw-response hashes",
+    "the report identifies itself as a self-built API summary rather than an official provider document",
+    "classification ratios are evidence and never presented as plugin quality proof",
+    "HTML escapes content and states that webpage-to-API parity is unverified"
+  ],
+  "outputs": [
+    "packages/core/src/render/detection-report.ts",
+    "docs/verification/detection-live.md",
+    "test/detection-report.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "local-fixture",
+  "live_ai_content_detector": "NOT_RUN",
+  "production_admission": false,
+  "live_blocker": "The user authorized skipping the external account. Required live records for all three comparison samples do not exist.",
+  "dependency_status": {
+    "CF-024": "COMPLETE",
+    "CF-026": "PARTIAL_OFFLINE",
+    "CF-027": "PARTIAL_OFFLINE",
+    "CF-028": "PARTIAL_OFFLINE",
+    "CF-029": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
