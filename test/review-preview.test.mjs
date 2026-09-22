@@ -2,7 +2,11 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { renderReviewPage } from "../packages/core/src/render/review-page.ts";
-import { findChromiumExecutable, withChromiumPage } from "../scripts/chromium-harness.mjs";
+import {
+  findChromiumExecutable,
+  resolveChromiumStartupTimeout,
+  withChromiumPage
+} from "../scripts/chromium-harness.mjs";
 
 const baseInput = {
   requestedRevisionId: "rev-current",
@@ -25,6 +29,12 @@ const baseInput = {
     { reportId: "private-1", kind: "editorial", status: "passed", revisionId: "rev-current", summary: "私人编辑备注", visibility: "private" }
   ]
 };
+
+test("CF-024 Chromium startup budget tolerates slow CI runners and remains configurable", () => {
+  assert.equal(resolveChromiumStartupTimeout({}), 30_000);
+  assert.equal(resolveChromiumStartupTimeout({ CONTENT_FACTORY_CHROMIUM_STARTUP_TIMEOUT_MS: "45000" }), 45_000);
+  assert.equal(resolveChromiumStartupTimeout({ CONTENT_FACTORY_CHROMIUM_STARTUP_TIMEOUT_MS: "invalid" }), 30_000);
+});
 
 test("CF-024 renders five inert review regions without leaking private material", () => {
   const result = renderReviewPage(baseInput);
