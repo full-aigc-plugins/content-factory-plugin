@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "task": "CF-025",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Permission-gated AI content detector boundary, exact UTF-8 text binding, secret-provider isolation, and immutable raw-response storage",
+  "completed_at": "2026-09-22T10:00:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "84c3355168678e94520f83a57f3a0048080d4fbb",
+    "c20e49952b9f363b9b6adecb0d708b26753f8d31"
+  ],
+  "red_evidence": [
+    {
+      "commit": "84c3355168678e94520f83a57f3a0048080d4fbb",
+      "conclusion": "failure",
+      "command": "node --test test/ai-content-detector-adapter.test.mjs",
+      "reason": "the AI content detector adapter, domain boundary, and evidence store modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "c20e49952b9f363b9b6adecb0d708b26753f8d31",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/ai-content-detector-adapter.test.mjs (5 passed, 0 failed)",
+        "npm test (143 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "text is never sent and the secret provider is never called without explicit transmission approval",
+    "an unavailable credential blocks the request before the transport is called",
+    "the exact submitted UTF-8 bytes match the declared canonical text hash",
+    "HTTP success with provider business failure cannot become a successful detection",
+    "missing required response fields produce an unknown contract result while retaining the exact raw bytes",
+    "secret values are absent from returned job metadata and verification evidence"
+  ],
+  "outputs": [
+    "adapters/zhuque/client.ts",
+    "packages/core/src/detection/store.ts",
+    "packages/core/src/detection/zhuque.ts",
+    "test/ai-content-detector-adapter.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "synthetic-contract-fixture",
+  "live_ai_content_detector": "NOT_RUN",
+  "live_blocker": "User-authorized skip: no live credential or provider contract was used, so this evidence cannot satisfy production admission.",
+  "dependency_status": {
+    "CF-003": "NOT_RUN",
+    "CF-007": "COMPLETE",
+    "CF-012": "COMPLETE",
+    "CF-022": "COMPLETE"
+  },
+  "secrets_in_record": false
+}
