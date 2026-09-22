@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "task": "CF-032",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Frozen verified release bundles, prepared delivery intents, trusted approval records, and post-approval change rejection",
+  "completed_at": "2026-09-22T13:30:00Z",
+  "branch": "main",
+  "implementation_commits": [
+    "d82b499f5f8b3708ae2ebd38a2aa6da0030a52df",
+    "e24cad0d26d8fe311b2d417db5f191b5401daa30"
+  ],
+  "red_evidence": [
+    {
+      "commit": "d82b499f5f8b3708ae2ebd38a2aa6da0030a52df",
+      "conclusion": "failure",
+      "command": "node --test test/delivery-approval.test.mjs",
+      "reason": "the release bundle, delivery intent, and controlled approval modules were absent"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "e24cad0d26d8fe311b2d417db5f191b5401daa30",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test test/delivery-approval.test.mjs (5 passed, 0 failed)",
+        "npm test (179 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "bundle hash binds title, summary, body, ordered assets, content revision, detection review, and target account",
+    "working packages cannot create verified delivery intents",
+    "a prepared intent has no remote write authorization",
+    "model self-approval and untrusted interaction channels are rejected",
+    "approval binds actor, intent, bundle hash, target account, and approval time",
+    "body, asset, or target-account replacement after approval blocks delivery"
+  ],
+  "outputs": [
+    "packages/core/src/delivery/prepare.ts",
+    "packages/core/src/delivery/intents.ts",
+    "packages/core/src/delivery/approve.ts",
+    "test/delivery-approval.test.mjs"
+  ],
+  "review": {
+    "kind": "separate primary-agent review because delegated review is disabled by session policy",
+    "result": "PASS_OFFLINE_SCOPE",
+    "findings": []
+  },
+  "fixture_or_live": "local-fixture",
+  "live_official_content_draft": "NOT_RUN",
+  "live_blocker": "No trusted live delivery interaction or remote target account was used, so remote approval and write admission remain unverified.",
+  "dependency_status": {
+    "CF-021": "COMPLETE",
+    "CF-024": "COMPLETE",
+    "CF-027": "PARTIAL_OFFLINE",
+    "CF-028": "PARTIAL_OFFLINE",
+    "CF-031": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
