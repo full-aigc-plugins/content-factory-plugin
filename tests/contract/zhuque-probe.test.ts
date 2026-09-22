@@ -11,6 +11,21 @@ const observationPath = path.resolve(
   "tests/fixtures/zhuque/2026-09-22-website-observation.json"
 );
 
+const comparisonObservationPaths = [
+  {
+    category: "original-ai",
+    path: path.resolve(
+      "tests/fixtures/zhuque/2026-09-22-original-ai-website-observation.json"
+    )
+  },
+  {
+    category: "edited",
+    path: path.resolve(
+      "tests/fixtures/zhuque/2026-09-22-edited-website-observation.json"
+    )
+  }
+] as const;
+
 test("CF-003 checked-in website observation is secret-free and evidence-bound", () => {
   assert.equal(
     existsSync(observationPath),
@@ -80,4 +95,39 @@ test("CF-030 website observation remains partial and cannot satisfy API admissio
   assert.ok(report.notes.includes(
     "website-observation-does-not-prove-api-contract"
   ));
+});
+
+test("CF-030 original AI and edited website observations are distinct, traceable, and secret-free", () => {
+  const observations = comparisonObservationPaths.map(({ category, path: fixturePath }) => {
+    assert.equal(
+      existsSync(fixturePath),
+      true,
+      `${category} website observation must be checked in as sanitized evidence`
+    );
+
+    const observation = JSON.parse(readFileSync(fixturePath, "utf8"));
+    const serialized = JSON.stringify(observation);
+
+    assert.equal(observation.sampleCategory, category);
+    assert.equal(observation.evidenceClass, "PARTIAL_LIVE_WEBSITE");
+    assert.equal(observation.providerAlias, "AI 内容检测平台");
+    assert.equal(observation.transport, "official-website-websocket");
+    assert.equal(observation.request.rightsBasis, "project-owned-fixture");
+    assert.equal(observation.request.transmissionApproved, true);
+    assert.match(observation.request.textSha256, /^[a-f0-9]{64}$/u);
+    assert.equal(observation.response.status, "success");
+    assert.equal(observation.response.feedbackTokenPresent, true);
+    assert.equal(observation.response.feedbackTokenRedacted, true);
+    assert.equal(observation.productionAdmission, false);
+    assert.equal(observation.secretsInRecord, false);
+    assert.doesNotMatch(serialized, /feedback_token|Bearer\s+|eyJ[a-zA-Z0-9_-]*\./u);
+
+    return observation;
+  });
+
+  assert.notEqual(
+    observations[0].request.textSha256,
+    observations[1].request.textSha256,
+    "original AI and edited observations must bind different submitted texts"
+  );
 });
