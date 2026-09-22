@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "task": "CF-039",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Five-by-six project-owned editorial corpus, dual-human-review records, threshold calculation, anti-slop review, and layout review requirements",
+  "completed_at": "2026-09-22T06:51:03Z",
+  "branch": "main",
+  "implementation_commits": [
+    "80822c470b8b7bdabef2c3ee3253505091b4df5a",
+    "e3e77a7449fd454a402e11d8f85874ceced68b32"
+  ],
+  "red_evidence": [
+    {
+      "commit": "80822c470b8b7bdabef2c3ee3253505091b4df5a",
+      "conclusion": "failure",
+      "command": "node --test tests/editorial/corpus.test.mjs",
+      "reason": "the corpus contained zero samples and the explicit benchmark evaluator stub could not enforce human-review or product thresholds"
+    }
+  ],
+  "green_evidence": [
+    {
+      "commit": "e3e77a7449fd454a402e11d8f85874ceced68b32",
+      "conclusion": "success",
+      "environment": "Darwin 27.0.0 arm64; Node.js v24.18.0",
+      "gates": [
+        "node --test tests/editorial/corpus.test.mjs (5 passed, 0 failed)",
+        "npm test (221 passed, 0 failed)",
+        "npm run lint",
+        "npm run typecheck",
+        "npm run skills:check",
+        "npm run audit:release",
+        "npm run build"
+      ]
+    }
+  ],
+  "assertions": [
+    "the corpus has exactly 30 distinct project-owned redistributable samples",
+    "research analysis, technical tutorial, product update, customer case, and short social script each have six samples",
+    "every sample carries source text, candidate text, fact anchors, three layout viewports, and owner plus independent review slots",
+    "incomplete dual-human review returns NOT_RUN with no invented error or structure score",
+    "one severe factual error fails the gate regardless of all other dimensions",
+    "fewer than 27 structure-accepted samples fails the gate",
+    "AI content detection classification is absent from editorial admission",
+    "anti-slop inspection found no generic hype, fabricated experience, masking fallback, or irrelevant design filler in the candidate corpus"
+  ],
+  "outputs": [
+    "tests/fixtures/corpus/manifest.json",
+    "tests/editorial/corpus.test.mjs",
+    "packages/core/src/review/benchmark.ts",
+    "docs/verification/editorial-benchmark.md"
+  ],
+  "review": {
+    "kind": "primary-agent structural and anti-slop review; required human content reviewers have not run",
+    "result": "PASS_STRUCTURE_ONLY",
+    "findings": []
+  },
+  "fixture_or_live": "project-owned-synthetic-corpus",
+  "human_benchmark": "NOT_RUN",
+  "human_blocker": "All 30 owner and independent reviewer records remain not-run; zero severe errors and 27 structure accepts are targets, not measured results.",
+  "dependency_status": {
+    "CF-018": "COMPLETE",
+    "CF-019": "COMPLETE",
+    "CF-023": "COMPLETE",
+    "CF-030": "PARTIAL_OFFLINE",
+    "CF-036": "PARTIAL_OFFLINE"
+  },
+  "secrets_in_record": false
+}
