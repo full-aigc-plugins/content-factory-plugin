@@ -69,6 +69,45 @@ test("CF-041 checked-in host evidence keeps every unexecuted live run as NOT_RUN
   }
 });
 
+test("CF-041 records observed host runtimes without promoting them to installed plugin sessions", async () => {
+  const probe = JSON.parse(await readFile(
+    path.resolve("docs/verification/host-runtime-preflight.json"),
+    "utf8"
+  ));
+  assert.deepEqual(probe.operatingSystem, {
+    name: "macOS",
+    version: "27.0",
+    build: "26A428",
+    architecture: "arm64"
+  });
+  assert.deepEqual(probe.hosts.map((host: { hostId: string }) => host.hostId), [
+    "codex", "zcode", "kimi"
+  ]);
+  for (const host of probe.hosts) {
+    assert.equal(host.runtimeObserved, true);
+    assert.equal(host.pluginInstallation, "NOT_VERIFIED");
+    assert.equal(host.pluginSession, "NOT_RUN");
+    assert.equal(host.accountAccess, "NOT_RUN");
+    assert.equal(host.paidCalls, 0);
+  }
+  assert.equal(probe.secretsInRecord, false);
+
+  const index = JSON.parse(await readFile(
+    path.resolve("docs/verification/live-run-index.json"),
+    "utf8"
+  ));
+  for (const run of index.runs) {
+    assert.equal(run.runtimePreflight, "OBSERVED");
+    assert.match(run.hostVersion, /\d/u);
+    assert.equal(run.operatingSystem, "macOS 27.0 arm64");
+    assert.deepEqual(run.preflightEvidenceRefs, [
+      "docs/verification/host-runtime-preflight.json"
+    ]);
+    assert.equal(run.status, "NOT_RUN");
+    assert.equal(run.sessionStarted, false);
+  }
+});
+
 test("CF-041 release build retains every host manifest without changing its bytes", async () => {
   for (const relativePath of Object.values(manifests)) {
     const source = await readFile(path.resolve(relativePath));
