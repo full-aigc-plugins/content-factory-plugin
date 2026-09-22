@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "task": "CF-004",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Live draft permission and readback probe for the content platform article account",
+  "recorded_at": "2026-09-22T08:30:00Z",
+  "branch": "main",
+  "live_verification": {
+    "status": "NOT_RUN",
+    "reason": "User-authorized skip: no external content platform article account or authorization was supplied, so create, read, update, recovery, and readback operations were not attempted."
+  },
+  "offline_evidence": [
+    "docs/verification/live-run-index.json",
+    "docs/verification/tasks/CF-031.json",
+    "docs/verification/tasks/CF-033.json",
+    "docs/verification/tasks/CF-034.json",
+    "docs/verification/tasks/CF-035.json"
+  ],
+  "assertions": [
+    "offline adapter tests do not prove live account permission or draft readback",
+    "create, read, update, and unknown-result recovery remain NOT_RUN",
+    "public broadcast was neither requested nor attempted",
+    "no platform identity, account alias, authorization reference, draft identifier, or remote receipt is recorded"
+  ],
+  "review": {
+    "kind": "primary-agent evidence-boundary review",
+    "result": "PASS_SKIP_RECORD",
+    "findings": []
+  },
+  "secrets_in_record": false
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "task": "CF-003",
+  "status": "PARTIAL_OFFLINE",
+  "scope": "Live contract probe for the AI content detection platform",
+  "recorded_at": "2026-09-22T08:30:00Z",
+  "branch": "main",
+  "live_verification": {
+    "status": "NOT_RUN",
+    "reason": "User-authorized skip: no external test account or credential was supplied, so no text, authorization data, quota, or request was sent to the AI content detection platform."
+  },
+  "offline_evidence": [
+    "docs/verification/detection-live.md",
+    "docs/verification/tasks/CF-025.json",
+    "docs/verification/tasks/CF-026.json",
+    "docs/verification/tasks/CF-029.json",
+    "docs/verification/tasks/CF-030.json"
+  ],
+  "assertions": [
+    "synthetic contract fixtures do not satisfy a live provider probe",
+    "whole-text and segment response behavior remains unverified against an authorized external account",
+    "Unicode, authorization, and quota observations remain NOT_RUN",
+    "no provider identity, account alias, credential reference, or raw live response is recorded"
+  ],
+  "review": {
+    "kind": "primary-agent evidence-boundary review",
+    "result": "PASS_SKIP_RECORD",
+    "findings": []
+  },
+  "secrets_in_record": false
+}
