@@ -99,6 +99,7 @@ test("CF-058 checked-in release gate blocks the current skipped-live candidate",
   assert.equal(report.blockers.includes("release-candidate-not-selected"), false);
   assert.equal(report.blockers.includes("release-candidate-commit-not-ancestor"), false);
   assert.equal(report.blockers.includes("release-candidate-package-digest-unverified"), false);
+  assert.equal(report.blockers.includes("release-candidate-manifest-commit-unverified"), false);
   assert.equal(report.blockers.includes("live-evidence-not-verified"), true);
 });
 

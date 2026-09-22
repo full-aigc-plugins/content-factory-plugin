@@ -31,7 +31,7 @@
   "current_gate_result": {
     "verdict": "blocked",
     "package_version": "1.0.0-rc.1",
-    "evaluated_commit": "8ab9a1d11a0a89bbf4ca1050d13af5ce50122bf6",
+    "evaluated_commit": "09de6466ebaeb0ea96bc48eb5ce6553c2365b4db",
     "blockers": [
       "required-task-not-complete:CF-030",
       "required-task-not-complete:CF-035",
