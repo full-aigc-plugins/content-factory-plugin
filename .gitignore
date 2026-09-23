@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local host state and Node.js install artifacts
+.DS_Store
+.v2c/
+.video_agent/
+node_modules/
+package-lock.json
