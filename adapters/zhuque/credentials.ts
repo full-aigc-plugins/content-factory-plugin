@@ -43,13 +43,14 @@ export function defaultZhuqueConfigPath(input: {
   const env = input.env ?? process.env;
   const platform = input.platform ?? process.platform;
   const home = input.home ?? homedir();
+  const pathForPlatform = platform === "win32" ? path.win32 : path.posix;
   const configuredRoot = platform === "win32" ? env.APPDATA : env.XDG_CONFIG_HOME;
-  const root = configuredRoot && path.isAbsolute(configuredRoot)
+  const root = configuredRoot && pathForPlatform.isAbsolute(configuredRoot)
     ? configuredRoot
     : platform === "win32"
-      ? path.join(home, "AppData", "Roaming")
-      : path.join(home, ".config");
-  return path.join(root, "content-factory", "credentials.json");
+      ? pathForPlatform.join(home, "AppData", "Roaming")
+      : pathForPlatform.join(home, ".config");
+  return pathForPlatform.join(root, "content-factory", "credentials.json");
 }
 
 function checkedKey(value: string): string {

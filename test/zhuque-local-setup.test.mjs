@@ -26,6 +26,10 @@ test("Zhuque setup uses a per-user config path and only resolves its own credent
     defaultZhuqueConfigPath({ env: { XDG_CONFIG_HOME: "/tmp/xdg-example" }, platform: "darwin" }),
     "/tmp/xdg-example/content-factory/credentials.json"
   );
+  assert.equal(
+    defaultZhuqueConfigPath({ env: { APPDATA: "C:\\Users\\example\\AppData\\Roaming" }, platform: "win32" }),
+    "C:\\Users\\example\\AppData\\Roaming\\content-factory\\credentials.json"
+  );
   const credentials = new ZhuqueCredentials({ configPath, env: {} });
   assert.deepEqual(await credentials.status(), {
     configured: false, source: null, apiVerified: false, detectionVerified: false

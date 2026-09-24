@@ -17,3 +17,8 @@ Boundary: no real API Key was entered, no Zhuque API call or article upload was 
 - The provider's `list_screens` response for this project was `{}`, so no `get_screen` device/size receipt or asset export is claimed. The Stitch result is a design reference, not remote screen acceptance evidence.
 - Implemented the same centered brand/title, light blue–lime–aqua ambient background, broad white card, black save action, and compact instruction stack in the packaged local page. Retained Content Factory's accurate "configured ≠ API verified" wording and did not import Stitch's auth-state claims or logo.
 - Local browser checks covered 1280×1024, 768×1024, 390×884, and a 1280×740 window. At 390px, `document.documentElement.scrollWidth` equaled the 390px viewport; the empty-key action displayed its validation message. No real credential was entered.
+
+## Cross-platform path correction · 2026-09-24
+
+- The first `main` CI run passed on Ubuntu and macOS but exposed one Windows failure: the test's simulated macOS config path was joined with Windows separators. The path resolver now uses the path rules of the requested platform; the test also covers a simulated Windows path.
+- After the correction, the focused Zhuque tests passed 5/5 and the local full suite passed 293/293. Remote Windows acceptance is recorded by the follow-up CI run, not inferred from these local checks.
