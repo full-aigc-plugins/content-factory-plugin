@@ -20,6 +20,7 @@ await mkdir(output, { recursive: true });
 const copyRoots = [
   ".codex-plugin",
   ".zcode-plugin",
+  "assets",
   "packages",
   "adapters",
   "profiles",

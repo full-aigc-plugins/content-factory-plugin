@@ -34,6 +34,12 @@ npm run release:gate
 
 `npm run skills:check` performs offline integrity validation. `npm run skills:check:upstream` additionally resolves pinned upstream tags. `npm run release:gate` currently exits non-zero by design and lists the missing live evidence.
 
+## Local Zhuque key setup
+
+Run `npm run zhuque:setup` in the source checkout to open Content Factory's bundled local setup page. When this version's MCP server is loaded by a host, the agent can open the same page with `content_factory_zhuque_setup`. Enter the key in the page, never in chat. The page binds only to `127.0.0.1` and closes after ten minutes. The key is stored in the current user's config directory (macOS/Linux default: `~/.config/content-factory/credentials.json`) with owner-only Unix permissions. An explicit process `ZHUQUE_API_KEY` takes precedence over the stored value.
+
+`npm run zhuque:status` or `content_factory_zhuque_status` reports only whether a key is configured. **Saving a key does not verify the API or detect an article.** The page never sends article text or contacts Zhuque; actual detection remains subject to outbound-content consent, a real provider response, and exact-revision checks. This setup entry does not clear CF-025/CF-030 or production-release gates.
+
 ## Architecture
 
 ```text

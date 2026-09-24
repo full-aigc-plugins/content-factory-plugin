@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Content Factory · 朱雀检测设置</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="hero">
+      <div class="brand" aria-label="Content Factory · Zhuque">
+        <span class="brand-mark" aria-hidden="true">CF</span>
+        <strong>Content Factory</strong>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <em>Zhuque</em>
+      </div>
+      <h1>只需一个 Key，即可完成朱雀检测的本机配置</h1>
+      <p class="subtitle">安全保存在本机，不必把密钥发到聊天中</p>
+    </header>
+
+    <section class="setup-card" data-csrf="__CSRF_TOKEN__" aria-labelledby="setup-title">
+      <div class="card-title">
+        <span class="card-mark" aria-hidden="true">CF</span>
+        <h2 id="setup-title">朱雀检测 API Key</h2>
+      </div>
+
+      <div class="configuration-state" aria-label="本机配置状态">
+        <span>本机密钥状态</span>
+        <strong id="connection-state">检查中</strong>
+      </div>
+      <p class="state-hint">这里只检查本机是否有密钥，不代表朱雀 API 已通过验证。</p>
+
+      <label class="visually-hidden" for="api-key">Makers API Key</label>
+      <div class="input-row">
+        <input id="api-key" name="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="粘贴 Makers API Key">
+        <button id="save-key" type="button">保存</button>
+      </div>
+      <p id="status" role="status" aria-live="polite">正在检查本机配置…</p>
+
+      <ol class="steps">
+        <li>前往 <a href="https://cloud.tencent.com/document/product/1552/137539" target="_blank" rel="noopener noreferrer">腾讯云官方说明</a>，创建并复制 Makers API Key。</li>
+        <li>在上方粘贴密钥并保存，仅写入当前用户的本机配置。</li>
+        <li>回到 Agent 对话，确认文章外发后再请求朱雀检测。</li>
+      </ol>
+
+      <p class="safety-note"><strong>保存成功 ≠ 检测通过。</strong> 本页不上传文章，也不调用朱雀 API。</p>
+      <p class="advanced-settings"><strong>高级设置：</strong>当前进程的 <code>ZHUQUE_API_KEY</code> 会优先于本机保存值。</p>
+    </section>
+    <footer>本地页面 · 仅监听 127.0.0.1 · 十分钟后自动关闭</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

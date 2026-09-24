@@ -34,6 +34,12 @@ npm run release:gate
 
 `npm run skills:check` 默认离线验证 vendored Skill 内容摘要；`npm run skills:check:upstream` 会额外检查上游 tag 解析。`npm run release:gate` 当前会按设计返回非零状态，并列出缺少的真实证据。
 
+## 朱雀密钥的本机设置
+
+在源码目录运行 `npm run zhuque:setup`，会打开 Content Factory 自带的本地设置页。若宿主已加载本版 MCP，也可以直接对 Agent 说“打开 Content Factory 的朱雀密钥设置”，由 `content_factory_zhuque_setup` 打开。请在页面输入密钥，不要把密钥发到聊天中。页面只监听 `127.0.0.1`，十分钟后自动关闭；保存的密钥位于当前用户的配置目录（macOS/Linux 默认为 `~/.config/content-factory/credentials.json`），Unix 权限限制为仅当前用户可读写。当前进程设置的 `ZHUQUE_API_KEY` 优先于本机保存值。
+
+`npm run zhuque:status` 或 MCP 的 `content_factory_zhuque_status` 只显示是否已配置，不回显密钥。**保存成功不等于 API Key 有效，也不等于文章已通过检测。**设置页不会发送文章或调用朱雀 API；真实检测仍受正文外发许可、实际服务响应与文章版本核对约束。当前这项改动仅解决本机配置入口，不解除 CF-025/CF-030 及正式发行门禁。
+
 ## 架构
 
 Content Factory 的核心约束：

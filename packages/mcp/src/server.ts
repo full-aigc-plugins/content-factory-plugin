@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import readline from "node:readline";
+import { ZhuqueCredentials } from "../../../adapters/zhuque/credentials.ts";
+import { openZhuqueSetupPage, startZhuqueSetupServer } from "../../../adapters/zhuque/setup-ui.ts";
 import { runDoctor } from "../../core/src/doctor.ts";
 import packageJson from "../../../package.json" with { type: "json" };
 
@@ -22,7 +24,33 @@ const doctorTool = {
   }
 };
 
-export async function handleMcpRequest(request: JsonRpcRequest, env: Env = process.env) {
+const zhuqueStatusTool = {
+  name: "content_factory_zhuque_status",
+  description: "Check whether a Zhuque API Key is configured. Never reveals the key or claims API/detection verification.",
+  inputSchema: { type: "object", additionalProperties: false, properties: {} }
+};
+
+const zhuqueSetupTool = {
+  name: "content_factory_zhuque_setup",
+  description: "Open the built-in local Zhuque API Key setup page. It does not send article text or call the provider.",
+  inputSchema: { type: "object", additionalProperties: false, properties: {} }
+};
+
+let activeSetup: { url: string; expiresAt: number } | null = null;
+
+async function launchZhuqueSetup(): Promise<string> {
+  if (activeSetup && Date.now() < activeSetup.expiresAt) return activeSetup.url;
+  const setup = await startZhuqueSetupServer();
+  activeSetup = { url: setup.url, expiresAt: Date.now() + 590_000 };
+  openZhuqueSetupPage(setup.url);
+  return setup.url;
+}
+
+export async function handleMcpRequest(
+  request: JsonRpcRequest,
+  env: Env = process.env,
+  setupLauncher: () => Promise<string> = launchZhuqueSetup
+) {
   if (request.method === "initialize") {
     return {
       jsonrpc: "2.0",
@@ -39,25 +67,43 @@ export async function handleMcpRequest(request: JsonRpcRequest, env: Env = proce
     return {
       jsonrpc: "2.0",
       id: request.id ?? null,
-      result: { tools: [doctorTool] }
+      result: { tools: [doctorTool, zhuqueStatusTool, zhuqueSetupTool] }
     };
   }
 
   if (request.method === "tools/call") {
     const params = request.params ?? {};
-    if (params.name !== doctorTool.name) {
+    if (![doctorTool.name, zhuqueStatusTool.name, zhuqueSetupTool.name].includes(String(params.name))) {
       return {
         jsonrpc: "2.0",
         id: request.id ?? null,
         error: { code: -32602, message: "unknown tool" }
       };
     }
-    const report = await runDoctor({ env, platform: process.platform, arch: process.arch });
+    let result: unknown;
+    try {
+      if (params.name === doctorTool.name) {
+        result = await runDoctor({ env, platform: process.platform, arch: process.arch });
+      } else if (params.name === zhuqueStatusTool.name) {
+        result = await new ZhuqueCredentials({ env }).status();
+      } else {
+        result = { url: await setupLauncher(), apiVerified: false, detectionVerified: false };
+      }
+    } catch {
+      return {
+        jsonrpc: "2.0",
+        id: request.id ?? null,
+        result: {
+          content: [{ type: "text", text: "Local Zhuque setup is unavailable; check user configuration permissions." }],
+          isError: true
+        }
+      };
+    }
     return {
       jsonrpc: "2.0",
       id: request.id ?? null,
       result: {
-        content: [{ type: "text", text: JSON.stringify(report) }],
+        content: [{ type: "text", text: JSON.stringify(result) }],
         isError: false
       }
     };

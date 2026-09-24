@@ -61,8 +61,9 @@ test("CF-042 public documentation reports current capabilities and blocked relea
     assert.equal(document.includes("267"), false);
     assert.equal(document.includes("PARTIAL_OFFLINE"), true);
     assert.equal(document.includes("BLOCKED"), true);
-    assert.doesNotMatch(document, /Zhuque|朱雀/u);
   }
+  assert.match(english, /Saving a key does not verify the API or detect an article/u);
+  assert.match(chinese, /保存成功不等于 API Key 有效，也不等于文章已通过检测/u);
   assert.match(english, /exact test count is reported by the current CI run/u);
   assert.match(chinese, /精确测试数量以当前 CI 输出为准/u);
   assert.equal(changelog.includes("## [Unreleased]"), true);

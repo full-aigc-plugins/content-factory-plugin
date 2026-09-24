@@ -14,6 +14,8 @@
     "audit:release": "node scripts/audit-release.mjs",
     "release:gate": "node scripts/release-gate.mjs",
     "doctor": "node packages/cli/src/main.ts doctor --json",
+    "zhuque:setup": "node packages/cli/src/main.ts zhuque-setup",
+    "zhuque:status": "node packages/cli/src/main.ts zhuque-status --json",
     "mcp": "node packages/mcp/src/server.ts",
     "skills:check": "node scripts/check-skills.mjs --offline",
     "skills:check:upstream": "node scripts/check-skills.mjs",

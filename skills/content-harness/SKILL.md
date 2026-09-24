@@ -1,6 +1,6 @@
 ---
 name: content-harness
-description: Content Factory's single plugin-local orchestration skill. Resolve the requested task mode first, preserve supplied context, route only the stages needed for that mode, and leave canonical state/approval/delivery authority to the Runtime Kernel.
+description: Content Factory's single plugin-local orchestration skill. Use for content production, editing, formatting, detection, delivery, or local Zhuque API Key setup. Resolve the requested task mode first, preserve supplied context, route only the stages needed for that mode, and leave canonical state/approval/delivery authority to the Runtime Kernel.
 ---
 
 # Content Harness
@@ -35,6 +35,10 @@ A simple request MUST NOT be inflated into the full pipeline. In particular, `fo
 - `edit`, `format`, `detect`, `repurpose`: require a content revision/reference.
 - `deliver`: require content, channel and destination account.
 - Missing inputs are returned in `missingInputs`; `assumptions` remains empty unless the user explicitly approved an assumption.
+
+## Zhuque credential setup
+
+When the user asks to configure the Zhuque API Key, open the bundled local setup page through `content_factory_zhuque_setup` if the MCP tool is available. In a source checkout, `npm run zhuque:setup` is the CLI fallback. Ask the user to enter the key in that page; never request, repeat, or place the key in chat, article files, or command arguments. `content_factory_zhuque_status` or `npm run zhuque:status` reports configuration presence only. A saved key does not prove API authentication or content detection; keep the normal consent, exact-revision, and real-response gates for `detect` mode.
 
 ## Authority boundary
 

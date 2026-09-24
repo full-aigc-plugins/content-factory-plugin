@@ -104,7 +104,7 @@ test("CF-057 host runner verifies a source checkout against a separate package m
   ]);
   assert.equal(run.status, 0, run.stderr || run.stdout);
   const report = JSON.parse(run.stdout);
-  assert.equal(report.candidate.manifestFiles, 263);
+  assert.equal(report.candidate.manifestFiles, 268);
   assert.equal(report.recipeCount, 39);
   assert.equal(report.verifiedRequiredCapabilityCount, 156);
 });
