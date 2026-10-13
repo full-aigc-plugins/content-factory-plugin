@@ -1,6 +1,6 @@
 # Content Factory V1 Tasks
 
-A task remains unchecked until qualifying implementation evidence exists. The checkboxes below reflect the current per-task receipts, and task IDs are preserved from the approved V1 plan.
+> 2026-10-12 过度设计裁剪：删除平台机制范围（CF-011 不可变版本与 CAS 冲突、CF-012 Run/Step 账本与恢复、CF-027/028/029 检测政策/请求去重时效/费用额度取消、CF-032 冻结交付包与受控审批、CF-037 安全供应链专项验证、CF-038 幂等故障回归、CF-040 跨系统安装迁移、CF-041 真实宿主端到端验收、CF-042 发布门禁）及 Task invariants 等流水账段落；未完成任务收敛为实现导向单行；历史见 git 与 docs/evidence/。
 
 ## W0 — Supply chain and external contracts
 
@@ -15,12 +15,9 @@ A task remains unchecked until qualifying implementation evidence exists. The ch
   - Establish CLI/MCP domain entry points.
   - Detect host, search, browser, credential, and external-plugin capabilities without paid calls.
 
-- [ ] **CF-003 AI content detection platform live contract probe**
-  - Validate whole-text/segment responses, Unicode behavior, auth, quota, and raw evidence using an authorized account.
+- [ ] **CF-003 AI detection platform live contract probe**: with an authorized account validate whole-text/segment responses, Unicode behavior, auth and quota; record raw fixtures, with regression tests.
 
-- [ ] **CF-004 WeChat draft permission/readback probe**
-  - Verify create/read/update and unknown-result recovery with an authorized account.
-  - Do not test public broadcast.
+- [ ] **CF-004 WeChat draft permission/readback probe**: with an authorized account verify create/read/update and unknown-result recovery (no public broadcast), with regression tests.
 
 - [x] **CF-005 Vendor formatting parity baseline**
   - Lock and evaluate `baoyu-format-markdown` and `baoyu-markdown-to-html`.
@@ -40,8 +37,6 @@ A task remains unchecked until qualifying implementation evidence exists. The ch
   - Prefer the locked `baoyu-url-to-markdown` capability when available.
   - Keep SSRF, redirects, access walls, prompt injection, size and extraction policy in the kernel.
 - [x] **CF-010 DOCX and text-PDF ingestion**
-- [x] **CF-011 Immutable revisions, diffs, and CAS conflict handling**
-- [x] **CF-012 Run/Step ledger and recovery**
 
 ## W2 — Harness-driven creation and editing
 
@@ -102,48 +97,18 @@ A task remains unchecked until qualifying implementation evidence exists. The ch
 
 ## W4 — Real detection and validity
 
-- [ ] **CF-025 AI content detection platform adapter and raw evidence storage**
-- [ ] **CF-026 Ratio interpretation and Unicode segment mapping**
-- [ ] **CF-027 Detection policy and human exception semantics**
-- [ ] **CF-028 Detection invalidation, request deduplication, and freshness**
-- [ ] **CF-029 Quota, bounded retry, usage, and cancellation**
-- [ ] **CF-030 Complete detection report and live sample comparison**
+- [ ] **CF-025 AI content detection platform adapter**: implement the HTTP adapter and report intake, with regression tests.
+- [ ] **CF-026 Ratio interpretation and Unicode segment mapping**: implement classification-ratio interpretation with Unicode segment mapping, with regression tests.
+- [ ] **CF-030 Complete detection report**: assemble the complete detection report with live sample comparison, with regression tests.
 
 ## W5 — Approval, channel execution, verified delivery
 
-- [ ] **CF-031 Account/credential/delivery permission preflight**
-- [ ] **CF-032 Frozen delivery bundle and trusted approval**
-- [ ] **CF-033 WeChat channel execution**
-  - Reuse locked `baoyu-post-to-wechat` implementation/methods where compatible.
-  - Kernel persists intent before remote mutation.
-  - Channel skill result cannot directly set verified state.
-
-- [ ] **CF-034 WeChat readback, conflict detection, and update**
-- [ ] **CF-035 Controlled browser draft path**
-  - Reuse channel/browser methods only inside the explicit approval boundary.
-  - Login/CAPTCHA remains user-controlled.
-- [ ] **CF-036 Working/verified portable export**
-
-Optional packaged distribution skills `baoyu-post-to-weibo` and `baoyu-post-to-x` may be integrated behind harness routing, but their remote delivery is not a V1 P0 promise unless separately promoted into acceptance gates.
+- [ ] **CF-031 Account/credential/delivery permission preflight**: implement account/credential resolution and permission preflight (no secrets in output), with regression tests.
+- [ ] **CF-033 WeChat channel execution**: reuse locked `baoyu-post-to-wechat` methods and persist submit intent before remote mutation, with regression tests.
+- [ ] **CF-034 WeChat readback, conflict detection, and update**: implement draft readback with conflict detection and update, with regression tests.
+- [ ] **CF-035 Controlled browser draft path**: reuse channel/browser methods only inside the explicit approval boundary, login/CAPTCHA stays user-controlled, with regression tests.
+- [ ] **CF-036 Working/verified portable export**: implement Markdown/HTML/asset export packages to a chosen directory without remote writes, with regression tests.
 
 ## W6 — Security, quality, install, release
 
-- [x] **CF-037 Security/privacy/supply-chain validation**
-  - Include vendor drift, malicious skill content, secret leakage, URL attacks, approval forgery, and wrong-account delivery.
-
-- [x] **CF-038 Crash/duplicate/dependency failure regression**
-- [ ] **CF-039 30-document editorial benchmark**
-- [x] **CF-040 macOS/Windows/Linux clean install and migration**
-- [ ] **CF-041 Codex/ZCode/Kimi real-host end-to-end acceptance**
-- [ ] **CF-042 Release bundle, marketplace registration, documentation, and final gate**
-  - Same commit/tag/package/market metadata.
-  - Vendor integrity check passes.
-  - Only actual release evidence may mark V1 complete.
-
-## Task invariants
-
-- Planning completion never checks an implementation box.
-- Vendor skills are dependencies, not authorities over canonical product state.
-- Image generation is externalized to Image Factory.
-- WeChat is the V1 verified remote delivery channel.
-- Real service evidence and fixture evidence are stored separately.
+- [ ] **CF-039 30-document editorial benchmark**: run the 30-document editorial quality benchmark (facts, naturalness, purpose, layout) retaining human judgement, with regression tests.
