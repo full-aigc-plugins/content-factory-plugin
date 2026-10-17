@@ -1,0 +1,32 @@
+{
+  "name": "@partme-dsh/content-factory",
+  "version": "1.0.0-rc.3",
+  "description": "Create, review, format, and export governed content for 16 channels.",
+  "type": "module",
+  "main": "lib/index.js",
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "lib/index.js",
+    "icon.svg",
+    "icon.png",
+    "README.md"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "content",
+    "editorial",
+    "workflow",
+    "codex"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

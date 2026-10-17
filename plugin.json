@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "content-factory",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "Create, review, format, and export governed content for 16 channels.",
   "author": {
     "name": "Full AIGC Plugins"
