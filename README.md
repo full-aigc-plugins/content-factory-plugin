@@ -17,6 +17,8 @@ This plugin belongs to **AIGC content creation**.
 
 Content Factory has a working offline runtime and a fail-closed release gate. It is not yet a production release.
 
+Current package: `1.0.0-rc.3` — release candidate, not a production release.
+
 | Task | Status | Evidence |
 |---|---|---|
 | CF-001–002, 005–024, 037–038, 040, 043–052, 054–055, 058 | COMPLETE | Supply chain, Runtime Kernel, harness, import/edit/render/export, routing, recovery, security, and fail-closed release gate |
