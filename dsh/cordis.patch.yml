@@ -4,4 +4,4 @@
 # for the other hosts.
 - insert:
     - id: content-factory-plugin
-      name: '@partme-dsh/content-factory'
+      name: 'content-factory'

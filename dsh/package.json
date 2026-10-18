@@ -1,5 +1,5 @@
 {
-  "name": "@partme-dsh/content-factory",
+  "name": "content-factory",
   "version": "1.0.0-rc.3",
   "description": "Create, review, format, and export governed content for 16 channels.",
   "type": "module",
@@ -30,5 +30,6 @@
     "bundle": {
       "patch": "./cordis.patch.yml"
     }
-  }
+  },
+  "private": true
 }
