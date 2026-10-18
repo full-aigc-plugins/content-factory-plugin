@@ -28,5 +28,11 @@
   "dependencies": {
     "fflate": "0.8.3",
     "pdfjs-dist": "6.3.289"
+  },
+  "main": "./dsh/lib/index.js",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
   }
 }
