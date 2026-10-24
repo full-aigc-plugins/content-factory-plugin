@@ -1,7 +1,7 @@
 {
   "name": "content-factory",
-  "version": "1.0.0-rc.3",
-  "description": "Create, review, format, and export governed content for 16 channels.",
+  "version": "1.0.0-rc.2",
+  "description": "Governed content production for 16 channels: topic, drafting, editing, layout, review and export with channel rules preserved.",
   "author": {
     "name": "Full AIGC Plugins"
   },
@@ -14,8 +14,8 @@
     "workflow"
   ],
   "interface": {
-    "displayName": "Content Factory",
-    "shortDescription": "Create and review governed multi-channel content",
+    "displayName": "Content Factory · Multi-channel Content",
+    "shortDescription": "Topic, writing, editing, layout and publishing for 16 channels",
     "longDescription": "Evidence-bound research, drafting, editing, formatting, review, and export with explicit external-action gates.",
     "developerName": "Full AIGC Plugins",
     "websiteURL": "https://github.com/full-aigc-plugins/content-factory-plugin"

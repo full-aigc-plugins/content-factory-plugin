@@ -1,7 +1,7 @@
 {
   "name": "full-aigc-plugins-content-factory",
   "interface": {
-    "displayName": "Content Factory"
+    "displayName": "Content Factory · Multi-channel Content"
   },
   "plugins": [
     {
@@ -9,19 +9,21 @@
       "source": {
         "source": "url",
         "url": "https://github.com/full-aigc-plugins/content-factory-plugin.git",
-        "ref": "main"
+        "ref": "v1.0.0-rc.2"
       },
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "ON_USE"
       },
       "category": "Creativity",
-      "version": "1.0.0-rc.3",
-      "description": "Create, review, format, and export governed content for 16 channels.",
+      "version": "1.0.0-rc.2",
+      "description": "Governed content production for 16 channels: topic, drafting, editing, layout, review and export with channel rules preserved.",
       "interface": {
-        "displayName": "Content Factory",
-        "shortDescription": "Create and review governed multi-channel content"
-      }
+        "displayName": "Content Factory · Multi-channel Content",
+        "shortDescription": "Topic, writing, editing, layout and publishing for 16 channels",
+        "logo": "https://cdn.jsdelivr.net/gh/full-aigc-plugins/content-factory-plugin@v1.0.0-rc.2/undefined"
+      },
+      "icon": "https://cdn.jsdelivr.net/gh/full-aigc-plugins/content-factory-plugin@v1.0.0-rc.2/undefined"
     }
   ]
 }

@@ -1,15 +1,13 @@
 {
   "name": "content-factory",
-  "displayName": "Content Factory",
+  "displayName": "Content Factory · Multi-channel Content",
   "displayName_i18n": {
-    "en": "Content Factory",
-    "zh-CN": "内容工厂"
+    "en": "Content Factory · Multi-channel Content"
   },
-  "version": "1.0.0-rc.3",
-  "description": "Create, review, format, and export governed content for 16 channels.",
+  "version": "1.0.0-rc.2",
+  "description": "Governed content production for 16 channels: topic, drafting, editing, layout, review and export with channel rules preserved.",
   "description_i18n": {
-    "en": "Evidence-bound research, writing, editing, formatting, review, and export.",
-    "zh-CN": "带证据约束的调研、写作、编辑、排版、审阅与导出。"
+    "en": "Governed content production for 16 channels: topic, drafting, editing, layout, review and export with channel rules preserved."
   },
   "author": {
     "name": "Full AIGC Plugins"
