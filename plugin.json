@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "content-factory",
   "version": "1.0.0-rc.2",
-  "description": "Governed content production for 16 channels: topic, drafting, editing, layout, review and export with channel rules preserved.",
+  "description": "16 个渠道的受控内容生产：选题、写作、编辑、排版、审阅与导出，保留渠道规范。",
   "author": {
     "name": "Full AIGC Plugins"
   },
@@ -43,5 +43,12 @@
     "ai.nanoco.nanoclaw": {
       "agentName": "Content Factory"
     }
+  },
+  "displayName": "Content（多平台内容生产）",
+  "displayName_i18n": {
+    "zh-CN": "Content（多平台内容生产）"
+  },
+  "description_i18n": {
+    "zh-CN": "16 个渠道的受控内容生产：选题、写作、编辑、排版、审阅与导出，保留渠道规范。"
   }
 }

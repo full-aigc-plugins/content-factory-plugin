@@ -17,13 +17,14 @@
       },
       "category": "Creativity",
       "version": "1.0.0-rc.2",
-      "description": "Governed content production for 16 channels: topic, drafting, editing, layout, review and export with channel rules preserved.",
+      "description": "16 个渠道的受控内容生产：选题、写作、编辑、排版、审阅与导出，保留渠道规范。",
       "interface": {
-        "displayName": "Content Factory · Multi-channel Content",
-        "shortDescription": "Topic, writing, editing, layout and publishing for 16 channels",
+        "displayName": "Content（多平台内容生产）",
+        "shortDescription": "16 渠道选题、写作、编辑、排版与发布",
         "logo": "https://cdn.jsdelivr.net/gh/full-aigc-plugins/content-factory-plugin@v1.0.0-rc.2/undefined"
       },
-      "icon": "https://cdn.jsdelivr.net/gh/full-aigc-plugins/content-factory-plugin@v1.0.0-rc.2/undefined"
+      "icon": "https://cdn.jsdelivr.net/gh/full-aigc-plugins/content-factory-plugin@v1.0.0-rc.2/undefined",
+      "displayName": "Content（多平台内容生产）"
     }
   ]
 }

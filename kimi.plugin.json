@@ -1,7 +1,7 @@
 {
   "name": "content-factory",
   "version": "1.0.0-rc.2",
-  "description": "Governed content production for 16 channels: topic, drafting, editing, layout, review and export with channel rules preserved.",
+  "description": "16 个渠道的受控内容生产：选题、写作、编辑、排版、审阅与导出，保留渠道规范。",
   "author": {
     "name": "Full AIGC Plugins"
   },
@@ -14,11 +14,17 @@
     "workflow"
   ],
   "interface": {
-    "displayName": "Content Factory · Multi-channel Content",
-    "shortDescription": "Topic, writing, editing, layout and publishing for 16 channels",
+    "displayName": "Content（多平台内容生产）",
+    "shortDescription": "16 渠道选题、写作、编辑、排版与发布",
     "longDescription": "Evidence-bound research, drafting, editing, formatting, review, and export with explicit external-action gates.",
     "developerName": "Full AIGC Plugins",
     "websiteURL": "https://github.com/full-aigc-plugins/content-factory-plugin"
   },
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "displayName_i18n": {
+    "zh-CN": "Content（多平台内容生产）"
+  },
+  "description_i18n": {
+    "zh-CN": "16 个渠道的受控内容生产：选题、写作、编辑、排版、审阅与导出，保留渠道规范。"
+  }
 }
