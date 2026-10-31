@@ -17,7 +17,7 @@ test("CF-042 keeps package and three host manifest versions consistent", async (
   const manifests = await Promise.all(files.map(file => readJson(file)));
   assert.deepEqual(
     manifests.map(item => item.version),
-    ["1.0.0-rc.2", "1.0.0-rc.2", "1.0.0-rc.2", "1.0.0-rc.2"]
+    Array(4).fill(manifests[0].version)
   );
 });
 
