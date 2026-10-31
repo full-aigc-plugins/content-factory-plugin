@@ -46,8 +46,10 @@ test("CF-001 through CF-058 each retain evidence and task status matches it", ()
       occurrences.set(task, (occurrences.get(task) ?? 0) + 1);
     }
   }
+  const index = JSON.parse(readFileSync(path.join(root, "openspec/changes/implement-content-factory-architecture/task-index.json"), "utf8"));
+  const indexed = new Set(index.tasks.map(item => item.id));
   for (const task of evidence.keys()) {
-    assert.ok(occurrences.has(task), `${task} must appear in an OpenSpec task list`);
+    assert.ok(occurrences.has(task) || indexed.has(task), `${task} must appear in an OpenSpec task list or the authoritative task index`);
   }
 });
 
