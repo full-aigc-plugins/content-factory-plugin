@@ -97,7 +97,7 @@ test("CF-057 host runner can return a digest-bound compact host receipt", () => 
   assert.equal(Object.hasOwn(report, "recipes"), false);
 });
 
-test("CF-057 host runner verifies a source checkout against a separate package manifest", () => {
+test("CF-057 host runner verifies a source checkout against a separate package manifest", async () => {
   const run = execute([
     "--candidate-root", root,
     "--manifest", path.join(root, "dist/build-manifest.json"),
@@ -105,7 +105,9 @@ test("CF-057 host runner verifies a source checkout against a separate package m
   ]);
   assert.equal(run.status, 0, run.stderr || run.stdout);
   const report = JSON.parse(run.stdout);
-  assert.equal(report.candidate.manifestFiles, 268);
+  assert.equal(report.candidate.manifestFiles, 269);
+  const manifest = JSON.parse(await readFile(path.join(root, "dist/build-manifest.json"), "utf8"));
+  assert.deepEqual(manifest.files.filter(file => file.path === "assets/content-factory.svg").map(file => file.bytes), [311]);
   assert.equal(report.recipeCount, 39);
   assert.equal(report.verifiedRequiredCapabilityCount, 156);
 });

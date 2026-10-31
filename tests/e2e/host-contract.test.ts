@@ -12,6 +12,29 @@ const manifests: Record<HostId, string> = {
   kimi: "kimi.plugin.json"
 };
 
+test("portable manifest keeps one package identity, legal extension fields and real icons", async () => {
+  const pkg = JSON.parse(await readFile(path.resolve("package.json"), "utf8"));
+  const portable = JSON.parse(await readFile(path.resolve("plugin.json"), "utf8"));
+  const codex = JSON.parse(await readFile(path.resolve(".codex-plugin/plugin.json"), "utf8"));
+  const claude = JSON.parse(await readFile(path.resolve(".claude-plugin/plugin.json"), "utf8"));
+  const zcode = JSON.parse(await readFile(path.resolve(".zcode-plugin/plugin.json"), "utf8"));
+  const kimi = JSON.parse(await readFile(path.resolve("kimi.plugin.json"), "utf8"));
+  assert.deepEqual([portable, codex, claude, zcode, kimi].map(item => item.version), Array(5).fill(pkg.version));
+  const legal = new Set(["$schema", "name", "version", "description", "author", "homepage", "repository", "license", "keywords", "extensions"]);
+  assert.deepEqual(Object.keys(portable).filter(key => !legal.has(key)), []);
+  assert.deepEqual(portable.extensions["ai.partme.localization"], {
+    displayName: codex.displayName,
+    displayName_i18n: codex.displayName_i18n,
+    description_i18n: codex.description_i18n
+  });
+  assert.deepEqual(portable.extensions["com.openai"].interface, codex.interface);
+  for (const field of ["logo", "logoDark", "composerIcon", "composerIconDark"]) {
+    const icon = codex.interface[field];
+    assert.match(icon, /^\.\/assets\/[a-z-]+\.svg$/u);
+    await access(path.resolve(icon));
+  }
+});
+
 test("CF-041 ships three host manifests with one package identity and real paths", async () => {
   const packageVersion = JSON.parse(await readFile(path.resolve("package.json"), "utf8")).version;
   for (const [hostId, relativePath] of Object.entries(manifests)) {
