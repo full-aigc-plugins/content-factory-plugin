@@ -32,10 +32,10 @@
       "Edit and format content without changing protected facts",
       "Prepare a reviewed package for a selected channel"
     ],
-    "logo": "./undefined",
-    "logoDark": "./undefined",
-    "composerIcon": "./undefined",
-    "composerIconDark": "./undefined"
+    "logo": "./assets/content-factory.svg",
+    "logoDark": "./assets/content-factory.svg",
+    "composerIcon": "./assets/content-factory.svg",
+    "composerIconDark": "./assets/content-factory.svg"
   },
   "displayName": "Content（多平台内容生产）",
   "displayName_i18n": {
