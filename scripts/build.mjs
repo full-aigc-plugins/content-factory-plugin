@@ -41,7 +41,7 @@ for (const root of copyRoots) {
 for (const file of [
   "LICENSE",
   "README.md",
-  "README.en.md",
+  "README.zh-CN.md",
   "kimi.plugin.json",
   "package.json",
   "skills.lock.json",
