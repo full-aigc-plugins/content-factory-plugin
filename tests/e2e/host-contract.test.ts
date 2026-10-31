@@ -13,10 +13,11 @@ const manifests: Record<HostId, string> = {
 };
 
 test("CF-041 ships three host manifests with one package identity and real paths", async () => {
+  const packageVersion = JSON.parse(await readFile(path.resolve("package.json"), "utf8")).version;
   for (const [hostId, relativePath] of Object.entries(manifests)) {
     const manifest = JSON.parse(await readFile(path.resolve(relativePath), "utf8"));
     assert.equal(manifest.name, "content-factory", hostId);
-    assert.equal(manifest.version, "1.0.0-rc.2", hostId);
+    assert.equal(manifest.version, packageVersion, hostId);
     assert.equal(manifest.license, "Apache-2.0", hostId);
     assert.match(manifest.skills, /^\.?\/?skills\/?$/u, hostId);
     await access(path.resolve(manifest.skills));

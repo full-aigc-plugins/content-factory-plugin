@@ -7,6 +7,7 @@ import test from "node:test";
 const root = path.resolve(".");
 const runner = path.join(root, "scripts/run-host-recipe-acceptance.mjs");
 const fixture = path.join(root, "tests/fixtures/channel-writing/catalog-examples.json");
+const packageVersion = JSON.parse((await readFile(path.join(root, "package.json"), "utf8"))).version;
 
 function execute(extra = []) {
   const manifest = JSON.parse(spawnSync(
@@ -19,7 +20,7 @@ function execute(extra = []) {
     "--host", "codex",
     "--host-version", "test-runtime",
     "--candidate-root", path.join(root, "dist"),
-    "--expected-version", "1.0.0-rc.2",
+    "--expected-version", packageVersion,
     "--expected-source-commit", manifest.sourceCommit,
     "--fixture", fixture,
     "--json",
@@ -46,7 +47,7 @@ function executeInstalled() {
       CONTENT_FACTORY_ACCEPTANCE_CODEX_ROOT: path.join(root, "dist"),
       CONTENT_FACTORY_ACCEPTANCE_MANIFEST: path.join(root, "dist/build-manifest.json"),
       CONTENT_FACTORY_ACCEPTANCE_SOURCE_COMMIT: manifest.sourceCommit,
-      CONTENT_FACTORY_ACCEPTANCE_VERSION: "1.0.0-rc.2"
+      CONTENT_FACTORY_ACCEPTANCE_VERSION: packageVersion
     }
   });
 }
@@ -58,7 +59,7 @@ test("CF-057 host runner verifies all 39 recipes and 156 required capabilities",
   assert.equal(report.schemaVersion, 1);
   assert.equal(report.status, "VERIFIED_HOST_RECIPES");
   assert.equal(report.host.id, "codex");
-  assert.equal(report.candidate.version, "1.0.0-rc.2");
+  assert.equal(report.candidate.version, packageVersion);
   assert.equal(report.recipeCount, 39);
   assert.equal(report.evaluatedCombinationCount, 39);
   assert.equal(report.requiredCapabilityCount, 156);
