@@ -1,7 +1,7 @@
 {
   "name": "full-aigc-plugins-content-factory",
   "interface": {
-    "displayName": "Content Factory · Multi-channel Content"
+    "displayName": "Content（多平台内容生产）"
   },
   "plugins": [
     {
@@ -9,21 +9,21 @@
       "source": {
         "source": "url",
         "url": "https://github.com/full-aigc-plugins/content-factory-plugin.git",
-        "ref": "v1.0.0-rc.2"
+        "ref": "v1.0.0-rc.4"
       },
       "policy": {
         "installation": "AVAILABLE",
         "authentication": "ON_USE"
       },
       "category": "Creativity",
-      "version": "1.0.0-rc.2",
-      "description": "16 个渠道的受控内容生产：选题、写作、编辑、排版、审阅与导出，保留渠道规范。",
+      "version": "1.0.0-rc.4",
+      "description": "16 个渠道的内容生产线：选题、写作、排版、审阅到导出，渠道规范始终保留。",
       "interface": {
         "displayName": "Content（多平台内容生产）",
-        "shortDescription": "16 渠道选题、写作、编辑、排版与发布",
-        "logo": "https://cdn.jsdelivr.net/gh/full-aigc-plugins/content-factory-plugin@v1.0.0-rc.2/undefined"
+        "shortDescription": "16 个渠道的内容生产线：选题、写作、排版、审阅到导出，渠道规范始终保留。",
+        "logo": "https://cdn.jsdelivr.net/gh/full-aigc-plugins/content-factory-plugin@v1.0.0-rc.4/assets/content-factory.svg"
       },
-      "icon": "https://cdn.jsdelivr.net/gh/full-aigc-plugins/content-factory-plugin@v1.0.0-rc.2/undefined",
+      "icon": "https://cdn.jsdelivr.net/gh/full-aigc-plugins/content-factory-plugin@v1.0.0-rc.4/assets/content-factory.svg",
       "displayName": "Content（多平台内容生产）"
     }
   ]
