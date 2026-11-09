@@ -31,6 +31,7 @@ test("CF-042 candidate manifest references every P0 task and remains blocked", a
   assert.match(candidate.releaseCommit, /^[a-f0-9]{40}$/u);
   assert.equal(candidate.manifestSourceCommit, candidate.releaseCommit);
   assert.match(candidate.packageSha256, /^[a-f0-9]{64}$/u);
+  // Existing package evidence remains bound to rc.2 while the new rc.4 release is blocked.
   assert.equal(candidate.packageEvidenceVersion, liveIndex.releaseCandidate.packageVersion);
   assert.equal(candidate.packageSha256, liveIndex.releaseCandidate.packageSha256);
   const candidateTag = spawnSync("git", ["rev-list", "-n", "1", candidate.releaseTag], {
