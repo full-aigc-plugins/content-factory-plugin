@@ -1,23 +1,64 @@
 {
   "schemaVersion": 1,
   "targetVersion": "1.0.0",
-  "currentVersion": "1.0.0-rc.2",
+  "currentVersion": "1.0.0-rc.4",
   "releaseStatus": "BLOCKED",
-  "releaseTag": "v1.0.0-rc.2",
-  "releaseCommit": "33ff3315bbea626fb5428a70e9f445b2b9165bc4",
-  "manifestSourceCommit": "33ff3315bbea626fb5428a70e9f445b2b9165bc4",
+  "releaseTag": "v1.0.0-rc.4",
+  "releaseCommit": "2b9a5940af019712487cbe9cdaec06151c036789",
+  "manifestSourceCommit": "2b9a5940af019712487cbe9cdaec06151c036789",
+  "packageEvidenceVersion": "1.0.0-rc.2",
   "packageSha256": "35e74f6ea0d167ab120d7acd2a89df56e36647addd1116ddf0473dff66d6f447",
   "requiredTaskEvidence": [
-    { "task": "CF-001", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-001.json" },
-    { "task": "CF-030", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-030.json" },
-    { "task": "CF-035", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-035.json" },
-    { "task": "CF-037", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-037.json" },
-    { "task": "CF-038", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-038.json" },
-    { "task": "CF-039", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-039.json" },
-    { "task": "CF-040", "status": "COMPLETE", "evidenceRef": "docs/verification/tasks/CF-040.json" },
-    { "task": "CF-041", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-041.json" },
-    { "task": "CF-057", "status": "PARTIAL_OFFLINE", "evidenceRef": "docs/verification/tasks/CF-057.json" },
-    { "task": "CF-058", "status": "COMPLETE_GATE_BLOCKED", "evidenceRef": "docs/verification/tasks/CF-058.json" }
+    {
+      "task": "CF-001",
+      "status": "COMPLETE",
+      "evidenceRef": "docs/verification/tasks/CF-001.json"
+    },
+    {
+      "task": "CF-030",
+      "status": "PARTIAL_OFFLINE",
+      "evidenceRef": "docs/verification/tasks/CF-030.json"
+    },
+    {
+      "task": "CF-035",
+      "status": "PARTIAL_OFFLINE",
+      "evidenceRef": "docs/verification/tasks/CF-035.json"
+    },
+    {
+      "task": "CF-037",
+      "status": "COMPLETE",
+      "evidenceRef": "docs/verification/tasks/CF-037.json"
+    },
+    {
+      "task": "CF-038",
+      "status": "COMPLETE",
+      "evidenceRef": "docs/verification/tasks/CF-038.json"
+    },
+    {
+      "task": "CF-039",
+      "status": "PARTIAL_OFFLINE",
+      "evidenceRef": "docs/verification/tasks/CF-039.json"
+    },
+    {
+      "task": "CF-040",
+      "status": "COMPLETE",
+      "evidenceRef": "docs/verification/tasks/CF-040.json"
+    },
+    {
+      "task": "CF-041",
+      "status": "PARTIAL_OFFLINE",
+      "evidenceRef": "docs/verification/tasks/CF-041.json"
+    },
+    {
+      "task": "CF-057",
+      "status": "PARTIAL_OFFLINE",
+      "evidenceRef": "docs/verification/tasks/CF-057.json"
+    },
+    {
+      "task": "CF-058",
+      "status": "COMPLETE_GATE_BLOCKED",
+      "evidenceRef": "docs/verification/tasks/CF-058.json"
+    }
   ],
   "marketUpdates": [],
   "blockers": [
