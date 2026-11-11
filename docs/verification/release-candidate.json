@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "targetVersion": "1.0.0",
-  "currentVersion": "1.0.0-rc.5",
+  "currentVersion": "1.0.0-rc.6",
   "releaseStatus": "BLOCKED",
-  "releaseTag": "v1.0.0-rc.5",
+  "releaseTag": "v1.0.0-rc.6",
   "releaseCommit": "2b9a5940af019712487cbe9cdaec06151c036789",
   "manifestSourceCommit": "2b9a5940af019712487cbe9cdaec06151c036789",
   "packageEvidenceVersion": "1.0.0-rc.2",
