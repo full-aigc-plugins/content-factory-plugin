@@ -223,3 +223,7 @@ __marimo__/
 .video_agent/
 node_modules/
 package-lock.json
+
+# DSH source entry is part of the published Git package.
+!dsh/lib/
+!dsh/lib/index.js

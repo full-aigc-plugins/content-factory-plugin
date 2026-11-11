@@ -1,6 +1,6 @@
 {
   "name": "content-factory",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.6",
   "description": "16 个渠道的内容生产线：选题、写作、排版、审阅到导出，渠道规范始终保留。",
   "author": {
     "name": "Full AIGC Plugins"
