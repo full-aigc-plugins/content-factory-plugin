@@ -1,6 +1,6 @@
 {
   "name": "@full-aigc-plugins/content-factory-plugin",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0-rc.5",
   "private": true,
   "type": "module",
   "engines": {
@@ -32,8 +32,19 @@
   "main": "./dsh/lib/index.js",
   "dsh": {
     "bundle": {
-      "patch": "./cordis.patch.yml"
+      "patch": "./dsh/cordis.patch.yml"
     }
   },
-  "icon": "./dsh/icon.png"
+  "description": "Create, review, format, and export governed content for 16 channels.",
+  "files": [
+    "dsh/lib/index.js",
+    "dsh/cordis.patch.yml",
+    "dsh/locale",
+    "dsh/icon.svg",
+    "skills",
+    "scripts",
+    "packages",
+    "assets",
+    "docs"
+  ]
 }
