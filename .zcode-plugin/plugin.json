@@ -5,7 +5,7 @@
     "en": "Content（多平台内容生产）",
     "zh-CN": "Content（多平台内容生产）"
   },
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.6",
   "description": "16 个渠道的内容生产线：选题、写作、排版、审阅到导出，渠道规范始终保留。",
   "description_i18n": {
     "en": "Governed content production for 16 channels: topic, drafting, editing, layout, review and export with channel rules preserved.",
